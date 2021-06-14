@@ -5,8 +5,12 @@ name = "pypi"
 
 [packages]
 django = "*"
+python-decouple = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.9"
+
+[scripts]
+server = "python manage.py runserver"
