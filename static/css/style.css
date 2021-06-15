@@ -3181,6 +3181,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.2);
 	margin:25px auto 15px; 
 }
+.user-profile-index-thumb{
+	width:150px;
+	height:150px;
+	overflow:hidden;
+	border-radius:100px;
+	border: 5px solid #fff;
+	box-shadow:0 0 15px 0 rgba(0,0,0,0.2);
+	margin:25px auto 15px;
+}
 .profile-info{
 	margin-bottom:15px;
 }
