@@ -1,28 +1,3 @@
-/*
-======================================
-  * CSS TABLE CONTENT *  
-======================================
-1. HEADER
-2. HEADER TOPBAR
-3. HEADER LOGO
-4. MENU BAR
-5. MEGA MENU
-6. HEADER TRANSPARENT
-7. MENU ICON
-8. PAGE BANNER
-9. BLOG
-10. TESTIMONIALS
-11. COUNTERUP
-12. FOOTER
-13. INNER CONTENT CSS
-======================================
-  * END TABLE CONTENT *  
-======================================
-*/
-
-/*=================================
-	1. HEADER
-=================================*/
 .bg-fix {
     background-attachment: fixed;
 	background-size: cover;
