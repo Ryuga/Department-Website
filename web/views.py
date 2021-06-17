@@ -20,3 +20,4 @@ class EventView(View):
         else:
             events = Event.objects.all()
             return render(request, "events.html", {"events": events})
+

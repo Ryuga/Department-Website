@@ -61,7 +61,7 @@
                 <div class="container clearfix">
 					<!-- Header Logo ==== -->
 					<div class="menu-logo">
-						<a href="index.html"><img src="{% static 'images/logo-white.png' %}" alt=""></a>
+						<a href="{% url 'home' %}"><img src="{% static 'images/logo-white.png' %}" alt=""></a>
 					</div>
 					<!-- Mobile Nav Button ==== -->
                     <button class="navbar-toggler collapsed menuicon justify-content-end" type="button" data-toggle="collapse" data-target="#menuDropdown" aria-controls="menuDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,7 @@
 					<!-- Navigation Menu ==== -->
                     <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
 						<div class="menu-logo">
-							<a href="index.html"><img src="{% static 'images/logo.png' %}" alt=""></a>
+							<a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
 						</div>
                         <ul class="nav navbar-nav">
 							<li class="active"><a href="#!">Home </a></li>
@@ -93,9 +93,9 @@
 									<li class="add-menu-left">
 										<h5 class="menu-adv-title">Courses</h5>
 										<ul>
-											<li><a href="courses.html">Bsc Computer Science</a></li>
-											<li><a href="courses-details.html">BCA (Computer Application)</a></li>
-											<li><a href="profile.html">Msc Computer Science</a></li>
+											<li><a href="#!">Bsc Computer Science</a></li>
+											<li><a href="#!">BCA (Computer Application)</a></li>
+											<li><a href="#!">Msc Computer Science</a></li>
 										</ul>
 									</li>
 									<li class="add-menu-right">
@@ -103,8 +103,8 @@
 									</li>
 								</ul>
 							</li>
-                            <li><a href="#!">Faculty</a></li>
-							<li><a href="#!">Events</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
+							<li><a href="{% url 'events' %}">Events</a></li>
 						</ul>
 						<div class="nav-social-link">
 							<a href="javascript:;"><i class="fa fa-facebook"></i></a>
