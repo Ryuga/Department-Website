@@ -13,11 +13,10 @@
 $ pip install pipenv
 
 # Install dependencies from Pipenv
-$ pipenv install 
+$ pipenv install
 
 # Run the development server locally
 $ pipenv run server
 # this should run the Django development server on your localhost:8000.
-# now you can visit http://127.0.0.1:8000 and access the site
-
+# now you can visit http://127.0.0.1:8000 and access the site.
 ```
