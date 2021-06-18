@@ -87,15 +87,15 @@
 							<a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
 						</div>
                         <ul class="nav navbar-nav">
-							<li class="active"><a href="#!">Home </a></li>
+							<li class="active"><a href="{% url 'home' %}">Home </a></li>
 							<li class="add-mega-menu"><a href="javascript:;">Courses <i class="fa fa-chevron-down"></i></a>
 								<ul class="sub-menu add-menu">
 									<li class="add-menu-left">
 										<h5 class="menu-adv-title">Courses</h5>
 										<ul>
-											<li><a href="#!">Bsc Computer Science</a></li>
-											<li><a href="#!">BCA (Computer Application)</a></li>
-											<li><a href="#!">Msc Computer Science</a></li>
+											<li><a href="{% url 'course_details' slug='bsc-computer-science' %}">Bsc Computer Science</a></li>
+											<li><a href="{% url 'course_details' slug='bca' %}">BCA (Computer Application)</a></li>
+											<li><a href="{% url 'course_details' slug='msc-computer-science' %}">Msc Computer Science</a></li>
 										</ul>
 									</li>
 									<li class="add-menu-right">
@@ -146,9 +146,9 @@
 								<div class="widget footer_widget">
 									<h5 class="footer-title">Links</h5>
 									<ul>
-										<li><a href="#!">Home</a></li>
-										<li><a href="#!">About</a></li>
-										<li><a href="#!">Contact</a></li>
+										<li><a href="{% url 'home' %}">Home</a></li>
+										<li><a href="{% url 'about' %}">About</a></li>
+										<li><a href="{% url 'events' %}">Events</a></li>
 									</ul>
 								</div>
 							</div>
@@ -156,9 +156,9 @@
 								<div class="widget footer_widget">
 									<h5 class="footer-title">Courses</h5>
 									<ul>
-										<li><a href="#!">BSc Computer Science</a></li>
-										<li><a href="#!">BCA</a></li>
-										<li><a href="#!">MSc Computer Science</a></li>
+										<li><a href="{% url 'course_details' slug='bsc-computer-science' %}">BSc Computer Science</a></li>
+										<li><a href="{% url 'course_details' slug='bca' %}">BCA</a></li>
+										<li><a href="{% url 'course_details' slug='msc-computer-science' %}">MSc Computer Science</a></li>
 									</ul>
 								</div>
 							</div>

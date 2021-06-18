@@ -1,0 +1,116 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+{% load markdown_extras %}
+
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="page-banner ovbl-dark" style="background-image:url(assets/images/banner/banner2.jpg);">
+            <div class="container">
+                <div class="page-banner-entry">
+                    <h1 class="text-white">Course Details</h1>
+				 </div>
+            </div>
+        </div>
+		<!-- Breadcrumb row -->
+		<div class="breadcrumb-row">
+			<div class="container">
+				<ul class="list-inline">
+					<li><a href="#">Home</a></li>
+					<li>Course Details</li>
+                    <li>{{ course.name }}</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Breadcrumb row END -->
+        <!-- inner page banner END -->
+		<div class="content-block">
+            <!-- About Us -->
+			<div class="section-area section-sp1">
+                <div class="container">
+					 <div class="row d-flex flex-row-reverse">
+						<div class="col-lg-12 col-md-12 col-sm-12">
+							<div class="courses-post">
+								<div class="ttr-post-info">
+									<div class="ttr-post-title ">
+										<h2 class="post-title">{{ course.name }}</h2>
+									</div>
+									<div class="ttr-post-text">
+										<p>{{ course.description }}</p>
+									</div>
+								</div>
+							</div>
+							<div class="courese-overview" id="overview">
+								<h4>Overview</h4>
+								<div class="row">
+									<div class="col-md-12 col-lg-4">
+										<ul class="course-features">
+											<li><i class="fa fa-clock-o"></i> <span class="label">Duration</span> <span class="value">{{ course.duration }}</span></li>
+											<li><i class="fa fa-language"></i> <span class="label">Language</span> <span class="value">{{ course.language }}</span></li>
+											<li><i class="fa fa-user-graduate"></i> <span class="label">Students</span> <span class="value">{{ course.student_count }}</span></li>
+										</ul>
+									</div>
+									<div class="col-md-12 col-lg-8">
+                                            {{ course.markdown_content | markdown | safe }}
+									</div>
+								</div>
+							</div>
+							<div class="m-b30 col-lg-6" id="curriculum">
+								<h4>Curriculum</h4>
+								<ul class="curriculum-list">
+                                        {% if course.first_year_syllabus %}
+										<li>
+											<h5>First Year</h5>
+											<ul>
+                                                {% for lesson in course.first_year_syllabus %}
+												<li>
+													<div class="curriculum-list-box">
+														{{ lesson }}
+													</div>
+												</li>
+                                                {% endfor %}
+											</ul>
+										</li>
+                                        {% endif %}
+                                        {% if course.second_year_syllabus %}
+										<li>
+											<h5>Second Year</h5>
+											<ul>
+                                                {% for lesson in course.second_year_syllabus %}
+												<li>
+													<div class="curriculum-list-box">
+														{{ lesson }}
+													</div>
+												</li>
+                                                {% endfor %}
+											</ul>
+										</li>
+                                        {% endif %}
+                                        {% if course.third_year_syllabus %}
+										<li>
+											<h5>Final Year</h5>
+											<ul>
+                                                {% for lesson in course.third_year_syllabus %}
+												<li>
+													<div class="curriculum-list-box">
+														{{ lesson }}
+													</div>
+												</li>
+                                                {% endfor %}
+											</ul>
+										</li>
+                                        {% endif %}
+									</ul>
+							</div>
+
+						</div>
+						
+					</div>
+				</div>
+            </div>
+        </div>
+		<!-- contact area END -->
+		
+    </div>
+{% endblock content %}

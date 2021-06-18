@@ -2,22 +2,24 @@
     <div class="row">
         <div class="col-md-12 heading-bx left">
             <h2 class="title-head">Our <span>Faculty</span></h2>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
+            <p>Lorem Ipsum text something</p>
         </div>
     </div>
     <div class="row">
     <div class="courses-carousel owl-carousel owl-btn-1 col-12 p-lr0">
+        {% for faculty in faculties %}
         <div class="item">
             <div class="profile-bx text-center">
                 <div class="user-profile-index-thumb">
-                    <img src="/static/images/testimonials/pic1.jpg" alt=""/>
+                    <img src="{{ faculty. }}" alt=""/>
                 </div>
                 <div class="profile-info">
-                    <h4>Mark Andre</h4>
-                    <span>Guest Lecture</span>
+                    <h4>{{ faculty.name }}</h4>
+                    <span>{{ faculty.designation }}</span>
                 </div>
             </div>
         </div>
+        {% endfor %}
     </div>
     </div>
 </div>
