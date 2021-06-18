@@ -7,6 +7,7 @@ from django.contrib.postgres.fields import ArrayField
 
 class Faculty(models.Model):
     name = models.CharField(max_length=100)
+    image_url = models.URLField(null=True)
     link = models.CharField(max_length=100, null=True,
                             blank=True, help_text="Leave empty to auto create or add custom")
     designation = models.CharField(max_length=30)
@@ -33,16 +34,17 @@ class Course(models.Model):
                             blank=True, help_text="Leave empty to auto create or add custom")
     image_url = models.URLField()
     description = models.TextField()
+    markdown_content = models.TextField(null=True, blank=True, help_text="Markdown content if any")
     student_count = models.IntegerField(default=35)
     language = models.CharField(max_length=40, default="English/Malayalam")
     duration = models.CharField(max_length=15, default="3 years")
-    first_year_syllabus = ArrayField(models.CharField(max_length=35),
+    first_year_syllabus = ArrayField(models.CharField(max_length=50),
                                      help_text="Add multiple module names separated by comma",
                                      null=True, blank=True)
-    second_year_syllabus = ArrayField(models.CharField(max_length=35),
+    second_year_syllabus = ArrayField(models.CharField(max_length=50),
                                       help_text="Add multiple module names separated by comma",
                                       null=True, blank=True)
-    third_year_syllabus = ArrayField(models.CharField(max_length=35),
+    third_year_syllabus = ArrayField(models.CharField(max_length=50),
                                      help_text="Add multiple module names separated by comma",
                                      null=True, blank=True)
 

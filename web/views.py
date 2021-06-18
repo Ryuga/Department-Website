@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Event, Alumni, Course
+from .models import Event, Alumni, Course, Faculty
 
 
 def index_view(request):
@@ -10,6 +10,11 @@ def index_view(request):
 
 def about_view(request):
     return render(request, "about.html")
+
+
+def lazy_load_faculty(request):
+    faculties = Faculty.objects.all()
+    return render(request, "faculty-lazyload.html", {"faculties": faculties})
 
 
 class EventView(View):
