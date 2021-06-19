@@ -8,6 +8,7 @@ django = "*"
 python-decouple = "*"
 psycopg2-binary = "*"
 markdown = "*"
+gunicorn = "*"
 
 [dev-packages]
 
