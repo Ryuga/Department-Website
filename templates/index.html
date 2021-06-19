@@ -258,14 +258,14 @@
 					<div class="row">
 						<div class="col-md-12 heading-bx left">
 							<h2 class="title-head text-white">Courses <span>Offered</span></h2>
-							<p>It is a long established fact that a reader will be distracted by the readable content of a page</p>
+							<p style="color: white;">It is a long established fact that a reader will be distracted by the readable content of a page</p>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="service-bx">
 								<div class="action-box">
-									<img src="{% static 'images/our-services/pic1.jpg' %}" alt="">
+									<img src="{% static 'images/courses/bsc.jpg' %}" alt="">
 								</div>
 								<div class="info-bx text-center">
 									<div class="feature-box-sm radius bg-white">
@@ -279,7 +279,7 @@
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="service-bx">
 								<div class="action-box">
-									<img src="{% static 'images/our-services/pic2.jpg' %}" alt="">
+									<img src="{% static 'images/courses/bca.jpg' %}" alt="">
 								</div>
 								<div class="info-bx text-center">
 									<div class="feature-box-sm radius bg-white">
@@ -293,7 +293,7 @@
 						<div class="col-lg-4 col-md-4 col-sm-12">
 							<div class="service-bx m-b0">
 								<div class="action-box">
-									<img src="{% static 'images/our-services/pic3.jpg' %}" alt="">
+									<img src="{% static 'images/courses/msc.jpg' %}" alt="">
 								</div>
 								<div class="info-bx text-center">
 									<div class="feature-box-sm radius bg-white">
@@ -319,79 +319,35 @@
 					</div>
 					<div class="row">
 					<div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0  m-b30">
+                        {% for event in upcoming_events %}
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
-									<img src="{% static 'images/event/pic4.jpg' %}" alt="">
+									<img src="{{ event.image_url }}" alt="">
 								</div>
 								<div class="info-bx d-flex">
 									<div>
 										<div class="event-time">
-											<div class="event-date">29</div>
-											<div class="event-month">October</div>
+											<div class="event-date">{{ event.date.day }}</div>
+											<div class="event-month">{{ event.month }}</div>
 										</div>
 									</div>
 									<div class="event-info">
-										<h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
+										<h4 class="event-title"><a href="#">{{ event.name }}</a></h4>
 										<ul class="media-post">
-											<li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-											<li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
+											<li><a href="#"><i class="fa fa-clock-o"></i> {{ event.date.time }}</a></li>
+											<li><a href="#"><i class="fa fa-map-marker"></i> {{ event.venue }}</a></li>
 										</ul>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
+										<p>{{ event.short_description }}</p>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="item">
-							<div class="event-bx">
-								<div class="action-box">
-									<img src="{% static 'images/event/pic3.jpg' %}" alt="">
-								</div>
-								<div class="info-bx d-flex">
-									<div>
-										<div class="event-time">
-											<div class="event-date">29</div>
-											<div class="event-month">October</div>
-										</div>
-									</div>
-									<div class="event-info">
-										<h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
-										<ul class="media-post">
-											<li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-											<li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
-										</ul>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="item">
-							<div class="event-bx">
-								<div class="action-box">
-									<img src="{% static 'images/event/pic2.jpg' %}" alt="">
-								</div>
-								<div class="info-bx d-flex">
-									<div>
-										<div class="event-time">
-											<div class="event-date">29</div>
-											<div class="event-month">October</div>
-										</div>
-									</div>
-									<div class="event-info">
-										<h4 class="event-title"><a href="#">Education Autumn Tour 2019</a></h4>
-										<ul class="media-post">
-											<li><a href="#"><i class="fa fa-clock-o"></i> 7:00am 8:00am</a></li>
-											<li><a href="#"><i class="fa fa-map-marker"></i> Berlin, Germany</a></li>
-										</ul>
-										<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the..</p>
-									</div>
-								</div>
-							</div>
-						</div>
+                        {% endfor %}
 					</div>
 					</div>
 					<div class="text-center">
-						<a href="#" class="btn">View All Event</a>
+						<a href="{% url 'events' %}" class="btn">View All Event</a>
 					</div>
 				</div>
 			</div>
@@ -399,27 +355,27 @@
                 <br><br><br>
             {% endif %}
 
-            {% if alumni_list %}
+            {% if messages %}
 			<div class="section-area section-sp2 bg-fix ovbl-dark" style="background-image:url(/static/images/background/bg1.jpg);">
                 <div class="container">
 					<div class="row">
 						<div class="col-md-12 text-white heading-bx left">
-							<h2 class="title-head text-uppercase">Alumni</h2>
+							<h2 class="title-head text-uppercase">Announcements</h2>
 						</div>
 					</div>
 					<div class="testimonial-carousel owl-carousel owl-btn-1 col-12 p-lr0">
-                        {% for alumni in alumni_list %}
+                        {% for message in messages %}
 						<div class="item">
 							<div class="testimonial-bx">
 								<div class="testimonial-thumb">
-									<img src="{{ alumni.image_url }}" alt="">
+									<img src="{{ message.author.image_url }}" alt="">
 								</div>
 								<div class="testimonial-info">
-									<h5 class="name">{{ alumni.name }}</h5>
-									<p>-{{ alumni.designation }}</p>
+									<h5 class="name">{{ message.author.name }}</h5>
+									<p>-{{ message.author.designation }}</p>
 								</div>
 								<div class="testimonial-content">
-									<p>{{ alumni.quote }}</p>
+									<p>{{ message.content }}</p>
 								</div>
 							</div>
 						</div>
@@ -429,12 +385,120 @@
 			</div>
 			{% endif %}
 
-			<div class="section-area section-sp2 popular-courses-bx">
-                {% include 'faculty-lazyload.html' %}
+			<div class="section-area section-sp2 popular-courses-bx" id="facultyRefresh">
+                {% include 'includes/loader.html' %}
 			</div>
 
         </div>
 		<!-- contact area END -->
     </div>
-
 {% endblock content %}
+
+{% block scripts %}
+
+    <script>
+        $(window).on('load', function () {
+            const csrftoken = getCookie('csrftoken')
+            setTimeout(()=>{
+                $.ajax({
+                url: '{% url 'lazy_load_faculty' %}',
+                headers: {'X-CSRFToken': csrftoken},
+                type: 'GET',
+                success:function (data)
+                {
+                    $('#facultyRefresh').html(data);
+                },
+                });
+            }, 1000)
+        });
+    </script>
+
+    <script>
+    jQuery(document).ready(function() {
+        var ttrevapi;
+        var tpj =jQuery;
+        if(tpj("#rev_slider_486_1").revolution == undefined){
+            revslider_showDoubleJqueryError("#rev_slider_486_1");
+        }else{
+            ttrevapi = tpj("#rev_slider_486_1").show().revolution({
+                sliderType:"standard",
+                jsFileLocation:"",
+                sliderLayout:"fullwidth",
+                dottedOverlay:"none",
+                delay:9000,
+                navigation: {
+                    keyboardNavigation:"on",
+                    keyboard_direction: "horizontal",
+                    mouseScrollNavigation:"off",
+                    mouseScrollReverse:"default",
+                    onHoverStop:"on",
+                    touch:{
+                        touchenabled:"on",
+                        swipe_threshold: 75,
+                        swipe_min_touches: 1,
+                        swipe_direction: "horizontal",
+                        drag_block_vertical: false
+                    }
+                    ,
+                    arrows: {
+                        style: "uranus",
+                        enable: true,
+                        hide_onmobile: false,
+                        hide_onleave: false,
+                        tmp: '',
+                        left: {
+                            h_align: "left",
+                            v_align: "center",
+                            h_offset: 10,
+                            v_offset: 0
+                        },
+                        right: {
+                            h_align: "right",
+                            v_align: "center",
+                            h_offset: 10,
+                            v_offset: 0
+                        }
+                    },
+
+                },
+                viewPort: {
+                    enable:true,
+                    outof:"pause",
+                    visible_area:"80%",
+                    presize:false
+                },
+                responsiveLevels:[1240,1024,778,480],
+                visibilityLevels:[1240,1024,778,480],
+                gridwidth:[1240,1024,778,480],
+                gridheight:[768,600,600,600],
+                lazyType:"none",
+                parallax: {
+                    type:"scroll",
+                    origo:"enterpoint",
+                    speed:400,
+                    levels:[5,10,15,20,25,30,35,40,45,50,46,47,48,49,50,55],
+                    type:"scroll",
+                },
+                shadow:0,
+                spinner:"off",
+                stopLoop:"off",
+                stopAfterLoops:-1,
+                stopAtSlide:-1,
+                shuffle:"off",
+                autoHeight:"off",
+                hideThumbsOnMobile:"off",
+                hideSliderAtLimit:0,
+                hideCaptionAtLimit:0,
+                hideAllCaptionAtLilmit:0,
+                debugMode:false,
+                fallbacks: {
+                    simplifyAll:"off",
+                    nextSlideOnWindowFocus:"off",
+                    disableFocusListener:false,
+                }
+            });
+        }
+    });
+    </script>
+
+{% endblock scripts %}

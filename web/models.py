@@ -19,13 +19,8 @@ class Faculty(models.Model):
 
 
 class Alumni(models.Model):
-    name = models.CharField(max_length=50)
     image_url = models.URLField()
-    designation = models.CharField(max_length=30)
-    quote = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
+    date = models.DateTimeField(help_text="Images will be sorted on the basis of the dates.", null=True)
 
 
 class Course(models.Model):
@@ -47,6 +42,9 @@ class Course(models.Model):
     third_year_syllabus = ArrayField(models.CharField(max_length=50),
                                      help_text="Add multiple module names separated by comma",
                                      null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Event(models.Model):
@@ -96,6 +94,12 @@ class Event(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Message(models.Model):
+    author = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+    creation_date = models.DateTimeField(help_text="Messages will be sorted on basis of this date")
+    content = models.TextField()
 
 
 @receiver(pre_save, sender=Event)

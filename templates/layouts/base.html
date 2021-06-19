@@ -56,6 +56,17 @@
 <div id="loading-icon-bx"></div>
 	<!-- Header Top ==== -->
     <header class="header rs-nav header-transparent">
+		<div class="top-bar">
+			<div class="container">
+				<div class="row d-flex justify-content-between">
+					<div class="topbar-left">
+						<ul>
+							<li><a href="javascript:;"><i class="fa fa-envelope-o"></i>cssfdept@christcollegeijk.edu.in</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="sticky-header navbar-expand-lg">
             <div class="menu-bar clearfix">
                 <div class="container clearfix">
@@ -82,9 +93,9 @@
 {#                    </div>#}
 
 					<!-- Navigation Menu ==== -->
-                    <div class="menu-links navbar-collapse collapse justify-content-start" id="menuDropdown">
+                    <div class="menu-links navbar-collapse collapse justify-content-start float-right" id="menuDropdown">
 						<div class="menu-logo">
-							<a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt=""></a>
+							<a href="{% url 'home' %}"><img src="{% static 'images/logo-white.png' %}" alt=""></a>
 						</div>
                         <ul class="nav navbar-nav">
 							<li class="active"><a href="{% url 'home' %}">Home </a></li>
@@ -103,14 +114,15 @@
 									</li>
 								</ul>
 							</li>
-                            <li><a href="{% url 'about' %}">About</a></li>
 							<li><a href="{% url 'events' %}">Events</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
+                            <li><a href="{% url 'alumni' %}">Alumni</a></li>
 						</ul>
-						<div class="nav-social-link">
-							<a href="javascript:;"><i class="fa fa-facebook"></i></a>
-							<a href="javascript:;"><i class="fa fa-google-plus"></i></a>
-							<a href="javascript:;"><i class="fa fa-linkedin"></i></a>
-						</div>
+{#						<div class="nav-social-link">#}
+{#							<a href="javascript:;"><i class="fa fa-facebook"></i></a>#}
+{#							<a href="javascript:;"><i class="fa fa-google-plus"></i></a>#}
+{#							<a href="javascript:;"><i class="fa fa-linkedin"></i></a>#}
+{#						</div>#}
                     </div>
 					<!-- Navigation Menu END ==== -->
                 </div>
@@ -147,8 +159,10 @@
 									<h5 class="footer-title">Links</h5>
 									<ul>
 										<li><a href="{% url 'home' %}">Home</a></li>
-										<li><a href="{% url 'about' %}">About</a></li>
 										<li><a href="{% url 'events' %}">Events</a></li>
+										<li><a href="{% url 'about' %}">About</a></li>
+										<li><a href="{% url 'alumni' %}">Alumni</a></li>
+
 									</ul>
 								</div>
 							</div>
@@ -193,7 +207,6 @@
 <script src="{% static 'vendors/masonry/filter.js' %}"></script>
 <script src="{% static 'vendors/owl-carousel/owl.carousel.js' %}"></script>
 <script src="{% static 'js/functions.js' %}"></script>
-<script src="{% static 'js/contact.js' %}"></script>
 <!-- Revolution JavaScripts Files -->
 <script src="{% static 'vendors/revolution/js/jquery.themepunch.tools.min.js' %}"></script>
 <script src="{% static 'vendors/revolution/js/jquery.themepunch.revolution.min.js' %}"></script>
@@ -207,93 +220,9 @@
 <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.parallax.min.js' %}"></script>
 <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.slideanims.min.js' %}"></script>
 <script src="{% static 'vendors/revolution/js/extensions/revolution.extension.video.min.js' %}"></script>
-<script>
-jQuery(document).ready(function() {
-	var ttrevapi;
-	var tpj =jQuery;
-	if(tpj("#rev_slider_486_1").revolution == undefined){
-		revslider_showDoubleJqueryError("#rev_slider_486_1");
-	}else{
-		ttrevapi = tpj("#rev_slider_486_1").show().revolution({
-			sliderType:"standard",
-			jsFileLocation:"",
-			sliderLayout:"fullwidth",
-			dottedOverlay:"none",
-			delay:9000,
-			navigation: {
-				keyboardNavigation:"on",
-				keyboard_direction: "horizontal",
-				mouseScrollNavigation:"off",
-				mouseScrollReverse:"default",
-				onHoverStop:"on",
-				touch:{
-					touchenabled:"on",
-					swipe_threshold: 75,
-					swipe_min_touches: 1,
-					swipe_direction: "horizontal",
-					drag_block_vertical: false
-				}
-				,
-				arrows: {
-					style: "uranus",
-					enable: true,
-					hide_onmobile: false,
-					hide_onleave: false,
-					tmp: '',
-					left: {
-						h_align: "left",
-						v_align: "center",
-						h_offset: 10,
-						v_offset: 0
-					},
-					right: {
-						h_align: "right",
-						v_align: "center",
-						h_offset: 10,
-						v_offset: 0
-					}
-				},
-
-			},
-			viewPort: {
-				enable:true,
-				outof:"pause",
-				visible_area:"80%",
-				presize:false
-			},
-			responsiveLevels:[1240,1024,778,480],
-			visibilityLevels:[1240,1024,778,480],
-			gridwidth:[1240,1024,778,480],
-			gridheight:[768,600,600,600],
-			lazyType:"none",
-			parallax: {
-				type:"scroll",
-				origo:"enterpoint",
-				speed:400,
-				levels:[5,10,15,20,25,30,35,40,45,50,46,47,48,49,50,55],
-				type:"scroll",
-			},
-			shadow:0,
-			spinner:"off",
-			stopLoop:"off",
-			stopAfterLoops:-1,
-			stopAtSlide:-1,
-			shuffle:"off",
-			autoHeight:"off",
-			hideThumbsOnMobile:"off",
-			hideSliderAtLimit:0,
-			hideCaptionAtLimit:0,
-			hideAllCaptionAtLilmit:0,
-			debugMode:false,
-			fallbacks: {
-				simplifyAll:"off",
-				nextSlideOnWindowFocus:"off",
-				disableFocusListener:false,
-			}
-		});
-	}
-});
-</script>
 <script src="https://kit.fontawesome.com/6dafe43970.js" crossorigin="anonymous"></script>
+
+{% block scripts %} {% endblock scripts %}
+
 </body>
 </html>

@@ -1,3 +1,4 @@
+{% load static %}
 <div class="container">
     <div class="row">
         <div class="col-md-12 heading-bx left">
@@ -11,7 +12,7 @@
         <div class="item">
             <div class="profile-bx text-center">
                 <div class="user-profile-index-thumb">
-                    <img src="{{ faculty. }}" alt=""/>
+                    <img src="{{ faculty.image_url }}" alt=""/>
                 </div>
                 <div class="profile-info">
                     <h4>{{ faculty.name }}</h4>
@@ -23,3 +24,4 @@
     </div>
     </div>
 </div>
+<script src="{% static 'js/functions.js' %}"></script>

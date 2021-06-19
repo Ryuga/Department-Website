@@ -119,11 +119,33 @@
 			</div>
 			<!-- Why Choose END ==== -->
 
-			<div class="section-area section-sp2 popular-courses-bx">
-                {% include 'faculty-lazyload.html' %}
+			<div class="section-area section-sp2 popular-courses-bx" id="facultyDetails">
+                {% include 'includes/loader.html' %}
 			</div>
 
         </div>
 		<!-- Page Content Box END ==== -->
     </div>
 {% endblock content %}
+
+
+{% block scripts %}
+
+    <script>
+        $(window).on('load', function () {
+            const csrftoken = getCookie('csrftoken')
+            setTimeout(()=>{
+                $.ajax({
+                url: '{% url 'lazy_load_faculty' %}',
+                headers: {'X-CSRFToken': csrftoken},
+                type: 'GET',
+                success:function (data)
+                {
+                    $('#facultyDetails').html(data);
+                },
+                });
+            }, 1000)
+        });
+    </script>
+
+{% endblock scripts %}
