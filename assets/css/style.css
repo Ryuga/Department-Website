@@ -1,28 +1,3 @@
-/*
-======================================
-  * CSS TABLE CONTENT *  
-======================================
-1. HEADER
-2. HEADER TOPBAR
-3. HEADER LOGO
-4. MENU BAR
-5. MEGA MENU
-6. HEADER TRANSPARENT
-7. MENU ICON
-8. PAGE BANNER
-9. BLOG
-10. TESTIMONIALS
-11. COUNTERUP
-12. FOOTER
-13. INNER CONTENT CSS
-======================================
-  * END TABLE CONTENT *  
-======================================
-*/
-
-/*=================================
-	1. HEADER
-=================================*/
 .bg-fix {
     background-attachment: fixed;
 	background-size: cover;
@@ -321,7 +296,7 @@
     vertical-align: middle;
 }
 .menu-logo img{
-    max-height: 60px;
+    max-height: 100px;
 	width: auto;
 	max-width: 140px;
 	
@@ -1984,9 +1959,6 @@ footer.footer-white .btn {
 }
 
 
-
-
-
 /*==== LOADING ====*/
 #loading-icon-bx {
     width: 100%;
@@ -1997,7 +1969,7 @@ footer.footer-white .btn {
     top: 0;
     opacity: 1;
     z-index: 999999999;
-    background-image: url(../images/loading.gif);
+    background-image: url(../images/loading.svg);
     background-repeat: no-repeat;
     background-size: 60px;
     background-position: center;
@@ -3180,6 +3152,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	border: 5px solid #fff;
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.2);
 	margin:25px auto 15px; 
+}
+.user-profile-index-thumb{
+	width:150px;
+	height:150px;
+	overflow:hidden;
+	border-radius:100px;
+	border: 5px solid #fff;
+	box-shadow:0 0 15px 0 rgba(0,0,0,0.2);
+	margin:25px auto 15px;
 }
 .profile-info{
 	margin-bottom:15px;
