@@ -95,10 +95,11 @@
 					<!-- Navigation Menu ==== -->
                     <div class="menu-links navbar-collapse collapse justify-content-start float-right" id="menuDropdown">
 						<div class="menu-logo">
-							<a href="{% url 'home' %}"><img src="{% static 'images/logo-white.png' %}" alt=""></a>
+							<a href="{% url 'home' %}"><img src="{% static 'images/logo-blue.png' %}" alt=""></a>
 						</div>
                         <ul class="nav navbar-nav">
-							<li class="active"><a href="{% url 'home' %}">Home </a></li>
+							<li><a href="{% url 'home' %}">Home </a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
 							<li class="add-mega-menu"><a href="javascript:;">Courses <i class="fa fa-chevron-down"></i></a>
 								<ul class="sub-menu add-menu">
 									<li class="add-menu-left">
@@ -115,7 +116,6 @@
 								</ul>
 							</li>
 							<li><a href="{% url 'events' %}">Events</a></li>
-                            <li><a href="{% url 'about' %}">About</a></li>
                             <li><a href="{% url 'alumni' %}">Alumni</a></li>
 						</ul>
 {#						<div class="nav-social-link">#}
@@ -140,7 +140,7 @@
 				<div class="container">
 					<div class="d-flex align-items-stretch">
 						<div class="pt-logo mr-auto">
-							<a href="/"><img src="{% static 'images/logo-white.png' %}" alt=""/></a>
+							<a href="{% url 'home' %}"><img src="{% static 'images/logo-white.png' %}" alt=""/></a>
 						</div>
 					</div>
 				</div>
