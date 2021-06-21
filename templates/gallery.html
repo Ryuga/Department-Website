@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="page-content bg-white">
+        <!-- inner page banner -->
+        <div class="page-banner ovbl-dark" style="background-image:url(/static/images/banner/alumni.jpg);">
+            <div class="container">
+                <div class="page-banner-entry">
+                    <h1 class="text-white">Alumni Gallery</h1>
+				 </div>
+            </div>
+        </div>
+		<!-- Breadcrumb row -->
+		<div class="breadcrumb-row">
+			<div class="container">
+				<ul class="list-inline">
+					<li><a href="#">Home</a></li>
+					<li>Alumni</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Breadcrumb row END -->
+        <!-- contact area -->
+        <div class="content-block">
+			<!-- Portfolio  -->
+			<div class="section-area section-sp1 gallery-bx" style="margin-top: -35px !important;">
+				<div class="container">
+					<div class="clearfix">
+						<ul id="masonry" class="ttr-gallery-listing magnific-image row">
+                            {% for obj in gallery_list %}
+							<li class="action-card col-lg-3 col-md-4 col-sm-6 book">
+								<div class="ttr-box portfolio-bx">
+									<div class="ttr-media media-ov2 media-effect">
+										<a href="javascript:void(0);">
+											<img src="{{ obj.image_url }}" alt="">
+										</a>
+										<div class="ov-box">
+											<div class="overlay-icon align-m"> 
+												<a href="{{ obj.image_url }}" class="magnific-anchor" title="Click to view">
+													<i class="fa fa-eye"></i>
+												</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</li>
+                            {% endfor %}
+						</ul>
+					</div>
+{#					<div class="feature-filters clearfix center m-b40">#}
+{#						<ul class="filters" data-toggle="buttons">#}
+{#							<li data-filter="" class="btn active">#}
+{#								<input type="radio">#}
+{#								<a href="#"><span>All</span></a>#}
+{#							</li>#}
+{#							<li data-filter="book" class="btn">#}
+{#								<input type="radio">#}
+{#								<a href="#"><span>Book</span></a>#}
+{#							</li>#}
+{#						</ul>#}
+{#					</div>#}
+				</div>
+			</div>
+        </div>
+    </div>
+{% endblock content %}

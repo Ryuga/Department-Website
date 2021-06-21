@@ -18,7 +18,7 @@ class Faculty(models.Model):
         return self.name
 
 
-class Alumni(models.Model):
+class Gallery(models.Model):
     image_url = models.URLField()
     date = models.DateTimeField(help_text="Images will be sorted on the basis of the dates.", null=True)
 
@@ -100,6 +100,18 @@ class Message(models.Model):
     author = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     creation_date = models.DateTimeField(help_text="Messages will be sorted on basis of this date")
     content = models.TextField()
+
+
+class Batch(models.Model):
+    year = models.DateField()
+
+    def __str__(self):
+        return self.year.year
+
+
+class Alumni(models.Model):
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
+    image_url = models.URLField()
 
 
 @receiver(pre_save, sender=Event)

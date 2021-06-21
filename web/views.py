@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Event, Alumni, Course, Faculty, Message
+from .models import Event, Course, Faculty, Message, Gallery, Alumni
 from django.views.generic import ListView
 
 
@@ -12,11 +12,6 @@ def index_view(request):
 
 def about_view(request):
     return render(request, "about.html")
-
-
-def alumni_view(request):
-    alumni_list = Alumni.objects.all()
-    return render(request, "alumni.html", {"alumni_list": alumni_list})
 
 
 def lazy_load_faculty(request):
@@ -52,8 +47,16 @@ class CourseView(View):
             return render(request, "404.html")
 
 
+class GalleryListView(ListView):
+    template_name = "gallery.html"
+    model = Gallery
+    paginate_by = 12
+    queryset = model.objects.order_by('-date')
+
+
 class AlumniListView(ListView):
     template_name = "alumni.html"
     model = Alumni
     paginate_by = 12
-    queryset = model.objects.order_by('date')
+    queryset = Alumni.objects.order_by('-batch__year')
+
