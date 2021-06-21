@@ -108,6 +108,10 @@ class Batch(models.Model):
     def __str__(self):
         return str(self.year.year)
 
+    @property
+    def has_images(self):
+        return self.alumni.first()
+
 
 class Alumni(models.Model):
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE, related_name="alumni")

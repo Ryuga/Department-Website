@@ -28,6 +28,7 @@
 				<div class="container">
 					<div class="clearfix">
                     {% for batch in batch_list %}
+                        {% if batch.has_images %}
                         <h2>Batch of {{ batch.year.year }}</h2>
 						<ul id="masonry" class="ttr-gallery-listing magnific-image row">
                             {% for alumni in batch.alumni.all %}
@@ -49,6 +50,7 @@
 							</li>
                             {% endfor %}
 						</ul>
+                        {% endif %}
                     {% endfor %}
 					</div>
 {#					<div class="feature-filters clearfix center m-b40">#}
