@@ -106,7 +106,7 @@ class Batch(models.Model):
     year = models.DateField()
 
     def __str__(self):
-        return self.year.year
+        return str(self.year.year)
 
 
 class Alumni(models.Model):
