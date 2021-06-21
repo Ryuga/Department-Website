@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Event, Course, Faculty, Message, Gallery, Alumni
+from .models import Event, Course, Faculty, Message, Gallery, Batch
 from django.views.generic import ListView
 
 
@@ -56,7 +56,7 @@ class GalleryListView(ListView):
 
 class AlumniListView(ListView):
     template_name = "alumni.html"
-    model = Alumni
-    paginate_by = 12
-    queryset = Alumni.objects.order_by('-batch__year')
+    model = Batch
+    paginate_by = 3
+    queryset = Batch.objects.order_by('-year')
 

@@ -110,7 +110,7 @@ class Batch(models.Model):
 
 
 class Alumni(models.Model):
-    batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE, related_name="alumni")
     image_url = models.URLField()
 
 

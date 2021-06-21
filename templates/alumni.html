@@ -27,8 +27,10 @@
 			<div class="section-area section-sp1 gallery-bx" style="margin-top: -35px !important;">
 				<div class="container">
 					<div class="clearfix">
+                    {% for batch in batch_list %}
+                        <h2>Batch of {{ batch.year.year }}</h2>
 						<ul id="masonry" class="ttr-gallery-listing magnific-image row">
-                            {% for alumni in alumni_list %}
+                            {% for alumni in batch.alumni.all %}
 							<li class="action-card col-lg-3 col-md-4 col-sm-6 book">
 								<div class="ttr-box portfolio-bx">
 									<div class="ttr-media media-ov2 media-effect">
@@ -47,6 +49,7 @@
 							</li>
                             {% endfor %}
 						</ul>
+                    {% endfor %}
 					</div>
 {#					<div class="feature-filters clearfix center m-b40">#}
 {#						<ul class="filters" data-toggle="buttons">#}
