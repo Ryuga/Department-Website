@@ -48,18 +48,14 @@
                             {% endfor %}
 						</ul>
 					</div>
-{#					<div class="feature-filters clearfix center m-b40">#}
-{#						<ul class="filters" data-toggle="buttons">#}
-{#							<li data-filter="" class="btn active">#}
-{#								<input type="radio">#}
-{#								<a href="#"><span>All</span></a>#}
-{#							</li>#}
-{#							<li data-filter="book" class="btn">#}
-{#								<input type="radio">#}
-{#								<a href="#"><span>Book</span></a>#}
-{#							</li>#}
-{#						</ul>#}
-{#					</div>#}
+					<div class="feature-filters clearfix center m-b40">
+                        {% if page_obj.has_previous %}
+                        <a class="btn" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        {% endif %}
+                        {% if page_obj.has_next %}
+                        <a class="btn" href="?page={{ page_obj.next_page_number }}">Next</a>
+                        {% endif %}
+					</div>
 				</div>
 			</div>
         </div>
