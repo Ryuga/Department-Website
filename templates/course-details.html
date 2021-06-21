@@ -58,11 +58,11 @@
 							<div class="m-b30 col-lg-6" id="curriculum">
 								<h4>Curriculum</h4>
 								<ul class="curriculum-list">
-                                        {% if course.first_year_syllabus %}
+                                        {% if course.first_sem_syllabus %}
 										<li>
-											<h5>First Year</h5>
+											<h5>First Semester</h5>
 											<ul>
-                                                {% for lesson in course.first_year_syllabus %}
+                                                {% for lesson in course.first_sem_syllabus %}
 												<li>
 													<div class="curriculum-list-box">
 														{{ lesson }}
@@ -72,11 +72,11 @@
 											</ul>
 										</li>
                                         {% endif %}
-                                        {% if course.second_year_syllabus %}
+                                        {% if course.second_sem_syllabus %}
 										<li>
-											<h5>Second Year</h5>
+											<h5>Second Semester</h5>
 											<ul>
-                                                {% for lesson in course.second_year_syllabus %}
+                                                {% for lesson in course.second_sem_syllabus %}
 												<li>
 													<div class="curriculum-list-box">
 														{{ lesson }}
@@ -86,11 +86,53 @@
 											</ul>
 										</li>
                                         {% endif %}
-                                        {% if course.third_year_syllabus %}
+                                        {% if course.third_sem_syllabus %}
 										<li>
-											<h5>Final Year</h5>
+											<h5>Third Semester</h5>
 											<ul>
-                                                {% for lesson in course.third_year_syllabus %}
+                                                {% for lesson in course.third_sem_syllabus %}
+												<li>
+													<div class="curriculum-list-box">
+														{{ lesson }}
+													</div>
+												</li>
+                                                {% endfor %}
+											</ul>
+										</li>
+                                        {% endif %}
+                                        {% if course.fourth_sem_syllabus %}
+										<li>
+											<h5>Fourth Semester</h5>
+											<ul>
+                                                {% for lesson in course.fourth_sem_syllabus %}
+												<li>
+													<div class="curriculum-list-box">
+														{{ lesson }}
+													</div>
+												</li>
+                                                {% endfor %}
+											</ul>
+										</li>
+                                        {% endif %}
+                                        {% if course.fifth_sem_syllabus %}
+										<li>
+											<h5>Fifth Semester</h5>
+											<ul>
+                                                {% for lesson in course.fifth_sem_syllabus %}
+												<li>
+													<div class="curriculum-list-box">
+														{{ lesson }}
+													</div>
+												</li>
+                                                {% endfor %}
+											</ul>
+										</li>
+                                        {% endif %}
+                                        {% if course.sixth_sem_syllabus %}
+										<li>
+											<h5>Sixth Semester</h5>
+											<ul>
+                                                {% for lesson in course.sixth_sem_syllabus %}
 												<li>
 													<div class="curriculum-list-box">
 														{{ lesson }}

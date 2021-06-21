@@ -33,15 +33,24 @@ class Course(models.Model):
     student_count = models.IntegerField(default=35)
     language = models.CharField(max_length=40, default="English/Malayalam")
     duration = models.CharField(max_length=15, default="3 years")
-    first_year_syllabus = ArrayField(models.CharField(max_length=50),
+    first_sem_syllabus = ArrayField(models.CharField(max_length=50),
+                                    help_text="Add multiple module names separated by comma",
+                                    null=True, blank=True)
+    second_sem_syllabus = ArrayField(models.CharField(max_length=50),
                                      help_text="Add multiple module names separated by comma",
                                      null=True, blank=True)
-    second_year_syllabus = ArrayField(models.CharField(max_length=50),
-                                      help_text="Add multiple module names separated by comma",
-                                      null=True, blank=True)
-    third_year_syllabus = ArrayField(models.CharField(max_length=50),
+    third_sem_syllabus = ArrayField(models.CharField(max_length=50),
+                                    help_text="Add multiple module names separated by comma",
+                                    null=True, blank=True)
+    fourth_sem_syllabus = ArrayField(models.CharField(max_length=50),
                                      help_text="Add multiple module names separated by comma",
                                      null=True, blank=True)
+    fifth_sem_syllabus = ArrayField(models.CharField(max_length=50),
+                                    help_text="Add multiple module names separated by comma",
+                                    null=True, blank=True)
+    sixth_sem_syllabus = ArrayField(models.CharField(max_length=50),
+                                    help_text="Add multiple module names separated by comma",
+                                    null=True, blank=True)
 
     def __str__(self):
         return self.name
