@@ -676,6 +676,7 @@
 					<div class="row">
 					<div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0  m-b30">
                         {% for event in upcoming_events %}
+                        <a href="{% url 'event_details' slug=event.link %}">
 						<div class="item">
 							<div class="event-bx">
 								<div class="action-box">
@@ -698,7 +699,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div></a>
                         {% endfor %}
 					</div>
 					</div>
