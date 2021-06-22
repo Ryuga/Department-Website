@@ -676,8 +676,8 @@
 					<div class="row">
 					<div class="upcoming-event-carousel owl-carousel owl-btn-center-lr owl-btn-1 col-12 p-lr0  m-b30">
                         {% for event in upcoming_events %}
-                        <a href="{% url 'event_details' slug=event.link %}">
 						<div class="item">
+                           <a href="{% url 'event_details' slug=event.link %}">
 							<div class="event-bx">
 								<div class="action-box">
 									<img src="{{ event.image_url }}" alt="">
@@ -698,8 +698,8 @@
 										<p>{{ event.short_description }}</p>
 									</div>
 								</div>
-							</div>
-						</div></a>
+							</div></a>
+						</div>
                         {% endfor %}
 					</div>
 					</div>
