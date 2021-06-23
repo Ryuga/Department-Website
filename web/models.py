@@ -18,9 +18,18 @@ class Faculty(models.Model):
         return self.name
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.name
+
+
 class Gallery(models.Model):
     image_url = models.URLField()
     date = models.DateTimeField(help_text="Images will be sorted on the basis of the dates.", null=True)
+    tags = models.ManyToManyField(Tag, help_text="Select multiple tags related to the image")
+    description = models.TextField(blank=True, null=True)
 
 
 class Course(models.Model):
