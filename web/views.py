@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .models import Event, Course, Faculty, Message, Gallery, Batch
+from .models import Event, Course, Faculty, Message, Gallery, Batch, Tag
 from django.views.generic import ListView
 
 
@@ -52,6 +52,12 @@ class GalleryListView(ListView):
     model = Gallery
     paginate_by = 12
     queryset = model.objects.order_by('-date')
+    extra_context = {"tags": Tag.objects.all()}
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['years'] = sorted(set([date[0].year for date in self.queryset.values_list('date')]), reverse=True)
+        return context
 
 
 class AlumniListView(ListView):

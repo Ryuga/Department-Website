@@ -32,28 +32,24 @@
 								<input type="radio">
 								<a href="#"><span>All</span></a>
 							</li>
-							<li data-filter="book" class="btn">
+                            {% for tag in tags %}
+							<li data-filter="{{ tag.name }}" class="btn">
 								<input type="radio">
-								<a href="#"><span>Book</span></a>
+								<a href="#"><span>{{ tag.name }}</span></a>
 							</li>
-							<li data-filter="courses" class="btn">
+                            {% endfor %}
+                            {% for year in years %}
+							<li data-filter="{{ year }}" class="btn">
 								<input type="radio">
-								<a href="#"><span>Courses</span></a>
+								<a href="#"><span>{{ year }}</span></a>
 							</li>
-							<li data-filter="education" class="btn">
-								<input type="radio">
-								<a href="#"><span>Education</span></a>
-							</li>
-							<li data-filter="2020" class="btn">
-								<input type="radio">
-								<a href="#"><span>2020</span></a>
-							</li>
+                            {% endfor %}
 						</ul>
 					</div>
 					<div class="clearfix">
 						<ul id="masonry" class="ttr-gallery-listing magnific-image row">
                             {% for obj in gallery_list %}
-							<li class="action-card col-lg-3 col-md-4 col-sm-6 {% for tag in obj.tags %}{{ tag.name }}{% endfor %} {{ obj.date.year }}">
+							<li class="action-card col-lg-3 col-md-4 col-sm-6 {% for tag in obj.tags.all %}{{ tag.name }}{% endfor %} {{ obj.date.year }}">
 								<div class="ttr-box portfolio-bx">
 									<div class="ttr-media media-ov2 media-effect">
 										<a href="javascript:void(0);">

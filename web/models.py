@@ -28,7 +28,7 @@ class Tag(models.Model):
 class Gallery(models.Model):
     image_url = models.URLField()
     date = models.DateTimeField(help_text="Images will be sorted on the basis of the dates.", null=True)
-    tags = models.ManyToManyField(Tag, help_text="Select multiple tags related to the image")
+    tags = models.ManyToManyField(Tag, help_text="Select multiple tags related to the image", blank=True)
     description = models.TextField(blank=True, null=True)
 
 
