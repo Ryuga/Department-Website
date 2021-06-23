@@ -6,8 +6,8 @@ from django.views.generic import ListView
 
 def index_view(request):
     upcoming_events = Event.objects.filter(status="upcoming")
-    message = Message.objects.first()
-    return render(request, "index.html", {"message": message, "upcoming_events": upcoming_events})
+    messages = Message.objects.all()[:3]
+    return render(request, "index.html", {"messages": messages, "upcoming_events": upcoming_events})
 
 
 def about_view(request):

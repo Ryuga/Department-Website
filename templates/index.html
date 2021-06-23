@@ -712,7 +712,7 @@
                 <br><br><br>
             {% endif %}
 
-            {% if message %}
+            {% if messages %}
 			<div class="section-area section-sp2 bg-fix ovbl-dark" style="background-image:url(https://cdn.discordapp.com/attachments/692851221223964822/856929715868532776/unknown.png);">
                 <div class="container">
 					<div class="row">
@@ -720,20 +720,43 @@
 							<h2 class="title-head text-uppercase">Announcements</h2>
 						</div>
 					</div>
-                    <div class="item">
-                        <div class="testimonial-bx">
-                            <div class="testimonial-thumb">
-                                <img src="{{ message.author.image_url }}" alt="">
-                            </div>
-                            <div class="testimonial-info">
-                                <h5 class="name">{{ message.author.name }}</h5>
-                                <p>-{{ message.author.designation }}</p>
-                            </div>
-                            <div class="testimonial-content">
-                                <p>{{ message.content }}</p>
+                    {% if messages.count == 1 %}
+                        {% for message in messages %}
+                        <div class="item">
+                            <div class="testimonial-bx">
+                                <div class="testimonial-thumb">
+                                    <img src="{{ message.author.image_url }}" alt="">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h5 class="name">{{ message.author.name }}</h5>
+                                    <p>-{{ message.author.designation }}</p>
+                                </div>
+                                <div class="testimonial-content">
+                                    <p>{{ message.content }}</p>
+                                </div>
                             </div>
                         </div>
+                        {% endfor %}
+                    {% else %}
+                    <div class="testimonial-carousel owl-carousel owl-btn-1 col-12 p-lr0">
+                        {% for message in messages %}
+                        <div class="item">
+                            <div class="testimonial-bx">
+                                <div class="testimonial-thumb">
+                                    <img src="{{ message.author.image_url }}" alt="">
+                                </div>
+                                <div class="testimonial-info">
+                                    <h5 class="name">{{ message.author.name }}</h5>
+                                    <p>-{{ message.author.designation }}</p>
+                                </div>
+                                <div class="testimonial-content">
+                                    <p>{{ message.content }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
+                    {% endif %}
 				</div>
 			</div>
 			{% endif %}
