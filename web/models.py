@@ -29,7 +29,7 @@ class Gallery(models.Model):
     image_url = models.URLField()
     date = models.DateField(help_text="Images will be sorted on the basis of the dates.", null=True)
     tags = models.ManyToManyField(Tag, help_text="Select multiple tags related to the image", blank=True)
-    description = models.TextField(blank=True, null=True)
+    description = models.CharField(max_length=30, null=True, blank=True)
 
 
 class Course(models.Model):
