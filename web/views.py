@@ -10,6 +10,7 @@ class IndexView(View):
     context = {}
 
     def get(self, request):
+        self.context = dict
         self.context["upcoming_events"] = Event.objects.filter(status="upcoming")
         self.context["messages"] = Message.objects.all()[:3]
         ip, is_routable = get_client_ip(request)
