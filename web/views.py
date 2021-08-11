@@ -14,7 +14,7 @@ class IndexView(View):
         self.context["messages"] = Message.objects.all()[:3]
         ip, is_routable = get_client_ip(request)
         if is_routable:
-            ip_hash = hashlib.md5(str.encode(str(ip)))[:10]
+            ip_hash = hashlib.md5(str.encode(ip)).hexdigest()[:10]
             if not IpHash.objects.filter(hash=ip_hash).exists():
                 IpHash.objects.create(
                     hash=ip_hash
