@@ -7,12 +7,10 @@ from ipware import get_client_ip
 
 
 class IndexView(View):
-    context = {}
-
     def get(self, request):
-        self.context = dict
-        self.context["upcoming_events"] = Event.objects.filter(status="upcoming")
-        self.context["messages"] = Message.objects.all()[:3]
+        context = {}
+        context["upcoming_events"] = Event.objects.filter(status="upcoming")
+        context["messages"] = Message.objects.all()[:3]
         ip, is_routable = get_client_ip(request)
         if is_routable:
             ip_hash = hashlib.md5(str.encode(ip)).hexdigest()[:10]
@@ -20,9 +18,9 @@ class IndexView(View):
                 IpHash.objects.create(
                     hash=ip_hash
                 )
-            self.context["first_popup"] = PopUp.objects.last()
-            self.context["popups"] = PopUp.objects.all().order_by('-id')[1:]
-        return render(request, "index.html", self.context)
+            context["first_popup"] = PopUp.objects.last()
+            context["popups"] = PopUp.objects.all().order_by('-id')[1:]
+        return render(request, "index.html", context)
 
 
 def about_view(request):
