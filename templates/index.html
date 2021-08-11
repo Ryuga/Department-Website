@@ -875,7 +875,28 @@
         }
     });
     </script>
+<style>
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-size: 100%, 100%;
+  background-image: none;
+}
 
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  font-weight: bolder;
+  color: white;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  font-weight: bolder;
+  color: white;
+}
+</style>
 <div class="modal fade" id="popupModalCenter" tabindex="-1" role="dialog" aria-labelledby="popupModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
