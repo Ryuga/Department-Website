@@ -19,8 +19,8 @@ class IndexView(View):
                 IpHash.objects.create(
                     hash=ip_hash
                 )
-                self.context["popup"] = PopUp.objects.all()
-
+            self.context["first_popup"] = PopUp.objects.last()
+            self.context["popups"] = PopUp.objects.all().order_by('-id')[1:]
         return render(request, "index.html", self.context)
 
 
