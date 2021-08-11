@@ -906,16 +906,16 @@
             <div class="carousel-item active">
               <img class="d-block w-100" src="{{ first_popup.image.url }}" alt="First popup">
               <div class="carousel-caption d-none d-md-block">
-                <h5 class="text-white text-left">{{ first_popup.title }}</h5>
-                <p class="text-white text-left">{{ first_popup.description }}</p>
+                {% if first_popup.title %}<h5 class="text-white text-left">{{ first_popup.title }}</h5>{% endif %}
+                {% if first_popup.description %}<p class="text-white text-left">{{ first_popup.description }}</p>{% endif %}
               </div>
             </div>
             {% for popup in popups %}
             <div class="carousel-item">
               <img class="d-block w-100" src="{{ popup.image.url }}" alt="Other slide">
               <div class="carousel-caption d-none d-md-block">
-                <h5 class="text-white text-left">{{ popup.title }}</h5>
-                <p class="text-white text-left">{{ popup.description }}</p>
+                {% if popup.title %}<h5 class="text-white text-left">{{ popup.title }}</h5>{% endif %}
+                {% if popup.description %}<p class="text-white text-left">{{ popup.description }}</p>{% endif %}
               </div>
             </div>
             {% endfor %}
