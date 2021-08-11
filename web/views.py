@@ -1,13 +1,27 @@
+import hashlib
+
 from django.shortcuts import render
-from django.views import View
-from .models import Event, Course, Faculty, Message, Gallery, Batch, Tag
-from django.views.generic import ListView
+from .models import Event, Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
+from django.views.generic import ListView, View
+from ipware import get_client_ip
 
 
-def index_view(request):
-    upcoming_events = Event.objects.filter(status="upcoming")
-    messages = Message.objects.all()[:3]
-    return render(request, "index.html", {"messages": messages, "upcoming_events": upcoming_events})
+class IndexView(View):
+    context = {}
+
+    def get(self, request):
+        self.context["upcoming_events"] = Event.objects.filter(status="upcoming")
+        self.context["messages"] = Message.objects.all()[:3]
+        ip, is_routable = get_client_ip(request)
+        if is_routable:
+            ip_hash = hashlib.md5(str.encode(ip))[:10]
+            if not IpHash.objects.filter(hash=ip_hash).exists():
+                IpHash.objects.create(
+                    hash=ip_hash
+                )
+                self.context["popup"] = PopUp.objects.all()
+
+        return render(request, "index.html", self.context)
 
 
 def about_view(request):

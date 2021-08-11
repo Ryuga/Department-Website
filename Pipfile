@@ -9,6 +9,8 @@ python-decouple = "*"
 psycopg2-binary = "*"
 markdown = "*"
 gunicorn = "*"
+django-ipware = "*"
+pillow = "*"
 
 [dev-packages]
 

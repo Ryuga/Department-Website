@@ -3,6 +3,11 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
 from django.contrib.postgres.fields import ArrayField
+from datetime import datetime, timezone
+
+
+def time_now():
+    return datetime.now(timezone.utc)
 
 
 class Faculty(models.Model):
@@ -118,6 +123,16 @@ class Message(models.Model):
     author = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     creation_date = models.DateTimeField(help_text="Messages will be sorted on basis of this date")
     content = models.TextField()
+
+
+class IpHash(models.Model):
+    hash = models.CharField(max_length=10, primary_key=True)
+    visit_time = models.DateTimeField(default=time_now)
+
+
+class PopUp(models.Model):
+    title = models.CharField(max_length=30)
+    image = models.ImageField(upload_to="img/popups")
 
 
 class Batch(models.Model):
