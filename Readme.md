@@ -36,9 +36,7 @@ $ pipenv run server
 
 ### Production Setup
 
-Addition Requirements:
-
-[Python 3.8](https://www.python.org/downloads/): requirement for running Django.
+#### Addition Requirements:
 
 [NGINX](https://nginx.org/en/): Webserver for handling requests and serving django assets.
 
