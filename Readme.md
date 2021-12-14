@@ -43,14 +43,14 @@ $ pipenv run server
 [Supervisor](http://supervisord.org/): Process management tool for keeping Django running. It also provides logging in events of unaccounted crashes and restarts the application to keep it online.
 
 
-#### Setup procedure for Ubuntu 20.04 LTS. This will also work for all Debian/Ubuntu based distros. Procedures for other distros maybe slightly different. But follows almost the same flow.
+#### Setup procedure for Ubuntu 20.04 LTS. This will also work for all Debian/Ubuntu based distros. Procedures for other distros maybe slightly different but follows almost the same flow.
 ```bash
 # Clone the repository or download as zip and cd into the root folder (Department-Website)
 
 # Update and upgrade apt
 $ sudo apt update && sudo apt upgrade -y
 
-# Install pipenv 
+# Install pipenv (any one method)
 $ pip3 install pipenv | python3 -m pip install pipenv | sudo apt install pipenv -y
 
 # Install dependencies from Pipenv
