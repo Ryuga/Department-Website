@@ -17,8 +17,8 @@ $ pip install pipenv
 # Install dependencies from Pipenv
 $ pipenv install
 
-$ touch .env
-# setup the following environment variables
+$ sudo nano .env
+# add the following environment variables
 
 SECRET_KEY = "your_secret_key"
 DB_NAME = "your_db_name"
@@ -56,8 +56,8 @@ $ pip3 install pipenv | python3 -m pip install pipenv | sudo apt install pipenv 
 # Install dependencies from Pipenv
 $ sudo pipenv install
 
-$ touch .env
-# setup the following environment variables
+$ sudo nano .env
+# add the following environment variables
 
 SECRET_KEY = "your_secret_key"
 DB_NAME = "your_db_name"
