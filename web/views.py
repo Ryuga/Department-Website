@@ -79,3 +79,37 @@ class AlumniListView(ListView):
     paginate_by = 3
     queryset = Batch.objects.order_by('-year')
 
+
+class DashView(View):
+    template_name = "dashboard/index.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class UserProfileView(View):
+    template_name = "dashboard/user-profile.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class ZephyrusRegistrationView(View):
+    template_name = "dashboard/registration.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class ZephyrusEventsView(View):
+    template_name = "dashboard/schedule.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class ZephyrusScheduleView(View):
+    template_name = "dashboard/events.html"
+
+    def get(self, request):
+        return render(request, self.template_name)

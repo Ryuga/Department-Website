@@ -1,0 +1,69 @@
+
+@import url("../vendors/bootstrap/css/bootstrap.min.css");
+@import url("../vendors/fontawesome/css/font-awesome.min.css");
+@import url("../vendors/themify/themify-icons.css");
+@import url("../vendors/scroll/scrollbar.css");
+
+/*=========================
+	All css
+==========================*/
+@import url('../../../../../css-2.css');
+
+.switch input {
+  position: absolute;
+  opacity: 0;
+}
+
+.switch {
+  display: inline-block;
+  font-size: 20px; /* 1 */
+  height: 1em;
+  width: 2em;
+  background: #bdb9a6;
+  border-radius: 1em;
+}
+
+.switch div {
+  height: 1em;
+  width: 1em;
+  border-radius: 1em;
+  background: #fff;
+  box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  transition: all 300ms;
+}
+
+.switch input:checked + div {
+  -webkit-transform: translate3d(100%, 0, 0);
+  -moz-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+
+.select {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  max-width: 800px;
+  gap: 10px;
+}
+
+.select__item {
+  padding: 20px;
+  cursor: pointer;
+  font-family: "Heebo", sans-serif;
+  text-align: left;
+  border-radius: 3px;
+  background: #eeeeee;
+  transition: background 0.1s;
+}
+
+.select__item--selected {
+  border-color: #0e91e3;
+  border-width: 2px;
+  background:   #bb8fce   ;
+  color: #ffffff;
+}
+
+.select__item .span{
+  float: right !important;margin-left: 900px;
+}

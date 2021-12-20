@@ -1,0 +1,147 @@
+{% load static %}
+<html lang="en">
+<head>
+	<!-- FAVICONS ICON ============================================= -->
+	<link rel="icon" href="{% static 'dashboard/dashboard/images/favicon.ico' %}" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'dashboard/images/favicon.png' %}" />
+
+	<title>Dashboard</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--[if lt IE 9]>
+	<script src="{% static 'dashboard/js/html5shiv.min.js' %}"></script>
+	<script src="{% static 'dashboard/js/respond.min.js' %}"></script>
+	<![endif]-->
+
+	<!-- All PLUGINS CSS ============================================= -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/assets.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/vendors/calendar/fullcalendar.css' %}">
+
+{#    	<!-- TYPOGRAPHY ============================================= -->#}
+{#	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/typography.css' %}">#}
+
+	<!-- SHORTCODES ============================================= -->
+{#	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/shortcodes/shortcodes.css' %}">#}
+
+
+	<!-- STYLESHEETS ============================================= -->
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/dashboard.css' %}">
+	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'dashboard/css/color/color-1.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body class="ttr-opened-sidebar ttr-pinned-sidebar">
+
+	<!-- header start -->
+	<header class="ttr-header">
+		<div class="ttr-header-wrapper">
+			<!--sidebar menu toggler start -->
+			<div class="ttr-toggle-sidebar ttr-material-button">
+				<i class="ti-close ttr-open-icon"></i>
+				<i class="ti-menu ttr-close-icon"></i>
+			</div>
+			<!--sidebar menu toggler end -->
+			<!--logo start -->
+			<div class="ttr-logo-box">
+				<div>
+{#					<a href="index.html" class="ttr-logo">#}
+{#						<img class="ttr-logo-mobile" alt="" src="{% static 'dashboard/images/logo-mobile.png' %}" width="30" height="30">#}
+{#						<img class="ttr-logo-desktop" alt="" src="{% static 'dashboard/images/logo-white.png' %}" width="160" height="27">#}
+{#					</a>#}
+				</div>
+			</div>
+			<!--logo end -->
+			<div class="ttr-header-menu">
+				<ul class="ttr-header-navigation">
+					<li>
+						<a href="{% url 'home' %}" class="ttr-material-button ttr-submenu-toggle">HOME</a>
+					</li>
+				</ul>
+			</div>
+			<div class="ttr-header-right ttr-with-seperator">
+				<!-- header right menu start -->
+				<ul class="ttr-header-navigation">
+					<li>
+						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="{% static 'dashboard/images/testimonials/pic3.jpg' %}" width="32" height="32"></span></a>
+						<div class="ttr-header-submenu">
+							<ul>
+								<li><a href="{% url 'profile' %}">My profile</a></li>
+								<li><a href="{% url 'logout' %}">Logout</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<!-- header right menu end -->
+			</div>
+		</div>
+	</header>
+	<!-- header end -->
+	<!-- Left sidebar menu start -->
+	<div class="ttr-sidebar">
+		<div class="ttr-sidebar-wrapper content-scroll">
+			<!-- side menu logo start -->
+			<div class="ttr-sidebar-logo">
+{#				<a href="#"><img alt="" src="{% static 'dashboard/images/logo.png' %}" width="122" height="27"></a>#}
+				<div class="ttr-sidebar-toggle-button">
+					<i class="ti-arrow-left"></i>
+				</div>
+			</div>
+			<!-- side menu logo end -->
+			<!-- sidebar menu start -->
+			<nav class="ttr-sidebar-navi">
+				<ul>
+					<li>
+						<a href="{% url 'dashboard' %}" class="ttr-material-button">
+							<span class="ttr-icon"><i class="fa fa-home"></i></span>
+		                	<span class="ttr-label">Dashboard</span>
+		                </a>
+		            </li>
+					<li>
+						<a href="{% url 'profile' %}" class="ttr-material-button">
+							<span class="ttr-icon"><i class="fa fa-user"></i></span>
+		                	<span class="ttr-label">My Profile</span>
+		                </a>
+		            </li>
+					<li>
+						<a href="#!" class="ttr-material-button">
+							<span class="ttr-icon"><i class="fas fa-calendar-check"></i></span>
+		                	<span class="ttr-label">Zephyrus</span>
+		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+		                </a>
+		                <ul>
+		                	<li>
+		                		<a href="{% url 'registration' %}" class="ttr-material-button"><span class="ttr-label">Registration</span></a>
+		                	</li>
+							<li>
+		                		<a href="{% url 'events' %}" class="ttr-material-button"><span class="ttr-label">Events</span></a>
+		                	</li>
+		                	<li>
+		                		<a href="{% url 'schedule' %}" class="ttr-material-button"><span class="ttr-label">Schedule</span></a>
+		                	</li>
+		                </ul>
+		            </li>
+				</ul>
+				<!-- sidebar menu end -->
+			</nav>
+			<!-- sidebar menu end -->
+		</div>
+	</div>
+	<!-- Left sidebar menu end -->
+
+    {% block content %}{% endblock content %}
+
+	<div class="ttr-overlay"></div>
+
+<!-- External JavaScripts -->
+<script src="{% static 'dashboard/js/jquery.min.js' %}"></script>
+<script src="{% static 'dashboard/vendors/bootstrap/js/popper.min.js' %}"></script>
+<script src="{% static 'dashboard/vendors/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'dashboard/vendors/scroll/scrollbar.min.js'%}"></script>
+<script src="{% static 'dashboard/js/admin.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/6dafe43970.js" crossorigin="anonymous"></script>
+{% block scripts %} {% endblock scripts %}
+</body>
+</html>

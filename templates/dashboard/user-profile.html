@@ -1,0 +1,129 @@
+{% extends 'dashboard/layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+	<main class="ttr-wrapper">
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">User Profile</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="{% url 'dashboard' %}"><i class="fa fa-tv"></i>Dashboard</a></li>
+					<li>User Profile</li>
+				</ul>
+			</div>
+			<div class="row">
+				<!-- Your Profile Views Chart -->
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>User Profile</h4>
+						</div>
+						<div class="widget-inner">
+							<form class="edit-profile m-b30">
+								<div class="">
+									<div class="form-group row">
+										<div class="col-sm-10  ml-auto">
+											<h3>1. Personal Details</h3>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Full Name</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="Mark Andre">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Date of Birth</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="date">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">College Name</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="CTO">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">College Location</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="EduChamp">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Phone No.</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="+120 012345 6789">
+											<span class="help">Please specify your whatsapp registered number.</span>
+										</div>
+									</div>
+
+									<div class="seperator"></div>
+
+									<div class="form-group row">
+										<div class="col-sm-10 ml-auto">
+											<h3>2. Address</h3>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Address</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="5-S2-20 Dummy City, UK">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">City</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="US">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">State</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="California">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Postcode</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" value="000702">
+										</div>
+									</div>
+								</div>
+								<div class="">
+									<div class="">
+										<div class="row">
+											<div class="col-sm-2">
+											</div>
+											<div class="col-sm-7">
+												<button type="reset" class="btn">Save changes</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+							<form class="edit-profile">
+								<div class="">
+									<div class="form-group row">
+										<div class="col-sm-10 mt-2">
+											<h3>Notification Preference</h3>
+                                            <span class="help text-black">We will notify you of the upcoming zephyrus event next year.</span>
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Email Notifications</label>
+									</div>
+									<div class="form-group row">
+										<label class="col-sm-2 col-form-label">Whatsapp Notifications</label>
+                                    </div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- Your Profile Views Chart END-->
+			</div>
+		</div>
+	</main>
+
+{% endblock content %}
