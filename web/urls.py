@@ -1,7 +1,10 @@
 from django.urls import re_path
 from .views import (
     IndexView, about_view, lazy_load_faculty, GalleryListView,
-    EventView, CourseView, AlumniListView, DashView, UserProfileView,
+    EventView, CourseView, AlumniListView
+)
+from .dash_views import (
+    DashView, UserProfileView, LoginView, RegisterView,
     ZephyrusEventsView, ZephyrusScheduleView, ZephyrusRegistrationView
 )
 from django.conf import settings
@@ -13,6 +16,9 @@ urlpatterns = [
     re_path(r'^events/(?P<slug>.*)', EventView.as_view(), name="event_details"),
     re_path(r'^events/', EventView.as_view(), name="events"),
     re_path(r'^about/', about_view, name="about"),
+    re_path(r'^login/', LoginView.as_view(), name="login"),
+    re_path(r'^login/oauth2/google/', LoginView.as_view(), name="oauth_login"),
+    re_path(r'^register/', RegisterView.as_view(), name="register"),
     re_path(r'^gallery/', GalleryListView.as_view(), name="gallery"),
     re_path(r'^alumni/', AlumniListView.as_view(), name="alumni"),
     re_path(r'^lazy/faculty/', lazy_load_faculty, name="lazy_load_faculty"),

@@ -10,6 +10,16 @@ def time_now():
     return datetime.now(timezone.utc)
 
 
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    image_url = models.URLField(null=True)
+    phone_number = models.CharField(max_length=10)
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.name
+
+
 class Faculty(models.Model):
     name = models.CharField(max_length=100)
     image_url = models.URLField(null=True)

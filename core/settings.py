@@ -95,3 +95,17 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 PAYTM_MERCHANT_ID = config("PAYTM_MERCHANT_ID")
+GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID")
+GOOGLE_CLIENT_SECRET = {
+    "web":
+    {"client_id": config("GOOGLE_CLIENT_ID"),
+     "project_id": "erudite-spot-335720 ",
+     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+     "token_uri": "https://oauth2.googleapis.com/token",
+     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+     "client_secret": config("GOOGLE_CLIENT_SECRET"),
+     "redirect_uris": ["http://localhost:8000/login/oauth2/google/"]
+     }
+}
+ENCRYPTION_SALT = config("ENCRYPTION_SALT")
+ENCRYPTION_ITERATION = config("ENCRYPTION_ITERATION")
