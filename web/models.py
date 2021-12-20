@@ -129,6 +129,9 @@ class IpHash(models.Model):
     hash = models.CharField(max_length=10, primary_key=True)
     visit_time = models.DateTimeField(default=time_now)
 
+    def __str__(self):
+        return "Site Visitors"
+
 
 class PopUp(models.Model):
     title = models.CharField(max_length=30, null=True, blank=True, help_text="Optional")
