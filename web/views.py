@@ -1,5 +1,8 @@
 import hashlib
-
+import requests
+import json
+from paytmchecksum import PaytmChecksum
+from django.conf import settings
 from django.shortcuts import render
 from .models import Event, Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
 from django.views.generic import ListView, View
@@ -99,6 +102,39 @@ class ZephyrusRegistrationView(View):
 
     def get(self, request):
         return render(request, self.template_name)
+
+    def post(self, request):
+
+        paytmParams = dict()
+
+        paytmParams["body"] = {
+            "requestType": "Payment",
+            "mid": "YOUR_MID_HERE",
+            "websiteName": "WEBDEMO",
+            "orderId": "ORDERID_98765",
+            "callbackUrl": "https://localhost:8000/payments/handler/",
+            "txnAmount": {
+                "value": "1.00",
+                "currency": "INR",
+            },
+            "userInfo": {
+                "custId": request.user.email
+            },
+        }
+        checksum = PaytmChecksum.generateSignature(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_ID)
+
+        paytmParams["head"] = {
+            "signature": checksum
+        }
+
+        post_data = json.dumps(paytmParams)
+        # for Staging
+        url = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"
+
+        # for Production
+        # url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"
+        response = requests.post(url, data=post_data, headers={"Content-type": "application/json"}).json()
+        print(response)
 
 
 class ZephyrusEventsView(View):

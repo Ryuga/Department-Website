@@ -11,6 +11,9 @@ markdown = "*"
 gunicorn = "*"
 django-ipware = "*"
 pillow = "*"
+paytmchecksum = "*"
+requests = "*"
+google-auth-oauthlib = "*"
 
 [dev-packages]
 
