@@ -3,12 +3,16 @@ import json
 
 from paytmchecksum import PaytmChecksum
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from utils.google_oauth2 import GoogleOauth
 from utils.mixins import ResponseMixin
+from utils.operations import create_user
+from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+# from django.utils.decorators import method_decorator
+# from django.views.decorators.csrf import csrf_exempt
 google_oauth = GoogleOauth(redirect_uri="http://localhost:8000/login/oauth2/google/")
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
@@ -43,12 +47,12 @@ class GoogleAuthLoginCallback(View, ResponseMixin):
             except User.DoesNotExist:
                 user = create_user(email=email, avatar_url=avatar, access_token=access_token, name=name)
                 login(request, user)
-                return render(request, "utility/change_password.html", {"verification_token": access_token[:10]})
+                return redirect("/")
         else:
             return self.http_responce_404(request)
 
 
-class DashView(View):
+class DashView(LoginRequiredMixin, View):
     template_name = "dashboard/index.html"
 
     def get(self, request):

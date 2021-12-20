@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
+from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.contrib.postgres.fields import ArrayField
 from datetime import datetime, timezone
@@ -15,6 +16,7 @@ class Student(models.Model):
     image_url = models.URLField(null=True)
     phone_number = models.CharField(max_length=10)
     email = models.EmailField()
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student", null=True)
 
     def __str__(self):
         return self.name
