@@ -17,6 +17,7 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     image_url = models.URLField(null=True)
     phone_number = models.CharField(max_length=10, null=True)
+    access_token = models.CharField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student", null=True)
 
     def __str__(self):

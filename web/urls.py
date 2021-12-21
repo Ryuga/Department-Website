@@ -14,7 +14,7 @@ from django.urls import path
 urlpatterns = [
     path('login/oauth2/google/', GoogleAuthLoginCallback.as_view(), name="oauth_login"),
     path('accounts/login/', LoginView.as_view(), name="login_redirect"),
-    path('logout/', logout_request, name="logout"),
+    re_path(r'^logout/', logout_request, name="logout"),
     re_path(r'^courses/(?P<slug>.*)', CourseView.as_view(), name="course_details"),
     re_path(r'^events/(?P<slug>.*)', EventView.as_view(), name="event_details"),
     re_path(r'^events/', EventView.as_view(), name="events"),
@@ -29,7 +29,7 @@ urlpatterns = [
     re_path(r'^zephyrus/registration/', ZephyrusRegistrationView.as_view(), name="registration"),
     re_path(r'^zephyrus/schedule/', ZephyrusScheduleView.as_view(), name="schedule"),
     re_path(r'^zephyrus/events/', ZephyrusEventsView.as_view(), name="events"),
-    re_path(r'^zephyrus/logout/', UserProfileView.as_view(), name="logout"),
+    # re_path(r'^zephyrus/logout/', UserProfileView.as_view(), name="logout"),
     path('', IndexView.as_view(), name="home"),
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
