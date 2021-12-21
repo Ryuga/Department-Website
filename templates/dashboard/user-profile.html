@@ -12,7 +12,6 @@
 				</ul>
 			</div>
 			<div class="row">
-				<!-- Your Profile Views Chart -->
 				<div class="col-lg-12 m-b30">
 					<div class="widget-box">
 						<div class="wc-title">
@@ -24,7 +23,7 @@
 								<div class="">
 									<div class="form-group row">
 										<div class="col-sm-10  ml-auto">
-											<h3>1. Personal Details</h3>
+											<h3>Personal Details</h3>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -34,21 +33,15 @@
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">Date of Birth</label>
-										<div class="col-sm-7">
-											<input class="form-control" name="dob" type="date" value="{% if request.user.student.dob %}{{ request.user.student.dob }}{% endif %}">
-										</div>
-									</div>
-									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">College Name</label>
 										<div class="col-sm-7">
 											<input class="form-control" name="college_name" type="text" value="{% if request.user.student.college_name %}{{ request.user.student.college_name }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">College Location</label>
+										<label class="col-sm-2 col-form-label">Department</label>
 										<div class="col-sm-7">
-											<input class="form-control" name="college_location" type="text" value="{% if request.user.student.college_location %}{{ request.user.student.college_location }}{% endif %}">
+											<input class="form-control" name="department" type="text" value="{% if request.user.student.department %}{{ request.user.student.department }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
@@ -58,38 +51,7 @@
 											<span class="help">Please specify your whatsapp registered number.</span>
 										</div>
 									</div>
-
 									<div class="seperator"></div>
-
-									<div class="form-group row">
-										<div class="col-sm-10 ml-auto">
-											<h3>2. Address</h3>
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">Address</label>
-										<div class="col-sm-7">
-											<input class="form-control" name="address" type="text" value="{% if request.user.student.address %}{{ request.user.student.address }}{% endif %}">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">City</label>
-										<div class="col-sm-7">
-											<input class="form-control" name="city" type="text" value="{% if request.user.student.city %}{{ request.user.student.city }}{% endif %}">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">State</label>
-										<div class="col-sm-7">
-											<input class="form-control" name="state" type="text" value="{% if request.user.student.state %}{{ request.user.student.state }}{% endif %}">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">Pincode</label>
-										<div class="col-sm-7">
-										<input class="form-control" maxlength="6" name="pincode" type="text" value="{% if request.user.student.pincode %}{{ request.user.student.pincode }}{% endif %}">
-										</div>
-									</div>
 								</div>
 								<div class="">
 									<div class="">

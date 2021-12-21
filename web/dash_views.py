@@ -68,8 +68,7 @@ class DashView(LoginRequiredMixin, View):
 class UserProfileView(View):
     template_name = "dashboard/user-profile.html"
     fields = (
-        "name", "address", "phone_number", "city", "college_name",
-        "college_location", "pincode", "state", "dob"
+        "name", "phone_number", "college_name", "department"
     )
 
     def get(self, request):
