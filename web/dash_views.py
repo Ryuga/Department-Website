@@ -73,7 +73,8 @@ class ZephyrusRegistrationView(View):
         return render(request, self.template_name)
 
     def post(self, request):
-
+        order_amt = request.POST.get("orderAmt")
+        order_items = []
         paytmParams = dict()
 
         paytmParams["body"] = {

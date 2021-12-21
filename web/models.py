@@ -1,3 +1,5 @@
+import uuid
+
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
@@ -168,6 +170,15 @@ class Batch(models.Model):
 class Alumni(models.Model):
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE, related_name="alumni")
     image_url = models.URLField()
+
+
+class SubEvents(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    name = models.CharField(max_length=50)
+    description = models.TextField(null=True, blank=True)
+    starting_time = models.DateTimeField()
+    ending_time = models.DateTimeField()
+    image = models.URLField(null=True, blank=True)
 
 
 @receiver(pre_save, sender=Event)
