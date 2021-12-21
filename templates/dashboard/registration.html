@@ -15,68 +15,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 m-b30">
-					<div class="widget-box">
-						<div class="wc-title">
-							<h4>Event Registration</h4>
-						</div>
-						<div class="widget-inner">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="card mb-2">
-                                        <div class="card-header">
-                                            <div class="form-check">
-                                            <b>Events</b>
-                                              <span style="float:right;">
-                                                 <b> Reg fee</b>
-                                              </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% for event in events %}
-                                    <div class="card mt-1">
-                                        <div class="card-body">
-                                            <div class="form-check">
-                                              <input class="form-check-input selectEvent" type="checkbox" value="{{ event.name }}" event_id="{{ event.id }}" price="{{ event.reg_fee }}">
-                                              <label class="form-check-label" for="flexCheckDefault">
-                                                <b>{{ event.name }}</b>
-                                              </label>
-                                              <span style="float:right;">
-                                                  Rs.{{ event.reg_fee }}
-                                              </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {% endfor %}
-                                </div>
-                                <div class="col-lg-2"></div>
-                                <div class="col-lg-5">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            Cost Summary
-                                        </div>
-                                        <div class="card-body">
-                                        <table class="table border-top-0 border-white">
-                                          <thead>
-                                            <tr>
-                                              <th scope="col" class="border-bottom-0 border-white">Event Name</th>
-                                              <th scope="col" class="border-bottom-0 border-white">Fee</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody id="costSummary">
-
-                                          </tbody>
-                                        </table>
-                                            <hr>
-                                            <h5>Total: Rs. <span id="totalPrice"></span></h5>
-                                        </div>
-                                        <div class="card-footer bg-transparent">
-                                            <button class="btn btn-primary">Make Payment</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-						</div>
-					</div>
+                    {% include 'dashboard/extendable/registration_card.html' %}
 				</div>
 			</div>
 		</div>
