@@ -13,8 +13,14 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.utils.decorators import method_decorator
 # from django.views.decorators.csrf import csrf_exempt
+from .models import SubEvents
 google_oauth = GoogleOauth(redirect_uri="http://localhost:8000/login/oauth2/google/")
 google_oauth_url, _ = google_oauth.flow.authorization_url()
+
+
+def logout_request(request):
+    logout(request)
+    return LoginView.as_view()(request)
 
 
 class LoginView(View):
@@ -43,11 +49,11 @@ class GoogleAuthLoginCallback(View, ResponseMixin):
             try:
                 user = User.objects.get(email=email)
                 login(request, user)
-                return redirect("/")
+                return DashView.as_view()(self.request)
             except User.DoesNotExist:
                 user = create_user(email=email, avatar_url=avatar, access_token=access_token, name=name)
                 login(request, user)
-                return redirect("/")
+                return DashView.as_view()(self.request)
         else:
             return self.http_responce_404(request)
 
@@ -107,15 +113,17 @@ class ZephyrusRegistrationView(View):
         print(response)
 
 
-class ZephyrusEventsView(View):
-    template_name = "dashboard/schedule.html"
+class ZephyrusEventsView(LoginRequiredMixin, View):
+    template_name = "dashboard/events.html"
 
     def get(self, request):
-        return render(request, self.template_name)
+        events = SubEvents.objects.all()
+        print(request.user)
+        return render(request, self.template_name, {"events": events})
 
 
 class ZephyrusScheduleView(View):
-    template_name = "dashboard/events.html"
+    template_name = "dashboard/schedule.html"
 
     def get(self, request):
         return render(request, self.template_name)
