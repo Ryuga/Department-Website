@@ -29,7 +29,6 @@ urlpatterns = [
     re_path(r'^zephyrus/registration/', ZephyrusRegistrationView.as_view(), name="registration"),
     re_path(r'^zephyrus/schedule/', ZephyrusScheduleView.as_view(), name="schedule"),
     re_path(r'^zephyrus/events/', ZephyrusEventsView.as_view(), name="events"),
-    # re_path(r'^zephyrus/logout/', UserProfileView.as_view(), name="logout"),
     path('', IndexView.as_view(), name="home"),
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
