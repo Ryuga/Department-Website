@@ -10,5 +10,5 @@ def create_user(email, avatar_url, access_token, name):
                                     email=email,
                                     first_name=name,
                                     password=hasher.get_hashed_pass(email))
-    Student.objects.create(user=user, image_url=avatar_url)
+    Student.objects.create(user=user, image_url=avatar_url, name=name)
     return user

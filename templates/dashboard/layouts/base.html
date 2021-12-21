@@ -64,7 +64,7 @@
 				<!-- header right menu start -->
 				<ul class="ttr-header-navigation">
 					<li>
-						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="{% static 'dashboard/images/testimonials/pic3.jpg' %}" width="32" height="32"></span></a>
+						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="{{ request.user.student.image_url }}" width="32" height="32"></span></a>
 						<div class="ttr-header-submenu">
 							<ul>
 								<li><a href="{% url 'profile' %}">My profile</a></li>
