@@ -198,6 +198,12 @@ class SubEvents(models.Model):
     image = models.URLField(null=True, blank=True)
 
 
+class DashboardNotification(models.Model):
+    message = models.CharField(max_length=250)
+    author = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+    creation_time = models.DateTimeField()
+
+
 @receiver(pre_save, sender=Event)
 def event_link_setter(sender, instance, **kwargs):
     if not instance.link:
