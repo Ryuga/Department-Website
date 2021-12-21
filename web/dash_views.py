@@ -85,16 +85,18 @@ class UserProfileView(View):
         return render(request, self.template_name, {"saved": saved})
 
 
-
-class ZephyrusRegistrationView(View):
+class ZephyrusRegistrationView(LoginRequiredMixin, View):
     template_name = "dashboard/registration.html"
 
     def get(self, request):
-        return render(request, self.template_name)
+        events = SubEvents.objects.all()
+        return render(request, self.template_name, {"events": events})
 
     def post(self, request):
         order_amt = request.POST.get("orderAmt")
         order_items = []
+        user = request.user
+
         paytmParams = dict()
 
         paytmParams["body"] = {
@@ -132,7 +134,6 @@ class ZephyrusEventsView(LoginRequiredMixin, View):
 
     def get(self, request):
         events = SubEvents.objects.all()
-        print(request.user)
         return render(request, self.template_name, {"events": events})
 
 

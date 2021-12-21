@@ -31,6 +31,20 @@ class Student(models.Model):
         return self.name
 
 
+def generate_order_id():
+    return f"zep-{uuid.uuid4[:5]}"
+
+
+class Order(models.Model):
+    id = models.CharField(max_length=9, default=generate_order_id, primary_key=True)
+    events_registered = models.ManyToManyField("SubEvents", blank=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    payment_amount = models.IntegerField()
+    mode = models.CharField(max_length=20, null=True, blank=True)
+    transaction_token = models.CharField(max_length=100)
+    status = models.CharField(max_length=7)
+
+
 class Faculty(models.Model):
     name = models.CharField(max_length=100)
     image_url = models.URLField(null=True)
@@ -181,6 +195,7 @@ class Alumni(models.Model):
 
 class SubEvents(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    reg_fee = models.IntegerField()
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
     starting_time = models.DateTimeField()

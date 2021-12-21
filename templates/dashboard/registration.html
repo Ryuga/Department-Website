@@ -32,65 +32,52 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% for event in events %}
                                     <div class="card mt-1">
                                         <div class="card-body">
                                             <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                              <input class="form-check-input selectEvent" type="checkbox" value="{{ event.name }}" event_id="{{ event.id }}">
                                               <label class="form-check-label" for="flexCheckDefault">
-                                                Coding and debugging
+                                                <b>{{ event.name }}</b>
                                               </label>
                                               <span style="float:right;">
-                                                  Rs.25
+                                                  Rs.{{ event.reg_fee }}
                                               </span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card mt-1">
-                                        <div class="card-body">
-                                            <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                              <label class="form-check-label" for="flexCheckDefault">
-                                                Coding and debugging
-                                              </label>
-                                              <span style="float:right;">
-                                                  Rs.25
-                                              </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card mt-1">
-                                        <div class="card-body">
-                                            <div class="form-check">
-                                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                              <label class="form-check-label" for="flexCheckDefault">
-                                                Coding and debugging
-                                              </label>
-                                              <span style="float:right;">
-                                                  Rs.25
-                                              </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    {% endfor %}
                                 </div>
-                                <div class="col-lg-3"></div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-2"></div>
+                                <div class="col-lg-5">
                                     <div class="card">
                                         <div class="card-header">
                                             Cost Summary
                                         </div>
                                         <div class="card-body">
-                                            <ol>
-                                                <li>Coding and debugging  50</li>
-                                                <li>Coding and debugging  100</li>
-                                                <li>Coding and debugging  50</li>
-                                                <li>Coding and debugging  50</li>
-                                            </ol>
+                                        <table class="table border-top-0 border-white">
+                                          <thead>
+                                            <tr>
+                                              <th scope="col" class="border-bottom-0 border-white">First</th>
+                                              <th scope="col" class="border-bottom-0 border-white">Fee</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr>
+                                              <td>Coding</td>
+                                              <td>100</td>
+                                            </tr>
+                                            <tr>
+                                              <td>Coding</td>
+                                              <td>100</td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
                                             <hr>
                                             <h4>Total: Rs. 250</h4>
                                         </div>
                                         <div class="card-footer bg-transparent">
-                                            <button class="btn">Make Payment</button>
+                                            <button class="btn btn-primary">Make Payment</button>
                                         </div>
                                     </div>
                                 </div>
