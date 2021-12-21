@@ -67,9 +67,23 @@ class DashView(LoginRequiredMixin, View):
 
 class UserProfileView(View):
     template_name = "dashboard/user-profile.html"
+    fields = (
+        "name", "address", "phone_number", "city", "college_name",
+        "college_location", "pincode", "state", "dob"
+    )
 
     def get(self, request):
         return render(request, self.template_name)
+
+    def post(self, request):
+        saved = False
+        for field in self.fields:
+            if request.POST.get(field):
+                setattr(request.user.student, field, request.POST.get(field))
+            request.user.student.save()
+            saved = True
+        return render(request, self.template_name, {"saved": saved})
+
 
 
 class ZephyrusRegistrationView(View):

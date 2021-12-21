@@ -25,6 +25,7 @@ class Student(models.Model):
     address = models.TextField(null=True, blank=True)
     city = models.CharField(max_length=50, null=True, blank=True)
     state = models.CharField(max_length=50, null=True, blank=True)
+    pincode = models.CharField(max_length=6, null=True, blank=True)
 
     def __str__(self):
         return self.name

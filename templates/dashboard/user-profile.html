@@ -19,7 +19,8 @@
 							<h4>User Profile</h4>
 						</div>
 						<div class="widget-inner">
-							<form class="edit-profile m-b30">
+							<form class="edit-profile m-b30" method="post" action="{% url 'profile' %}">
+                            {% csrf_token %}
 								<div class="">
 									<div class="form-group row">
 										<div class="col-sm-10  ml-auto">
@@ -29,31 +30,31 @@
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">Full Name</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="Mark Andre">
+											<input class="form-control" name="name" type="text" value="{{ request.user.student.name }}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">Date of Birth</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="date">
+											<input class="form-control" name="dob" type="date" value="{% if request.user.student.dob %}{{ request.user.student.dob }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">College Name</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="CTO">
+											<input class="form-control" name="college_name" type="text" value="{% if request.user.student.college_name %}{{ request.user.student.college_name }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">College Location</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="EduChamp">
+											<input class="form-control" name="college_location" type="text" value="{% if request.user.student.college_location %}{{ request.user.student.college_location }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">Phone No.</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="+120 012345 6789">
+											<input class="form-control" maxlength="10" name="phone_number" type="text" value="{% if request.user.student.phone_number %}{{ request.user.student.phone_number }}{% endif %}">
 											<span class="help">Please specify your whatsapp registered number.</span>
 										</div>
 									</div>
@@ -68,25 +69,25 @@
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">Address</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="5-S2-20 Dummy City, UK">
+											<input class="form-control" name="address" type="text" value="{% if request.user.student.address %}{{ request.user.student.address }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">City</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="US">
+											<input class="form-control" name="city" type="text" value="{% if request.user.student.city %}{{ request.user.student.city }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
 										<label class="col-sm-2 col-form-label">State</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="California">
+											<input class="form-control" name="state" type="text" value="{% if request.user.student.state %}{{ request.user.student.state }}{% endif %}">
 										</div>
 									</div>
 									<div class="form-group row">
-										<label class="col-sm-2 col-form-label">Postcode</label>
+										<label class="col-sm-2 col-form-label">Pincode</label>
 										<div class="col-sm-7">
-											<input class="form-control" type="text" value="000702">
+										<input class="form-control" maxlength="6" name="pincode" type="text" value="{% if request.user.student.pincode %}{{ request.user.student.pincode }}{% endif %}">
 										</div>
 									</div>
 								</div>
@@ -96,7 +97,7 @@
 											<div class="col-sm-2">
 											</div>
 											<div class="col-sm-7">
-												<button type="reset" class="btn">Save changes</button>
+												<button type="submit" class="btn btn-primary">Save changes</button>
 											</div>
 										</div>
 									</div>
