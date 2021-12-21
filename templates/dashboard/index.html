@@ -33,14 +33,13 @@
 								<ul>
                                     {% for notification in notifications %}
 									<li>
-										<span class="notification-icon dashbg-gray">
-											<i class="fa fa-check"></i>
+										<span class="notification-icon">
+											 <img src="{{ notification.author.image_url }}">
 										</span>
 										<span class="notification-text">
-											<span>{{ notification.author.name }}</span> {{ notification.message }}
+											<span>{{ notification.author.name }}</span><br> {{ notification.message }}
 										</span>
 										<span class="notification-time">
-											<a href="#" class="fa fa-close"></a>
 											<span> {{ notification.creation_time }}</span>
 										</span>
 									</li>

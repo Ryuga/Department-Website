@@ -20,7 +20,48 @@
 							<h4>Events</h4>
 						</div>
 						<div class="widget-inner">
-
+                            {% for event in events %}
+							<div class="card-courses-list admin-courses">
+								<div class="card-courses-media">
+									<img src="{{ event.image }}" alt=""/>
+								</div>
+								<div class="card-courses-full-dec">
+									<div class="card-courses-title">
+										<h4>{{ event.name }}</h4>
+									</div>
+									<div class="card-courses-list-bx">
+										<ul class="card-courses-view">
+											<li class="card-courses-user">
+												<div class="card-courses-user-pic">
+													<img src="{{ event.staff.image_url }}" alt=""/>
+												</div>
+												<div class="card-courses-user-info">
+													<h5>Staff Coordinator</h5>
+													<h4>{{ event.staff.name }}</h4>
+												</div>
+											</li>
+											<li class="card-courses-categories">
+												<h5>3 Categories</h5>
+												<h4>Backend</h4>
+											</li>
+											<li class="card-courses-stats">
+												<a href="#" class="btn btn-sm btn-outline-success disabled">Registered</a>
+											</li>
+										</ul>
+									</div>
+									<div class="row card-courses-dec">
+										<div class="col-md-12">
+											<h6 class="m-b10">Event Description</h6>
+											<p>{{ event.description }} </p>
+										</div>
+{#										<div class="col-md-12">#}
+{#											<a href="#" class="btn green radius-xl outline">Approve</a>#}
+{#											<a href="#" class="btn red outline radius-xl ">Cancel</a>#}
+{#										</div>#}
+									</div>
+								</div>
+							</div>
+                            {% endfor %}
 						</div>
 					</div>
 				</div>
