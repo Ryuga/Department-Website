@@ -31,18 +31,20 @@
 						<div class="widget-inner">
 							<div class="noti-box-list">
 								<ul>
+                                    {% for notification in notifications %}
 									<li>
 										<span class="notification-icon dashbg-gray">
 											<i class="fa fa-check"></i>
 										</span>
 										<span class="notification-text">
-											<span>Sneha Jogi</span> sent you a message.
+											<span>{{ notification.author.name }}</span> {{ notification.message }}
 										</span>
 										<span class="notification-time">
 											<a href="#" class="fa fa-close"></a>
-											<span> 02:14</span>
+											<span> {{ notification.creation_time }}</span>
 										</span>
 									</li>
+                                    {% endfor %}
 								</ul>
 							</div>
 						</div>

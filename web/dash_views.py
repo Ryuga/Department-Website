@@ -13,7 +13,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.utils.decorators import method_decorator
 # from django.views.decorators.csrf import csrf_exempt
-from .models import SubEvents
+from .models import SubEvents, DashboardNotification
 google_oauth = GoogleOauth(redirect_uri="http://localhost:8000/login/oauth2/google/")
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
@@ -62,7 +62,8 @@ class DashView(LoginRequiredMixin, View):
     template_name = "dashboard/index.html"
 
     def get(self, request):
-        return render(request, self.template_name)
+        notifications = DashboardNotification.objects.all()
+        return render(request, self.template_name, {"notifications": notifications})
 
 
 class UserProfileView(View):
