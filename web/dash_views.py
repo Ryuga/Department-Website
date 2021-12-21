@@ -3,7 +3,7 @@ import json
 
 from paytmchecksum import PaytmChecksum
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic import View
 from utils.google_oauth2 import GoogleOauth
 from utils.mixins import ResponseMixin
@@ -13,7 +13,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.utils.decorators import method_decorator
 # from django.views.decorators.csrf import csrf_exempt
-from .models import SubEvents, DashboardNotification
+from .models import SubEvents, DashboardNotification, Order
 google_oauth = GoogleOauth(redirect_uri="http://localhost:8000/login/oauth2/google/")
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
@@ -85,7 +85,7 @@ class UserProfileView(View):
         return render(request, self.template_name, {"saved": saved})
 
 
-class ZephyrusRegistrationView(LoginRequiredMixin, View):
+class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 
     def get(self, request):
@@ -93,40 +93,63 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"events": events})
 
     def post(self, request):
-        order_amt = request.POST.get("orderAmt")
-        order_items = []
-        user = request.user
+        print(request.POST)
+        order_amt = int(request.POST.get("txnAmt"))
+        order_items = request.POST.getlist("eventsList")[0].split(',')
+        order_items_from_db = list()
+        cost_total = 0
+        for item_id in order_items:
+            item = SubEvents.objects.get(id=item_id)
+            cost_total += item.reg_fee
+            order_items_from_db.append(item)
+        if cost_total == order_amt:
+            order = Order.objects.create(
+                student=request.user.student,
+                payment_amount=cost_total,
+            )
+            for item in order_items_from_db:
+                order.events_registered.add(item)
 
-        paytmParams = dict()
+            paytmParams = dict()
 
-        paytmParams["body"] = {
-            "requestType": "Payment",
-            "mid": "YOUR_MID_HERE",
-            "websiteName": "WEBDEMO",
-            "orderId": "ORDERID_98765",
-            "callbackUrl": "https://localhost:8000/payments/handler/",
-            "txnAmount": {
-                "value": "1.00",
-                "currency": "INR",
-            },
-            "userInfo": {
-                "custId": request.user.email
-            },
-        }
-        checksum = PaytmChecksum.generateSignature(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_ID)
+            paytmParams["body"] = {
+                "requestType": "Payment",
+                "mid": settings.PAYTM_MERCHANT_ID,
+                "websiteName": "WEBDEMO",
+                "orderId": order.id,
+                "callbackUrl": "https://localhost:8000/payments/handler/",
+                "txnAmount": {
+                    "value": order.payment_amount,
+                    "currency": "INR",
+                },
+                "userInfo": {
+                    "custId": request.user.email
+                },
+            }
+            checksum = PaytmChecksum.generateSignature(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_KEY)
 
-        paytmParams["head"] = {
-            "signature": checksum
-        }
+            paytmParams["head"] = {
+                "signature": checksum
+            }
 
-        post_data = json.dumps(paytmParams)
-        # for Staging
-        url = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"
+            post_data = json.dumps(paytmParams)
+            # for Staging
+            url = f"https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid={settings.PAYTM_MERCHANT_ID}&orderId={order.id}"
 
-        # for Production
-        # url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"
-        response = requests.post(url, data=post_data, headers={"Content-type": "application/json"}).json()
-        print(response)
+            # for Production
+            # url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"
+            response = requests.post(url, data=post_data, headers={"Content-type": "application/json"}).json()
+            payments_page = {
+                "mid": settings.PAYTM_MERCHANT_ID,
+                "txnToken": response["body"]["txnToken"],
+                "orderId": order.id,
+                "WEBSITE": "WEBSTAGING",
+                "TXN_AMOUNT": str(order_amt),
+
+            }
+            return render(request, "dashboard/paytm_payments.html", {"data": payments_page})
+        else:
+            return self.json_response_401()  # FIX
 
 
 class ZephyrusEventsView(LoginRequiredMixin, View):

@@ -27,7 +27,7 @@ class Student(models.Model):
 
 
 def generate_order_id():
-    return f"zep-{uuid.uuid4[:5]}"
+    return f"zep-{str(uuid.uuid4())[:5]}"
 
 
 class Order(models.Model):
@@ -36,8 +36,8 @@ class Order(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     payment_amount = models.IntegerField()
     mode = models.CharField(max_length=20, null=True, blank=True)
-    transaction_token = models.CharField(max_length=100)
-    status = models.CharField(max_length=7)
+    transaction_token = models.CharField(max_length=100, null=True, blank=True)
+    status = models.CharField(max_length=10, default="Initiated")
 
 
 class Faculty(models.Model):

@@ -37,26 +37,34 @@
                     <div class="card-header">
                         Cost Summary
                     </div>
-                    <div class="card-body">
-                    <table class="table border-top-0 border-white">
-                      <thead>
-                        <tr>
-                          <th scope="col" class="border-bottom-0 border-white">Event Name</th>
-                          <th scope="col" class="border-bottom-0 border-white">Fee</th>
-                        </tr>
-                      </thead>
-                      <tbody id="costSummary">
-
-                      </tbody>
-                    </table>
-                        <hr>
-                        <h5>Total: Rs. <span id="totalPrice"></span></h5>
-                    </div>
+                    {% include 'dashboard/extendable/cost_summary.html' %}
                     <div class="card-footer bg-transparent">
-                        <button class="btn btn-primary">Make Payment</button>
+                        <button class="btn btn-primary" id="makePaymentBtn">Make Payment</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="paymentConfirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Payment Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% include 'dashboard/extendable/cost_summary.html' %}
+      </div>
+        <form action="zephyrus/registration/" method="post" id="confirmationForm">
+            {% csrf_token %}
+            <input type="hidden" name="txnAmt" id="modalTxnAmt">
+            <input type="hidden" name="eventsList" id="modalEventsList">
+        </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" form="confirmationForm" class="btn btn-primary">Confirm Payment</button>
+      </div>
+    </div>
+  </div>
 </div>
