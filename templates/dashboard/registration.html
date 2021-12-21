@@ -36,7 +36,7 @@
                                     <div class="card mt-1">
                                         <div class="card-body">
                                             <div class="form-check">
-                                              <input class="form-check-input selectEvent" type="checkbox" value="{{ event.name }}" event_id="{{ event.id }}">
+                                              <input class="form-check-input selectEvent" type="checkbox" value="{{ event.name }}" event_id="{{ event.id }}" price="{{ event.reg_fee }}">
                                               <label class="form-check-label" for="flexCheckDefault">
                                                 <b>{{ event.name }}</b>
                                               </label>
@@ -58,23 +58,16 @@
                                         <table class="table border-top-0 border-white">
                                           <thead>
                                             <tr>
-                                              <th scope="col" class="border-bottom-0 border-white">First</th>
+                                              <th scope="col" class="border-bottom-0 border-white">Event Name</th>
                                               <th scope="col" class="border-bottom-0 border-white">Fee</th>
                                             </tr>
                                           </thead>
-                                          <tbody>
-                                            <tr>
-                                              <td>Coding</td>
-                                              <td>100</td>
-                                            </tr>
-                                            <tr>
-                                              <td>Coding</td>
-                                              <td>100</td>
-                                            </tr>
+                                          <tbody id="costSummary">
+
                                           </tbody>
                                         </table>
                                             <hr>
-                                            <h4>Total: Rs. 250</h4>
+                                            <h5>Total: Rs. <span id="totalPrice"></span></h5>
                                         </div>
                                         <div class="card-footer bg-transparent">
                                             <button class="btn btn-primary">Make Payment</button>

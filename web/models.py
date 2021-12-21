@@ -19,13 +19,8 @@ class Student(models.Model):
     phone_number = models.CharField(max_length=10, null=True, blank=True)
     access_token = models.CharField(max_length=100)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student", null=True)
-    dob = models.DateField(null=True, blank=True)
     college_name = models.CharField(max_length=150, null=True, blank=True)
-    college_location = models.CharField(max_length=100, null=True, blank=True)
-    address = models.TextField(null=True, blank=True)
-    city = models.CharField(max_length=50, null=True, blank=True)
-    state = models.CharField(max_length=50, null=True, blank=True)
-    pincode = models.CharField(max_length=6, null=True, blank=True)
+    department = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
