@@ -34,10 +34,10 @@
                                     {% for notification in notifications %}
 									<li>
 										<span class="notification-text">
-											<span>{{ notification.author.name }}</span><br> {{ notification.message }}
+											<b>{{ notification.message }}</b>
 										</span>
 										<span class="notification-time">
-											<span> {{ notification.creation_time }}</span>
+                                            <span> {{ notification.creation_time.time }}</span>
 										</span>
 									</li>
                                     {% endfor %}
