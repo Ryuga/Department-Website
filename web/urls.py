@@ -4,7 +4,7 @@ from .views import (
     EventView, CourseView, AlumniListView
 )
 from .dash_views import (
-    DashView, UserProfileView, LoginView, RegisterView, GoogleAuthLoginCallback,
+    DashView, UserProfileView, LoginView, RegisterView, GoogleAuthLoginCallback, payment_handler,
     ZephyrusEventsView, ZephyrusScheduleView, ZephyrusRegistrationView, logout_request
 )
 from django.conf import settings
@@ -14,6 +14,7 @@ from django.urls import path
 urlpatterns = [
     path('login/oauth2/google/', GoogleAuthLoginCallback.as_view(), name="oauth_login"),
     path('accounts/login/', LoginView.as_view(), name="login_redirect"),
+    path('payments/handlers/', payment_handler, name="payment_handler"),
     re_path(r'^logout/', logout_request, name="logout"),
     re_path(r'^courses/(?P<slug>.*)', CourseView.as_view(), name="course_details"),
     re_path(r'^events/(?P<slug>.*)', EventView.as_view(), name="event_details"),

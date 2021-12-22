@@ -30,14 +30,28 @@ def generate_order_id():
     return f"zep-{str(uuid.uuid4())[:5]}"
 
 
-class Order(models.Model):
+def generate_transaction_id():
+    return f"tnx-{str(uuid.uuid4())[:5]}"
+
+
+class Registration(models.Model):
     id = models.CharField(max_length=9, default=generate_order_id, primary_key=True)
-    events_registered = models.ManyToManyField("SubEvents", blank=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    payment_amount = models.IntegerField()
+    event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name="events_registered", null=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="registered_student")
+    total_value = models.IntegerField(default=0)
+
+
+class Transaction(models.Model):
+    id = models.CharField(max_length=9, primary_key=True, default=generate_transaction_id)
+    paytm_transaction_id = models.CharField(max_length=35, null=True, blank=True)
+    registration = models.ForeignKey(Registration, on_delete=models.CASCADE)
+    events_selected = models.ManyToManyField("SubEvents", blank=True)
+    bank_transaction_id = models.CharField(max_length=8, null=True, blank=True)
+    date = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(max_length=15, default="INITIATED")
     mode = models.CharField(max_length=20, null=True, blank=True)
-    transaction_token = models.CharField(max_length=100, null=True, blank=True)
-    status = models.CharField(max_length=10, default="Initiated")
+    token = models.CharField(max_length=100, null=True, blank=True)
+    value = models.IntegerField(default=0)
 
 
 class Faculty(models.Model):
