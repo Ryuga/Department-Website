@@ -64,6 +64,8 @@ class DashView(LoginRequiredMixin, View):
     def get(self, request):
         notifications = DashboardNotification.objects.all()
         return render(request, self.template_name, {"notifications": notifications})
+
+
 import base64
 import string
 import random
@@ -279,20 +281,22 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             #     response
             # )
             # print(response["body"]["txnToken"])
-            params = {
-                "MID": settings.PAYTM_MERCHANT_ID,
-                "ORDER_ID": str(order.id),
-                "CUST_ID": request.user.email,
-                "TXN_AMOUNT": str(order_amt),
-                "CHANNEL_ID": "WEB",
-                "INDUSTRY_TYPE_ID": "Retail",
-                "WEBSITE": "WEBSTAGING",
-                'CALLBACK_URL': 'http://127.0.0.1:8000/payments/handlers/',
+            param_dict = {
+
+                'MID': settings.PAYTM_MERCHANT_ID,
+                'ORDER_ID': str(order.id),
+                'TXN_AMOUNT': str(order_amt),
+                'CUST_ID': request.user.email,
+                'INDUSTRY_TYPE_ID': 'Retail',
+                'WEBSITE': 'WEBSTAGING',
+                'CHANNEL_ID': 'WEB',
+                'CALLBACK_URL': 'http://127.0.0.1:8000/shop/handlerequest/',
+
             }
-            checksum = generate_checksum(params, settings.PAYTM_MERCHANT_KEY)
-            print(checksum)
-            params["CHECKSUMHASH"] = checksum
-            return render(request, "dashboard/paytm_payments.html", {"data": params})
+            checksum = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
+            param_dict["CHECKSUMHASH"] = checksum
+            print(param_dict)
+            return render(request, "dashboard/paytm_payments.html", {"data": param_dict})
         else:
             return self.json_response_401()  # FIX
 
