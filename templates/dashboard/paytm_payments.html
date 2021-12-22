@@ -5,8 +5,8 @@
     <title>Paytm merchant payment page</title>
 </head>
 <body>
-<h1>Redirecting you to the merchant....</h1>
-<h1>Please do not refresh your page....</h1>
+<h3>Redirecting you to the merchant....</h3>
+<h3>Please do not refresh your page....</h3>
 <form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="paytm">
     {% for key, value in data.items %}
         <input type="hidden" name="{{key}}" value="{{value}}">
