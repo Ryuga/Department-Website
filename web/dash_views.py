@@ -2,6 +2,7 @@ import datetime
 
 import requests
 import json
+import pytz
 
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -13,9 +14,9 @@ from utils.operations import create_user
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
-# from django.views.decorators.csrf import csrf_exempt
 from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import SubEvents, DashboardNotification, Registration, Transaction
+
 google_oauth = GoogleOauth(redirect_uri="http://localhost:8000/login/oauth2/google/")
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
@@ -99,7 +100,6 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
         order_items = request.POST.getlist("eventsList")[0].split(',')
         order_items_from_db = list()
         cost_total = 0
-        registration = None
         for item_id in order_items:
             item = SubEvents.objects.get(id=item_id)
             cost_total += item.reg_fee
@@ -163,6 +163,7 @@ def payment_handler(request):
     transaction_date = request.POST.get("TXNDATE")
     checksum_hash = request.POST.get("CHECKSUMHASH")
     response_dict = request.POST.dict()
+    print(response_dict)
     verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
     print(request.POST)
     if verify:
@@ -170,7 +171,9 @@ def payment_handler(request):
             transaction = Transaction.objects.get(id=transaction_id)
             transaction.paytm_transaction_id = paytm_transaction_id
             transaction.bank_transaction_id = bank_transaction_id
-            transaction.date = datetime.datetime.strptime(transaction_date[:19], "%Y-%m-%d %H:%M:%S")
+            transaction.date = datetime.datetime.strptime(transaction_date[:19], "%Y-%m-%d %H:%M:%S").replace(
+                tzinfo=pytz.UTC
+            )
             transaction.status = transaction_status
             transaction.save()
-        return HttpResponse(f"Payment successful Reg id:{transaction_id}")
+    return render(request, "dashboard/payment_status.html", {"response": response_dict})
