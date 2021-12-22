@@ -248,54 +248,55 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             for item in order_items_from_db:
                 order.events_registered.add(item)
 
-            # paytmParams = dict()
-            #
-            # paytmParams["body"] = {
-            #     "requestType": "Payment",
-            #     "mid": settings.PAYTM_MERCHANT_ID,
-            #     "websiteName": "WEBSTAGING",
-            #     "orderId": order.id,
-            #     "callbackUrl": "https://localhost:8000/payments/handler/",
-            #     "txnAmount": {
-            #         "value": str(order.payment_amount),
-            #         "currency": "INR",
-            #     },
-            #     "userInfo": {
-            #         "custId": request.user.email
-            #     },
-            # }
-            # checksum = PaytmChecksum.generateSignature(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_KEY)
-            #
-            # paytmParams["head"] = {
-            #     "signature": checksum
-            # }
-            #
-            # post_data = json.dumps(paytmParams)
-            # # for Staging
-            # url = f"https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid={settings.PAYTM_MERCHANT_ID}&orderId={order.id}"
-            #
-            # # for Production
-            # # url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"
-            # response = requests.post(url, data=post_data, headers={"Content-type": "application/json"}).json()
-            # print(
-            #     response
-            # )
-            # print(response["body"]["txnToken"])
-            param_dict = {
+            paytmParams = dict()
 
-                'MID': settings.PAYTM_MERCHANT_ID,
-                'ORDER_ID': str(order.id),
-                'TXN_AMOUNT': str(order_amt),
-                'CUST_ID': request.user.email,
-                'INDUSTRY_TYPE_ID': 'Retail',
-                'WEBSITE': 'WEBSTAGING',
-                'CHANNEL_ID': 'WEB',
-                'CALLBACK_URL': 'http://127.0.0.1:8000/shop/handlerequest/',
-
+            paytmParams["body"] = {
+                "requestType": "Payment",
+                "mid": settings.PAYTM_MERCHANT_ID,
+                "websiteName": "WEBSTAGING",
+                "orderId": order.id,
+                "callbackUrl": "https://localhost:8000/payments/handler/",
+                "txnAmount": {
+                    "value": str(order.payment_amount),
+                    "currency": "INR",
+                },
+                "userInfo": {
+                    "custId": request.user.email
+                },
             }
-            checksum = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
-            param_dict["CHECKSUMHASH"] = checksum
-            print(param_dict)
+            checksum = PaytmChecksum.generateSignature(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_KEY)
+
+            paytmParams["head"] = {
+                "signature": checksum
+            }
+
+            post_data = json.dumps(paytmParams)
+            # for Staging
+            url = f"https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid={settings.PAYTM_MERCHANT_ID}&orderId={order.id}"
+
+            # for Production
+            # url = "https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid=YOUR_MID_HERE&orderId=ORDERID_98765"
+            response = requests.post(url, data=post_data, headers={"Content-type": "application/json"}).json()
+            param_dict = {
+                "mid": settings.PAYTM_MERCHANT_ID,
+                "orderId": str(order.id),
+                "txnToken": response["body"]["txnToken"]
+            }
+            # param_dict = {
+            #
+            #     'MID': settings.PAYTM_MERCHANT_ID,
+            #     'ORDER_ID': str(order.id),
+            #     'TXN_AMOUNT': str(order_amt),
+            #     'CUST_ID': request.user.email,
+            #     'INDUSTRY_TYPE_ID': 'Retail',
+            #     'WEBSITE': 'WEBSTAGING',
+            #     'CHANNEL_ID': 'WEB',
+            #     'CALLBACK_URL': 'http://127.0.0.1:8000/shop/handlerequest/',
+            #
+            # }
+            # checksum = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
+            # param_dict["CHECKSUMHASH"] = checksum
+            # print(param_dict)
             return render(request, "dashboard/paytm_payments.html", {"data": param_dict})
         else:
             return self.json_response_401()  # FIX
