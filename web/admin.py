@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from .models import (
     Event, Faculty, Gallery, Course, Message, Batch, Alumni, Tag, PopUp, IpHash,
-    Student, SubEvents, DashboardNotification, Registration
+    Student, SubEvents, DashboardNotification, Registration, Transaction
 )
 
 admin.site.register(Faculty)
@@ -19,3 +19,4 @@ admin.site.register(Student)
 admin.site.register(SubEvents)
 admin.site.register(Registration)
 admin.site.register(DashboardNotification)
+admin.site.register(Transaction)

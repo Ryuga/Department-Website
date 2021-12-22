@@ -97,29 +97,33 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
         order_items = request.POST.getlist("eventsList")[0].split(',')
         order_items_from_db = list()
         cost_total = 0
-        registration = Registration.objects.filter(
-                    student=request.user.student,
-                    event=order_items_from_db[0].event
-            )[0]
+        registration = None
         for item_id in order_items:
             item = SubEvents.objects.get(id=item_id)
             cost_total += item.reg_fee
             order_items_from_db.append(item)
         if cost_total == order_amt:
-            if not registration:
+            if not Registration.objects.filter(
+                    student=request.user.student,
+                    event=order_items_from_db[0].event
+            ).exists():
                 registration = Registration.objects.create(
                     event=order_items_from_db[0].event,
                     student=request.user.student
                 )
+            else:
+                registration = Registration.objects.get(
+                    student=request.user.student,
+                    event=order_items_from_db[0].event
+                )
             transaction = Transaction.objects.create(
                 registration=registration,
-
-
-
             )
+            for item in order_items_from_db:
+                transaction.events_selected.add(item)
             param_dict = {
                 'MID': settings.PAYTM_MERCHANT_ID,
-                'ORDER_ID': str(registration.id),
+                'ORDER_ID': str(transaction.id),
                 'TXN_AMOUNT': str(order_amt),
                 'CUST_ID': request.user.email,
                 'INDUSTRY_TYPE_ID': 'Retail',
@@ -130,7 +134,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             param_dict["CHECKSUMHASH"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
             return render(request, "dashboard/paytm_payments.html", {"data": param_dict})
         else:
-            return self.json_response_401()  # FIX
+            return self.json_response_401()
 
 
 class ZephyrusEventsView(LoginRequiredMixin, View):

@@ -204,6 +204,7 @@ class Alumni(models.Model):
 
 class SubEvents(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
     reg_fee = models.IntegerField()
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
