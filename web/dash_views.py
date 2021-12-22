@@ -1,12 +1,9 @@
-import datetime
-
-import requests
-import json
 import pytz
+import datetime
 
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect
 from django.views.generic import View
 from utils.google_oauth2 import GoogleOauth
 from utils.mixins import ResponseMixin

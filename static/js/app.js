@@ -50,9 +50,11 @@ $(document).ready(function(){
     })
 
     $('#makePaymentBtn').click(function (){
-        $("#modalTxnAmt").val(total_price);
-        $("#modalEventsList").val(event_ids);
-        $("#paymentConfirmationModal").modal('show');
+        if ((event_ids !== undefined || event_ids.length !== 0) && (total_price !== 0)) {
+            $("#modalTxnAmt").val(total_price);
+            $("#modalEventsList").val(event_ids);
+            $("#paymentConfirmationModal").modal('show');
+        }
     });
 
 });
