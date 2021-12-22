@@ -33,9 +33,6 @@
 								<ul>
                                     {% for notification in notifications %}
 									<li>
-										<span class="notification-icon">
-											 <img src="{{ notification.author.image_url }}">
-										</span>
 										<span class="notification-text">
 											<span>{{ notification.author.name }}</span><br> {{ notification.message }}
 										</span>
