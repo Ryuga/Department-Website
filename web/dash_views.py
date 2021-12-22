@@ -131,7 +131,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 'INDUSTRY_TYPE_ID': 'Retail',
                 'WEBSITE': 'DEFAULT',
                 'CHANNEL_ID': 'WEB',
-                'CALLBACK_URL': 'http://127.0.0.1:8000/payments/handlers/',
+                'CALLBACK_URL': 'http://localhost:8000/payments/handlers/',
             }
             param_dict["CHECKSUMHASH"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
             return render(request, "dashboard/paytm_payments.html", {"data": param_dict})
@@ -156,7 +156,6 @@ class ZephyrusScheduleView(View):
 
 @csrf_exempt
 def payment_handler(request):
-    print(request.POST)
     transaction_id = request.POST.get("ORDERID")
     paytm_transaction_id = request.POST.get("TXNID")
     transaction_status = request.POST.get("STATUS")
@@ -165,6 +164,7 @@ def payment_handler(request):
     checksum_hash = request.POST.get("CHECKSUMHASH")
     response_dict = request.POST.dict()
     verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
+    print(request.POST)
     if verify:
         if response_dict['RESPCODE'] == '01':
             transaction = Transaction.objects.get(id=transaction_id)
@@ -173,4 +173,4 @@ def payment_handler(request):
             transaction.date = datetime.datetime.strptime(transaction_date[:19], "%Y-%m-%d %H:%M:%S")
             transaction.status = transaction_status
             transaction.save()
-    return HttpResponse("OK")
+        return HttpResponse(f"Payment successful Reg id:{transaction_id}")
