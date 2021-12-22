@@ -1,3 +1,5 @@
+import datetime
+
 import requests
 import json
 
@@ -12,7 +14,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 # from django.views.decorators.csrf import csrf_exempt
-from utils.paytm_checksum import generate_checksum
+from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import SubEvents, DashboardNotification, Registration, Transaction
 google_oauth = GoogleOauth(redirect_uri="http://localhost:8000/login/oauth2/google/")
 google_oauth_url, _ = google_oauth.flow.authorization_url()
@@ -155,4 +157,20 @@ class ZephyrusScheduleView(View):
 @csrf_exempt
 def payment_handler(request):
     print(request.POST)
+    transaction_id = request.POST.get("ORDERID")
+    paytm_transaction_id = request.POST.get("TXNID")
+    transaction_status = request.POST.get("STATUS")
+    bank_transaction_id = request.POST.get("BANKTXNID")
+    transaction_date = request.POST.get("TXNDATE")
+    checksum_hash = request.POST.get("CHECKSUMHASH")
+    response_dict = request.POST.dict()
+    verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
+    if verify:
+        if response_dict['RESPCODE'] == '01':
+            transaction = Transaction.objects.get(id=transaction_id)
+            transaction.paytm_transaction_id = paytm_transaction_id
+            transaction.bank_transaction_id = bank_transaction_id
+            transaction.date = datetime.datetime.strptime(transaction_date[:19], "%Y-%m-%d %H:%M:%S")
+            transaction.status = transaction_status
+            transaction.save()
     return HttpResponse("OK")
