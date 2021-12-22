@@ -17,8 +17,8 @@
 
 
 	<!-- FAVICONS ICON ============================================= -->
-	<link rel="icon" href="images/favicon.ico" type="image/x-icon" />
-	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+	<link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.png' %}" />
 
 	<!-- PAGE TITLE HERE ============================================= -->
 	<title>Department of Computer Science | Christ College (Autonomous) </title>
@@ -52,26 +52,23 @@
 			<a href="{% url 'home' %}"><img src="/static/images/logo-white.png" alt=""></a>
 		</div>
 		<div class="account-form-inner">
+            <div class="container">
+                <div class="alert alert-primary" role="alert">
+                    For <b><b>Zephyrus 3.0 registration</b></b>, Login with your google account.
+                </div>
+            </div>
 			<div class="account-container">
 				<div class="heading-bx left">
 					<h2 class="title-head">Sign Up <span>Now</span></h2>
-					<p>Login Your Account <a href="login.html">Click here</a></p>
+					<p>Login Your Account <a href="{% url 'login' %}">Click here</a></p>
 				</div>
 				<form class="contact-bx">
 					<div class="row placeani">
 						<div class="col-lg-12">
 							<div class="form-group">
 								<div class="input-group">
-									<label>Your Name</label>
-									<input name="name" type="text" required="" class="form-control">
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-12">
-							<div class="form-group">
-								<div class="input-group">
-									<label>Your Email Address</label>
-									<input name="email" type="email" required="" class="form-control">
+									<label>Your Email</label>
+									<input name="name" type="email" required="" class="form-control" required="">
 								</div>
 							</div>
 						</div>
@@ -79,7 +76,15 @@
 							<div class="form-group">
 								<div class="input-group">
 									<label>Your Password</label>
-									<input name="password" type="password" class="form-control" required="">
+									<input name="password" type="password" required="" class="form-control" required="">
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-12">
+							<div class="form-group">
+								<div class="input-group">
+									<label>Confirm Password</label>
+									<input name="confirm_password" type="password" class="form-control" required="">
 								</div>
 							</div>
 						</div>
@@ -87,9 +92,11 @@
 							<button name="submit" type="submit" value="Submit" class="btn button-md">Sign Up</button>
 						</div>
 						<div class="col-lg-12">
-							<h6>Sign Up with Social media</h6>
+							<h6>or directly login with google</h6>
 							<div class="d-flex">
-								<a class="btn flex-fill google-plus" href="{{ google_oauth_url }}"><i class="fab fa-google"></i>Google</a>
+                                <a type="button" href="{{ google_oauth_url }}" class="login-with-google-btn" >
+                                  Sign in with Google
+                                </a>
 							</div>
 						</div>
 					</div>
