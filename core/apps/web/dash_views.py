@@ -93,7 +93,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 
     def get(self, request):
-        events = SubEvents.objects.all()
+        events = SubEvents.objects.filter()
         return render(request, self.template_name, {"events": events})
 
     def post(self, request):
@@ -157,24 +157,23 @@ class ZephyrusScheduleView(View):
 
 @csrf_exempt
 def payment_handler(request):
-    transaction_id = request.POST.get("ORDERID")
-    paytm_transaction_id = request.POST.get("TXNID")
-    transaction_status = request.POST.get("STATUS")
-    bank_transaction_id = request.POST.get("BANKTXNID")
-    transaction_date = request.POST.get("TXNDATE")
-    checksum_hash = request.POST.get("CHECKSUMHASH")
     response_dict = request.POST.dict()
+    checksum_hash = request.POST.get("CHECKSUMHASH")
     print(response_dict)
     verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
     print(request.POST)
     if verify:
         if response_dict['RESPCODE'] == '01':
-            transaction = Transaction.objects.get(id=transaction_id)
-            transaction.paytm_transaction_id = paytm_transaction_id
-            transaction.bank_transaction_id = bank_transaction_id
-            transaction.date = datetime.datetime.strptime(transaction_date[:19], "%Y-%m-%d %H:%M:%S").replace(
+            transaction = Transaction.objects.get(id=request.POST.get("ORDERID"))
+            transaction.paytm_transaction_id = request.POST.get("TXNID")
+            transaction.bank_transaction_id = request.POST.get("BANKTXNID")
+            transaction.start_date = datetime.datetime.strptime(
+                request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S")\
+                .replace(
                 tzinfo=pytz.UTC
             )
-            transaction.status = transaction_status
+            transaction.status = request.POST.get("STATUS")
             transaction.save()
+            transaction.registration.total_value += int(request.POST.get("TXNAMOUNT"))
+            transaction.registration.save()
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})

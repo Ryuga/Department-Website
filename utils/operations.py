@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from utils.hashing import PasswordHasher
-from web.models import Student
+from core.apps.web.models import Student
 
 hasher = PasswordHasher()
 

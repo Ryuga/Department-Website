@@ -131,7 +131,10 @@ class Event(models.Model):
     link = models.SlugField(max_length=30, null=True,
                             blank=True, help_text="Leave empty to auto create or add custom",
                             unique=True)
-    date = models.DateTimeField()
+    start_date = models.DateTimeField()
+    end_date = models.DateTimeField(null=True)
+    registration_open_date = models.DateTimeField(null=True)
+    registration_end_date = models.DateTimeField(null=True)
     status = models.CharField(choices=EVENT_CHOICES, default="upcoming", max_length=10)
     image_url = models.URLField()
     venue = models.CharField(max_length=30)
@@ -147,7 +150,7 @@ class Event(models.Model):
 
     @property
     def month(self):
-        return self.date.strftime('%B')[:3]
+        return self.start_date.strftime('%B')[:3]
 
     @property
     def short_description(self):

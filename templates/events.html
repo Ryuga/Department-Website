@@ -59,14 +59,14 @@
                                         <div class="info-bx d-flex">
                                             <div>
                                                 <div class="event-time">
-                                                    <div class="event-date">{{ event.date.day }}</div>
+                                                    <div class="event-date">{{ event.start_date.day }}</div>
                                                     <div class="event-month">{{ event.month }}</div>
                                                 </div>
                                             </div>
                                             <div class="event-info">
                                                 <h4 class="event-title"><a href="{% url 'event_details' slug=event.link %}">{{ event.name }}</a></h4>
                                                 <ul class="media-post">
-                                                    <li><a href="#"><i class="fa fa-clock-o"></i> {{ event.date.time }}</a></li>
+                                                    <li><a href="#"><i class="fa fa-clock-o"></i> {{ event.start_date.time }}</a></li>
                                                     <li><a href="#"><i class="fa fa-map-marker"></i> {{ event.venue }}</a></li>
                                                 </ul>
                                                 <p>{{ event.short_description }}</p>
