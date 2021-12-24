@@ -21,10 +21,6 @@ class GoogleOauth(object):
         )
 
     def get_access_token(self, request):
-        if not settings.LOCAL_DEVELOPMENT:
-            abs_url = request.build_absolute_uri()
-        else:
-            abs_url = request.build_absolute_uri().replace("http", "https")
         response = self.flow.fetch_token(code=request.GET.get("code"))
         access_token = response.get("access_token")
         return access_token
