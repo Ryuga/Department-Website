@@ -9,7 +9,7 @@ from utils.google_oauth2 import GoogleOauth
 from utils.mixins import ResponseMixin
 from utils.operations import create_user
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import SubEvents, DashboardNotification, Registration, Transaction
@@ -77,14 +77,12 @@ class UserProfileView(View):
 
     def post(self, request):
         saved = False
-        items_saved = 0
         for field in self.fields:
             if request.POST.get(field):
-                items_saved +=1
                 setattr(request.user.student, field, request.POST.get(field))
             request.user.student.save()
             saved = True
-        if items_saved == 4:
+        if request.POST.get("initial"):
             request.user.student.completed_profile_setup = True
             request.user.student.save()
             return redirect("/zephyrus/registration/")

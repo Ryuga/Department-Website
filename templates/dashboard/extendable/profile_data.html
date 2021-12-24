@@ -38,6 +38,9 @@
                     </div>
                 </div>
                 <div class="seperator"></div>
+                {% if not request.user.student.completed_profile_setup %}
+                <input type="hidden" name="initial" value="True">
+                {% endif %}
             </div>
             <div class="">
                 <div class="">
