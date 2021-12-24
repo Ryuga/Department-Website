@@ -6,9 +6,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY", default="insecure-secret-key")
 
 DEBUG = config('DEBUG', default=True)
-
-ALLOWED_HOSTS = ['*']
-
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ["https://christcs.in", "https://cs.christci.in"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
