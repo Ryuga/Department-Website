@@ -1,10 +1,7 @@
 import uuid
 
 from django.db import models
-from django.db.models.signals import pre_save
-from django.dispatch import receiver
 from django.contrib.auth.models import User
-from django.template.defaultfilters import slugify
 from django.contrib.postgres.fields import ArrayField
 from datetime import datetime, timezone
 
@@ -223,19 +220,3 @@ class DashboardNotification(models.Model):
     creation_time = models.DateTimeField()
 
 
-@receiver(pre_save, sender=Event)
-def event_link_setter(sender, instance, **kwargs):
-    if not instance.link:
-        instance.link = slugify(instance.name)
-
-
-@receiver(pre_save, sender=Faculty)
-def faculty_link_setter(sender, instance, **kwargs):
-    if not instance.link:
-        instance.link = slugify(instance.name)
-
-
-@receiver(pre_save, sender=Course)
-def course_link_setter(sender, instance, **kwargs):
-    if not instance.link:
-        instance.link = slugify(instance.name)
