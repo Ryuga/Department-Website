@@ -15,6 +15,8 @@ paytmchecksum = "*"
 requests = "*"
 google-auth-oauthlib = "*"
 pytz = "*"
+"backports.zoneinfo" = "*"
+"backports.weakref" = "*"
 
 [dev-packages]
 
