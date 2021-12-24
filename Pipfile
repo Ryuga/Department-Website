@@ -17,6 +17,7 @@ google-auth-oauthlib = "*"
 pytz = "*"
 "backports.zoneinfo" = "*"
 "backports.weakref" = "*"
+pycrypto = "*"
 
 [dev-packages]
 
