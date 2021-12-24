@@ -9,9 +9,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ["https://christcs.in", "https://cs.christci.in"]
-
-CSRF_TRUSTED_ORIGINS = ["christcs.in"]
+    ALLOWED_HOSTS = ["christcs.in", "cs.christci.in"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -115,3 +113,6 @@ ENCRYPTION_SALT = config("ENCRYPTION_SALT")
 ENCRYPTION_ITERATION = config("ENCRYPTION_ITERATION")
 OAUTH_REDIRECTION_URL = config("OAUTH_REDIRECTION_URL")
 PAYTM_CALLBACK_URL = config("PAYTM_CALLBACK_URL")
+# ssl_certificate         /etc/ssl/certs/cert.pem;
+# ssl_certificate_key     /etc/ssl/private/key.pem;
+# ssl_client_certificate /etc/ssl/certs/cloudflare.crt;
