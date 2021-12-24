@@ -1,10 +1,9 @@
 import hashlib
-import requests
-import json
-from paytmchecksum import PaytmChecksum
-from django.conf import settings
+
 from django.shortcuts import render
-from .models import Event, Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
+
+from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
+from core.apps.dashboard.models import Event
 from django.views.generic import ListView, View
 from ipware import get_client_ip
 
