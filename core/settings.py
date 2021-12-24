@@ -11,7 +11,7 @@ LOCAL_DEVELOPMENT = config("LOCAL_DEVELOPMENT", default=False, cast=bool)
 if LOCAL_DEVELOPMENT:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ["christcs.in"]
+    ALLOWED_HOSTS = [".christcs.in"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
