@@ -4,5 +4,5 @@ host_patterns = patterns(
     '',
     host(r'www', 'core.apps.web.urls', name='www'),
     host(r'dashboard', 'core.apps.dashboard.urls', name='dashboard'),
-    # host(r'admin', 'web.redirection_urls', name='admin'),
+    host(r'admin', 'core.urls', name='admin'),
 )

@@ -174,6 +174,6 @@ def payment_handler(request):
             )
             transaction.status = request.POST.get("STATUS")
             transaction.save()
-            transaction.registration.total_value += int(request.POST.get("TXNAMOUNT"))
+            transaction.registration.total_value += float(request.POST.get("TXNAMOUNT"))
             transaction.registration.save()
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
