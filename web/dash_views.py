@@ -14,7 +14,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import SubEvents, DashboardNotification, Registration, Transaction
 
-google_oauth = GoogleOauth(redirect_uri="http://localhost:8000/login/oauth2/google/")
+google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
 
@@ -134,7 +134,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 'INDUSTRY_TYPE_ID': 'Retail',
                 'WEBSITE': 'DEFAULT',
                 'CHANNEL_ID': 'WEB',
-                'CALLBACK_URL': 'http://localhost:8000/payments/handlers/',
+                'CALLBACK_URL': settings.PAYTM_CALLBACK_URL,
             }
             param_dict["CHECKSUMHASH"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
             return render(request, "dashboard/payments/paytm_payments.html", {"data": param_dict})
