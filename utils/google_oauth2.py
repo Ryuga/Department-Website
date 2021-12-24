@@ -25,7 +25,7 @@ class GoogleOauth(object):
             abs_url = request.build_absolute_uri()
         else:
             abs_url = request.build_absolute_uri().replace("http", "https")
-        response = self.flow.fetch_token(authorization_response=abs_url)
+        response = self.flow.fetch_token(code=request.GET.get("code"))
         access_token = response.get("access_token")
         return access_token
 
