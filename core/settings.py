@@ -6,7 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY", default="insecure-secret-key")
 
 DEBUG = config('DEBUG', default=False, cast=bool)
-if DEBUG:
+LOCAL_DEVELOPMENT = config("LOCAL_DEVELOPMENT", default=False, cast=bool)
+
+if LOCAL_DEVELOPMENT:
     ALLOWED_HOSTS = ['*']
 else:
     ALLOWED_HOSTS = ["christcs.in"]
@@ -113,4 +115,3 @@ ENCRYPTION_SALT = config("ENCRYPTION_SALT")
 ENCRYPTION_ITERATION = config("ENCRYPTION_ITERATION")
 OAUTH_REDIRECTION_URL = config("OAUTH_REDIRECTION_URL")
 PAYTM_CALLBACK_URL = config("PAYTM_CALLBACK_URL")
-LOCAL_DEVELOPMENT = config("LOCAL_DEVELOPMENT", default=False, cast=bool)
