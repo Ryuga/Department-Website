@@ -3,7 +3,8 @@ from django.dispatch import receiver
 from django.db.models.signals import pre_save
 from django.template.defaultfilters import slugify
 
-from core.apps.web.models import Event, Faculty, Course
+from core.apps.web.models import Faculty, Course
+from core.apps.dashboard.models import Event
 
 
 @receiver(pre_save, sender=Event)
