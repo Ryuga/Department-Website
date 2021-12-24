@@ -11,6 +11,8 @@ if DEBUG:
 else:
     ALLOWED_HOSTS = ["https://christcs.in", "https://cs.christci.in"]
 
+CSRF_TRUSTED_ORIGINS = ["christcs.in"]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
