@@ -21,10 +21,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.web.apps.WebConfig',
-    'core.apps.dashboard.apps.DashboardConfig'
+    'core.apps.dashboard.apps.DashboardConfig',
+    'django_hosts'
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -32,9 +34,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
+DEFAULT_HOST = "www"
+ROOT_HOSTCONF = "core.hosts"
 
 TEMPLATES = [
     {
@@ -109,7 +114,10 @@ GOOGLE_CLIENT_SECRET = {
      "token_uri": "https://oauth2.googleapis.com/token",
      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
      "client_secret": config("GOOGLE_CLIENT_SECRET"),
-     "redirect_uris": ["https://christcs.in/login/oauth2/google/", "http://localhost:8000/login/oauth2/google/"]
+     "redirect_uris": [
+         "https://dashboard.christcs.in/login/oauth2/google/",
+         "http://dashboard.christcs.inc:8000/login/oauth2/google/"
+     ]
      }
 }
 ENCRYPTION_SALT = config("ENCRYPTION_SALT")
