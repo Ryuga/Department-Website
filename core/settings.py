@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY", default="insecure-secret-key")
 
-DEBUG = config('DEBUG', default=True)
+DEBUG = config('DEBUG', default=False)
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
