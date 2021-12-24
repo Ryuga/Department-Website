@@ -77,11 +77,17 @@ class UserProfileView(View):
 
     def post(self, request):
         saved = False
+        items_saved = 0
         for field in self.fields:
             if request.POST.get(field):
+                items_saved +=1
                 setattr(request.user.student, field, request.POST.get(field))
             request.user.student.save()
             saved = True
+        if items_saved == 4:
+            request.user.student.completed_profile_setup = True
+            request.user.student.save()
+            return redirect("/zephyrus/registration/")
         return render(request, self.template_name, {"saved": saved})
 
 
@@ -131,7 +137,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 'CALLBACK_URL': 'http://localhost:8000/payments/handlers/',
             }
             param_dict["CHECKSUMHASH"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
-            return render(request, "dashboard/paytm_payments.html", {"data": param_dict})
+            return render(request, "dashboard/payments/paytm_payments.html", {"data": param_dict})
         else:
             return self.json_response_401()
 
@@ -173,4 +179,4 @@ def payment_handler(request):
             )
             transaction.status = transaction_status
             transaction.save()
-    return render(request, "dashboard/payment_status.html", {"response": response_dict})
+    return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})

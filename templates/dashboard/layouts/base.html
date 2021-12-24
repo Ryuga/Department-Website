@@ -140,5 +140,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="{% static 'js/app.js' %}"></script>
 {% block scripts %} {% endblock scripts %}
+
+{% if not request.user.student.completed_profile_setup %}
+<div class="modal fade" tabindex="-1" id="initialProfileSetupModal" data-bs-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-body bg-transparent">
+        {% include 'dashboard/extendable/profile_data.html' %}
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $(document).ready(function (){
+        $("#initialProfileSetupModal").modal("show");
+    });
+</script>
+{% endif %}
+
 </body>
 </html>

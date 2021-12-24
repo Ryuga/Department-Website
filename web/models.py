@@ -21,6 +21,7 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student", null=True)
     college_name = models.CharField(max_length=150, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
+    completed_profile_setup = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
