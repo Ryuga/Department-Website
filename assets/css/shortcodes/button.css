@@ -981,7 +981,7 @@
 	color:#3B5998;
 }
 .btn-link.google-plus{
-	color: black;
+	color:#e5513f;
 }
 .btn-link.linkedin{
 	color:#007BB6;
@@ -1053,7 +1053,7 @@
 	background-color:#4b69a8;
 }
 .btn.google-plus{
-	background-color:#fff;
+	background-color:#e5513f;
 }
 .btn.google-plus:hover,
 .btn.google-plus:focus,
@@ -1107,7 +1107,7 @@
 .btn.twitter,
 .btn.youtube,
 .btn.whatsapp{
-	color: black;
+	color:#fff;
 }
 /* Social Icon Outline */
 .btn.facebook.outline,
