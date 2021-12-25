@@ -41,12 +41,14 @@
 												</div>
 											</li>
 											<li class="card-courses-categories">
-												<h5>3 Categories</h5>
-												<h4>Backend</h4>
+												<h5>Contact no</h5>
+												<h4>{{ event.staff.phone_number }}</h4>
 											</li>
+                                            {% if event in request.user.student.registered_programs.all %}
 											<li class="card-courses-stats">
 												<a href="#" class="btn btn-sm btn-outline-success disabled">Registered</a>
 											</li>
+                                            {% endif %}
 										</ul>
 									</div>
 									<div class="row card-courses-dec">
@@ -54,10 +56,6 @@
 											<h6 class="m-b10">Event Description</h6>
 											<p>{{ event.description }} </p>
 										</div>
-{#										<div class="col-md-12">#}
-{#											<a href="#" class="btn green radius-xl outline">Approve</a>#}
-{#											<a href="#" class="btn red outline radius-xl ">Cancel</a>#}
-{#										</div>#}
 									</div>
 								</div>
 							</div>

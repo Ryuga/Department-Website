@@ -67,6 +67,7 @@ class Student(models.Model):
     college_name = models.CharField(max_length=150, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
     completed_profile_setup = models.BooleanField(default=False)
+    registered_programs = models.ManyToManyField("Program", blank=True)
 
     def __str__(self):
         return self.name
@@ -74,12 +75,8 @@ class Student(models.Model):
 
 class Registration(models.Model):
     id = models.CharField(max_length=9, default=generate_registration_id, primary_key=True)
-    event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name="events_registered", null=True)
+    event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name="registrations", null=True)
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="registered_student")
-    total_value = models.IntegerField(default=0)
-
-    def registered_programs(self):
-        return [transaction.events_selected.all() for transaction in self.transaction_set.all()]
 
 
 class Program(models.Model):
@@ -104,7 +101,8 @@ class Transaction(models.Model):
     status = models.CharField(max_length=15, default="INITIATED")
     mode = models.CharField(max_length=20, null=True, blank=True)
     token = models.CharField(max_length=100, null=True, blank=True)
-    value = models.IntegerField(default=0)
+    value = models.FloatField(default=0.0)
+    raw_response = models.TextField(null=True)
 
 
 class Slideshow(models.Model):

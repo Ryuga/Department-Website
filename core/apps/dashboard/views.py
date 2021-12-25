@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
-from .models import Program, Slideshow, Registration, Transaction
+from .models import Program, Slideshow, Registration, Transaction, Event
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
@@ -93,10 +93,13 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 
     def get(self, request):
-        programs = Program.objects.filter()
-        registration = Registration.objects.get(student=request.user.student)
-        print(registration.registered_programs())
-        return render(request, self.template_name, {"events": programs})
+        event = Event.objects.get(link="zephyrus30")
+        programs = event.program_set.all().exclude(
+            transaction__registration__student=request.user.student,
+            transaction__status="TXN_SUCCESS"
+        )
+        print(request.user.student.registered_programs.all())
+        return render(request, self.template_name, {"programs": programs})
 
     def post(self, request):
         order_amt = int(request.POST.get("txnAmt"))
@@ -161,21 +164,22 @@ class ZephyrusScheduleView(View):
 def payment_handler(request):
     response_dict = request.POST.dict()
     checksum_hash = request.POST.get("CHECKSUMHASH")
-    print(response_dict)
     verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
-    print(request.POST)
+    transaction = Transaction.objects.get(id=request.POST.get("ORDERID"))
+    transaction.raw_response = response_dict
+    transaction.paytm_transaction_id = request.POST.get("TXNID")
+    transaction.bank_transaction_id = request.POST.get("BANKTXNID")
+    transaction.date = datetime.datetime.strptime(
+        request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
+        .replace(
+        tzinfo=pytz.UTC
+    )
+    transaction.value = request.POST.get("TXNAMOUNT")
+    transaction.status = request.POST.get("STATUS")
     if verify:
         if response_dict['RESPCODE'] == '01':
-            transaction = Transaction.objects.get(id=request.POST.get("ORDERID"))
-            transaction.paytm_transaction_id = request.POST.get("TXNID")
-            transaction.bank_transaction_id = request.POST.get("BANKTXNID")
-            transaction.start_date = datetime.datetime.strptime(
-                request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S")\
-                .replace(
-                tzinfo=pytz.UTC
-            )
-            transaction.status = request.POST.get("STATUS")
-            transaction.save()
-            transaction.registration.total_value += float(request.POST.get("TXNAMOUNT"))
-            transaction.registration.save()
+            for program in transaction.events_selected.all():
+                transaction.registration.student.registered_programs.add(program)
+            transaction.registration.student.save()
+    transaction.save()
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
