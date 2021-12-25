@@ -26,6 +26,17 @@ DB_HOST = "your_db_host"
 DB_PASS = "your_db_password"
 DB_USER = "your_db_user"
 DEBUG = True
+PAYTM_MERCHANT_ID = "your_merchant_id"
+PAYTM_MERCHANT_KEY = "your_merchant_key"
+GOOGLE_CLIENT_ID = "your_client_id"
+GOOGLE_CLIENT_SECRET = "your_client_secret"
+
+ENCRYPTION_SALT = "your_encryption_salt"
+
+ENCRYPTION_ITERATION = your_db_name
+OAUTH_REDIRECTION_URL = "http://dashboard.localhost:8000/login/oauth2/google/"
+PAYTM_CALLBACK_URL = "http://dashboard.localhost:8000/payments/handlers/"
+LOCAL_DEVELOPMENT = True
 
 # Run the development server locally
 $ pipenv run server
@@ -64,7 +75,18 @@ DB_NAME = "your_db_name"
 DB_HOST = "your_db_host"
 DB_PASS = "your_db_password"
 DB_USER = "your_db_user"
-DEBUG = True
+DEBUG = False
+PAYTM_MERCHANT_ID = "your_merchant_id"
+PAYTM_MERCHANT_KEY = "your_merchant_key"
+GOOGLE_CLIENT_ID = "your_client_id"
+GOOGLE_CLIENT_SECRET = "your_client_secret"
+
+ENCRYPTION_SALT = "your_encryption_salt"
+
+ENCRYPTION_ITERATION = your_db_name
+OAUTH_REDIRECTION_URL = "https://dashboard.christcs,in/login/oauth2/google/"
+PAYTM_CALLBACK_URL = "https://dashboard.christcs.in/payments/handlers/"
+LOCAL_DEVELOPMENT = False
 
 # Run collectstatic to collect static files to assets folder for production
 $ sudo pipenv run python manage.py collectstatic
