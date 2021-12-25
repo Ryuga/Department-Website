@@ -140,7 +140,11 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 'CALLBACK_URL': settings.PAYTM_CALLBACK_URL,
             }
             param_dict["CHECKSUMHASH"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
-            return render(request, "dashboard/payments/paytm_payments.html", {"data": param_dict})
+            return render(request, "dashboard/payments/paytm_payments.html",
+                          {"data": param_dict,
+                           "paytm_process_transaction_url": settings.PAYTM_PROCESS_TRANSACTION_URL
+                           }
+                          )
         else:
             return self.json_response_401()
 

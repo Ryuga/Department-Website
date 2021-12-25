@@ -7,7 +7,7 @@
 <body>
 <h2>Redirecting you to the merchant....</h2>
 <h2>Please do not refresh your page....</h2>
-<form method="post" action="https://securegw-stage.paytm.in/theia/processTransaction" name="paytm">
+<form method="post" action="{{ paytm_process_transaction_url }}" name="paytm">
     {% for key, value in data.items %}
         <input type="hidden" name="{{key}}" value="{{value}}">
     {% endfor %}
