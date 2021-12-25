@@ -37,6 +37,7 @@ class Event(models.Model):
     facebook_page_link = models.URLField(null=True, blank=True, help_text="Optional")
     instagram_page_link = models.URLField(null=True, blank=True, help_text="Optional")
     twitter_link = models.URLField(null=True, blank=True, help_text="Optional")
+    registration_link = models.URLField(null=True, blank=True, help_text="Optional")
 
     @property
     def month(self):

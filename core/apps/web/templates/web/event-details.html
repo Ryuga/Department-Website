@@ -28,7 +28,7 @@
         <!-- inner page banner END -->
 		<div class="content-block">
             <!-- About Us -->
-			<div class="section-area section-sp1">
+			<div class="section-area section-sp1 bg-light">
                 <div class="container">
 					 <div class="row">
 						<div class="col-lg-8 col-md-7 col-sm-12">
@@ -62,7 +62,7 @@
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-12 m-b30">
-							<div class="bg-primary text-white contact-info-bx m-b30">
+							<div class="footer-top text-white contact-info-bx m-b30">
 								<h2 class="m-b10 title-head">Contact <span>Information</span></h2>
                                 {% if event.staff_in_charge %}
 								<div class="widget widget_getintuch">
@@ -73,14 +73,19 @@
 									</ul>
 								</div>
                                 {% endif %}
+                                {% if event.facebook_page_link or event.twitter_link or event.instagram_page_link  %}
 								<h5 class="m-t0 m-b20">Social Links</h5>
+                                {% endif %}
 								<ul class="list-inline contact-social-bx">
 									{% if event.facebook_page_link %}<li><a href="{{ event.facebook_page_link }}" class="btn outline radius-xl"><i class="fa fa-facebook"></i></a></li>{% endif %}
 									{% if event.twitter_link %}<li><a href="{{ event.twitter_link }}" class="btn outline radius-xl"><i class="fa fa-twitter"></i></a></li>{% endif %}
 									{% if event.instagram_page_link %}<li><a href="{{ event.instagram_page_link }}" class="btn outline radius-xl"><i class="fa fa-instagram"></i></a></li>{% endif %}
 								</ul>
+                                {% if event.registration_link %}
+                                    <a class="btn w-100" href="{{ event.registration_link }}">Register Now</a>
+                                {% endif %}
 							</div>
-						</div>
+                        </div>
 					</div>
 				</div>
             </div>
