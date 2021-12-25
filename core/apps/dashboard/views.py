@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
-from .models import Program, Notification, Registration, Transaction
+from .models import Program, Slideshow, Registration, Transaction
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
@@ -62,8 +62,8 @@ class DashView(LoginRequiredMixin, View):
     template_name = "dashboard/index.html"
 
     def get(self, request):
-        notifications = Notification.objects.all()
-        return render(request, self.template_name, {"notifications": notifications})
+        slideshow = Slideshow.objects.all(
+        return render(request, self.template_name, {"slideshow": slideshow})
 
 
 class UserProfileView(View):

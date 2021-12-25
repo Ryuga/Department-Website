@@ -107,6 +107,5 @@ class Transaction(models.Model):
     value = models.IntegerField(default=0)
 
 
-class Notification(models.Model):
-    message = models.CharField(max_length=250)
-    creation_time = models.DateTimeField()
+class Slideshow(models.Model):
+    image = models.URLField()
