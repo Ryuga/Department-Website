@@ -1,4 +1,4 @@
-﻿{% extends 'layouts/base.html' %}
+﻿{% extends 'web/layouts/base.html' %}
 
 {% load static %}
 {% block content %}
@@ -75,9 +75,9 @@
                                 {% endif %}
 								<h5 class="m-t0 m-b20">Social Links</h5>
 								<ul class="list-inline contact-social-bx">
-									<li><a href="{% if event.facebook_page_link %}{{ event.facebook_page_link }}{% else %}#!{% endif %}" class="btn outline radius-xl"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="{% if event.twitter_link %}{{ event.twitter_link }}{% else %}#!{% endif %}" class="btn outline radius-xl"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="{% if event.instagram_page_link %}{{ event.instagram_page_link }}{% else %}#!{% endif %}" class="btn outline radius-xl"><i class="fa fa-instagram"></i></a></li>
+									{% if event.facebook_page_link %}<li><a href="{{ event.facebook_page_link }}" class="btn outline radius-xl"><i class="fa fa-facebook"></i></a></li>{% endif %}
+									{% if event.twitter_link %}<li><a href="{{ event.twitter_link }}" class="btn outline radius-xl"><i class="fa fa-twitter"></i></a></li>{% endif %}
+									{% if event.instagram_page_link %}<li><a href="{{ event.instagram_page_link }}" class="btn outline radius-xl"><i class="fa fa-instagram"></i></a></li>{% endif %}
 								</ul>
 							</div>
 						</div>

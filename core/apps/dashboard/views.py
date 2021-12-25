@@ -24,14 +24,14 @@ def logout_request(request):
 
 
 class LoginView(View):
-    template_name = "login.html"
+    template_name = "web/login.html"
 
     def get(self, request):
         return render(request, self.template_name, {"google_oauth_url": google_oauth_url})
 
 
 class RegisterView(View):
-    template_name = "register.html"
+    template_name = "web/register.html"
 
     def get(self, request):
         return render(request, self.template_name, {"google_oauth_url": google_oauth_url})

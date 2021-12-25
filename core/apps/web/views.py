@@ -22,21 +22,21 @@ class IndexView(View):
                 )
                 context["first_popup"] = PopUp.objects.last()
                 context["popups"] = PopUp.objects.all().order_by('-id')[1:]
-        return render(request, "index.html", context)
+        return render(request, "web/index.html", context)
 
 
 def about_view(request):
-    return render(request, "about.html")
+    return render(request, "web/about.html")
 
 
 def lazy_load_faculty(request):
     faculties = Faculty.objects.all()
-    return render(request, "faculty-lazyload.html", {"faculties": faculties})
+    return render(request, "web/faculty-lazyload.html", {"faculties": faculties})
 
 
 class EventView(View):
     model = Event
-    template_name = "event-details.html"
+    template_name = "web/event-details.html"
 
     def get(self, request, slug=None):
         if slug:
@@ -44,26 +44,26 @@ class EventView(View):
                 event = self.model.objects.get(link=slug)
                 return render(request, self.template_name, {"event": event})
             except self.model.DoesNotExist:
-                return render(request, "404.html")
+                return render(request, "web/404.html")
         else:
             events = Event.objects.all()
-            return render(request, "events.html", {"events": events})
+            return render(request, "web/events.html", {"events": events})
 
 
 class CourseView(View):
     model = Course
-    template_name = "course-details.html"
+    template_name = "web/course-details.html"
 
     def get(self, request, slug):
         try:
             course = self.model.objects.get(link=slug)
             return render(request, self.template_name, {"course": course})
         except self.model.DoesNotExist:
-            return render(request, "404.html")
+            return render(request, "web/404.html")
 
 
 class GalleryListView(ListView):
-    template_name = "gallery.html"
+    template_name = "web/gallery.html"
     model = Gallery
     paginate_by = 12
     queryset = model.objects.order_by('-date')
@@ -76,7 +76,7 @@ class GalleryListView(ListView):
 
 
 class AlumniListView(ListView):
-    template_name = "alumni.html"
+    template_name = "web/alumni.html"
     model = Batch
     paginate_by = 3
     queryset = Batch.objects.order_by('-year')
