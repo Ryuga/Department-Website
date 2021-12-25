@@ -93,8 +93,10 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 
     def get(self, request):
-        events = Program.objects.filter()
-        return render(request, self.template_name, {"events": events})
+        programs = Program.objects.filter()
+        registration = Registration.objects.get(student=request.user.student)
+        print(registration.registered_programs())
+        return render(request, self.template_name, {"events": programs})
 
     def post(self, request):
         order_amt = int(request.POST.get("txnAmt"))

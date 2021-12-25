@@ -78,6 +78,9 @@ class Registration(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="registered_student")
     total_value = models.IntegerField(default=0)
 
+    def registered_programs(self):
+        return [transaction.events_selected.all() for transaction in self.transaction_set.all()]
+
 
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
