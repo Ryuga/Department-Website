@@ -18,33 +18,84 @@
 							<h4>Your Dashboard</h4>
 						</div>
 						<div class="widget-inner">
-
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                              </div>
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <img src="#" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                  <img src="#" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                  <img src="#" class="d-block w-100" alt="...">
+                                </div>
+                              </div>
+                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                            </div>
 						</div>
 					</div>
 				</div>
 
 				<div class="col-lg-4 m-b30">
-					<div class="widget-box">
-						<div class="wc-title">
-							<h4>Notifications</h4>
-						</div>
-						<div class="widget-inner">
-							<div class="noti-box-list">
-								<ul>
-                                    {% for notification in notifications %}
-									<li>
-										<span class="notification-text">
-											<b>{{ notification.message }}</b>
-										</span>
-										<span class="notification-time">
-                                            <span> {{ notification.creation_time.time }}</span>
-										</span>
-									</li>
-                                    {% endfor %}
-								</ul>
-							</div>
-						</div>
-					</div>
+{#					<div class="widget-box">#}
+{#						<div class="wc-title">#}
+{#							<h4>Zephyrus Registration</h4>#}
+{#						</div>#}
+{#						<div class="widget-inner">#}
+{#							<div class="noti-box-list">#}
+{#								<ul>#}
+{#                                    {% for notification in notifications %}#}
+{#									<li>#}
+{#										<span class="notification-text">#}
+{#											<b>{{ notification.message }}</b>#}
+{#										</span>#}
+{#										<span class="notification-time">#}
+{#                                            <span> {{ notification.creation_time.time }}</span>#}
+{#										</span>#}
+{#									</li>#}
+{#                                    {% endfor %}#}
+{#								</ul>#}
+{#							</div>#}
+{#						</div>#}
+{#					</div>#}
+                    <div class="card bg-gray">
+                      <div class="card-header text-dark text-center">
+                       <b> Zephyrus Registration Demo</b>
+                      </div>
+                      <div class="card-body bg-light">
+                        <iframe width="100%" height="315"
+                        src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                        </iframe>
+                      </div>
+                      <div class="card-footer bg-light">
+                          <a class="btn btn-sm btn-warning w-100" href="{% url 'registration' %}"><i class="fas fa-user-plus"></i> Register Now</a>
+                      </div>
+                    </div>
+                    <div class="card mt-3" style="background-color: #032448;">
+                      <div class="card-header text-white text-center">
+                        Contact Website Administrator
+                      </div>
+                      <div class="card-body row">
+                          <div class="col-6">
+                                <a class="btn btn-sm btn-warning w-100"><i class="fas fa-phone"></i> Call</a>
+                          </div>
+                          <div class="col-6">
+                                <a class="btn btn-sm btn-success w-100"><i class="fab fa-whatsapp"></i> Whatsapp</a>
+                          </div>
+                      </div>
+                    </div>
 				</div>
 				<div class="col-lg-12 m-b30">
 					<div class="widget-box">
