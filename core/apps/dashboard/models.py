@@ -107,6 +107,7 @@ class Transaction(models.Model):
     paytm_transaction_id = models.CharField(max_length=35, null=True, blank=True)
     registration = models.ForeignKey(Registration, on_delete=models.CASCADE)
     events_selected = models.ManyToManyField(Program, blank=True)
+    events_selected_tuple = models.JSONField(null=True)
     bank_transaction_id = models.CharField(max_length=25, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=15, default="INITIATED")
