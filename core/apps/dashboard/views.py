@@ -129,6 +129,8 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             )
             for item in order_items_from_db:
                 transaction.events_selected.add(item)
+                transaction.events_selected_json[item.name] = item.reg_fee
+            transaction.save()
             param_dict = {
                 'MID': settings.PAYTM_MERCHANT_ID,
                 'ORDER_ID': str(transaction.id),

@@ -10,6 +10,10 @@ def time_now():
     return datetime.now(timezone.utc)
 
 
+def default_json():
+    return {}
+
+
 class Event(models.Model):
     EVENT_CHOICES = (
         ("upcoming", "Upcoming"),
@@ -107,7 +111,7 @@ class Transaction(models.Model):
     paytm_transaction_id = models.CharField(max_length=35, null=True, blank=True)
     registration = models.ForeignKey(Registration, on_delete=models.CASCADE)
     events_selected = models.ManyToManyField(Program, blank=True)
-    events_selected_tuple = models.JSONField(null=True)
+    events_selected_json = models.JSONField(null=True, default=default_json)
     bank_transaction_id = models.CharField(max_length=25, null=True, blank=True)
     date = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=15, default="INITIATED")
