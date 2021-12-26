@@ -49,6 +49,19 @@
 				</div>
 
 				<div class="col-lg-4 m-b30">
+                    {% if request.user.student.active_registration %}
+                    <div class="card">
+                        <div class="card-header text-center">
+                           <b> Active Registration</b>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn btn-outline-dark"> <img src="{{ request.user.student.active_registration.qr }}" height="100" width="100" /></button> <span class="name mt-3">{{ request.user.student.name }}</span> <span class="idd">{{ request.user.student.college_name }}</span>
+                                <div class="d-flex flex-row justify-content-center align-items-center gap-2 mt-2"><span class="idd1 card-header bg-gray"><b>{{ request.user.student.active_registration.id }}</b></span> <a href="#" class="btn btn-light"><i class="fa fa-clone"></i></a> </div>
+                                <div class=" d-flex mt-5"> <button class="btn btn-dark">View Details</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
                     <div class="card bg-gray">
                       <div class="card-header text-dark text-center">
                        <b>Zephyrus Registration Demo</b>
@@ -62,6 +75,7 @@
                           <a class="btn btn-sm btn-warning w-100" href="{% url 'registration' %}"><i class="fas fa-user-plus"></i> Register Now</a>
                       </div>
                     </div>
+                    {% endif %}
                     <div class="card mt-3" style="background-color: #032448;">
                       <div class="card-header text-white text-center">
                         Contact Website Administrator

@@ -1,8 +1,13 @@
 import uuid
+from datetime import datetime, timezone
 
 from django.db import models
 from django.contrib.auth.models import User
 from utils.functions import generate_transaction_id, generate_registration_id
+
+
+def time_now():
+    return datetime.now(timezone.utc)
 
 
 class Event(models.Model):
@@ -72,11 +77,17 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
+    def active_registration(self):
+        active_registrations = self.my_registrations.filter(event__end_date__gt=time_now())
+        if active_registrations:
+            return active_registrations[0]
+
 
 class Registration(models.Model):
     id = models.CharField(max_length=9, default=generate_registration_id, primary_key=True)
     event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name="registrations", null=True)
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="registered_student")
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="my_registrations")
+    qr = models.URLField(blank=True, null=True)
 
 
 class Program(models.Model):
@@ -103,6 +114,7 @@ class Transaction(models.Model):
     token = models.CharField(max_length=100, null=True, blank=True)
     value = models.FloatField(default=0.0)
     raw_response = models.TextField(null=True)
+    mail_sent = models.BooleanField(default=False)
 
 
 class Slideshow(models.Model):
