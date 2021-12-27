@@ -180,6 +180,8 @@ def payment_handler(request):
                 transaction.registration.student.save()
                 transaction.registration.made_successful_transaction = True
                 transaction.registration.save()
+            else:
+                transaction.status = "FAILED"
             if request.POST.get("TXNID"):
                 transaction.paytm_transaction_id = request.POST.get("TXNID")
                 transaction.bank_transaction_id = request.POST.get("BANKTXNID")
