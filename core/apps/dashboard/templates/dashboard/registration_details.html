@@ -1,0 +1,66 @@
+{% extends 'dashboard/layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+	<main class="ttr-wrapper">
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Registration Details</h4>
+				<ul class="db-breadcrumb-list">
+					<li><a href="#"><i class="fa fa-home"></i>Dashboard</a></li>
+					<li>Registration</li>
+					<li>Details</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 m-b30">
+                    <div class="card">
+                        <div class="card-header">
+                            <b>Registered Events</b>
+                        </div>
+                        <div class="card-body">
+                            {% for item in registration.registered_programs %}
+                                {% for x in item %}
+                                    {% for subitem, _ in x.items %}
+                                        <div class="card my-2 px-4 py-2">
+                                            {{ subitem }}
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endfor %}
+                        </div>
+                    </div>
+				</div>
+				<div class="col-lg-4 m-b30">
+                <div class="card">
+                    <div class="card-header">
+                       <b> Registration Profile</b>
+                    </div>
+                    <div class="card-body">
+                        <div class="well well-sm">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-4 text-center">
+                                    <img src="{% if registration.qr %}{{ registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif %}" alt="" class="img-rounded img-responsive" />
+                                    <h6 class="p-1 bg-tpb3 mx-3">{{ registration.id }}</h6>
+                                </div>
+                                <div class="col-sm-6 col-md-8">
+                                    <br/>
+                                    <h4>{{ registration.student.name }}</h4>
+                                    <br/>
+                                    <p>
+                                        <i class="fa fa-building"></i> {{ registration.student.college_name }}
+                                        <br />
+                                        <i class="fa fa-envelope"></i> {{ registration.student.user.email }}
+                                        <br />
+                                        <i class="fa fa-phone"></i> {{ registration.student.phone_number }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				</div>
+			</div>
+		</div>
+	</main>
+{% endblock content %}

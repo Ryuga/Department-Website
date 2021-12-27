@@ -98,7 +98,6 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             transaction__registration__student=request.user.student,
             transaction__status="TXN_SUCCESS"
         )
-        print(request.user.student.registered_programs.all())
         return render(request, self.template_name, {"programs": programs})
 
     def post(self, request):
@@ -189,3 +188,14 @@ def payment_handler(request):
             transaction.registration.student.save()
     transaction.save()
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
+
+
+class RegistrationDetailView(LoginRequiredMixin, View):
+
+    def get(self, request, reg_id):
+        try:
+            registration = Registration.objects.get(id=reg_id)
+            print(registration.registered_programs())
+            return render(request, "dashboard/registration_details.html", {"registration": registration})
+        except Registration.DoesNotExist:
+            return render(request, "web/404.html")

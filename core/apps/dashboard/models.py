@@ -93,6 +93,9 @@ class Registration(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="my_registrations")
     qr = models.URLField(blank=True, null=True)
 
+    def registered_programs(self):
+        return self.transaction_set.filter(status="TXN_SUCCESS").values_list("events_selected_json")
+
 
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
