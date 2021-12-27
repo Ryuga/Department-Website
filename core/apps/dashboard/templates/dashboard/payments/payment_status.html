@@ -20,6 +20,7 @@
             {% else %}
             <div class="alert alert-danger" role="alert">
               <h4 class="alert-heading">Payment Failed! <i class="far fa-times-circle"></i></h4>
+              <b>{% if response.RESPCODE == '00' %}{{ response.RESPMSG }}{% endif %}</b>
               <p>Please contact website administrator if your money is debited.</p>
               <hr>
               <p class="mb-0">You will be automatically redirected to dashboard in <span id="timer">5</span> seconds... If redirection doesn't work, please click <a href="{% url 'dashboard' %}">here</a>.</p>

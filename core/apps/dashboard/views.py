@@ -181,11 +181,13 @@ def payment_handler(request):
                     transaction.registration.save()
                 else:
                     transaction.status = "FAILED"
+                    transaction.failure_msg = response_dict.get("RESPMSG")
                 if request.POST.get("TXNID"):
                     transaction.paytm_transaction_id = request.POST.get("TXNID")
                     transaction.bank_transaction_id = request.POST.get("BANKTXNID")
                 transaction.value = request.POST.get("TXNAMOUNT")
-                transaction.status = request.POST.get("STATUS")
+                if request.POST.get("STATUS"):
+                    transaction.status = request.POST.get("STATUS")
                 if request.POST.get("TXNDATE"):
                     transaction.date = datetime.datetime.strptime(
                         request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
