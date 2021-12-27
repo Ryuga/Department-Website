@@ -82,7 +82,9 @@ class Student(models.Model):
         return self.name
 
     def active_registration(self):
-        active_registrations = self.my_registrations.filter(event__end_date__gt=time_now())
+        active_registrations = self.my_registrations.filter(event__end_date__gt=time_now(),
+                                                            made_successful_transaction=True
+                                                            )
         if active_registrations:
             return active_registrations[0]
 
