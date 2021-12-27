@@ -106,6 +106,9 @@ class Program(models.Model):
     image = models.URLField(null=True, blank=True)
     staff = models.ForeignKey("web.Faculty", null=True, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.name
+
 
 class Transaction(models.Model):
     id = models.CharField(max_length=9, primary_key=True, default=generate_transaction_id)
