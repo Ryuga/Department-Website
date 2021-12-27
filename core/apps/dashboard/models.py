@@ -127,7 +127,7 @@ class Transaction(models.Model):
     value = models.FloatField(default=0.0)
     raw_response = models.TextField(null=True)
     mail_sent = models.BooleanField(default=False)
-    failure_msg = models.CharField(max_length=100, null=True)
+    failure_msg = models.TextField(null=True)
 
     def __str__(self):
         return f"{self.registration.student.name}: {self.id}"
