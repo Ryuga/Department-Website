@@ -40,7 +40,6 @@ class Course(models.Model):
     name = models.CharField(max_length=50)
     link = models.CharField(max_length=50, null=True,
                             blank=True, help_text="Leave empty to auto create or add custom")
-    image_url = models.URLField()
     description = models.TextField()
     markdown_content = models.TextField(null=True, blank=True, help_text="Markdown content if any")
     student_count = models.IntegerField(default=35)
