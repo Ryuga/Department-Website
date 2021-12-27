@@ -56,6 +56,15 @@
       <div class="modal-body">
         {% include 'dashboard/extendable/cost_summary.html' %}
       </div>
+      <div class="modal-footer">
+    <div class="card">
+        <ul>
+            <li>Do not close your upi app after making payment.</li>
+            <li>Your will be redirected back to the website after making payment</li>
+            <li>If you are not redirected back to the website, press back button of your phone <b>once</b> to go back to the webpage, only if your payment was successful.</li>
+        </ul>
+    </div>
+      </div>
         <form action="zephyrus/registration/" method="post" id="confirmationForm">
             {% csrf_token %}
             <input type="hidden" name="txnAmt" id="modalTxnAmt">

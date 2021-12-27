@@ -94,10 +94,11 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
 
     def get(self, request):
         event = Event.objects.get(link="zephyrus30")
-        programs = event.program_set.all().exclude(
-            transaction__registration__student=request.user.student,
-            transaction__status="TXN_SUCCESS"
-        )
+        all_programs = event.program_set.all()
+        registered_programs = request.user.student.registered_programs.all()
+        programs = [
+            program for program in all_programs if program not in registered_programs
+        ]
         return render(request, self.template_name, {"programs": programs})
 
     def post(self, request):
