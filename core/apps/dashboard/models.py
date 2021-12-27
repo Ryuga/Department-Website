@@ -103,8 +103,6 @@ class Program(models.Model):
     reg_fee = models.IntegerField()
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
-    starting_time = models.DateTimeField()
-    ending_time = models.DateTimeField()
     image = models.URLField(null=True, blank=True)
     staff = models.ForeignKey("web.Faculty", null=True, on_delete=models.CASCADE)
 
