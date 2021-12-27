@@ -171,24 +171,29 @@ def payment_handler(request):
     checksum_hash = request.POST.get("CHECKSUMHASH")
     verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
     if verify:
-        transaction = Transaction.objects.get(id=request.POST.get("ORDERID"))
-        transaction.raw_response = response_dict
-        transaction.paytm_transaction_id = request.POST.get("TXNID")
-        transaction.bank_transaction_id = request.POST.get("BANKTXNID")
-        transaction.date = datetime.datetime.strptime(
-            request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
-            .replace(
-            tzinfo=pytz.UTC
-        )
-        transaction.value = request.POST.get("TXNAMOUNT")
-        transaction.status = request.POST.get("STATUS")
-        if response_dict['RESPCODE'] == '01':
-            for program in transaction.events_selected.all():
-                transaction.registration.student.registered_programs.add(program)
-            transaction.registration.student.save()
-            transaction.registration.made_successful_transaction = True
-            transaction.registration.save()
-        transaction.save()
+        try:
+            transaction = Transaction.objects.get(id=request.POST.get("ORDERID"))
+            transaction.raw_response = response_dict
+            if response_dict['RESPCODE'] == '01':
+                for program in transaction.events_selected.all():
+                    transaction.registration.student.registered_programs.add(program)
+                transaction.registration.student.save()
+                transaction.registration.made_successful_transaction = True
+                transaction.registration.save()
+            if request.POST.get("TXNID"):
+                transaction.paytm_transaction_id = request.POST.get("TXNID")
+                transaction.bank_transaction_id = request.POST.get("BANKTXNID")
+                transaction.value = request.POST.get("TXNAMOUNT")
+                transaction.status = request.POST.get("STATUS")
+            if request.POST.get("TXNDATE"):
+                transaction.date = datetime.datetime.strptime(
+                    request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
+                    .replace(
+                    tzinfo=pytz.UTC
+                )
+            transaction.save()
+        except Transaction.DoesNotExist:
+            response_dict["RESPCODE"] = '00'
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
 
 
