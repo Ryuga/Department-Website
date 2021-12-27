@@ -195,7 +195,9 @@ class RegistrationDetailView(LoginRequiredMixin, View):
     def get(self, request, reg_id):
         try:
             registration = Registration.objects.get(id=reg_id)
-            print(registration.registered_programs())
-            return render(request, "dashboard/registration_details.html", {"registration": registration})
+            if registration.student == request.user.student:
+                return render(request, "dashboard/registration_details.html", {"registration": registration})
+            else:
+                raise Registration.DoesNotExist
         except Registration.DoesNotExist:
             return render(request, "web/404.html")
