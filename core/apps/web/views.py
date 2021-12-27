@@ -1,11 +1,15 @@
 import hashlib
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
 from core.apps.dashboard.models import Event
 from django.views.generic import ListView, View
 from ipware import get_client_ip
+
+
+def zephyrus_redirect(request):
+    return redirect(to="https://dashboard.christcs.in")
 
 
 class IndexView(View):
