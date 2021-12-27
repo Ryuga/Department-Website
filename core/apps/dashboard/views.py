@@ -167,35 +167,44 @@ class ZephyrusScheduleView(View):
 
 @csrf_exempt
 def payment_handler(request):
-    response_dict = request.POST.dict()
-    checksum_hash = request.POST.get("CHECKSUMHASH")
-    verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
-    if verify:
+    response_dict = request.POST.dict() or "No Response received"
+    checksum_hash = request.POST.get("CHECKSUMHASH") or "No checksum hash"
+    transaction_id = request.POST.get("ORDERID")
+    if transaction_id:
         try:
             transaction = Transaction.objects.get(id=request.POST.get("ORDERID"))
-            transaction.raw_response = response_dict
-            if response_dict['RESPCODE'] == '01':
-                for program in transaction.events_selected.all():
-                    transaction.registration.student.registered_programs.add(program)
-                transaction.registration.student.save()
-                transaction.registration.made_successful_transaction = True
-                transaction.registration.save()
-            else:
-                transaction.status = "FAILED"
-            if request.POST.get("TXNID"):
-                transaction.paytm_transaction_id = request.POST.get("TXNID")
-                transaction.bank_transaction_id = request.POST.get("BANKTXNID")
+            verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
+            if verify:
+                transaction.raw_response = response_dict
+                if response_dict['RESPCODE'] == '01':
+                    transaction.registration.made_successful_transaction = True
+                    transaction.registration.save()
+                else:
+                    transaction.status = "FAILED"
+                if request.POST.get("TXNID"):
+                    transaction.paytm_transaction_id = request.POST.get("TXNID")
+                    transaction.bank_transaction_id = request.POST.get("BANKTXNID")
                 transaction.value = request.POST.get("TXNAMOUNT")
                 transaction.status = request.POST.get("STATUS")
-            if request.POST.get("TXNDATE"):
-                transaction.date = datetime.datetime.strptime(
-                    request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
-                    .replace(
-                    tzinfo=pytz.UTC
-                )
-            transaction.save()
+                if request.POST.get("TXNDATE"):
+                    transaction.date = datetime.datetime.strptime(
+                        request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
+                        .replace(
+                        tzinfo=pytz.UTC
+                    )
+                transaction.save()
+            else:
+                transaction.status = "FAILED"
+                transaction.failure_msg = "Checksum verification failed"
+                transaction.save()
+
         except Transaction.DoesNotExist:
             response_dict["RESPCODE"] = '00'
+            response_dict["RESPMSG"] = f"Transaction {transaction_id} not found!"
+    else:
+        response_dict["RESPCODE"] = "00"
+        response_dict["RESPMSG"] = "Transaction ID not set on callback"
+
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
 
 

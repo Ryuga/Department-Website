@@ -127,6 +127,7 @@ class Transaction(models.Model):
     value = models.FloatField(default=0.0)
     raw_response = models.TextField(null=True)
     mail_sent = models.BooleanField(default=False)
+    failure_msg = models.CharField(max_length=100, null=True)
 
 
 class Slideshow(models.Model):

@@ -44,11 +44,6 @@
 												<h5>Contact no</h5>
 												<h4>{{ event.staff.phone_number }}</h4>
 											</li>
-                                            {% if event in request.user.student.registered_programs.all %}
-											<li class="card-courses-stats">
-												<a href="#" class="btn btn-sm btn-outline-success disabled">Registered</a>
-											</li>
-                                            {% endif %}
 										</ul>
 									</div>
 									<div class="row card-courses-dec">
