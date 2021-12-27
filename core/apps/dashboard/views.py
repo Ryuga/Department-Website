@@ -186,6 +186,8 @@ def payment_handler(request):
             for program in transaction.events_selected.all():
                 transaction.registration.student.registered_programs.add(program)
             transaction.registration.student.save()
+            transaction.registration.made_successful_transaction = True
+            transaction.registration.save()
         transaction.save()
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
 
