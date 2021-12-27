@@ -179,6 +179,8 @@ def payment_handler(request):
                 transaction.raw_response = response_dict
                 if response_dict['RESPCODE'] == '01':
                     transaction.registration.made_successful_transaction = True
+                    for program in transaction.events_selected.all():
+                        transaction.registration.student.registered_programs.add(program)
                     transaction.registration.save()
                 else:
                     transaction.status = "FAILED"
