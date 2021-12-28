@@ -19,6 +19,11 @@
 						</div>
 						<div class="widget-inner">
                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-indicators">
+                                {% for slide in slideshow %}
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ slide.order }}" {% if slide.order == 0 %}class="active" aria-current="true"{% endif %} aria-label="Slide"></button>
+                                {% endfor %}
+                              </div>
                               <div class="carousel-inner">
                                   {% for slide in slideshow %}
                                     <div class="carousel-item {% if slide.order == 0 %}active{% endif %}">
