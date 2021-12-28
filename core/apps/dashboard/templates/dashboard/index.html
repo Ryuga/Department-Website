@@ -21,7 +21,7 @@
                             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                               <div class="carousel-inner">
                                   {% for slide in slideshow %}
-                                    <div class="carousel-item">
+                                    <div class="carousel-item {% if slide.order == 0 %}active{% endif %}">
                                       <img src="{{ slide.image }}" class="d-block w-100" alt="...">
                                     </div>
                                   {% endfor %}
