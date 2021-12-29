@@ -58,15 +58,15 @@
                         </div>
                     </div>
                     {% else %}
-                    <div class="card">
-                      <div class="card-footer bg-light d-md-none d-lg-none d-sm-block">
+                    <div class="card d-md-none d-lg-none d-sm-block">
+                      <div class="card-footer bg-light">
                           <a class="btn btn-sm w-100 text-white" style="background-color: #6021ff" href="{% url 'events' %}"><i class="fas fa-calendar-check"></i> Event Details</a>
                           <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' %}"><i class="fas fa-calendar-plus"></i> Register Now</a>
                       </div>
                     </div>
                     <div class="card bg-gray mt-2">
                       <div class="card-header text-dark text-center">
-                       <b>Zephyrus Registration Demo</b>
+                        <b>Zephyrus Registration Demo</b>
                       </div>
                       <div class="card-body bg-light">
                         <iframe width="100%" height="315"
