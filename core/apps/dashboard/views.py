@@ -62,7 +62,7 @@ class DashView(LoginRequiredMixin, View):
     template_name = "dashboard/index.html"
 
     def get(self, request):
-        slideshow = Slideshow.objects.all()
+        slideshow = Slideshow.objects.all().order_by('order')
         return render(request, self.template_name, {"slideshow": slideshow})
 
 
