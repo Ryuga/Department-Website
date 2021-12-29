@@ -136,3 +136,6 @@ class Transaction(models.Model):
 class Slideshow(models.Model):
     order = models.IntegerField(default=0, unique=True)
     image = models.URLField()
+
+    def __str__(self):
+        return f"Slideshow {self.order}"
