@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
-from .models import Program, Slideshow, Registration, Transaction, Event
+from .models import Program, Slideshow, Registration, Transaction, Event, EventDay
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
@@ -163,7 +163,8 @@ class ZephyrusScheduleView(View):
     template_name = "dashboard/schedule.html"
 
     def get(self, request):
-        return render(request, self.template_name)
+        event_days = EventDay.objects.filter(event__link="zephyrus30").order_by('date')
+        return render(request, self.template_name, {"event_days": event_days})
 
 
 @csrf_exempt

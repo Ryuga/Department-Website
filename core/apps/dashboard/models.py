@@ -30,11 +30,11 @@ class Event(models.Model):
     link = models.SlugField(max_length=30, null=True,
                             blank=True, help_text="Leave empty to auto create or add custom",
                             unique=True)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField(null=True)
     registration_open_date = models.DateTimeField(null=True)
     registration_end_date = models.DateTimeField(null=True)
     status = models.CharField(choices=EVENT_CHOICES, default="upcoming", max_length=10)
+    start_date = models.DateTimeField(null=True)
+    end_date = models.DateTimeField(null=True)
     image_url = models.URLField()
     venue = models.CharField(max_length=30)
     topic = models.CharField(max_length=30, null=True, blank=True)
@@ -139,3 +139,27 @@ class Slideshow(models.Model):
 
     def __str__(self):
         return f"Slideshow {self.order}"
+
+
+class EventDay(models.Model):
+    date = models.DateField(primary_key=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+    def schedule(self):
+        return self.eventschedule_set.order_by('start_time')
+
+
+class EventSchedule(models.Model):
+    day = models.ForeignKey(EventDay, on_delete=models.CASCADE)
+    start_time = models.TimeField()
+    end_time = models.TimeField()
+    default_display = models.CharField(max_length=200,
+                                       help_text="Will be display if no program is assigned",
+                                       null=True, blank=True)
+    programs = models.ManyToManyField(Program, blank=True)
+
+    def __str__(self):
+        return f"Day {self.day.date} {self.start_time} - {self.end_time}"
+
+    def has_assigned_programs(self):
+        return self.programs.exists()
