@@ -130,7 +130,7 @@ class Transaction(models.Model):
     failure_msg = models.TextField(null=True)
 
     def __str__(self):
-        return f"{self.registration.student.name}: {self.id}"
+        return f"{self.registration.student.name}: {self.id} | Status: {self.status}"
 
 
 class Slideshow(models.Model):
