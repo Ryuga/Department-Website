@@ -85,7 +85,7 @@ class UserProfileView(View):
         if request.POST.get("initial"):
             request.user.student.completed_profile_setup = True
             request.user.student.save()
-            return redirect("/zephyrus/registration/")
+            return redirect("/")
         return render(request, self.template_name, {"saved": saved})
 
 
