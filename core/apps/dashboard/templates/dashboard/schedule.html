@@ -19,10 +19,10 @@
 						<div class="wc-title">
 							<h4>Event Schedule</h4>
 						</div>
+                        {% for day in event_days %}
 						<div class="widget-inner border-dark">
-                            {% for day in event_days %}
                             <h5>{{ day.date }}</h5>
-                            <table class="table" style="width:100%">
+                            <table class="table w-100">
                                     <thead>
                                         <tr>
                                             <th class="border-0">Time</th>
@@ -50,9 +50,8 @@
                                         {% endfor %}
                                     </tbody>
                             </table>
-                                <br/>
-                            {% endfor %}
 						</div>
+                        {% endfor %}
 					</div>
 				</div>
 			</div>
