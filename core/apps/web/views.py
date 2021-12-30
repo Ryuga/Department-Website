@@ -89,7 +89,7 @@ class AlumniListView(ListView):
 
 class AdminUserDataView(LoginRequiredMixin, View):
 
-    def get(self, request, reg_id):
+    def get(self, request, reg_id=None):
         if request.user.is_staff:
             try:
                 registration = Registration.objects.get(id=reg_id)
