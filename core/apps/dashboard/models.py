@@ -99,6 +99,10 @@ class Registration(models.Model):
     def registered_programs(self):
         return self.transaction_set.filter(status="TXN_SUCCESS").values_list("events_selected_json")
 
+    def __str__(self):
+        return f"{self.student.name}: {self.id} " \
+               f"| Status: {'CONFIRMED' if self.made_successful_transaction else 'NOT CONFIRMED'}"
+
 
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
