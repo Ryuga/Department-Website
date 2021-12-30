@@ -103,6 +103,10 @@ class Registration(models.Model):
         return f"{self.student.name}: {self.id} " \
                f"| Status: {'CONFIRMED' if self.made_successful_transaction else 'NOT CONFIRMED'}"
 
+    @property
+    def successful_transactions(self):
+        return self.transaction_set.filter(status="TXN_SUCCESS")
+
 
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)

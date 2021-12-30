@@ -3,8 +3,9 @@ import hashlib
 from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
-from core.apps.dashboard.models import Event
+from core.apps.dashboard.models import Event, Registration
 from django.views.generic import ListView, View
+from django.contrib.auth.mixins import LoginRequiredMixin
 from ipware import get_client_ip
 
 
@@ -84,4 +85,18 @@ class AlumniListView(ListView):
     model = Batch
     paginate_by = 3
     queryset = Batch.objects.order_by('-year')
+
+
+class AdminUserDataView(LoginRequiredMixin, View):
+
+    def get(self, request, reg_id):
+        if request.user.is_staff:
+            try:
+                registration = Registration.objects.get(id=reg_id)
+            except Registration.DoesNotExist:
+                registration = None
+            if request.GET.get("ajax") == 'true':
+                return render(request, "web/extendable/user-data-section.html", {"registration": registration})
+            return render(request, "web/user-data.html", {"registration": registration})
+        return render(request, "web/404.html")
 
