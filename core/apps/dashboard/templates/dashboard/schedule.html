@@ -27,7 +27,6 @@
                                         <tr>
                                             <th class="border-0">Time</th>
                                             <th class="border-0">Scheduled Event</th>
-{#                                            <th class="border-0">Status</th>#}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,14 +36,12 @@
                                              <tr {% if program in request.user.student.registered_programs.all %} class="table-primary" {% endif %}>
                                                 <td>{{ schedule.start_time }} - {{ schedule.end_time }}</td>
                                                 <td><i class="fas fa-square"></i>   {{ program.name }}</td>
-                                                <td>Ongoing</td>
                                              </tr>
                                             {% endfor %}
                                          {% else %}
                                              <tr>
                                                 <td>{{ schedule.start_time }} - {{ schedule.end_time }}</td>
                                                 <td><i class="fas fa-square"></i>   {{ schedule.default_display }}</td>
-                                                <td>Ongoing</td>
                                              </tr>
                                          {% endif %}
                                         {% endfor %}
