@@ -138,6 +138,9 @@ class Transaction(models.Model):
     failure_msg = models.TextField(null=True)
 
     def __str__(self):
+        if self.status == "TXN_SUCCESS":
+            return f"{self.registration.student.name}: {self.id} " \
+                   f"| Status: {self.status} "
         return f"{self.registration.student.name}: {self.id} " \
                f"| Status: {self.status} " \
                f"| Phone: {self.registration.student.phone_number}"
