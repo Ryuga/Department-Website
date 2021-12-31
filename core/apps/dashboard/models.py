@@ -128,6 +128,7 @@ class Transaction(models.Model):
     events_selected = models.ManyToManyField(Program, blank=True)
     events_selected_json = models.JSONField(null=True, default=default_json)
     bank_transaction_id = models.CharField(max_length=25, null=True, blank=True)
+    creation_time = models.DateTimeField(default=time_now)
     date = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=15, default="INITIATED")
     mode = models.CharField(max_length=20, null=True, blank=True)
@@ -144,6 +145,9 @@ class Transaction(models.Model):
         return f"{self.registration.student.name}: {self.id} " \
                f"| Status: {self.status} " \
                f"| Phone: {self.registration.student.phone_number}"
+
+    class Meta:
+        ordering = ('-creation_time',)
 
 
 class Slideshow(models.Model):
