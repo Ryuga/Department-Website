@@ -13,3 +13,8 @@ def create_user(email, avatar_url, access_token, name):
                                     password=hasher.get_hashed_pass(email))
     Student.objects.create(user=user, image_url=avatar_url, name=name, access_token=access_token)
     return user
+
+
+def write_sheet(sheet, row, *args):
+    for item in args:
+        sheet.write(row, args.index(item), item)

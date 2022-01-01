@@ -1,13 +1,11 @@
 import hashlib
 
-import xlwt
-
 from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
 from core.apps.dashboard.models import Event, Registration, Program
 from django.views.generic import ListView, View
-from django.contrib.auth.mixins import LoginRequiredMixin
+
 from ipware import get_client_ip
 
 
@@ -93,46 +91,3 @@ class BackwardsCompatibilityRedirect(View):
 
     def get(self, request, reg_id):
         return redirect(to=f"https://dashboard.christcs.in/zephyrus/registration/details/{reg_id}/")
-
-
-def write_sheet(sheet, row, *args):
-    for item in args:
-        sheet.write(row, args.index(item), item)
-
-
-class AdminRegistrationCountView(LoginRequiredMixin, View):
-
-    def get(self, request):
-        if request.user.is_staff:
-            if request.user.is_superuser and request.GET.get("type"):
-                workbook = xlwt.Workbook()
-                sheet = workbook.add_sheet("registrations")
-                i = 1
-                if request.GET.get("type") == "all":
-                    registrations = Registration.objects.filter(made_successful_transaction=True)
-                    write_sheet(sheet, 0, "Reg ID", "Name", "College", "Registered Programs")
-                    for registration in registrations:
-                        registered_programs = ""
-                        for program in registration.student.registered_programs.all():
-                            registered_programs = "".join(f"{program.name}, ")
-                        write_sheet(sheet, i, registration.id,
-                                    registration.student.name,
-                                    registration.student.college_name,
-                                    registered_programs)
-                        i += 1
-                        workbook.save("media/all-registrations.xls")
-                elif request.GET.get("type") == "individual":
-                    write_sheet(sheet, 0, "Reg ID", "Name", "College")
-                    program_id = request.GET.get("program_id")
-                    program = Program.objects.get(id=program_id)
-                    transactions = program.transactions.filter(status="TXN_SUCCESS")
-                    for transaction in transactions:
-                        write_sheet(sheet, i, transaction.registration.id,
-                                    transaction.registration.student.name,
-                                    transaction.registration.student.college_name)
-                        workbook.save(f"media/{program.name}-registrations.xls")
-                else:
-                    pass
-            programs = Program.objects.all()
-            return render(request, "web/registration-count.html", {"programs": programs})
-        return render(request, "web/404.html")
