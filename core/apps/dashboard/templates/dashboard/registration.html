@@ -58,7 +58,7 @@
             {% if request.user.is_superuser %}
             <label>
                 Confirm Recipient Email
-                <input type="email" name="recipientEmail" class="form-control">
+                <input type="email" name="recipientEmail" onkeyup="checkEmailValidity()" id="emailConfirmationField" class="form-control">
             </label>
             {% endif %}
         </form>
@@ -71,10 +71,22 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" form="confirmationForm" class="btn btn-primary">Confirm {% if not request.user.is_superuser %}Payment{% else %}Registration{% endif %}</button>
+        <button type="submit" form="confirmationForm" class="btn btn-primary" id="paymentCreationConfirmationBtn" {% if request.user.is_superuser %}disabled{% endif %}>Confirm {% if not request.user.is_superuser %}Payment{% else %}Registration{% endif %}</button>
       </div>
     </div>
   </div>
 </div>
 
+{% if request.user.is_superuser %}
+<script>
+function checkEmailValidity() {
+    let email = document.getElementById("registrationEmailId").value;
+	 if(document.getElementById("emailConfirmationField").value===email) {
+            document.getElementById('paymentCreationConfirmationBtn').disabled = false;
+        } else {
+            document.getElementById('paymentCreationConfirmationBtn').disabled = true;
+        }
+    }
+</script>
+{% endif %}
 {% endblock content %}
