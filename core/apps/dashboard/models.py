@@ -120,12 +120,16 @@ class Program(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def total_registrations(self):
+        return self.transactions.filter(status="TXN_SUCCESS").count()
+
 
 class Transaction(models.Model):
     id = models.CharField(max_length=9, primary_key=True, default=generate_transaction_id)
     paytm_transaction_id = models.CharField(max_length=35, null=True, blank=True)
     registration = models.ForeignKey(Registration, on_delete=models.CASCADE)
-    events_selected = models.ManyToManyField(Program, blank=True)
+    events_selected = models.ManyToManyField(Program, blank=True, related_name="transactions")
     events_selected_json = models.JSONField(null=True, default=default_json)
     bank_transaction_id = models.CharField(max_length=25, null=True, blank=True)
     creation_time = models.DateTimeField(default=time_now)

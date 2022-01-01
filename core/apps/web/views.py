@@ -3,7 +3,7 @@ import hashlib
 from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
-from core.apps.dashboard.models import Event, Registration
+from core.apps.dashboard.models import Event, Registration, Program
 from django.views.generic import ListView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from ipware import get_client_ip
@@ -100,3 +100,11 @@ class AdminUserDataView(LoginRequiredMixin, View):
             return render(request, "web/user-data.html", {"registration": registration})
         return render(request, "web/404.html")
 
+
+class AdminRegistrationCountView(LoginRequiredMixin, View):
+
+    def get(self, request):
+        if request.user.is_staff:
+            programs = Program.objects.all()
+            return render(request, "web/registration-count.html", {"programs": programs})
+        return render(request, "web/404.html")
