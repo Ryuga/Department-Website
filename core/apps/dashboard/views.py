@@ -165,6 +165,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 transaction.events_selected.add(item)
                 transaction.events_selected_json[item.name] = item.reg_fee
                 if request.user.is_superuser:
+                    transaction.value += item.reg_fee
                     registration_owner.registered_programs.add(item)
             if request.user.is_superuser:
                 transaction.status = "TXN_SUCCESS"
