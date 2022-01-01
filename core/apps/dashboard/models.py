@@ -88,6 +88,7 @@ class Student(models.Model):
         if active_registrations:
             return active_registrations[0]
 
+    @property
     def registered_programs_str(self):
         return "".join(f"{program.name}, " for program in self.registered_programs.all())
 
