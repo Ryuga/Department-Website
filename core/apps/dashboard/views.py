@@ -269,7 +269,7 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     for registration in registrations:
                         registered_programs = ""
                         for program in registration.student.registered_programs.all():
-                            registered_programs.join(f"{program.name}, ")
+                            registered_programs = registered_programs.join(f"{program.name}, ")
                         write_sheet(sheet, i, registration.id,
                                     registration.student.name,
                                     registration.student.phone_number,
