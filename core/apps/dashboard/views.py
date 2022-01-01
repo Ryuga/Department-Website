@@ -304,5 +304,7 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                 else:
                     pass
             programs = Program.objects.all()
-            return render(request, "dashboard/admin/registration-data.html", {"programs": programs})
+            registration_count = Registration.objects.filter(made_successful_transaction=True).count()
+            return render(request, "dashboard/admin/registration-data.html", {"programs": programs,
+                                                                              "registration_count": registration_count})
         return render(request, "web/404.html")
