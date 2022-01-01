@@ -94,7 +94,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
 
     def get(self, request):
         event = Event.objects.get(link="zephyrus30")
-        all_programs = event.program_set.all()
+        all_programs = event.program_set.filter(registration_open=True)
         registered_programs = request.user.student.registered_programs.all()
         programs = [
             program for program in all_programs if program not in registered_programs

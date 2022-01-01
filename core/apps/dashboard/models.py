@@ -116,6 +116,7 @@ class Program(models.Model):
     description = models.TextField(null=True, blank=True)
     image = models.URLField(null=True, blank=True)
     staff = models.ForeignKey("web.Faculty", null=True, on_delete=models.CASCADE)
+    registration_open = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
