@@ -74,3 +74,19 @@ $(document).ready(function (){
         });
     })
 })
+
+$(document).ready(function (){
+    $('#checkEmailBtn').click(function (){
+        let csrftoken = getCookie("csrftoken")
+        let email = $('#registrationEmailId').val();
+        $.ajax({
+        url: `/zephyrus/registration/?ajax=true&email=${email}`,
+        headers: {'X-CSRFToken': csrftoken},
+        type: 'GET',
+        success:function (data)
+        {
+            $('#eventRegistrationCardSection').html(data);
+        },
+        });
+    })
+})

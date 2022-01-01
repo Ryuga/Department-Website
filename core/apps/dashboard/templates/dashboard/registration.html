@@ -15,11 +15,66 @@
 				</ul>
 			</div>
 			<div class="row">
-				<div class="col-lg-12 m-b30">
+                {% if request.user.is_superuser %}
+                <div class="col-lg-12">
+                    <div class="card mb-4 p-4">
+                       <label> Enter Recipient's Email id to register</label>
+                        <div class="input-group w-25">
+                          <input type="text" class="form-control" id="registrationEmailId" placeholder="Recipient's Email" aria-label="Recipient's Email">
+                          <button class="btn btn-primary" type="button" id="checkEmailBtn">Check</button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+				<div class="col-lg-12 m-b30" id="eventRegistrationCardSection">
                     {% include 'dashboard/extendable/registration_card.html' %}
 				</div>
 			</div>
 		</div>
 	</main>
+
+<div class="modal fade" id="paymentConfirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Payment Confirmation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% include 'dashboard/extendable/cost_summary.html' %}
+      </div>
+      <div class="modal-footer">
+        {% if not request.user.is_superuser %}
+        <small><b>(Scroll down to pay)</b></small>
+        <div class="card">
+            <img src="https://lairesit.sirv.com/Images/photo_2021-12-29_21-31-36.jpg">
+        </div>
+        {% endif %}
+        <div class="card-body">
+        <form action="zephyrus/registration/" method="post" id="confirmationForm">
+            {% csrf_token %}
+            <input type="hidden" name="txnAmt" id="modalTxnAmt">
+            <input type="hidden" name="eventsList" id="modalEventsList">
+            {% if request.user.is_superuser %}
+            <label>
+                Enter Recipient Email
+                <input type="email" name="recipientEmail" class="form-control">
+            </label>
+            {% endif %}
+        </form>
+        {% if not request.user.is_superuser %}
+        <p>To use <b>Gpay/Phonepe</b> as payment method, <b>select UPI</b></p>
+        {% else %}
+            <b class="text-danger">Make sure the email, events selected and payment made by student are correct before Confirming Registration</b>
+        {% endif %}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="submit" form="confirmationForm" class="btn btn-primary">Confirm {% if not request.user.is_superuser %}Payment{% else %}Registration{% endif %}</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

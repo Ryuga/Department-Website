@@ -106,12 +106,29 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 
     def get(self, request):
+        programs = []
         event = Event.objects.get(link="zephyrus30")
         all_programs = event.program_set.filter(registration_open=True)
-        registered_programs = request.user.student.registered_programs.all()
-        programs = [
-            program for program in all_programs if program not in registered_programs
-        ]
+        if request.user.is_superuser:
+            if request.GET.get("ajax") == "true":
+                does_not_exist = False
+                email = request.GET.get("email")
+                try:
+                    student = Student.objects.get(user__email=email)
+                    registered_programs = student.registered_programs.all()
+                    programs = [
+                        program for program in all_programs if program not in registered_programs
+                    ]
+                except Student.DoesNotExist:
+                    does_not_exist = True
+                return render(request, "dashboard/extendable/registration_card.html", {"programs": programs,
+                                                                                       "does_not_exist": does_not_exist
+                                                                                       })
+        else:
+            registered_programs = request.user.student.registered_programs.all()
+            programs = [
+                program for program in all_programs if program not in registered_programs
+            ]
         return render(request, self.template_name, {"programs": programs})
 
     def post(self, request):
