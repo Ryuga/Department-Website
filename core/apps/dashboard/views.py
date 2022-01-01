@@ -275,7 +275,12 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                                     registration.student.college_name,
                                     registered_programs)
                         i += 1
-                        workbook.save("media/all-registrations.xls")
+                    workbook.save(f"media/all-registrations.xls")
+                    response = HttpResponse()
+                    del response['Content-Type']
+                    response['X-Accel-Redirect'] = "/protected/media/" + "all-registrations.xls"
+                    response['Content-Disposition'] = "attachment; filename=all-registrations.xls"
+                    return response
                 elif request.GET.get("type") == "individual":
                     write_sheet(sheet, 0, "Reg ID", "Name", "College")
                     program_id = request.GET.get("program_id")
@@ -285,7 +290,13 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                         write_sheet(sheet, i, transaction.registration.id,
                                     transaction.registration.student.name,
                                     transaction.registration.student.college_name)
-                        workbook.save(f"media/{program.name}-registrations.xls")
+                        i += 1
+                    workbook.save(f"media/{program.name}-registrations.xls")
+                    response = HttpResponse()
+                    del response['Content-Type']
+                    response['X-Accel-Redirect'] = "/protected/media/" + f"{program.name}-registrations.xls"
+                    response['Content-Disposition'] = f"attachment; filename={program.name}-registrations.xls"
+                    return response
                 else:
                     pass
             programs = Program.objects.all()
