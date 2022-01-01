@@ -33,7 +33,7 @@
                                             </div>
                                             {% if request.user.is_superuser %}
                                             <div class="card-footer align-items-center">
-                                                <a class="btn-sm btn-success text-white mx-auto" href="{% url 'registration_details' %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="fa fa-download"></i> Download Excel Sheet</a>
+                                                <a class="btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="fa fa-download"></i> Download Excel Sheet</a>
                                             </div>
                                             {% endif %}
                                         </div>
