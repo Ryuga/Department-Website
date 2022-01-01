@@ -265,13 +265,15 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                 i = 1
                 if request.GET.get("type") == "all":
                     registrations = Registration.objects.filter(made_successful_transaction=True)
-                    write_sheet(sheet, 0, "Reg ID", "Name", "College", "Registered Programs")
+                    write_sheet(sheet, 0, "Reg ID", "Name", "Phone", "Email", "College", "Registered Programs")
                     for registration in registrations:
                         registered_programs = ""
                         for program in registration.student.registered_programs.all():
-                            registered_programs = "".join(f"{program.name}, ")
+                            registered_programs = registered_programs.join(f"{program.name}, ")
                         write_sheet(sheet, i, registration.id,
                                     registration.student.name,
+                                    registration.student.phone_number,
+                                    registration.student.user.email,
                                     registration.student.college_name,
                                     registered_programs)
                         i += 1
@@ -282,13 +284,15 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     response['Content-Disposition'] = "attachment; filename=all-registrations.xls"
                     return response
                 elif request.GET.get("type") == "individual":
-                    write_sheet(sheet, 0, "Reg ID", "Name", "College")
+                    write_sheet(sheet, 0, "Reg ID", "Name", "Phone", "Email", "College")
                     program_id = request.GET.get("program_id")
                     program = Program.objects.get(id=program_id)
                     transactions = program.transactions.filter(status="TXN_SUCCESS")
                     for transaction in transactions:
                         write_sheet(sheet, i, transaction.registration.id,
                                     transaction.registration.student.name,
+                                    transaction.registration.student.phone_number,
+                                    transaction.registration.student.user.email,
                                     transaction.registration.student.college_name)
                         i += 1
                     workbook.save(f"media/{program.name}-registrations.xls")
