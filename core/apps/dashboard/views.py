@@ -14,7 +14,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
-from .models import Program, Slideshow, Registration, Transaction, Event, EventDay
+from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
@@ -123,18 +123,22 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             item = Program.objects.get(id=item_id)
             cost_total += item.reg_fee
             order_items_from_db.append(item)
+        if request.user.is_superuser:
+            registration_owner = User.objects.get(email=request.POST.get("recipientEmail")).student
+        else:
+            registration_owner = request.user.student
         if cost_total == order_amt:
             if not Registration.objects.filter(
-                    student=request.user.student,
+                    student=registration_owner,
                     event=order_items_from_db[0].event
             ).exists():
                 registration = Registration.objects.create(
                     event=order_items_from_db[0].event,
-                    student=request.user.student
+                    student=registration_owner
                 )
             else:
                 registration = Registration.objects.get(
-                    student=request.user.student,
+                    student=registration_owner,
                     event=order_items_from_db[0].event
                 )
             transaction = Transaction.objects.create(
@@ -143,7 +147,17 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             for item in order_items_from_db:
                 transaction.events_selected.add(item)
                 transaction.events_selected_json[item.name] = item.reg_fee
+                if request.user.is_superuser:
+                    registration_owner.registered_programs.add(item)
+            if request.user.is_superuser:
+                transaction.status = "TXN_SUCCESS"
+                transaction.registration.made_successful_transaction = True
+                transaction.raw_response = f"This transaction was created manually by registration admin: " \
+                                           f"{request.user.email}\n The payment was collected and verified offline "
+                transaction.registration.save()
             transaction.save()
+            if request.user.is_superuser:
+                return render(request, self.template_name, {"created": True})
             param_dict = {
                 'MID': settings.PAYTM_MERCHANT_ID,
                 'ORDER_ID': str(transaction.id),
