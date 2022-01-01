@@ -88,6 +88,9 @@ class Student(models.Model):
         if active_registrations:
             return active_registrations[0]
 
+    def registered_programs_str(self):
+        return "".join(f"{program.name}, " for program in self.registered_programs.all())
+
 
 class Registration(models.Model):
     id = models.CharField(max_length=9, default=generate_registration_id, primary_key=True)

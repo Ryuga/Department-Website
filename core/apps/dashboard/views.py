@@ -267,15 +267,12 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     registrations = Registration.objects.filter(made_successful_transaction=True)
                     write_sheet(sheet, 0, "Reg ID", "Name", "Phone", "Email", "College", "Registered Programs")
                     for registration in registrations:
-                        registered_programs = ""
-                        for program in registration.student.registered_programs.all():
-                            registered_programs = registered_programs.join(f"{program.name}, ")
                         write_sheet(sheet, i, registration.id,
                                     registration.student.name,
                                     registration.student.phone_number,
                                     registration.student.user.email,
                                     registration.student.college_name,
-                                    registered_programs)
+                                    registration.student.registered_programs_str)
                         i += 1
                     workbook.save(f"media/all-registrations.xls")
                     response = HttpResponse()
