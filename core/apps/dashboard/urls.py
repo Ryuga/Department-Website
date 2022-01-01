@@ -1,5 +1,5 @@
 from core.apps.dashboard.views import (
-    DashView, UserProfileView, LoginView, RegisterView, GoogleAuthLoginCallback, payment_handler,
+    DashView, UserProfileView, LoginView, RegisterView, GoogleAuthLoginCallback, payment_handler, media_access,
     ZephyrusEventsView, ZephyrusScheduleView, ZephyrusRegistrationView, logout_request, RegistrationDetailView,
     AdminRegistrationDetailView, AdminRegistrationDataView
 )
@@ -17,6 +17,7 @@ urlpatterns = [
     path('payments/handlers/', payment_handler, name="payment_handler"),
     re_path(r'^logout/', logout_request, name="logout"),
     re_path(r'^login/', LoginView.as_view(), name="login"),
+    re_path(r'^media/(?P<path>.*)', media_access, name='media'),
     re_path(r'^registrations/(?P<reg_id>.*)/', RegistrationDetailView.as_view(), name="registration_details"),
     re_path(r'^register/', RegisterView.as_view(), name="register"),
     re_path(r'^profile/', UserProfileView.as_view(), name="profile"),

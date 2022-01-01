@@ -4,8 +4,9 @@ import datetime
 
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from django.views.generic import View
+from django.http import HttpResponseForbidden
 from utils.google_oauth2 import GoogleOauth
 from utils.mixins import ResponseMixin
 from utils.operations import create_user, write_sheet
@@ -17,6 +18,17 @@ from .models import Program, Slideshow, Registration, Transaction, Event, EventD
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
+
+
+def media_access(request, path):
+    if request.user.is_superuser:
+        response = HttpResponse()
+        # Content-type will be detected by nginx
+        del response['Content-Type']
+        response['X-Accel-Redirect'] = '/protected/media/' + path
+        return response
+    else:
+        return HttpResponseForbidden('Not authorized to access this file.')
 
 
 def logout_request(request):
@@ -231,7 +243,7 @@ class RegistrationDetailView(LoginRequiredMixin, View):
 class AdminRegistrationDetailView(LoginRequiredMixin, View):
 
     def get(self, request, reg_id=None):
-        if request.user.is_staff:
+        if request.user.is_superuser:
             try:
                 registration = Registration.objects.get(id=reg_id)
             except Registration.DoesNotExist:
