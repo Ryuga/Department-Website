@@ -66,7 +66,7 @@ class DashView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"slideshow": slideshow})
 
 
-class UserProfileView(View):
+class UserProfileView(LoginRequiredMixin, View):
     template_name = "dashboard/user-profile.html"
     fields = (
         "name", "phone_number", "college_name", "department"
@@ -159,7 +159,7 @@ class ZephyrusEventsView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"events": events})
 
 
-class ZephyrusScheduleView(View):
+class ZephyrusScheduleView(LoginRequiredMixin, View):
     template_name = "dashboard/schedule.html"
 
     def get(self, request):
