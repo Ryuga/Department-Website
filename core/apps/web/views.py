@@ -89,18 +89,10 @@ class AlumniListView(ListView):
     queryset = Batch.objects.order_by('-year')
 
 
-class AdminUserDataView(LoginRequiredMixin, View):
+class BackwardsCompatibilityRedirect(View):
 
-    def get(self, request, reg_id=None):
-        if request.user.is_staff:
-            try:
-                registration = Registration.objects.get(id=reg_id)
-            except Registration.DoesNotExist:
-                registration = None
-            if request.GET.get("ajax") == 'true':
-                return render(request, "web/extendable/user-data-section.html", {"registration": registration})
-            return render(request, "web/user-data.html", {"registration": registration})
-        return render(request, "web/404.html")
+    def get(self, request, reg_id):
+        return redirect(to=f"https://dashboard.christcs.in/zephyrus/registration/details/{reg_id}/")
 
 
 def write_sheet(sheet, row, *args):
