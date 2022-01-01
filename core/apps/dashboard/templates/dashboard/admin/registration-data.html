@@ -21,9 +21,9 @@
 							<h4>Registration Data</h4>
 						</div>
 						<div class="widget-inner">
-                            <div class="row">
+                            <div class="row bg-gray">
                                 {% for program in programs %}
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-2 col-md-3 col-sm-4">
                                         <div class="card">
                                             <div class="card-header">
                                                 <b>{{ program.name }}</b>
@@ -31,6 +31,11 @@
                                             <div class="card-body">
                                                 <h2>{{ program.total_registrations }}</h2>
                                             </div>
+                                            {% if request.user.is_super_user %}
+                                            <div class="card-footer align-items-center">
+                                                <a class="btn-sm btn-success text-white mx-auto"><i class="fa fa-download"></i> Download Excel Sheet</a>
+                                            </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 {% endfor %}
