@@ -19,6 +19,7 @@ pytz = "*"
 "backports.weakref" = "*"
 pycrypto = "*"
 django-hosts = "*"
+xlwt = "*"
 
 [dev-packages]
 
