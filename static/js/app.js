@@ -58,3 +58,19 @@ $(document).ready(function(){
     });
 
 });
+
+$(document).ready(function (){
+    $('#SearchBtn').click(function (){
+        let csrftoken = getCookie("csrftoken")
+        let reg_id = $('#regIdInput').val();
+        $.ajax({
+        url: `/zephyrus/registration/details/${reg_id}/?ajax=true`,
+        headers: {'X-CSRFToken': csrftoken},
+        type: 'GET',
+        success:function (data)
+        {
+            $('#userDataRefresh').html(data);
+        },
+        });
+    })
+})

@@ -100,6 +100,11 @@
 		                	<li>
 		                		<a href="{% url 'schedule' %}" class="ttr-material-button"><span class="ttr-label">Schedule</span></a>
 		                	</li>
+                            {% if request.user.is_staff %}
+		                	<li>
+		                		<a href="{% url 'registration_details_admin' %}" class="ttr-material-button"><span class="ttr-label">Registration Details</span></a>
+		                	</li>
+                            {% endif %}
 		                </ul>
 		            </li>
 				</ul>
