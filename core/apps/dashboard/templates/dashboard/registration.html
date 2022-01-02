@@ -17,11 +17,13 @@
 			<div class="row">
                 {% if request.user.is_superuser %}
                 <div class="col-lg-12">
-                    <div class="card mb-4 p-4">
-                       <label> Enter Recipient's Email id to register</label>
-                        <div class="input-group w-25">
-                          <input type="text" class="form-control" id="registrationEmailId" placeholder="Recipient's Email" aria-label="Recipient's Email">
-                          <button class="btn btn-primary" type="button" id="checkEmailBtn">Check</button>
+                    <div class="card mb-4 p-4 col-lg-5 col-sm-12">
+                        <div>
+                           <label> Enter Recipient's Email id to register</label>
+                            <div class="input-group">
+                              <input type="text" class="form-control" id="registrationEmailId" placeholder="Recipient's Email" aria-label="Recipient's Email">
+                              <button class="btn btn-primary" type="button" id="checkEmailBtn">Check</button>
+                            </div>
                         </div>
                     </div>
                 </div>
