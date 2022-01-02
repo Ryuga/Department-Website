@@ -298,14 +298,19 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                 i = 1
                 if request.GET.get("type") == "all":
                     registrations = Registration.objects.filter(made_successful_transaction=True)
-                    write_sheet(sheet, 0, "Reg ID", "Name", "Phone", "Email", "College", "Registered Programs")
+                    write_sheet(sheet, 0, "Reg ID",
+                                "Name", "Phone", "Email",
+                                "College", "Registered Programs",
+                                "Online", "Spot")
                     for registration in registrations:
                         write_sheet(sheet, i, registration.id,
                                     registration.student.name,
                                     registration.student.phone_number,
                                     registration.student.user.email,
                                     registration.student.college_name,
-                                    registration.student.registered_programs_str)
+                                    registration.student.registered_programs_str,
+                                    registration.online_transaction_value,
+                                    registration.spot_transaction_value)
                         i += 1
                     workbook.save(f"media/all-registrations.xls")
                     response = HttpResponse()
@@ -314,7 +319,9 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     response['Content-Disposition'] = "attachment; filename=all-registrations.xls"
                     return response
                 elif request.GET.get("type") == "individual":
-                    write_sheet(sheet, 0, "Reg ID", "Name", "Phone", "Email", "College")
+                    write_sheet(sheet, 0, "Reg ID",
+                                "Name", "Phone", "Email",
+                                "College", "Online", "Spot")
                     program_id = request.GET.get("program_id")
                     program = Program.objects.get(id=program_id)
                     transactions = program.transactions.filter(status="TXN_SUCCESS")
@@ -323,7 +330,9 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                                     transaction.registration.student.name,
                                     transaction.registration.student.phone_number,
                                     transaction.registration.student.user.email,
-                                    transaction.registration.student.college_name)
+                                    transaction.registration.student.college_name,
+                                    transaction.registration.online_transaction_value,
+                                    transaction.registration.spot_transaction_value)
                         i += 1
                     workbook.save(f"media/{program.name}-registrations.xls")
                     response = HttpResponse()

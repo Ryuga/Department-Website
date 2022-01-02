@@ -111,6 +111,14 @@ class Registration(models.Model):
     def successful_transactions(self):
         return self.transaction_set.filter(status="TXN_SUCCESS")
 
+    @property
+    def spot_transaction_value(self):
+        return self.transaction_set.filter(status="TXN_SUCCESS", spot=True).aggregate(models.Sum('value'))
+
+    @property
+    def online_transaction_value(self):
+        return self.transaction_set.filter(status="TXN_SUCCESS", spot=False).aggregate(models.Sum('value'))
+
 
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
