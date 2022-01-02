@@ -50,7 +50,7 @@
                         <div class="card-header text-center bg-transparent">
                            <b> Active Registration</b>
                         </div>
-                        <div class="card-body p-3 text-center">
+                        <div class="card-body p-3 text-center bg-transparent">
                             <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn-sm btn-outline-dark"> <img src="{% if request.user.student.active_registration.qr %}{{ request.user.student.active_registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif%}" height="100" width="100" /></button> <span class="name mt-3">{{ request.user.student.name }}</span> <span class="idd">{{ request.user.student.college_name }}</span>
                                 <div class="d-flex flex-row justify-content-center align-items-center gap-2 mt-2"><span class="idd1 card-header bg-tpb3"><b>{{ request.user.student.active_registration.id }}</b></span></div>
                             </div>
@@ -71,10 +71,10 @@
                       </div>
                     </div>
                     <div class="card bg-gray mt-2">
-                      <div class="card-header text-dark text-center">
+                      <div class="card-header text-dark text-center bg-transparent">
                         <b>Zephyrus Registration Demo</b>
                       </div>
-                      <div class="card-body bg-light">
+                      <div class="card-body bg-transparent">
                         <iframe width="100%" height="315"
                         src="https://www.youtube.com/embed/cSkHQRyYYg8">
                         </iframe>
