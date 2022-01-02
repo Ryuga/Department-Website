@@ -10,7 +10,14 @@
             </div>
             <div class="col-sm-8 mt-4">
                 <div class="card-block">
-                    <h6 class="mb-4 p-b-5 b-b-default fw-bolder"><u>User Details</u></h6>
+                    <div class="row">
+                        <div class="col">
+                            <h6 class="mb-4 p-b-5 b-b-default fw-bolder"><u>User Details</u></h6>
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-sm {% if registration.made_successful_transaction %}btn-success{% else %}btn-danger{% endif %}">{% if registration.made_successful_transaction %}Registered{% else %}Not Registered{% endif %}</button>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-6">
                             <p class="mb-2 fw-bold">Name</p>
