@@ -146,6 +146,7 @@ class Transaction(models.Model):
     raw_response = models.TextField(null=True)
     mail_sent = models.BooleanField(default=False)
     failure_msg = models.TextField(null=True)
+    spot = models.BooleanField(default=False)
 
     def __str__(self):
         if self.status == "TXN_SUCCESS":

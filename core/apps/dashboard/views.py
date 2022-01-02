@@ -169,6 +169,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                     registration_owner.registered_programs.add(item)
             if request.user.is_superuser:
                 transaction.status = "TXN_SUCCESS"
+                transaction.spot = True
                 transaction.registration.made_successful_transaction = True
                 transaction.raw_response = f"This transaction was created manually by registration admin: " \
                                            f"{request.user.email}\n The payment was collected and verified offline "
@@ -334,6 +335,13 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     pass
             programs = Program.objects.all()
             registration_count = Registration.objects.filter(made_successful_transaction=True).count()
+            total_transactions = Transaction.objects.filter(status="TXN_SUCCESS").count()
+            spot_transaction = Transaction.objects.filter(status="TXN_SUCCESS", spot=True).count()
+            online_transaction = total_transactions - spot_transaction
             return render(request, "dashboard/admin/registration-data.html", {"programs": programs,
-                                                                              "registration_count": registration_count})
+                                                                              "registration_count": registration_count,
+                                                                              "total_transaction": total_transactions,
+                                                                              "spot_transaction": spot_transaction,
+                                                                              "online_transaction": online_transaction,
+                                                                              })
         return render(request, "web/404.html")

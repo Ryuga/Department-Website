@@ -24,7 +24,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-7 col-sm-12">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="card mb-4">
                                             <div class="card-header bg-transparent">
                                                 <h5>Total Students Registered</h5>
@@ -37,6 +37,20 @@
                                                 <a class="btn-sm btn-success text-white" href="{% url 'registration_data' %}?type=all" style="text-decoration: none;"><i class="fa fa-download"></i> Download Excel Sheet</a>
                                             </div>
                                             {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="card mb-4">
+                                            <div class="card-header bg-transparent">
+                                                <h5>Total Transactions</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <h2>{{ total_transaction }}</h2>
+                                            </div>
+                                            <div class="card-footer bg-transparent text-center">
+                                                <span class="float-left"><b>Online:</b> {{ online_transaction }}</span>
+                                                <span class="float-right"><b>Spot:</b> {{ spot_transaction }}</span>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>
