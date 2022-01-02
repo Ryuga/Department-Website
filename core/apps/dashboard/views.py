@@ -326,6 +326,7 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     program = Program.objects.get(id=program_id)
                     transactions = program.transactions.filter(status="TXN_SUCCESS")
                     for transaction in transactions:
+                        print(transaction.registration.spot_transaction_value)
                         write_sheet(sheet, i, transaction.registration.id,
                                     transaction.registration.student.name,
                                     transaction.registration.student.phone_number,

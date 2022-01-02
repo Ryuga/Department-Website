@@ -113,11 +113,21 @@ class Registration(models.Model):
 
     @property
     def spot_transaction_value(self):
-        return self.transaction_set.filter(status="TXN_SUCCESS", spot=True).aggregate(models.Sum('value'))
+        txn_sum = self.transaction_set.filter(
+            status="TXN_SUCCESS", spot=True
+        ).aggregate(models.Sum('value')).get('value__sum')
+        if txn_sum:
+            return txn_sum
+        return 0
 
     @property
     def online_transaction_value(self):
-        return self.transaction_set.filter(status="TXN_SUCCESS", spot=False).aggregate(models.Sum('value'))
+        txn_sum = self.transaction_set.filter(
+            status="TXN_SUCCESS", spot=False
+        ).aggregate(models.Sum('value')).get('value__sum')
+        if txn_sum:
+            return txn_sum
+        return 0
 
 
 class Program(models.Model):
