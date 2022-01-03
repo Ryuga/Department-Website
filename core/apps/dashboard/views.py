@@ -379,22 +379,23 @@ def transaction_verification(request):
             post_data = json.dumps(paytmParams)
             url = "https://securegw.paytm.in/v3/order/status"
             response = requests.post(url, data=post_data, headers={"Content-type": "application/json"}).json()
-            if response['body']['resultInfo']['resultStatus'] == "TXN_SUCCESS":
-                for program in transaction.events_selected.all():
-                    transaction.registration.student.registered_programs.add(program)
-                if not transaction.registration.made_successful_transaction:
-                    transaction.registration.made_successful_transaction = True
-                    transaction.registration.save()
-                transaction.status = "TXN_SUCCESS"
-                transaction.raw_response = response
-                transaction.save()
-            elif response['body']['resultInfo']['resultStatus'] == "TXN_FAILURE":
-                transaction.status = "TXN_FAILURE"
-                transaction.failure_msg = response['body']['resultInfo']['resultMsg']
-                transaction.save()
-            else:
-                transaction.delete()
-            time.sleep(2)
+            if response['body']:
+                if response['body']['resultInfo']['resultStatus'] == "TXN_SUCCESS":
+                    for program in transaction.events_selected.all():
+                        transaction.registration.student.registered_programs.add(program)
+                    if not transaction.registration.made_successful_transaction:
+                        transaction.registration.made_successful_transaction = True
+                        transaction.registration.save()
+                    transaction.status = "TXN_SUCCESS"
+                    transaction.raw_response = response
+                    transaction.save()
+                elif response['body']['resultInfo']['resultStatus'] == "TXN_FAILURE":
+                    transaction.status = "TXN_FAILURE"
+                    transaction.failure_msg = response['body']['resultInfo']['resultMsg']
+                    transaction.save()
+                else:
+                    transaction.delete()
+                time.sleep(2)
 
         return HttpResponse("Done")
 
