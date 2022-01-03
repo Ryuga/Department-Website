@@ -140,6 +140,7 @@ class Program(models.Model):
     image = models.URLField(null=True, blank=True)
     staff = models.ForeignKey("web.Faculty", null=True, on_delete=models.CASCADE)
     registration_open = models.BooleanField(default=True)
+    venue = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -200,9 +201,11 @@ class EventSchedule(models.Model):
     start_time = models.TimeField()
     end_time = models.TimeField()
     default_display = models.CharField(max_length=200,
-                                       help_text="Will be display if no program is assigned",
+                                       help_text="Will be displayed if no program is assigned",
                                        null=True, blank=True)
     programs = models.ManyToManyField(Program, blank=True)
+    venue = models.CharField(max_length=100, blank=True,
+                             null=True, help_text="Will be displayed for default")
 
     def __str__(self):
         return f"Day {self.day.date} {self.start_time} - {self.end_time}"
