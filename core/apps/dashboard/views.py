@@ -1,6 +1,10 @@
+import time
+
 import pytz
 import xlwt
-import datetime
+import json
+from datetime import datetime, timezone, timedelta
+import requests
 
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
@@ -239,7 +243,7 @@ def payment_handler(request):
                 if request.POST.get("STATUS"):
                     transaction.status = request.POST.get("STATUS")
                 if request.POST.get("TXNDATE"):
-                    transaction.date = datetime.datetime.strptime(
+                    transaction.date = datetime.strptime(
                         request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
                         .replace(
                         tzinfo=pytz.UTC
@@ -354,3 +358,45 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                                                                               "online_transaction": online_transaction,
                                                                               })
         return render(request, "web/404.html")
+
+
+def transaction_verification(request):
+    if request.user.is_superuser:
+        transactions = Transaction.objects.filter(
+            status="INITIATED",
+            creation_time__lt=(datetime.now(timezone.utc)-timedelta(minutes=15))
+        )
+        for transaction in transactions:
+            paytmParams = dict()
+            paytmParams["body"] = {
+                "mid": settings.PAYTM_MERCHANT_ID,
+                "orderId": transaction.id,
+            }
+            checksum = generate_checksum(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_KEY)
+            paytmParams["head"] = {
+                "signature": checksum
+            }
+            post_data = json.dumps(paytmParams)
+            url = "https://securegw.paytm.in/v3/order/status"
+            response = requests.post(url, data=post_data, headers={"Content-type": "application/json"}).json()
+            if response['body']['resultInfo']['resultStatus'] == "TXN_SUCCESS":
+                for program in transaction.events_selected.all():
+                    transaction.registration.student.registered_programs.add(program)
+                if not transaction.registration.made_successful_transaction:
+                    transaction.registration.made_successful_transaction = True
+                    transaction.registration.save()
+                transaction.status = "TXN_SUCCESS"
+                transaction.raw_response = response
+                transaction.save()
+            elif response['body']['resultInfo']['resultStatus'] == "TXN_FAILURE":
+                transaction.status = "TXN_FAILURE"
+                transaction.failure_msg = response['body']['resultInfo']['resultMsg']
+                transaction.save()
+            else:
+                transaction.delete()
+            time.sleep(2)
+
+        return HttpResponse("Done")
+
+
+
