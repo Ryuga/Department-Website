@@ -99,6 +99,7 @@ class Registration(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="my_registrations")
     qr = models.URLField(blank=True, null=True)
     made_successful_transaction = models.BooleanField(default=False)
+    physical_id_allotted = models.BooleanField(default=False)
 
     def registered_programs(self):
         return self.transaction_set.filter(status="TXN_SUCCESS").values_list("events_selected_json")

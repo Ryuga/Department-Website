@@ -280,11 +280,16 @@ class RegistrationDetailView(LoginRequiredMixin, View):
 class AdminRegistrationDetailView(LoginRequiredMixin, View):
 
     def get(self, request, reg_id=None):
-        if request.user.is_superuser:
+        if request.user.is_staff:
             try:
                 registration = Registration.objects.get(id=reg_id)
             except Registration.DoesNotExist:
                 registration = None
+            if request.GET.get("allot") == 'true':
+                registration.physical_id_allotted = True
+                registration.save()
+                return render(request,
+                              "dashboard/extendable/registration-detail-section.html", {"registration": registration})
             if request.GET.get("ajax") == 'true':
                 return render(request,
                               "dashboard/extendable/registration-detail-section.html", {"registration": registration})
