@@ -37,7 +37,7 @@
                                              <tr {% if program in request.user.student.registered_programs.all %} class="table-primary" {% endif %}>
                                                 <td>{{ schedule.start_time }} - {{ schedule.end_time }}</td>
                                                 <td><i class="fas fa-square"></i>   {{ program.name }}</td>
-                                                <td><i class="fas fa-square"></i>   {{ program.venue }}</td>
+                                                <td>{{ program.venue }}</td>
                                              </tr>
                                             {% endfor %}
                                          {% else %}
