@@ -303,7 +303,7 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
         if request.user.is_staff:
             if request.user.is_superuser and request.GET.get("type"):
                 workbook = xlwt.Workbook()
-                sheet = workbook.add_sheet("registrations")
+                sheet = workbook.add_sheet("registrations", cell_overwrite_ok=True)
                 i = 1
                 if request.GET.get("type") == "all":
                     registrations = Registration.objects.filter(made_successful_transaction=True)
