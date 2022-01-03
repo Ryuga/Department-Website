@@ -78,7 +78,6 @@
    </div>
 </div>
  <script>
- $(document).load(function (){
     $('#allotIdBtn').click(function (){
         let csrftoken = getCookie("csrftoken")
         let reg_id = $('#regIdInput').val();
@@ -92,7 +91,6 @@
         },
         });
     });
- })
  </script>
 {% else %}
 
