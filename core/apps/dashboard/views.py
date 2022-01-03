@@ -5,7 +5,7 @@ import xlwt
 import json
 from datetime import datetime, timezone, timedelta
 import requests
-
+from paytmchecksum import PaytmChecksum
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse
@@ -372,7 +372,7 @@ def transaction_verification(request):
                 "mid": settings.PAYTM_MERCHANT_ID,
                 "orderId": transaction.id,
             }
-            checksum = generate_checksum(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_KEY)
+            checksum = PaytmChecksum.generateSignature(json.dumps(paytmParams["body"]), settings.PAYTM_MERCHANT_KEY)
             paytmParams["head"] = {
                 "signature": checksum
             }
