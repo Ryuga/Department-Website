@@ -401,7 +401,6 @@ def transaction_verification(request):
                 else:
                     transaction.delete()
                 time.sleep(2)
-
         return HttpResponse("Done")
 
 

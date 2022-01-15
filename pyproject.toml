@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "department-website"
+version = "0.1.0"
+description = "Website for the Department of Computer Science, Christ College Irinjalakuda"
+authors = ["ryuga <vaishnav2353@gmail.com>"]
+license = "MIT LICENSE"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Django = "^4.0.1"
+gunicorn = "^20.1.0"
+python-decouple = "^3.5"
+psycopg2-binary = "^2.9.3"
+Markdown = "^3.3.6"
+django-ipware = "^4.0.2"
+requests = "^2.27.1"
+google-auth-oauthlib = "^0.4.6"
+pytz = "^2021.3"
+pycrypto = "^2.6.1"
+xlwt = "^1.3.0"
+paytmchecksum = "^1.7.0"
+"backports.weakref" = "^1.0.post1"
+django-hosts = "^5.0"
+Pillow = "^9.0.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
