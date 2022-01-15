@@ -139,7 +139,8 @@ class Program(models.Model):
     description = models.TextField(null=True, blank=True)
     image = models.URLField(null=True, blank=True)
     staff = models.ForeignKey("web.Faculty", null=True, on_delete=models.CASCADE)
-    registration_open = models.BooleanField(default=True)
+    spot_registration_open = models.BooleanField(default=True)
+    online_registration_open = models.BooleanField(default=True)
     venue = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):

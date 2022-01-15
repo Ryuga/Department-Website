@@ -112,7 +112,10 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     def get(self, request):
         programs = []
         event = Event.objects.get(link="zephyrus30")
-        all_programs = event.program_set.filter(registration_open=True)
+        if request.user.is_superuser:
+            all_programs = event.program_set.filter(spot_registration_open=True)
+        else:
+            all_programs = event.program_set.filter(online_registration_open=True)
         if request.user.is_superuser:
             if request.GET.get("ajax") == "true":
                 does_not_exist = False
@@ -402,6 +405,3 @@ def transaction_verification(request):
                     transaction.delete()
                 time.sleep(2)
         return HttpResponse("Done")
-
-
-
