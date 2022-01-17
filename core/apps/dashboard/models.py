@@ -15,35 +15,30 @@ def default_json():
 
 
 class Event(models.Model):
-    EVENT_CHOICES = (
-        ("upcoming", "Upcoming"),
-        ("live", "Live"),
-        ("ended", "Ended"),
-    )
-    SKILL_LEVEL_CHOICES = (
-        ("Open for all", "Open for all"),
-        ("Beginner", "Beginner"),
-        ("Intermediate", "Intermediate"),
-        ("Advanced", "Advanced"),
-    )
     name = models.CharField(max_length=100)
     link = models.SlugField(max_length=30, null=True,
                             blank=True, help_text="Leave empty to auto create or add custom",
                             unique=True)
     registration_open_date = models.DateTimeField(null=True)
     registration_end_date = models.DateTimeField(null=True)
-    status = models.CharField(choices=EVENT_CHOICES, default="upcoming", max_length=10)
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)
     image_url = models.URLField()
     venue = models.CharField(max_length=30)
     topic = models.CharField(max_length=30, null=True, blank=True)
     host = models.CharField(max_length=30, null=True, blank=True)
-    skill_level = models.CharField(max_length=30, null=True, blank=True, choices=SKILL_LEVEL_CHOICES)
     description = models.TextField()
     markdown_content = models.TextField(null=True, blank=True, help_text="Markdown content if any")
     staff_in_charge = models.ForeignKey("web.Faculty", on_delete=models.SET_NULL, null=True, blank=True)
     registration_link = models.URLField(null=True, blank=True, help_text="Optional")
+
+    @property
+    def status(self):
+        if time_now() < self.start_date:
+            return "upcoming"
+        elif time_now() > self.end_date:
+            return "ended"
+        return "live"
 
     @property
     def month(self):
