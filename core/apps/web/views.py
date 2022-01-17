@@ -1,9 +1,10 @@
+import datetime
 import hashlib
 
 from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
-from core.apps.dashboard.models import Event, Registration, Program
+from core.apps.dashboard.models import Event, Registration, Program, time_now
 from django.views.generic import ListView, View
 
 from ipware import get_client_ip
@@ -16,7 +17,7 @@ def zephyrus_redirect(request):
 class IndexView(View):
     def get(self, request):
         context = {}
-        context["upcoming_events"] = Event.objects.filter(status="upcoming")
+        context["upcoming_events"] = Event.objects.filter(start_date__gt=time_now())
         context["messages"] = Message.objects.all()[:3]
         ip, is_routable = get_client_ip(request)
         if is_routable:
