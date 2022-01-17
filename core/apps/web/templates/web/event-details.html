@@ -73,14 +73,6 @@
 									</ul>
 								</div>
                                 {% endif %}
-                                {% if event.facebook_page_link or event.twitter_link or event.instagram_page_link  %}
-								<h5 class="m-t0 m-b20">Social Links</h5>
-                                {% endif %}
-								<ul class="list-inline contact-social-bx">
-									{% if event.facebook_page_link %}<li><a href="{{ event.facebook_page_link }}" class="btn outline radius-xl"><i class="fa fa-facebook"></i></a></li>{% endif %}
-									{% if event.twitter_link %}<li><a href="{{ event.twitter_link }}" class="btn outline radius-xl"><i class="fa fa-twitter"></i></a></li>{% endif %}
-									{% if event.instagram_page_link %}<li><a href="{{ event.instagram_page_link }}" class="btn outline radius-xl"><i class="fa fa-instagram"></i></a></li>{% endif %}
-								</ul>
                                 {% if event.registration_link %}
                                     <a class="btn w-100" href="{{ event.registration_link }}">Register Now</a>
                                 {% endif %}

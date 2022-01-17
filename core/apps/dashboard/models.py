@@ -43,9 +43,6 @@ class Event(models.Model):
     description = models.TextField()
     markdown_content = models.TextField(null=True, blank=True, help_text="Markdown content if any")
     staff_in_charge = models.ForeignKey("web.Faculty", on_delete=models.SET_NULL, null=True, blank=True)
-    facebook_page_link = models.URLField(null=True, blank=True, help_text="Optional")
-    instagram_page_link = models.URLField(null=True, blank=True, help_text="Optional")
-    twitter_link = models.URLField(null=True, blank=True, help_text="Optional")
     registration_link = models.URLField(null=True, blank=True, help_text="Optional")
 
     @property
