@@ -1,15 +1,15 @@
 {% load static %}
 
 {% if not does_not_exist %}
-<div class="widget-box">
-    <div class="wc-title">
+<div class="card p-2">
+    <div class="card-header bg-transparent">
         <h4>Event Registration</h4>
     </div>
-    <div class="widget-inner">
+    <div class="card-body">
         <div class="row">
             <div class="col-lg-5">
                 <div class="card mb-3">
-                    <div class="card-header">
+                    <div class="card-header bg-transparent">
                         <div class="form-check">
                         <b>Events</b>
                           <span style="float:right;">
@@ -43,7 +43,7 @@
                 </div>
                 {% endif %}
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header bg-transparent">
                         Cost Summary
                     </div>
                     {% include 'dashboard/extendable/cost_summary.html' %}
