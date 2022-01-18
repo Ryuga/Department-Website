@@ -15,12 +15,12 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12 m-b30">
-					<div class="widget-box">
-						<div class="wc-title">
+					<div class="card p-2">
+						<div class="card-header bg-transparent">
 							<h4>Event Schedule</h4>
 						</div>
                         {% for day in event_days %}
-						<div class="widget-inner border-dark">
+						<div class="card-body border-dark">
                             <h5>{{ day.date }}</h5>
                             <table class="table w-100">
                                     <thead>
