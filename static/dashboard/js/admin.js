@@ -16,14 +16,8 @@ Theme Version:	1.0.0
 		var checkSelectorExistence = function(selectorName) {
 		  if(jQuery(selectorName).length > 0){return true;}else{return false;}
 		};
-		
-		var searchToggle = function() {
-		  $(".ttr-search-toggle").on("click", function(e) {
-			e.preventDefault();
-			$(".ttr-search-bar").toggleClass("active");
-		  })
-		};
-		
+
+
 		var closeNav = function() {
 		  $(".ttr-overlay, .ttr-sidebar-toggle-button").on("click", function() {
 			$("body").removeClass("ttr-opened-sidebar"), $("body").removeClass("ttr-body-fixed");
@@ -88,79 +82,8 @@ Theme Version:	1.0.0
 				!0 === $(".ttr-header-submenu").hasClass("active") && !a.hasClass("ttr-submenu-toggle") && a.parents(".ttr-header-submenu").length < 1 && $(".ttr-header-submenu").removeClass("active"), a.parents(".ttr-search-bar").length < 1 && !a.hasClass("ttr-search-bar") && !a.parent().hasClass("ttr-search-toggle") && !a.hasClass("ttr-search-toggle") && $(".ttr-search-bar").removeClass("active")
 			});
 		}
-		
-		var displayGraph = function() {
-			if(!checkSelectorExistence('#chart')){return;}
-			Chart.defaults.global.defaultFontFamily = "rubik";
-			Chart.defaults.global.defaultFontColor = '#999';
-			Chart.defaults.global.defaultFontSize = '12';
 
-			var ctx = document.getElementById('chart').getContext('2d');
 
-			var chart = new Chart(ctx, {
-				type: 'line',
-
-				// The data for our dataset
-				data: {
-					labels: ["January", "February", "March", "April", "May", "June"],
-					// Information about the dataset
-					datasets: [{
-						label: "Views",
-						backgroundColor: 'rgba(0,0,0,0.05)',
-						borderColor: '#4c1864',
-						borderWidth: "3",
-						data: [196,132,215,362,210,252],
-						pointRadius: 4,
-						pointHoverRadius:4,
-						pointHitRadius: 10,
-						pointBackgroundColor: "#fff",
-						pointHoverBackgroundColor: "#fff",
-						pointBorderWidth: "3",
-					}]
-				},
-
-				// Configuration options
-				options: {
-
-					layout: {
-					  padding: 0,
-					},
-
-					legend: { display: false },
-					title:  { display: false },
-
-					scales: {
-						yAxes: [{
-							scaleLabel: {
-								display: false
-							},
-							gridLines: {
-								 borderDash: [6, 6],
-								 color: "#ebebeb",
-								 lineWidth: 1,
-							},
-						}],
-						xAxes: [{
-							scaleLabel: { display: false },  
-							gridLines:  { display: false },
-						}],
-					},
-
-					tooltips: {
-					  backgroundColor: '#333',
-					  titleFontSize: 12,
-					  titleFontColor: '#fff',
-					  bodyFontColor: '#fff',
-					  bodyFontSize: 12,
-					  displayColors: false,
-					  xPadding: 10,
-					  yPadding: 10,
-					  intersect: false
-					}
-				},
-			});
-		}
-		
 		/* Set Counter Up Function */
 		var setCounterUp = function(){
 			/* change counter to counter-up*/
@@ -184,12 +107,10 @@ Theme Version:	1.0.0
 		
 		return {
 			initialHelper:function(){
-				searchToggle();
 				closeNav();
 				leftSidebar();
 				materialButton();
 				headerSubMenu();
-				displayGraph();
 				setStylishScroll();
 			},
 			
