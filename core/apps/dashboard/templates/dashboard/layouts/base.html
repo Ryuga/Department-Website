@@ -92,7 +92,7 @@
 		                </a>
 		                <ul>
 		                	<li>
-		                		<a href="{% url 'registration' %}" class="ttr-material-button"><span class="ttr-label">Registration</span></a>
+		                		<a href="{% url 'registration' %}" class="ttr-material-button"><span class="ttr-label"> {% if request.user.is_superuser %}Spot {% endif %}Registration</span></a>
 		                	</li>
 							<li>
 		                		<a href="{% url 'events' %}" class="ttr-material-button"><span class="ttr-label">Programs</span></a>
