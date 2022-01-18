@@ -9,14 +9,8 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- All PLUGINS CSS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/assets.css' %}">
-
-{#    	<!-- TYPOGRAPHY ============================================= -->#}
-    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/typography.css' %}">
 
 	<!-- STYLESHEETS ============================================= -->
-	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/dashboard.css' %}">
 	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'dashboard/css/color/color-1.css' %}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -27,12 +21,9 @@
 	<!-- header start -->
 	<header class="ttr-header">
 		<div class="ttr-header-wrapper">
-			<!--sidebar menu toggler start -->
 			<div class="ttr-toggle-sidebar ttr-material-button">
-				<i class="ti-close ttr-open-icon"></i>
-				<i class="ti-menu ttr-close-icon"></i>
+				<i class="fa fa-bars"></i>
 			</div>
-			<!--sidebar menu toggler end -->
 			<div class="ttr-header-menu">
 				<ul class="ttr-header-navigation">
 					<li>
@@ -41,7 +32,6 @@
 				</ul>
 			</div>
 			<div class="ttr-header-right ttr-with-seperator">
-				<!-- header right menu start -->
 				<ul class="ttr-header-navigation">
 					<li>
 						<a href="#" class="ttr-material-button ttr-submenu-toggle"><span class="ttr-user-avatar"><img alt="" src="{{ request.user.student.image_url }}" width="32" height="32"></span></a>
@@ -53,23 +43,17 @@
 						</div>
 					</li>
 				</ul>
-				<!-- header right menu end -->
 			</div>
 		</div>
 	</header>
-	<!-- header end -->
-	<!-- Left sidebar menu start -->
 	<div class="ttr-sidebar">
 		<div class="ttr-sidebar-wrapper content-scroll">
-			<!-- side menu logo start -->
 			<div class="ttr-sidebar-logo">
-				<a href="#"><img src="https://lairesit.sirv.com/Images/logo-blue.png" width="122" height="27"></a>
+				<a href="#"><img src="https://lairesit.sirv.com/Images/logo-blue.png" width="122"></a>
 				<div class="ttr-sidebar-toggle-button">
 					<i class="ti-arrow-left"></i>
 				</div>
 			</div>
-			<!-- side menu logo end -->
-			<!-- sidebar menu start -->
 			<nav class="ttr-sidebar-navi">
 				<ul>
 					<li>
@@ -111,12 +95,9 @@
 		                </ul>
 		            </li>
 				</ul>
-				<!-- sidebar menu end -->
 			</nav>
-			<!-- sidebar menu end -->
 		</div>
 	</div>
-	<!-- Left sidebar menu end -->
 
     {% block content %}{% endblock content %}
 

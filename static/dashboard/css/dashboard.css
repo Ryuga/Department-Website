@@ -499,18 +499,16 @@
 	background-color: #EEE;
 }
 .ttr-sidebar-navi a > span{
-	display: table-cell; 
+	display: table-cell;
 }
 
 .ttr-sidebar-navi a > span.ttr-icon{
     width: 40px;
-    height: 50px;
     line-height: 0;
 	font-size: 19px;
 }
 .ttr-sidebar-navi a > span.ttr-arrow-icon{
 	width: 24px;
-    height: 50px;
     line-height: 0;
     vertical-align: middle;
     -webkit-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -628,32 +626,6 @@
 	}
 }
 
-
-/*-------------------------------------------------------------------
-[6. Easy color change with CSS ]
-[open the section below to see the color change]
-*------------------------------------------------------------------*/
-/*
-.m-header, .m-search-bar{
-	background: #159957;
-	background: -webkit-linear-gradient(to right, #155799, #159957); 
-	background: linear-gradient(to right, #155799, #159957);
-}
-
-.m-notify-tab .nav li a.active{
-	border-color: #155799;
-	color: #155799;
-}
-.m-notify-tab .nav li a:hover{
-	border-color: #155799;
-}
-.m-sidebar-navi ul li.show > a, .m-header a{
-	color: #155799;
-}
-.m-sidebar-wrapper::-webkit-scrollbar-thumb {
-    background: #155799;
-}
-*/
 
 
 /*-------------------------------------------------------------------
@@ -1175,68 +1147,7 @@
 .edit-profile textarea.form-control{
 	height:150px;
 }
-/* MailBox */
-.email-wrapper{
-	display:flex;
-}
-.email-menu-bar{
-	width:240px;
-	min-width:240px;
-	border-right: 1px solid #e5e5e5;
-}
-.email-menu-bar-inner ul{
-	list-style:none;
-	margin:0;
-	padding:20px;
-}
-.email-menu-bar-inner ul li{
-	color:#000;
-}
-.email-menu-bar-inner ul li a{
-	color: #000;
-    font-size: 14px;
-    padding: 12px 20px;
-    display: block;
-    border-radius: 4px;
-}
-.email-menu-bar-inner ul li a:hover,
-.email-menu-bar-inner ul li.active a{
-	background-color:#f6f6f6;
-}
-.email-menu-bar-inner ul li a i{
-	font-size: 18px;
-	margin-right: 10px;
-	width: 20px;
-	text-align: center;
-}
-.email-menu-bar-inner ul li a .badge{
-	width: 18px;
-	height: 18px;
-	line-height: 20px;
-	padding: 0;
-	font-weight: 400;
-	margin-left: 5px;
-	position: relative;
-	top: -2px;
-}
-.compose-mail{
-	padding:20px;
-	border-bottom:1px solid #e5e5e5;
-}
 
-/* toolbar */
-.mail-list-container {
-    width: 100%;
-}
-.mail-toolbar .check-all{
-	margin-right:15px;
-}
-.mail-toolbar{
-	padding:20px;
-	border-bottom:1px solid #e5e5e5;
-	display: flex;
-	align-items: center;
-}
 .next-prev-btn{
 	margin-left:auto;
 }
@@ -1254,9 +1165,6 @@
 .next-prev-btn a:hover{
 	background-color:#e1e1e1;
 }
-.mail-search-bar .form-control{
-	border-radius: 4px;
-}
 .checkbox-st1{
 	min-height: 16px;
 	padding-left: 16px;
@@ -1273,185 +1181,18 @@
     width: 16px;
 	height: 16px;
 }
-
-.mail-list-info{
-	display:flex;
-	align-items: center;
-	position: relative;
-}
-.mail-list-info:hover:nth-child(2n+1),
-.mail-list-info:hover{
-	background-color:#eaeaea;
-}
-.mail-list-info .mail-list-title-info p,
-.mail-list-info .mail-list-title h6{
-	margin:0;
-}
-.mail-list-info .mail-list-title-info p{
-	font-size: 15px;
-	line-height: 18px;
-	color:#7a7a7a;
-}
-.mail-list-info .mail-list-title h6{
-	font-size: 15px;
-	font-weight: 500;
-	line-height: 18px;
-}
-.mail-list-time span{
-	font-size: 14px;
-	font-weight: 400;
-	line-height: 18px;
-	color: #929292;
-	position: relative;
-	top: -3px;
-}
-.mail-rateing span{
-	color: #929292;
-	font-size: 18px;
-	line-height: 18px;
-	position: relative;
-	top: -2px;
-}
-.mail-rateing,
-.mail-list-title,
-.mail-list-title-info,
-.mail-list-time,
-.checkbox-list{
-	padding-top: 15px;
-    padding-bottom: 15px;
-    height: 50px;
-}
-.mail-list-title{
-	padding-left: 10px;
-}
-.mail-list-time{
-	padding-right: 20px;
-	padding-left: 10px;
-}
-.mail-list-title-info{
-	padding-left: 10px;
-	-ms-flex-positive: 1 !important;
-	flex-grow: 1 !important;
-}
-.mail-rateing{
-	padding-left: 10px;
-}
 .checkbox-list{
 	padding-left:20px;
 }
 .mail-list-info:nth-child(2n+1){
 	background-color:#f6f6f6;
 }
-/* Mailbox Toolbar */
-.mailbox-toolbar{
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	position: absolute;
-	right: 20px;
-	background: #eaeaea;
-	opacity: 0;
-	transition: all 0.5s;
-}
-.mailbox-toolbar li{
-	display: inline-block;
-	width: 30px;
-	height: 30px;
-	border-radius: 20px;
-	background: rgba(0,0,0,0.1);
-	color: #404040;
-	text-align: center;
-	line-height: 30px;
-	font-size: 14px;
-	transition: all 0.5s;
-}
-.mailbox-toolbar li:hover{
-	transform:scale(1.2);
-	-moz-transform:scale(1.2);
-	-webkit-transform:scale(1.2);
-	-ms-transform:scale(1.2);
-	-o-transform:scale(1.2);
-}
-.mail-list-info:hover .mailbox-toolbar{
-	opacity: 1;
-}
-.btn-info-icon{
+.btn-info-icon {
 	border: 0;
-	background-color: rgba(0,0,0,0.05);
+	background-color: rgba(0, 0, 0, 0.05);
 	border-radius: 40px;
 	margin-left: 10px;
 }
-.all-msg-toolbar .dropdown-menu{
-	box-shadow: 0 10px 30px 0 rgba(0,0,0,0.2);
-	border: 0;
-}
-.all-msg-toolbar .dropdown-menu li{
-	
-}
-.all-msg-toolbar .dropdown-menu li a{
-    padding: 8px 15px;
-    display: block;
-    font-size: 14px;
-    color: #202020;
-}
-.all-msg-toolbar .dropdown-menu li a:hover{
-	background-color:rgba(0,0,0,0.1);
-}
-.all-msg-toolbar .dropdown-menu li a i{
-	margin-right:5px;
-}
-
-/* Read */
-.mailbox-view{
-	width: 100%;
-	padding:25px;
-}
-.mailbox-view-title {
-    padding: 0px 0px 10px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-	margin-bottom: 25px;
-}
-.mailbox-view-title .send-mail-title{
-	margin-bottom:0;
-}
-.send-mail-user{
-	display:flex;
-	align-items:center;
-}
-.send-mail-user-pic{
-	width: 40px;
-	height: 40px;
-	border-radius: 50px;
-	overflow: hidden;
-	margin-right: 10px;
-}
-.send-mail-user-info h5{
-	font-size: 12px;
-	color: #C0C0C0;
-	margin: 0;
-	line-height: 18px;
-	font-weight: 400;
-}
-.send-mail-user-info h4{
-	font-size: 15px;
-	margin: 0;
-	line-height: 22px;
-	color: #000;
-	text-transform: capitalize;
-}
-.send-mail-full-info {
-    display: flex;
-    align-items: center;
-}
-
-.send-mail-full-info {
-    display: flex;
-    align-items: center;
-}
-.send-mail-full-info  .time span{
-	font-size:12px;
-}
-
 .read-content-body {
     padding: 25px 0 0 0;
 }
@@ -1467,40 +1208,6 @@
 	color: #303030;
 	margin-bottom: 15px;
 }
-.mailbox-download-file a{ 
-	font-size: 12px;
-	padding: 8px 20px;
-	display: inline-block;
-	background-color: rgba(0,0,0,0.05);
-	border-radius: 4px;
-	color: #000;
-	margin-bottom: 4px;
-}
-.mailbox-download-file a i{
-	font-size: 14px;
-    margin-right: 5px;
-    position: relative;
-    top: 1px;
-}
-/* Mail Compose */
-.mail-compose{
-	padding:30px 15px;
-}
-.mail-compose .dropzone{
-    background: #f3f6f9!important
-}
-.mail-compose .dropzone {
-    border: 1px dashed #dddfe1;
-    min-height: 21rem;
-    position: relative
-}
-.mail-compose .dropzone .tt-message{
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%)
-}
 .dropzone {
     background: #f3f6f9;
     border: 2px solid rgba(120, 130, 140, .13)
@@ -1512,54 +1219,8 @@
 [data-theme-version=dark] .compose-content .dropzone{
     background: #323640!important
 }
-/* Summernote */
-.note-toolbar {
-	z-index: 1;
-}
-.note-toolbar .btn {
-    background: #fff;
-    border: 1px solid #ebedf2;
-    padding: 4px 10px;
-    font-size: 12px;
-    color: #4f5264;
-    border-radius: 3px;
-}
-.note-toolbar .btn:hover{
-	color: #4f5264;
-	 background: #ebedf2;
-}
-.note-editor.note-frame .note-editing-area .note-editable {
-	padding: 10px 20px;
-}
-.card-header.note-toolbar {
-    padding: 10px 15px 15px 15px;
-    margin: 0;
-	background: #f7f8fa;
-}
-.note-editor.note-frame {
-    border: 1px solid #ebedf2;
-}
 .card-header{
 	 border-bottom: 1px solid #ebedf2;
-}
-.note-editable ol,
-.note-editable ul{
-	padding-left:30px;
-}
-.imageuploadify .imageuploadify-images-list {
-	display: inline-block;
-	padding: 0 20px;
-}
-.courses-approve {
-    width: 150px;
-    height: 150px;
-    color: #30af93;
-    border: 5px solid;
-    border-radius: 100px;
-    line-height: 160px;
-    text-align: center;
-    font-size: 86px;
-	margin: 40px auto 40px;
 }
 @media only screen and (max-width: 1200px) {
 	.ttr-pinned-sidebar .ttr-wrapper {
@@ -1576,27 +1237,6 @@
 	}
 	.ttr-sidebar-navi{
 		padding-bottom:60px;
-	}
-}
-@media only screen and (max-width: 991px) {
-	.admin-courses .card-courses-media {
-		width: 140px;
-		min-width: 140px;
-		height: 140px;
-		margin-right: 15px;
-	}
-	.admin-courses .card-courses-media img{
-		height: 140px;
-	}
-	.admin-courses .card-courses-view > li{
-		padding-right: 10px;
-	}
-	.mail-rateing, 
-	.mail-list-title, 
-	.mail-list-title-info, 
-	.mail-list-time, 
-	.checkbox-list{
-		height:auto;
 	}
 }
 @media only screen and (max-width: 767px) {
@@ -1628,39 +1268,6 @@
 	.card-courses-media img{
 		height: 140px;
 	}
-	.admin-courses .card-courses-view{
-		display: table;
-	}
-	.admin-courses .card-courses-view > li {
-		padding-right: 10px;
-		width: 100%;
-		float: left;
-		margin-bottom: 10px;
-	}
-	.admin-courses .card-courses-view > li.card-courses-categories,
-	.admin-courses .card-courses-view > li.card-courses-review,
-	.admin-courses .card-courses-view > li.card-courses-stats,
-	.admin-courses .card-courses-view > li.card-courses-price {
-		width:25%;	
-	}
-	.admin-courses .card-courses-list-bx {
-		margin-bottom: 0px;
-	}
-	.admin-courses .card-courses-view > li.card-courses-price {
-		text-align:right;
-		padding-right: 0;
-	}
-	.email-wrapper {
-		display: block;
-	}
-	.email-menu-bar{
-		border-right: 0 solid #e5e5e5;
-		border-bottom: 1px solid #e5e5e5;
-		width: 100%;
-	}
-	.mail-search-bar {
-		width: 100px;
-	}
 	.ttr-sidebar-toggle-button {
 		display: none;
 	}
@@ -1688,49 +1295,6 @@
 	.db-breadcrumb-list li {
 		font-size: 12px;
 	}
-	.admin-courses .card-courses-media,
-	.bookmarks-bx .card-courses-media {
-		width: 100%;
-		min-width: 100%;
-		height: auto;
-		margin-bottom:15px;
-	}
-	.admin-courses.card-courses-list,
-	.bookmarks-bx.card-courses-list {
-		display: block;
-	}
-	.bookmarks-bx .card-courses-view > li {
-		position: relative;
-		padding-right: 10px;
-		float:left;
-	}
-	.bookmarks-bx  .card-courses-view {
-		display: table;
-		clear: both;
-	}
-	.admin-courses   .card-courses-categories,
-	.bookmarks-bx  .card-courses-categories{
-		width:100%;
-		margin-bottom:10px;
-	}
-	.bookmarks-bx  .card-courses-review,
-	.bookmarks-bx  .card-courses-price{
-		width:50%;
-	}
-	.bookmarks-bx  .card-courses-price{
-		text-align:right;
-	}
-	.admin-courses .card-courses-view > li.card-courses-categories,
-	.admin-courses .card-courses-view > li.card-courses-review,
-	.admin-courses .card-courses-view > li.card-courses-price {
-		width:33.33%;	
-	}
-	.admin-courses .card-courses-view > li.card-courses-price h5{
-		margin-bottom:0;
-	}
-	.admin-courses .card-courses-view > li.card-courses-stats{
-		display:none;
-	}
 	.card-courses-dec p {
 		margin-bottom: 10px;
 	}
@@ -1740,56 +1304,6 @@
 	}
 	.db-breadcrumb{
 		margin-bottom: 15px;
-	}
-	.mail-list-title-info{
-		display:none;
-	}
-	.mail-list-time{
-		margin-left: auto;
-	}
-	.mail-rateing, 
-	.mail-list-title, 
-	.mail-list-title-info, 
-	.mail-list-time, 
-	.checkbox-list {
-		height: 50px;
-	}
-	.imageuploadify .imageuploadify-images-list span.imageuploadify-message {
-		font-size: 12px;
-	}
-	.mail-compose {
-		padding: 30px 5px;
-	}
-	.imageuploadify .imageuploadify-images-list .imageuploadify-container{
-		margin: 5px 5px !important;
-	}
-	.send-mail-details > .d-flex{ 
-		display: block !important;
-	}
-	.send-mail-full-info{
-		margin-top: 10px;
-	}
-	.admin-review .card-courses-view {
-		display: table;
-		clear: both;
-	}
-	.admin-review .card-courses-view > li {
-		padding-right: 0;
-		float: left;
-	}
-	.admin-review .card-courses-view > li.card-courses-review,
-	.admin-review .card-courses-view > li.card-courses-categories{
-		width:50%;
-	}
-	.admin-review .card-courses-view > li.card-courses-categories{
-		text-align:right;
-	}
-	.admin-review .card-courses-view > li.card-courses-user{
-		width:100%;
-		margin-bottom: 15px;
-	}
-	.admin-review .card-courses-list-bx {
-		margin-bottom: 10px;
 	}
 	.ttr-sidebar-toggle-button {
 		display: none;
