@@ -1,12 +1,3 @@
-/*
-***
-***
-Name: 			admin.js
-Written by: 	ThemeTrade 
-Theme Version:	1.0.0
-***
-***
-*/
 (function($) {
 	
 	'use strict';
@@ -45,29 +36,7 @@ Theme Version:	1.0.0
 			});
 		  
 		};
-		
-		var waveEffect = function(e, a) {
-		  var s = ".ttr-wave-effect",
-				n = e.outerWidth(),
-				t = a.offsetX,
-				i = a.offsetY;
-			e.prepend('<span class="ttr-wave-effect"></span>'), $(s).css({
-				top: i,
-				left: t
-			}).animate({
-				opacity: "0",
-				width: 2 * n,
-				height: 2 * n
-			}, 500, function() {
-				e.find(s).remove()
-		  });
-		};
-		
-		var materialButton = function() {
-			$(".ttr-material-button").on("click", function(e) {
-				waveEffect($(this), e)
-			});
-		}
+
 		
 		var headerSubMenu = function() {
 			$(".ttr-header-submenu").show();
@@ -81,17 +50,6 @@ Theme Version:	1.0.0
 				var a = $(e.target);
 				!0 === $(".ttr-header-submenu").hasClass("active") && !a.hasClass("ttr-submenu-toggle") && a.parents(".ttr-header-submenu").length < 1 && $(".ttr-header-submenu").removeClass("active"), a.parents(".ttr-search-bar").length < 1 && !a.hasClass("ttr-search-bar") && !a.parent().hasClass("ttr-search-toggle") && !a.hasClass("ttr-search-toggle") && $(".ttr-search-bar").removeClass("active")
 			});
-		}
-
-
-		/* Set Counter Up Function */
-		var setCounterUp = function(){
-			/* change counter to counter-up*/
-			if(!checkSelectorExistence('.counter')){return;}
-			 jQuery('.counter').counterUp({
-				delay: 10,
-				time: 3000
-			});	
 		}
 		
 		/* Stylish Scroll */
@@ -109,13 +67,8 @@ Theme Version:	1.0.0
 			initialHelper:function(){
 				closeNav();
 				leftSidebar();
-				materialButton();
 				headerSubMenu();
 				setStylishScroll();
-			},
-			
-			afterLoadThePage:function(){
-				setCounterUp();
 			},
 		}
 			
