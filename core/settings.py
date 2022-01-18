@@ -115,8 +115,8 @@ GOOGLE_CLIENT_SECRET = {
      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
      "client_secret": config("GOOGLE_CLIENT_SECRET"),
      "redirect_uris": [
-         "https://dashboard.christcs.in/login/oauth2/google/",
-         "http://dashboard.christcs.inc:8000/login/oauth2/google/"
+         "https://dashboard.christcs.in/login/oauth2/google/",  # PRODUCTION
+         "http://dashboard.christcs.inc:8000/login/oauth2/google/"  # LOCAL TESTING
      ]
      }
 }

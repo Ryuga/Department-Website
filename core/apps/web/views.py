@@ -1,10 +1,9 @@
-import datetime
 import hashlib
 
 from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
-from core.apps.dashboard.models import Event, Registration, Program, time_now
+from core.apps.dashboard.models import Event, time_now
 from django.views.generic import ListView, View
 
 from ipware import get_client_ip
@@ -86,9 +85,3 @@ class AlumniListView(ListView):
     model = Batch
     paginate_by = 3
     queryset = Batch.objects.order_by('-year')
-
-
-class BackwardsCompatibilityRedirect(View):
-
-    def get(self, request, reg_id):
-        return redirect(to=f"https://dashboard.christcs.in/zephyrus/registration/details/{reg_id}/")

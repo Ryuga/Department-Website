@@ -2810,7 +2810,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 .portfolio-bx:hover .portfolio-info-bx{
 	bottom: 0;
 }
-.portfolio-bx:hover .media-ov2:before, 
+.portfolio-bx:hover .media-ov2:before,
 .portfolio-bx:hover .media-ov2:after{
 	opacity:0.7;
 }
@@ -3151,7 +3151,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	border-radius:100px;
 	border: 5px solid #fff;
 	box-shadow:0 0 15px 0 rgba(0,0,0,0.2);
-	margin:25px auto 15px; 
+	margin:25px auto 15px;
 }
 .user-profile-index-thumb{
 	width:150px;
@@ -3166,7 +3166,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	margin-bottom:15px;
 }
 .profile-info h4{
-	font-size:18px;	
+	font-size:18px;
 	margin-bottom: 0;
 }
 .profile-info span{
@@ -3191,13 +3191,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 .profile-content-bx{
 	border: 1px solid #e9e9e9;
 }
-.profile-tabnav{ 
+.profile-tabnav{
 	margin:20px 0;
 }
-.profile-tabnav .nav{ 
+.profile-tabnav .nav{
 	border:0;
 }
-.profile-tabnav .nav li{  
+.profile-tabnav .nav li{
 	display:block;
 	width:100%;
 }
@@ -3308,7 +3308,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 .account-container {
     max-width: 400px;
 	margin: auto;
-	padding: 30px 0;	
+	padding: 30px 0;
 }
 .custom-control-label:before{
 	width: 20px;
@@ -3352,7 +3352,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
   transform-origin: left top;
 } */
 /* Google Recaptcha */
- 
+
 .g-recaptcha,
 #rc-imageselect {
     transform:scale(0.99);

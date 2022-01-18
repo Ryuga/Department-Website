@@ -66,11 +66,11 @@ class GoogleAuthLoginCallback(View, ResponseMixin):
             try:
                 user = User.objects.get(email=email)
                 login(request, user)
-                return DashView.as_view()(self.request)
+                return redirect(to="/")
             except User.DoesNotExist:
                 user = create_user(email=email, avatar_url=avatar, access_token=access_token, name=name)
                 login(request, user)
-                return DashView.as_view()(self.request)
+                return redirect(to="/")
         else:
             return self.http_responce_404(request)
 

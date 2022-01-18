@@ -3114,7 +3114,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 		padding-top: 50px;
 		padding-bottom: 50px;
 	}
-	.upcoming-event-carousel.owl-btn-1 .owl-prev, 
+	.upcoming-event-carousel.owl-btn-1 .owl-prev,
 	.upcoming-event-carousel.owl-btn-1 .owl-next{
 		margin: 0 0 !important;
 	}
@@ -3132,7 +3132,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 	.info-bx{
 		font-size: 16px;
 	}
-	.upcoming-event-carousel.owl-btn-1 .owl-prev, 
+	.upcoming-event-carousel.owl-btn-1 .owl-prev,
 	.upcoming-event-carousel.owl-btn-1 .owl-next{
 		width: 40px;
 		height: 40px;
@@ -3184,7 +3184,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 		padding-bottom: 10px;
 		margin-bottom: 15px;
 	}
-	footer p, 
+	footer p,
 	footer li{
 		font-size: 13px;
 	}
