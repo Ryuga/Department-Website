@@ -11,11 +11,14 @@
 # Clone the repository or download as zip and cd into the root folder (Department-Website)
 # Terminal instructions (You're supposed run the below commands during the initial setup)
 
-# Install pipenv 
-$ pip install pipenv
+# Remove existing virtualenv module, We will let poetry install the required version
+$ apt-get remove virtualenv -y && python3 -m pip uninstall virtualenv -y
 
-# Install dependencies from Pipenv
-$ pipenv install
+# Install poetry
+$ pip install poetry
+
+# Install dependencies from poetry
+$ poetry install
 
 $ sudo nano .env
 # add the following environment variables
@@ -39,7 +42,7 @@ PAYTM_CALLBACK_URL = "http://dashboard.localhost:8000/payments/handlers/"
 LOCAL_DEVELOPMENT = True
 
 # Run the development server locally
-$ pipenv run server
+$ poetry run python3 manage.py server
 # this should run the Django development server on your localhost:8000.
 # now you can visit http://127.0.0.1:8000 and access the site.
 ```
@@ -61,11 +64,17 @@ $ pipenv run server
 # Update and upgrade apt
 $ sudo apt update && sudo apt upgrade -y
 
-# Install pipenv (any one method)
-$ pip3 install pipenv | python3 -m pip install pipenv | sudo apt install pipenv -y
+# Remove virtualenv and let poetry install the required version
+$ sudo apt-get remove virtualenv -y && sudo python3 -m pip uninstall virtualenv -y
 
-# Install dependencies from Pipenv
-$ sudo pipenv install
+# Clone the repository and cd into the folder
+$ git clone https://github.com/Ryuga/Department-Website.git && cd Department-Website
+
+# Install poetry
+$ sudo python3 -m pip install poetry
+
+# Install dependencies from poetry
+$ sudo poetry install
 
 $ sudo nano .env
 # add the following environment variables
@@ -89,7 +98,7 @@ PAYTM_CALLBACK_URL = "https://dashboard.christcs.in/payments/handlers/"
 LOCAL_DEVELOPMENT = False
 
 # Run collectstatic to collect static files to assets folder for production
-$ sudo pipenv run python manage.py collectstatic
+$ sudo poetry run python3 manage.py collectstatic
 
 # install supervisord
 $ sudo apt install supervisor -y
@@ -106,7 +115,7 @@ add the below config inside `/etc/supervisor/conf.d/gunicorn.conf`
 ```shell
 [program:gunicorn]
 directory=/home/ubuntu/Department-Website
-command=pipenv run gunicorn --workers 3 --bind unix:/home/ubuntu/Department-Website/app.sock core.wsgi:application
+command=poetry run python3 -m gunicorn --workers 3 --bind unix:/home/ubuntu/Department-Website/app.sock core.wsgi:application
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/gunicorn/gunicorn.err.log
