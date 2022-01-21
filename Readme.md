@@ -163,24 +163,29 @@ add the below config inside `/etc/nginx/site-available/django.conf`
 ```shell
 server {
         listen 80;
-        #listen 443 ssl http2;
-        #listen [::]:443 ssl http2;
-        #ssl on;
-        #ssl_certificate         /etc/ssl/certs/cert.pem;
-        #ssl_certificate_key     /etc/ssl/private/key.pem;
-        #ssl_client_certificate /etc/ssl/certs/cloudflare.crt;
-        #ssl_verify_client on;
+#        listen 443 ssl http2;
+#        listen [::]:443 ssl http2;
+#        ssl on;
+#        ssl_certificate         /etc/ssl/certs/cert.pem;
+#        ssl_certificate_key     /etc/ssl/private/key.pem;
+#        ssl_client_certificate /etc/ssl/certs/cloudflare.crt;
+#        ssl_verify_client on;
 
         server_name <ip_address_or_domain_here>;
 
         location / {
                 include proxy_params;
                 proxy_pass http://unix:/home/ubuntu/Department-Website/app.sock;
-                }
+        }
         location /static/ {
                 autoindex on;
                 alias /home/ubuntu/Department-Website/assets/;
-    }   
+        }   
+        location /protected/media/ {
+                internal;
+                alias /home/ubuntu/Department-Website/media/;
+        }
+    
 }
 ```
 Once added, test if the configurations are okay and symlink with `sites-enabled`
