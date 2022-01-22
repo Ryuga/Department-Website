@@ -271,7 +271,7 @@ class MyRegistrationDetailView(LoginRequiredMixin, View):
     model = Registration
 
     def get(self, request, event_slug):
-        registration = get_object_or_404(self.model, event__link=event_slug)
+        registration = get_object_or_404(self.model, event__link=event_slug, student=request.user.student)
         return render(request, "dashboard/registration_details.html", {"registration": registration})
 
 
