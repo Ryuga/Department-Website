@@ -1,7 +1,7 @@
 from django.urls import re_path
 from .views import (
     IndexView, about_view, lazy_load_faculty, GalleryListView,
-    EventView, CourseView, AlumniListView, zephyrus_redirect
+    EventView, CourseView, AlumniListView, dashboard_redirect
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -10,7 +10,7 @@ from django.urls import path
 app_name = "web"
 urlpatterns = [
     path('', IndexView.as_view(), name="home"),
-    path('zephyrus/', zephyrus_redirect, name="zephyrus"),
+    path('zephyrus/', dashboard_redirect, name="zephyrus"),
     re_path(r'^courses/(?P<slug>.*)', CourseView.as_view(), name="course_details"),
     re_path(r'^events/(?P<slug>.*)', EventView.as_view(), name="event_details"),
     re_path(r'^events/', EventView.as_view(), name="events"),
