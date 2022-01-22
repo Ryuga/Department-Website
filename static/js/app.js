@@ -63,7 +63,7 @@ $(document).ready(function (){
         let csrftoken = getCookie("csrftoken")
         let reg_id = $('#regIdInput').val();
         $.ajax({
-        url: `/zephyrus/registration/details/${reg_id}/?ajax=true`,
+        url: `/event/registration/details/${reg_id}/?ajax=true`,
         headers: {'X-CSRFToken': csrftoken},
         type: 'GET',
         success:function (data)

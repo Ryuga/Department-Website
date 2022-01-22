@@ -82,15 +82,20 @@
 		                		<a href="{% url 'schedule' %}" class="ttr-material-button"><span class="ttr-label">Schedule</span></a>
 		                	</li>
                             {% if request.user.is_staff %}
-                            <li>
-                                <a href="{% url 'registration_details_admin' %}" class="ttr-material-button"><span class="ttr-label">Registration Details</span></a>
-                            </li>
 		                	<li>
 		                		<a href="{% url 'registration_data' %}" class="ttr-material-button"><span class="ttr-label">Registration Data</span></a>
 		                	</li>
                             {% endif %}
 		                </ul>
 		            </li>
+                    {% if request.user.is_staff %}
+					<li>
+						<a href="{% url 'registration_details_admin' %}" class="ttr-material-button">
+							<span class="ttr-icon"><i class="fas fa-search"></i></span>
+		                	<span class="ttr-label">Registration Details</span>
+		                </a>
+		            </li>
+                    {% endif %}
 				</ul>
 			</nav>
 		</div>
