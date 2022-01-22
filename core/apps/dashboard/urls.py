@@ -1,6 +1,6 @@
 from core.apps.dashboard.views import (
     DashView, UserProfileView, LoginView, RegisterView, GoogleAuthLoginCallback, payment_handler, media_access,
-    ZephyrusEventsView, ZephyrusScheduleView, ZephyrusRegistrationView, logout_request, RegistrationDetailView,
+    ZephyrusEventsView, ZephyrusScheduleView, ZephyrusRegistrationView, logout_request, MyRegistrationDetailView,
     AdminRegistrationDetailView, AdminRegistrationDataView
 )
 from django.urls import re_path
@@ -18,7 +18,8 @@ urlpatterns = [
     re_path(r'^logout/', logout_request, name="logout"),
     re_path(r'^login/', LoginView.as_view(), name="login"),
     re_path(r'^media/(?P<path>.*)', media_access, name='media'),
-    re_path(r'^registrations/(?P<reg_id>.*)/', RegistrationDetailView.as_view(), name="registration_details"),
+    re_path(r'^(?P<event_slug>.*)/registration/me/',
+            MyRegistrationDetailView.as_view(), name="my_registration_details"),
     re_path(r'^register/', RegisterView.as_view(), name="register"),
     re_path(r'^profile/', UserProfileView.as_view(), name="profile"),
     re_path(r'^zephyrus/registration/details/(?P<reg_id>.*)/',

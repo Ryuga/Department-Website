@@ -267,14 +267,12 @@ def payment_handler(request):
     return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
 
 
-class RegistrationDetailView(LoginRequiredMixin, View):
+class MyRegistrationDetailView(LoginRequiredMixin, View):
     model = Registration
 
-    def get(self, request, reg_id):
-        registration = get_object_or_404(self.model, reg_id=reg_id)
-        if registration.student == request.user.student:
-            return render(request, "dashboard/registration_details.html", {"registration": registration})
-        return render(request, "web/404.html")
+    def get(self, request, event_slug):
+        registration = get_object_or_404(self.model, event__link=event_slug)
+        return render(request, "dashboard/registration_details.html", {"registration": registration})
 
 
 class AdminRegistrationDetailView(LoginRequiredMixin, View):

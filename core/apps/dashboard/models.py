@@ -58,6 +58,10 @@ class Event(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def has_registration_open(self):
+        return self.registration_end_date > time_now()
+
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
@@ -79,6 +83,10 @@ class Student(models.Model):
                                                             )
         if active_registrations:
             return active_registrations[0]
+
+    @staticmethod
+    def active_events():
+        return Event.objects.filter(registration_end_date__gt=time_now())
 
     @property
     def registered_programs_str(self):
