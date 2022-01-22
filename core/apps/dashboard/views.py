@@ -8,7 +8,7 @@ import requests
 from paytmchecksum import PaytmChecksum
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from django.views.generic import View
 from django.http import HttpResponseForbidden
 from utils.google_oauth2 import GoogleOauth
@@ -268,16 +268,13 @@ def payment_handler(request):
 
 
 class RegistrationDetailView(LoginRequiredMixin, View):
+    model = Registration
 
     def get(self, request, reg_id):
-        try:
-            registration = Registration.objects.get(id=reg_id)
-            if registration.student == request.user.student:
-                return render(request, "dashboard/registration_details.html", {"registration": registration})
-            else:
-                raise Registration.DoesNotExist
-        except Registration.DoesNotExist:
-            return render(request, "web/404.html")
+        registration = get_object_or_404(self.model, reg_id=reg_id)
+        if registration.student == request.user.student:
+            return render(request, "dashboard/registration_details.html", {"registration": registration})
+        return render(request, "web/404.html")
 
 
 class AdminRegistrationDetailView(LoginRequiredMixin, View):
