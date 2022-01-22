@@ -3,6 +3,8 @@
 
 ## Setup instruction
 
+
+#### You would need a linux system for development. Windows raises python-decouple errors. More info [here](https://github.com/ryuga/Department-Website/issues/0/).
 #### You need Python 3.8 or above installed on your system.
 
 
@@ -31,9 +33,9 @@ DB_USER = "your_db_user"
 DEBUG = True
 LOCAL_DEVELOPMENT = True
 SECRET_KEY = "your_secret_key"
+DASHBOARD_URL = "your_dashboard_url"
 ENCRYPTION_SALT = "your_encryption_salt"
 ENCRYPTION_ITERATION = your_iteration_count
-DASHBOARD_URL = "http://dashboard.christcs.inc:8000"
 
 
 PAYTM_MERCHANT_ID = "your_merchant_id"
@@ -43,11 +45,12 @@ GOOGLE_CLIENT_ID = "your_client_id"
 GOOGLE_CLIENT_SECRET = "your_client_secret"
 
 # Run the development server locally
-$ poetry run python3 manage.py runserver
+$ poetry run python3 manage.py runserver 
 # this should run the Django development server on your localhost:8000.
 # now you can visit http://127.0.0.1:8000 and access the site.
 ```
 
+### Adding host file configuration for subdomain access in development
 
 ### Production Setup
 
@@ -88,9 +91,9 @@ DB_USER = "your_db_user"
 DEBUG = False
 LOCAL_DEVELOPMENT = False
 SECRET_KEY = "your_secret_key"
-ENCRYPTION_ITERATION = your_db_name
+DASHBOARD_URL = "your_dashboard_url"
 ENCRYPTION_SALT = "your_encryption_salt"
-DASHBOARD_URL = "https://dashboard.christcs.in"
+ENCRYPTION_ITERATION = your_encryption_iteration_count
 
 PAYTM_MERCHANT_ID = "your_merchant_id"
 PAYTM_MERCHANT_KEY = "your_merchant_key"
