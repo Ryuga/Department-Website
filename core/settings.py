@@ -103,25 +103,34 @@ STATICFILES_DIRS = [BASE_DIR / 'static', ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-PAYTM_MERCHANT_ID = config("PAYTM_MERCHANT_ID")
-PAYTM_MERCHANT_KEY = config("PAYTM_MERCHANT_KEY")
-GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID")
-GOOGLE_CLIENT_SECRET = {
-    "web":
-    {"client_id": config("GOOGLE_CLIENT_ID"),
-     "project_id": "erudite-spot-335720 ",
-     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-     "token_uri": "https://oauth2.googleapis.com/token",
-     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-     "client_secret": config("GOOGLE_CLIENT_SECRET"),
-     "redirect_uris": [
-         "https://dashboard.christcs.in/login/oauth2/google/",  # PRODUCTION
-         "http://dashboard.christcs.inc:8000/login/oauth2/google/"  # LOCAL TESTING
-     ]
-     }
-}
+
+
+DASHBOARD_URL = config('DASHBOARD_URL')
 ENCRYPTION_SALT = config("ENCRYPTION_SALT")
 ENCRYPTION_ITERATION = config("ENCRYPTION_ITERATION")
-OAUTH_REDIRECTION_URL = config("OAUTH_REDIRECTION_URL")
-PAYTM_CALLBACK_URL = config("PAYTM_CALLBACK_URL")
+
+# PAYTM PAYMENTS CONFIG
+PAYTM_MERCHANT_ID = config("PAYTM_MERCHANT_ID")
+PAYTM_MERCHANT_KEY = config("PAYTM_MERCHANT_KEY")
+PAYTM_CALLBACK_URL = DASHBOARD_URL + "/payments/handlers/"
 PAYTM_PROCESS_TRANSACTION_URL = config("PAYTM_PROCESS_TRANSACTION_URL")
+
+# GOOGLE OAUTH2 CONFIG
+GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID")
+OAUTH_REDIRECTION_URL = DASHBOARD_URL + "/login/oauth2/google/"
+GOOGLE_CLIENT_SECRET = {
+    "web":
+    {
+
+        "client_id": config("GOOGLE_CLIENT_ID"),
+        "project_id": "erudite-spot-335720 ",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": config("GOOGLE_CLIENT_SECRET"),
+        "redirect_uris": [
+            OAUTH_REDIRECTION_URL
+        ]
+     }
+}
+

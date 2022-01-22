@@ -1,5 +1,6 @@
 import hashlib
 
+from django.conf import settings
 from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
@@ -9,8 +10,8 @@ from django.views.generic import ListView, View
 from ipware import get_client_ip
 
 
-def zephyrus_redirect(request):
-    return redirect(to="https://dashboard.christcs.in")
+def dashboard_redirect(request):
+    return redirect(to=settings)
 
 
 class IndexView(View):

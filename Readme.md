@@ -36,7 +36,7 @@ GOOGLE_CLIENT_SECRET = "your_client_secret"
 
 ENCRYPTION_SALT = "your_encryption_salt"
 
-ENCRYPTION_ITERATION = your_db_name
+ENCRYPTION_ITERATION = your_iteration_count
 OAUTH_REDIRECTION_URL = "http://dashboard.localhost:8000/login/oauth2/google/"
 PAYTM_CALLBACK_URL = "http://dashboard.localhost:8000/payments/handlers/"
 LOCAL_DEVELOPMENT = True
