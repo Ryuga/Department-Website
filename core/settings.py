@@ -122,7 +122,7 @@ GOOGLE_CLIENT_SECRET = {
     "web":
     {
 
-        "client_id": config("GOOGLE_CLIENT_ID"),
+        "client_id": GOOGLE_CLIENT_ID,
         "project_id": "erudite-spot-335720 ",
         "auth_uri": "https://accounts.google.com/o/oauth2/auth",
         "token_uri": "https://oauth2.googleapis.com/token",
@@ -133,4 +133,3 @@ GOOGLE_CLIENT_SECRET = {
         ]
      }
 }
-

@@ -23,26 +23,27 @@ $ poetry install
 $ sudo nano .env
 # add the following environment variables
 
-SECRET_KEY = "your_secret_key"
 DB_NAME = "your_db_name"
 DB_HOST = "your_db_host"
 DB_PASS = "your_db_password"
 DB_USER = "your_db_user"
+
 DEBUG = True
+LOCAL_DEVELOPMENT = True
+SECRET_KEY = "your_secret_key"
+ENCRYPTION_SALT = "your_encryption_salt"
+ENCRYPTION_ITERATION = your_iteration_count
+DASHBOARD_URL = "http://dashboard.christcs.inc:8000"
+
+
 PAYTM_MERCHANT_ID = "your_merchant_id"
 PAYTM_MERCHANT_KEY = "your_merchant_key"
+
 GOOGLE_CLIENT_ID = "your_client_id"
 GOOGLE_CLIENT_SECRET = "your_client_secret"
 
-ENCRYPTION_SALT = "your_encryption_salt"
-
-ENCRYPTION_ITERATION = your_iteration_count
-OAUTH_REDIRECTION_URL = "http://dashboard.localhost:8000/login/oauth2/google/"
-PAYTM_CALLBACK_URL = "http://dashboard.localhost:8000/payments/handlers/"
-LOCAL_DEVELOPMENT = True
-
 # Run the development server locally
-$ poetry run python3 manage.py server
+$ poetry run python3 manage.py runserver
 # this should run the Django development server on your localhost:8000.
 # now you can visit http://127.0.0.1:8000 and access the site.
 ```
@@ -79,23 +80,23 @@ $ sudo poetry install
 $ sudo nano .env
 # add the following environment variables
 
-SECRET_KEY = "your_secret_key"
 DB_NAME = "your_db_name"
 DB_HOST = "your_db_host"
 DB_PASS = "your_db_password"
 DB_USER = "your_db_user"
+
 DEBUG = False
+LOCAL_DEVELOPMENT = False
+SECRET_KEY = "your_secret_key"
+ENCRYPTION_ITERATION = your_db_name
+ENCRYPTION_SALT = "your_encryption_salt"
+DASHBOARD_URL = "https://dashboard.christcs.in"
+
 PAYTM_MERCHANT_ID = "your_merchant_id"
 PAYTM_MERCHANT_KEY = "your_merchant_key"
+
 GOOGLE_CLIENT_ID = "your_client_id"
 GOOGLE_CLIENT_SECRET = "your_client_secret"
-
-ENCRYPTION_SALT = "your_encryption_salt"
-
-ENCRYPTION_ITERATION = your_db_name
-OAUTH_REDIRECTION_URL = "https://dashboard.christcs,in/login/oauth2/google/"
-PAYTM_CALLBACK_URL = "https://dashboard.christcs.in/payments/handlers/"
-LOCAL_DEVELOPMENT = False
 
 # Run collectstatic to collect static files to assets folder for production
 $ sudo poetry run python3 manage.py collectstatic
