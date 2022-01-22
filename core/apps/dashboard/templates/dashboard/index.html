@@ -7,7 +7,7 @@
 			<div class="db-breadcrumb">
 				<h4 class="breadcrumb-title">Dashboard</h4>
 				<ul class="db-breadcrumb-list">
-					<li><a href="#"><i class="fa fa-home"></i>Home</a></li>
+					<li><a href="#"><i class="bi bi-house"></i>Home</a></li>
 					<li>Dashboard</li>
 				</ul>
 			</div>
@@ -55,21 +55,21 @@
                                 <div class="d-flex flex-row justify-content-center align-items-center gap-2 mt-2"><span class="idd1 card-header bg-tpb3"><b>{{ request.user.student.active_registration.id }}</b></span></div>
                             </div>
 
-                            <a href="{% url 'my_registration_details' event_slug=request.user.student.active_registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="fas fa-info-circle"></i> Registration Details</a>
+                            <a href="{% url 'my_registration_details' event_slug=request.user.student.active_registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="bi bi-exclamation-circle-fill"></i> Registration Details</a>
 
                           <div class="card-footer bg-transparent mt-5">
-                              <a class="btn btn-sm text-white w-100" style="background-color: #6021ff" href="{% url 'events' %}"><i class="fas fa-calendar-check"></i> Event Details</a>
-                              <a class="btn btn-sm btn-dark w-100 mt-2" href="{% url 'schedule' %}"><i class="fas fa-clock"></i> Your Schedule</a>
-                              <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' %}"><i class="fas fa-calendar-plus"></i> Register Now</a>
+                              <a class="btn btn-sm text-white w-100" style="background-color: #6021ff" href="{% url 'events' %}"><i class="bi bi-calendar2-check-fill"></i> Event Details</a>
+                              <a class="btn btn-sm btn-dark w-100 mt-2" href="{% url 'schedule' %}"><i class="bi bi-alarm-fill"></i> Your Schedule</a>
+                              <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' %}"><i class="bi bi-calendar-plus-fill"></i> Register Now</a>
                           </div>
                         </div>
                     </div>
                     {% else %}
                     <div class="card d-md-none d-lg-none d-sm-block">
                       <div class="card-footer bg-light">
-                          <a class="btn btn-sm w-100 text-white" style="background-color: #6021ff" href="{% url 'events' %}"><i class="fas fa-calendar-check"></i> Event Details</a>
-                          <a class="btn btn-sm btn-dark w-100 mt-2" href="{% url 'schedule' %}"><i class="fas fa-clock"></i> Event Schedule</a>
-                          <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' %}"><i class="fas fa-calendar-plus"></i> Register Now</a>
+                          <a class="btn btn-sm w-100 text-white" style="background-color: #6021ff" href="{% url 'events' %}"><i class="bi bi-calendar2-check-fill"></i> Event Details</a>
+                          <a class="btn btn-sm btn-dark w-100 mt-2" href="{% url 'schedule' %}"><i class="bi bi-alarm-fill"></i> Event Schedule</a>
+                          <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' %}"><i class="bi bi-calendar-plus-fill"></i> Register Now</a>
                       </div>
                     </div>
                     <div class="card bg-white">

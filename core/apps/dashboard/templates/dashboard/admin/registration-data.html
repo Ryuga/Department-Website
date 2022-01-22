@@ -8,7 +8,7 @@
 			<div class="db-breadcrumb">
 				<h4 class="breadcrumb-title">Admin | Registration Data</h4>
 				<ul class="db-breadcrumb-list">
-					<li><a href="{% url 'dashboard' %}"><i class="fa fa-tv"></i>Dashboard</a></li>
+					<li><a href="{% url 'dashboard' %}"><i class="bi bi-tv"></i>Dashboard</a></li>
 					<li>Zephyrus</li>
                     <li>Registration</li>
                     <li>Data</li>
@@ -34,7 +34,7 @@
                                             </div>
                                             {% if request.user.is_superuser %}
                                             <div class="card-footer bg-transparent text-center">
-                                                <a class="btn-sm btn-success text-white" href="{% url 'registration_data' %}?type=all" style="text-decoration: none;"><i class="fa fa-download"></i> Excel Data</a>
+                                                <a class="btn-sm btn-success text-white" href="{% url 'registration_data' %}?type=all" style="text-decoration: none;"><i class="bi bi-download"></i> Excel Data</a>
                                             </div>
                                             {% endif %}
                                             </div>
@@ -66,7 +66,7 @@
                                             </div>
                                             {% if request.user.is_superuser %}
                                             <div class="card-footer align-items-center bg-transparent text-center">
-                                                <a class="btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="fa fa-download"></i> Excel Data</a>
+                                                <a class="btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="bi bi-download"></i> Excel Data</a>
                                             </div>
                                             {% endif %}
                                         </div>

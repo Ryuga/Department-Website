@@ -8,7 +8,7 @@
 			<div class="db-breadcrumb">
 				<h4 class="breadcrumb-title">Schedule</h4>
 				<ul class="db-breadcrumb-list">
-					<li><a href="{% url 'dashboard' %}"><i class="fa fa-tv"></i>Dashboard</a></li>
+					<li><a href="{% url 'dashboard' %}"><i class="bi bi-tv"></i>Dashboard</a></li>
 					<li>Zephyrus</li>
                     <li>Schedule</li>
 				</ul>
@@ -36,14 +36,14 @@
                                            {% for program in schedule.programs.all %}
                                              <tr {% if program in request.user.student.registered_programs.all %} class="table-primary" {% endif %}>
                                                 <td>{{ schedule.start_time }} - {{ schedule.end_time }}</td>
-                                                <td><i class="fas fa-square"></i>   {{ program.name }}</td>
+                                                <td><i class="bi bi-dash-square-fill"></i>   {{ program.name }}</td>
                                                 <td>{{ program.venue }}</td>
                                              </tr>
                                             {% endfor %}
                                          {% else %}
                                              <tr>
                                                 <td>{{ schedule.start_time }} - {{ schedule.end_time }}</td>
-                                                <td><i class="fas fa-square"></i>   {{ schedule.default_display }}</td>
+                                                <td><i class="bi bi-dash-square-fill"></i>   {{ schedule.default_display }}</td>
                                                 <td>{{ schedule.venue }}</td>
                                              </tr>
                                          {% endif %}

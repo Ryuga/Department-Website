@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Ryuga/Department-Website@master/static/dashboard/css/dashboard.css">
 	<link class="skin" rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/Ryuga/Department-Website@master/static/dashboard/css/color/color-1.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
 </head>
 <body class="ttr-opened-sidebar ttr-pinned-sidebar">
@@ -19,7 +20,7 @@
 	<header class="ttr-header">
 		<div class="ttr-header-wrapper">
 			<div class="ttr-toggle-sidebar ttr-material-button">
-				<i class="fa fa-bars"></i>
+				<i class="bi bi-list"></i>
 			</div>
 			<div class="ttr-header-menu">
 				<ul class="ttr-header-navigation">
@@ -55,21 +56,21 @@
 				<ul>
 					<li>
 						<a href="{% url 'dashboard' %}" class="ttr-material-button">
-							<span class="ttr-icon"><i class="fa fa-home"></i></span>
+							<span class="ttr-icon"><i class="bi bi-house"></i></span>
 		                	<span class="ttr-label">Dashboard</span>
 		                </a>
 		            </li>
 					<li>
 						<a href="{% url 'profile' %}" class="ttr-material-button">
-							<span class="ttr-icon"><i class="fa fa-user"></i></span>
+							<span class="ttr-icon"><i class="bi bi-person-bounding-box"></i></span>
 		                	<span class="ttr-label">My Profile</span>
 		                </a>
 		            </li>
 					<li>
 						<a href="#!" class="ttr-material-button">
-							<span class="ttr-icon"><i class="fas fa-calendar-check"></i></span>
+							<span class="ttr-icon"><i class="bi bi-calendar3"></i></span>
 		                	<span class="ttr-label">Zephyrus</span>
-		                	<span class="ttr-arrow-icon"><i class="fa fa-angle-down"></i></span>
+		                	<span class="ttr-arrow-icon"><i class="bi bi-caret-down-fill"></i></span>
 		                </a>
 		                <ul>
 		                	<li>
@@ -91,7 +92,7 @@
                     {% if request.user.is_staff %}
 					<li>
 						<a href="{% url 'registration_details_admin' %}" class="ttr-material-button">
-							<span class="ttr-icon"><i class="fas fa-search"></i></span>
+							<span class="ttr-icon"><i class="bi bi-search"></i></span>
 		                	<span class="ttr-label">Registration Details</span>
 		                </a>
 		            </li>
@@ -106,7 +107,6 @@
 	<div class="ttr-overlay"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/6dafe43970.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Ryuga/Department-Website@master/static/dashboard/js/admin.js"></script>
 <script src="{% static 'js/app.js' %}"></script>

@@ -17,7 +17,7 @@
 						margin:0,
 						nav:true,
 						dots: false,
-						navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+						navText: ['<i class="bi bi-caret-left"></i>', '<i class="bi bi-caret-right"></i>'],
 						responsive:{
 							0:{
 								items:1
@@ -45,7 +45,7 @@
 						stagePadding: 50,
 						nav:true,
 						dots: true,
-						navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+						navText: ['<i class="bi bi-caret-left"></i>', '<i class="bi bi-caret-right"></i>'],
 						responsive:{
 							0:{
 								items:1,
@@ -81,7 +81,7 @@
 						navSpeed: 1000,
 						paginationSpeed: 1000,
 						slideSpeed: 1000,
-						navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+						navText: ['<i class="bi bi-caret-left"></i>', '<i class="bi bi-caret-right"></i>'],
 						responsive:{
 							0:{
 								items:1
@@ -107,7 +107,7 @@
 						margin:30,
 						nav:false,
 						dots:true,
-						navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+						navText: ['<i class="bi bi-caret-left"></i>', '<i class="bi bi-caret-right"></i>'],
 						responsive:{
 							0:{
 								items:1
@@ -133,7 +133,7 @@
 						margin:30,
 						nav:true,
 						dots:true,
-						navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+						navText: ['<i class="bi bi-caret-left"></i>', '<i class="bi bi-caret-right"></i>'],
 						responsive:{
 							0:{
 								items:1
@@ -161,7 +161,7 @@
 						margin:30,
 						nav:false,
 						dots:true,
-						navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
+						navText: ['<i class="bi bi-caret-left"></i>', '<i class="bi bi-caret-right"></i>'],
 						responsive:{
 							0:{
 								items:1
