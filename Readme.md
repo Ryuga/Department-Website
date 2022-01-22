@@ -4,7 +4,7 @@
 ## Setup instruction
 
 
-#### You would need a linux system for development. Windows raises python-decouple errors. More info [here](https://github.com/ryuga/Department-Website/issues/0/).
+#### You would need a linux system for development. Windows raises python-decouple errors. More info [here](https://github.com/ryuga/Department-Website/issues/1).
 #### You need Python 3.8 or above installed on your system.
 
 
