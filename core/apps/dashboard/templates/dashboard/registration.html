@@ -22,7 +22,7 @@
                            <label> Enter Recipient's Email id to register</label>
                             <div class="input-group">
                               <input type="text" class="form-control" id="registrationEmailId" placeholder="Recipient's Email" aria-label="Recipient's Email">
-                              <button class="btn btn-primary" type="button" id="checkEmailBtn">Check</button>
+                              <button class="btn btn-dark" type="button" id="checkEmailBtn">Check</button>
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="submit" form="confirmationForm" class="btn btn-primary" id="paymentCreationConfirmationBtn" {% if request.user.is_superuser %}disabled{% endif %}>Confirm {% if not request.user.is_superuser %}Payment{% else %}Registration{% endif %}</button>
+        <button type="submit" form="confirmationForm" class="btn btn-dark" id="paymentCreationConfirmationBtn" {% if request.user.is_superuser %}disabled{% endif %}>Confirm {% if not request.user.is_superuser %}Payment{% else %}Registration{% endif %}</button>
       </div>
     </div>
   </div>
