@@ -1010,3 +1010,90 @@
 		display: none;
 	}
 }
+@media only screen and (max-width: 991px) {
+	.admin-courses .card-courses-media {
+		width: 140px;
+		min-width: 140px;
+		height: 140px;
+		margin-right: 15px;
+	}
+	.admin-courses .card-courses-media img{
+		height: 140px;
+	}
+	.admin-courses .card-courses-view > li{
+		padding-right: 10px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	.admin-courses .card-courses-view {
+		display: table;
+	}
+
+	.admin-courses .card-courses-view > li {
+		padding-right: 10px;
+		width: 100%;
+		float: left;
+		margin-bottom: 10px;
+	}
+
+	.admin-courses .card-courses-view > li.card-courses-categories,
+	.admin-courses .card-courses-view > li.card-courses-review,
+	.admin-courses .card-courses-view > li.card-courses-stats,
+	.admin-courses .card-courses-view > li.card-courses-price {
+		width: 25%;
+	}
+
+	.admin-courses .card-courses-list-bx {
+		margin-bottom: 0px;
+	}
+
+	.admin-courses .card-courses-view > li.card-courses-price {
+		text-align: right;
+		padding-right: 0;
+	}
+}
+@media only screen and (max-width: 576px) {
+	.admin-courses .card-courses-media,
+	.bookmarks-bx .card-courses-media {
+		width: 100%;
+		min-width: 100%;
+		height: auto;
+		margin-bottom:15px;
+	}
+	.admin-courses.card-courses-list,
+	.bookmarks-bx.card-courses-list {
+		display: block;
+	}
+	.bookmarks-bx .card-courses-view > li {
+		position: relative;
+		padding-right: 10px;
+		float:left;
+	}
+	.bookmarks-bx  .card-courses-view {
+		display: table;
+		clear: both;
+	}
+	.admin-courses   .card-courses-categories,
+	.bookmarks-bx  .card-courses-categories{
+		width:100%;
+		margin-bottom:10px;
+	}
+	.admin-courses .card-courses-view > li.card-courses-categories,
+	.admin-courses .card-courses-view > li.card-courses-review,
+	.admin-courses .card-courses-view > li.card-courses-price {
+		width:33.33%;
+	}
+	.admin-courses .card-courses-view > li.card-courses-price h5{
+		margin-bottom:0;
+	}
+	.admin-courses .card-courses-view > li.card-courses-stats{
+		display:none;
+	}
+	.card-courses-dec p {
+		margin-bottom: 10px;
+	}
+	.card-courses-list {
+		padding-bottom: 15px;
+		margin-bottom: 15px;
+	}
+}
