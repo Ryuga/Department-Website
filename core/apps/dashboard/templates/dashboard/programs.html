@@ -7,50 +7,50 @@
 <main class="ttr-wrapper">
 		<div class="container-fluid">
 			<div class="db-breadcrumb">
-				<h4 class="breadcrumb-title">Events</h4>
+				<h4 class="breadcrumb-title">Programs</h4>
 				<ul class="db-breadcrumb-list">
 					<li><a href="{% url 'dashboard' %}"><i class="bi bi-tv"></i>Dashboard</a></li>
 					<li>Zephyrus</li>
-                    <li>Events</li>
+                    <li>Programs</li>
 				</ul>
 			</div>
 			<div class="row">
 				<div class="col-lg-12 m-b30">
 					<div class="card shadow p-3">
 						<div class="card-header bg-transparent">
-							<h4>Events</h4>
+							<h4>Programs</h4>
 						</div>
 						<div class="card-body">
-                            {% for event in events %}
+                            {% for program in programs %}
 							<div class="card-courses-list admin-courses">
 								<div class="card-courses-media">
-									<img src="{{ event.image }}" alt=""/>
+									<img src="{{ program.image }}" alt=""/>
 								</div>
 								<div class="card-courses-full-dec">
 									<div class="card-courses-title">
-										<h4>{{ event.name }}</h4>
+										<h4>{{ program.name }}</h4>
 									</div>
 									<div class="card-courses-list-bx">
 										<ul class="card-courses-view">
 											<li class="card-courses-user">
 												<div class="card-courses-user-pic">
-													<img src="{{ event.staff.image_url }}" alt=""/>
+													<img src="{{ program.staff.image_url }}" alt=""/>
 												</div>
 												<div class="card-courses-user-info">
 													<h5>Staff Coordinator</h5>
-													<h4>{{ event.staff.name }}</h4>
+													<h4>{{ program.staff.name }}</h4>
 												</div>
 											</li>
 											<li class="card-courses-categories">
 												<h5>Contact no</h5>
-												<h4>{{ event.staff.phone_number }}</h4>
+												<h4>{{ program.staff.phone_number }}</h4>
 											</li>
 										</ul>
 									</div>
 									<div class="row card-courses-dec">
 										<div class="col-md-12">
 											<h6 class="m-b10">Event Description</h6>
-											<p>{{ event.description | markdown | safe }} </p>
+											<p>{{ program.description | markdown | safe }} </p>
 										</div>
 									</div>
 								</div>

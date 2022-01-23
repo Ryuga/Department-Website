@@ -106,7 +106,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
 
     def get(self, request, event_link):
         programs = []
-        event = Event.objects.get(link="zephyrus30")
+        event = Event.objects.get(link=event_link)
         if request.user.is_superuser:
             all_programs = event.program_set.filter(spot_registration_open=True)
         else:
@@ -199,19 +199,19 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             return self.json_response_401()
 
 
-class ZephyrusEventsView(LoginRequiredMixin, View):
-    template_name = "dashboard/events.html"
+class ZephyrusProgramsView(LoginRequiredMixin, View):
+    template_name = "dashboard/programs.html"
 
     def get(self, request, event_link):
-        events = Program.objects.all()
-        return render(request, self.template_name, {"events": events})
+        event = get_object_or_404(Event, link=event_link)
+        return render(request, self.template_name, {"programs": event.program_set.all()})
 
 
 class ZephyrusScheduleView(LoginRequiredMixin, View):
     template_name = "dashboard/schedule.html"
 
     def get(self, request, event_link):
-        event_days = EventDay.objects.filter(event__link="zephyrus30").order_by('date')
+        event_days = EventDay.objects.filter(event__link=event_link).order_by('date')
         return render(request, self.template_name, {"event_days": event_days})
 
 
