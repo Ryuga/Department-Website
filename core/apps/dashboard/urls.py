@@ -26,11 +26,11 @@ urlpatterns = [
             AdminRegistrationDetailView.as_view(), name="registration_details_admin_by_id"),
     re_path(r'^event/registration/details/',
             AdminRegistrationDetailView.as_view(), name="registration_details_admin"),
-    re_path(r'^zephyrus/registration/data/',
+    re_path(r'^(?P<event_link>.*)/registration/data/',
             AdminRegistrationDataView.as_view(), name="registration_data"),
-    re_path(r'^zephyrus/registration/', ZephyrusRegistrationView.as_view(), name="registration"),
-    re_path(r'^zephyrus/schedule/', ZephyrusScheduleView.as_view(), name="schedule"),
-    re_path(r'^zephyrus/events/', ZephyrusEventsView.as_view(), name="events"),
+    re_path(r'^(?P<event_link>.*)/registration/', ZephyrusRegistrationView.as_view(), name="registration"),
+    re_path(r'^(?P<event_link>.*)/schedule/', ZephyrusScheduleView.as_view(), name="schedule"),
+    re_path(r'^(?P<event_link>.*)/events/', ZephyrusEventsView.as_view(), name="events"),
 
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

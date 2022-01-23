@@ -66,29 +66,33 @@
 		                	<span class="ttr-label">My Profile</span>
 		                </a>
 		            </li>
+                    {% for event in request.user.student.active_events %}
 					<li>
 						<a href="#!" class="ttr-material-button">
 							<span class="ttr-icon"><i class="bi bi-calendar3"></i></span>
-		                	<span class="ttr-label">Zephyrus</span>
+		                	<span class="ttr-label">{{ event.name }} {% if event.has_registration_open %}&nbsp;<span class="badge bg-danger">open</span>{% endif %}</span>
 		                	<span class="ttr-arrow-icon"><i class="bi bi-caret-down-fill"></i></span>
 		                </a>
 		                <ul>
+                            {% if event.has_registration_open %}
 		                	<li>
-		                		<a href="{% url 'registration' %}" class="ttr-material-button"><span class="ttr-label"> {% if request.user.is_superuser %}Spot {% endif %}Registration</span></a>
+		                		<a href="{% url 'registration' event_link=event.link %}" class="ttr-material-button"><span class="ttr-label"> {% if request.user.is_superuser %}Spot {% endif %}Registration</span></a>
 		                	</li>
+                            {% endif %}
 							<li>
-		                		<a href="{% url 'events' %}" class="ttr-material-button"><span class="ttr-label">Programs</span></a>
+		                		<a href="{% url 'events' event_link=event.link %}" class="ttr-material-button"><span class="ttr-label">Programs</span></a>
 		                	</li>
 		                	<li>
-		                		<a href="{% url 'schedule' %}" class="ttr-material-button"><span class="ttr-label">Schedule</span></a>
+		                		<a href="{% url 'schedule' event_link=event.link %}" class="ttr-material-button"><span class="ttr-label">Schedule</span></a>
 		                	</li>
                             {% if request.user.is_staff %}
 		                	<li>
-		                		<a href="{% url 'registration_data' %}" class="ttr-material-button"><span class="ttr-label">Registration Data</span></a>
+		                		<a href="{% url 'registration_data' event_link=event.link %}" class="ttr-material-button"><span class="ttr-label">Registration Data</span></a>
 		                	</li>
                             {% endif %}
 		                </ul>
 		            </li>
+                    {% endfor %}
                     {% if request.user.is_staff %}
 					<li>
 						<a href="{% url 'registration_details_admin' %}" class="ttr-material-button">

@@ -1,11 +1,6 @@
-import time
-
 import pytz
 import xlwt
-import json
-from datetime import datetime, timezone, timedelta
-import requests
-from paytmchecksum import PaytmChecksum
+from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
@@ -109,7 +104,7 @@ class UserProfileView(LoginRequiredMixin, View):
 class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 
-    def get(self, request):
+    def get(self, request, event_link):
         programs = []
         event = Event.objects.get(link="zephyrus30")
         if request.user.is_superuser:
@@ -207,7 +202,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
 class ZephyrusEventsView(LoginRequiredMixin, View):
     template_name = "dashboard/events.html"
 
-    def get(self, request):
+    def get(self, request, event_link):
         events = Program.objects.all()
         return render(request, self.template_name, {"events": events})
 
@@ -215,7 +210,7 @@ class ZephyrusEventsView(LoginRequiredMixin, View):
 class ZephyrusScheduleView(LoginRequiredMixin, View):
     template_name = "dashboard/schedule.html"
 
-    def get(self, request):
+    def get(self, request, event_link):
         event_days = EventDay.objects.filter(event__link="zephyrus30").order_by('date')
         return render(request, self.template_name, {"event_days": event_days})
 
@@ -297,7 +292,7 @@ class AdminRegistrationDetailView(LoginRequiredMixin, View):
 
 class AdminRegistrationDataView(LoginRequiredMixin, View):
 
-    def get(self, request):
+    def get(self, request, event_link):
         if request.user.is_staff:
             if request.user.is_superuser and request.GET.get("type"):
                 workbook = xlwt.Workbook()

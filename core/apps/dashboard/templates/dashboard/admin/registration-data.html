@@ -34,7 +34,7 @@
                                             </div>
                                             {% if request.user.is_superuser %}
                                             <div class="card-footer bg-transparent text-center">
-                                                <a class="btn-sm btn-success text-white" href="{% url 'registration_data' %}?type=all" style="text-decoration: none;"><i class="bi bi-download"></i> Excel Data</a>
+                                                <a class="btn-sm btn-success text-white" href="{% url 'registration_data' event_link=event.link %}?type=all" style="text-decoration: none;"><i class="bi bi-download"></i> Excel Data</a>
                                             </div>
                                             {% endif %}
                                             </div>

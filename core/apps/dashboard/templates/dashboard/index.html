@@ -55,7 +55,7 @@
                                 <div class="d-flex flex-row justify-content-center align-items-center gap-2 mt-2"><span class="idd1 card-header bg-tpb3"><b>{{ request.user.student.active_registration.id }}</b></span></div>
                             </div>
 
-                            <a href="{% url 'my_registration_details' event_slug=request.user.student.active_registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="bi bi-exclamation-circle"></i> Registration Details</a>
+                            <a href="{% url 'my_registration_details' event_slug=request.user.student.active_registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="bi bi-exclamation-circle-fill"></i> Registration Details</a>
 
                           <div class="card-footer bg-transparent mt-5">
                               <a class="btn btn-sm text-white w-100" style="background-color: #6021ff" href="{% url 'events' %}"><i class="bi bi-calendar2-check"></i> Event Details</a>

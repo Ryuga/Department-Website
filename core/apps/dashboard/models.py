@@ -86,7 +86,7 @@ class Student(models.Model):
 
     @staticmethod
     def active_events():
-        return Event.objects.filter(registration_end_date__gt=time_now())
+        return Event.objects.filter(end_date__gt=time_now())
 
     @property
     def registered_programs_str(self):
