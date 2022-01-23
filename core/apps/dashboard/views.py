@@ -294,12 +294,13 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
 
     def get(self, request, event_link):
         if request.user.is_staff:
+            event = get_object_or_404(Event, link=event_link)
             if request.user.is_superuser and request.GET.get("type"):
                 workbook = xlwt.Workbook()
                 sheet = workbook.add_sheet("registrations", cell_overwrite_ok=True)
                 i = 1
                 if request.GET.get("type") == "all":
-                    registrations = Registration.objects.filter(made_successful_transaction=True)
+                    registrations = event.successful_registrations
                     write_sheet(sheet, 0, "Reg ID",
                                 "Name", "Phone", "Email",
                                 "College", "Registered Programs",
@@ -344,16 +345,6 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     return response
                 else:
                     pass
-            programs = Program.objects.all()
-            registration_count = Registration.objects.filter(made_successful_transaction=True).count()
-            total_transactions = Transaction.objects.filter(status="TXN_SUCCESS").count()
-            spot_transaction = Transaction.objects.filter(status="TXN_SUCCESS", spot=True).count()
-            online_transaction = total_transactions - spot_transaction
-            return render(request, "dashboard/admin/registration-data.html", {"programs": programs,
-                                                                              "registration_count": registration_count,
-                                                                              "total_transaction": total_transactions,
-                                                                              "spot_transaction": spot_transaction,
-                                                                              "online_transaction": online_transaction,
-                                                                              })
+            return render(request, "dashboard/admin/registration-data.html", {"event": event})
         return render(request, "web/404.html")
 

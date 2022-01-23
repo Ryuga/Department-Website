@@ -62,6 +62,38 @@ class Event(models.Model):
     def has_registration_open(self):
         return self.registration_end_date > time_now()
 
+    @property
+    def successful_registrations(self):
+        return self.registrations.filter(made_successful_transaction=True)
+
+    @property
+    def transactions(self):
+        return Transaction.objects.filter(registration__event=self, status="TXN_SUCCESS")
+
+    @property
+    def online_transactions(self):
+        return Transaction.objects.filter(registration__event=self, status="TXN_SUCCESS", spot=False)
+
+    @property
+    def spot_transactions(self):
+        return Transaction.objects.filter(registration__event=self, status="TXN_SUCCESS", spot=True)
+
+    @property
+    def registration_count(self):
+        return self.successful_registrations.count()
+
+    @property
+    def transaction_count(self):
+        return self.transactions.count()
+
+    @property
+    def online_transaction_count(self):
+        return self.online_transactions.count()
+
+    @property
+    def spot_transaction_count(self):
+        return self.spot_transactions.count()
+
 
 class Student(models.Model):
     name = models.CharField(max_length=100)

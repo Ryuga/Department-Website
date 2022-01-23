@@ -30,7 +30,7 @@
                                                 <h5>Total Students Registered</h5>
                                             </div>
                                             <div class="card-body">
-                                                <h2>{{ registration_count }}</h2>
+                                                <h2>{{ event.registration_count }}</h2>
                                             </div>
                                             {% if request.user.is_superuser %}
                                             <div class="card-footer bg-transparent text-center">
@@ -45,17 +45,17 @@
                                                 <h5>Total Transactions</h5>
                                             </div>
                                             <div class="card-body">
-                                                <h2>{{ total_transaction }}</h2>
+                                                <h2>{{ event.transaction_count }}</h2>
                                             </div>
                                             <div class="card-footer bg-transparent text-center">
-                                                <span class="float-left"><b>Online:</b> {{ online_transaction }}</span>
-                                                <span class="float-right"><b>Spot:</b> {{ spot_transaction }}</span>
+                                                <span class="float-start"><b>Online:</b> {{ event.online_transaction_count }}</span>
+                                                <span class="float-end"><b>Spot:</b> {{ event.spot_transaction_count }}</span>
                                             </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                {% for program in programs %}
+                                {% for program in event.program_set.all %}
                                     <div class="col-lg-2 col-md-3 col-sm-4">
                                         <div class="card mb-4">
                                             <div class="card-header bg-transparent">
@@ -66,7 +66,7 @@
                                             </div>
                                             {% if request.user.is_superuser %}
                                             <div class="card-footer align-items-center bg-transparent text-center">
-                                                <a class="btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="bi bi-download"></i> Excel Data</a>
+                                                <a class="btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' event_link=event.link %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="bi bi-download"></i> Excel Data</a>
                                             </div>
                                             {% endif %}
                                         </div>
