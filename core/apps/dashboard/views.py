@@ -140,7 +140,6 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
         order_items = request.POST.getlist("eventsList")[0].split(',')
         order_items_from_db = list()
         cost_total = 0
-        event = get_object_or_404(Event, link=event_link)
         for item_id in order_items:
             item = Program.objects.get(id=item_id)
             cost_total += item.reg_fee
@@ -152,16 +151,16 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
         if cost_total == order_amt:
             if not Registration.objects.filter(
                     student=registration_owner,
-                    event=event
+                    event__link=event_link
             ).exists():
                 registration = Registration.objects.create(
-                    event=event,
+                    event__link=order_items_from_db[0].event,
                     student=registration_owner
                 )
             else:
                 registration = Registration.objects.get(
                     student=registration_owner,
-                    event=event
+                    event__link=event_link
                 )
             transaction = Transaction.objects.create(
                 registration=registration,
