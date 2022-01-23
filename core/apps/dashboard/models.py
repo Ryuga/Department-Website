@@ -60,7 +60,7 @@ class Event(models.Model):
 
     @property
     def has_registration_open(self):
-        return self.registration_end_date > time_now()
+        return self.registration_end_date > time_now() > self.registration_open_date
 
     @property
     def successful_registrations(self):
