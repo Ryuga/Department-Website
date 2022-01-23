@@ -131,9 +131,11 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             programs = [
                 program for program in all_programs if program not in registered_programs
             ]
-        return render(request, self.template_name, {"programs": programs})
+        return render(request, self.template_name, {"programs": programs,
+                                                    "event": event
+                                                    })
 
-    def post(self, request):
+    def post(self, request, event_link):
         order_amt = int(request.POST.get("txnAmt"))
         order_items = request.POST.getlist("eventsList")[0].split(',')
         order_items_from_db = list()

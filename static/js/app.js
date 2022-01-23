@@ -76,7 +76,7 @@ $(document).ready(function (){
         let csrftoken = getCookie("csrftoken")
         let reg_id = $('#regIdInput').val();
         $.ajax({
-        url: `/zephyrus/registration/details/${reg_id}/?allot=true`,
+        url: `/event/registration/details/${reg_id}/?allot=true`,
         headers: {'X-CSRFToken': csrftoken},
         type: 'GET',
         success:function (data)
@@ -91,8 +91,10 @@ $(document).ready(function (){
     $('#checkEmailBtn').click(function (){
         let csrftoken = getCookie("csrftoken")
         let email = $('#registrationEmailId').val();
+        let event_link = $('#registrationEventLink').val();
+        console.log(event_link)
         $.ajax({
-        url: `/zephyrus/registration/?ajax=true&email=${email}`,
+        url: `/${event_link}/registration/?ajax=true&email=${email}`,
         headers: {'X-CSRFToken': csrftoken},
         type: 'GET',
         success:function (data)
