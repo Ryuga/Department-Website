@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 from django.contrib.postgres.fields import ArrayField
 
 
@@ -20,6 +21,11 @@ class Faculty(models.Model):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def faculty_link_setter(cls, instance, **kwargs):
+        if not instance.link:
+            instance.link = slugify(instance.name)
 
 
 class Tag(models.Model):
@@ -66,6 +72,11 @@ class Course(models.Model):
 
     def __str__(self):
         return self.name
+
+    @classmethod
+    def course_link_setter(cls, instance, **kwargs):
+        if not instance.link:
+            instance.link = slugify(instance.name)
 
 
 class Message(models.Model):

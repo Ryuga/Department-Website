@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import slugify
 from utils.functions import generate_transaction_id, generate_registration_id
 
 
@@ -31,6 +32,11 @@ class Event(models.Model):
     markdown_content = models.TextField(null=True, blank=True, help_text="Markdown content if any")
     staff_in_charge = models.ForeignKey("web.Faculty", on_delete=models.SET_NULL, null=True, blank=True)
     registration_link = models.URLField(null=True, blank=True, help_text="Optional")
+
+    @classmethod
+    def event_link_setter(cls, instance, **kwargs):
+        if not instance.link:
+            instance.link = slugify(instance.name)
 
     @property
     def status(self):
