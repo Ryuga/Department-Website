@@ -151,16 +151,16 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
         if cost_total == order_amt:
             if not Registration.objects.filter(
                     student=registration_owner,
-                    event=order_items_from_db[0].event
+                    event__link=event_link
             ).exists():
                 registration = Registration.objects.create(
-                    event=order_items_from_db[0].event,
+                    event__link=event_link,
                     student=registration_owner
                 )
             else:
                 registration = Registration.objects.get(
                     student=registration_owner,
-                    event=order_items_from_db[0].event
+                    event__link=event_link
                 )
             transaction = Transaction.objects.create(
                 registration=registration,
