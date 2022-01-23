@@ -154,7 +154,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                     event__link=event_link
             ).exists():
                 registration = Registration.objects.create(
-                    event__link=order_items_from_db[0].event,
+                    event=order_items_from_db[0].event,
                     student=registration_owner
                 )
             else:
