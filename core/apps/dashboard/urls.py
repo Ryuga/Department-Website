@@ -18,7 +18,7 @@ urlpatterns = [
     re_path(r'^logout/', logout_request, name="logout"),
     re_path(r'^login/', LoginView.as_view(), name="login"),
     re_path(r'^media/(?P<path>.*)', media_access, name='media'),
-    re_path(r'^(?P<event_slug>.*)/registration/me/',
+    re_path(r'^(?P<event_link>.*)/registration/me/',
             MyRegistrationDetailView.as_view(), name="my_registration_details"),
     re_path(r'^register/', RegisterView.as_view(), name="register"),
     re_path(r'^profile/', UserProfileView.as_view(), name="profile"),
@@ -30,7 +30,7 @@ urlpatterns = [
             AdminRegistrationDataView.as_view(), name="registration_data"),
     re_path(r'^(?P<event_link>.*)/registration/', ZephyrusRegistrationView.as_view(), name="registration"),
     re_path(r'^(?P<event_link>.*)/schedule/', ZephyrusScheduleView.as_view(), name="schedule"),
-    re_path(r'^(?P<event_link>.*)/events/', ZephyrusProgramsView.as_view(), name="events"),
+    re_path(r'^(?P<event_link>.*)/programs/', ZephyrusProgramsView.as_view(), name="programs"),
 
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

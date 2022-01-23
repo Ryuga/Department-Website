@@ -109,12 +109,10 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-    def active_registration(self):
-        active_registrations = self.my_registrations.filter(event__end_date__gt=time_now(),
-                                                            made_successful_transaction=True
-                                                            )
-        if active_registrations:
-            return active_registrations[0]
+    def active_registrations(self):
+        return self.my_registrations.filter(event__end_date__gt=time_now(),
+                                            made_successful_transaction=True
+                                            )
 
     @staticmethod
     def active_events():
