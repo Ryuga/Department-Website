@@ -9,18 +9,18 @@
 			<div class="db-breadcrumb">
 				<h4 class="breadcrumb-title">Programs</h4>
 				<ul class="db-breadcrumb-list">
-					<li><a href="{% url 'dashboard' %}"><i class="bi bi-tv"></i>Dashboard</a></li>
+					<li><a href="{% url 'dashboard' %}"><i class="fa fa-tv"></i>Dashboard</a></li>
 					<li>Zephyrus</li>
                     <li>Programs</li>
 				</ul>
 			</div>
 			<div class="row">
 				<div class="col-lg-12 m-b30">
-					<div class="card shadow p-3">
-						<div class="card-header bg-transparent">
+					<div class="widget-box">
+						<div class="wc-title">
 							<h4>Programs</h4>
 						</div>
-						<div class="card-body">
+						<div class="widget-inner">
                             {% for program in programs %}
 							<div class="card-courses-list admin-courses">
 								<div class="card-courses-media">
@@ -34,7 +34,7 @@
 										<ul class="card-courses-view">
 											<li class="card-courses-user">
 												<div class="card-courses-user-pic">
-													<img src="{{ program.staff.image_url }}" width="50px" alt="">
+													<img src="{{ program.staff.image_url }}" width="50px" alt=""/>
 												</div>
 												<div class="card-courses-user-info">
 													<h5>Staff Coordinator</h5>
@@ -49,7 +49,7 @@
 									</div>
 									<div class="row card-courses-dec">
 										<div class="col-md-12">
-											<h6 class="m-b10">Event Description</h6>
+											<h6 class="m-b10">Program Description</h6>
 											<p>{{ program.description | markdown | safe }} </p>
 										</div>
 									</div>
