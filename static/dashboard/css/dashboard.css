@@ -1,6 +1,4 @@
-/*-------------------------------------------------------------------
-[1. Header]
-*------------------------------------------------------------------*/
+
 .ttr-header{
 	position: fixed;
 	z-index: 99;
@@ -11,6 +9,7 @@
 	height: 60px;
 	font-weight: 400;
 
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff8814+0,db4b24+100 */
 	background: #ff8814; /* Old browsers */
 	background: -moz-linear-gradient(left, #ff8814 0%, #db4b24 100%); /* FF3.6-15 */
 	background: -webkit-linear-gradient(left, #ff8814 0%,#db4b24 100%); /* Chrome10-25,Safari5.1-6 */
@@ -21,9 +20,9 @@
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
 	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
 
-	-webkit-transition: top 300ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-moz-transition: top 300ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-o-transition: top 300ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
+	-webkit-transition: top 300ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-moz-transition: top 300ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-o-transition: top 300ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 	transition: top 300ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
 }
 .ttr-header a{
@@ -46,9 +45,9 @@
 	left: 18px;
 	top: 18px;
 	font-size: 20px;
-	-webkit-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-moz-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-o-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
+	-webkit-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-moz-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-o-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 	transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
 }
 .ttr-toggle-sidebar .ttr-open-icon{
@@ -183,6 +182,49 @@
 .ttr-header-submenu.ttr-notify-list{
 	width: 360px;
 }
+.ttr-notify-header{
+	width: 100%;
+	padding: 15px 10px;
+	color: #333;
+	background-color: #f4f4f4;
+}
+.ttr-notify-header .ttr-notify-text-top{
+	display: block;
+	font-size: 20px;
+	text-align: center;
+}
+.ttr-notify-header .ttr-notify-text{
+	display: block;
+	text-align:center;
+	font-size: 15px;
+}
+.ttr-notify-tab{
+	padding: 15px;
+}
+.ttr-notify-tab .nav{
+	margin-bottom: 15px;
+	border-bottom: solid 1px #eee;
+}
+.ttr-notify-tab .nav li{
+	display: inline-block;
+	float: left;
+	width: auto;
+	border-left: none !important;
+	margin-right: 20px;
+}
+.ttr-notify-tab .nav li a:hover{
+	background-color: transparent;
+	border-bottom: solid 1px #9D50BB;
+}
+.ttr-notify-tab .nav li a{
+	padding: 6px 0;
+	font-weight: 500;
+	font-size: 16px;
+}
+.ttr-notify-tab .nav li a.active{
+	border-bottom: solid 1px #9D50BB;
+	color: #9D50BB;
+}
 .ttr-header-submenu ul li{
 	display: block;
 	width: 100%;
@@ -223,10 +265,100 @@
 	border-radius:100%;
 	overflow: hidden;
 }
+.ttr-search-bar{
+	position: absolute;
+	width: 100%;
+	height: 60px;
+	top: -70px;
+	left: 0;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff8814+0,db4b24+100 */
+	background: #ff8814; /* Old browsers */
+	background: -moz-linear-gradient(left, #ff8814 0%, #db4b24 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #ff8814 0%,#db4b24 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #ff8814 0%,#db4b24 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8814', endColorstr='#db4b24',GradientType=1 ); /* IE6-9 */
 
-/*-------------------------------------------------------------------
-[3. Sidebar]
-*------------------------------------------------------------------*/
+
+	-webkit-transition: top 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-moz-transition: top 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-o-transition: top 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	transition: top 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
+}
+.ttr-search-bar.active{
+	top: 0;
+}
+.ttr-search-form{
+	max-width: 1160px;
+	width: 100%;
+	height: 40px;
+	margin: 10px auto;
+	display: block;
+	font-size: 14px;
+	position: relative;
+}
+.ttr-search-input-wrapper{
+	left: 20px;
+	top: 0;
+	right: 60px;
+	bottom: 0;
+	height: 40px;
+	position: absolute;
+}
+.ttr-search-input{
+	width: 100%;
+	height: 40px;
+	background-color: rgba(255,255,255,.2);
+	border:none;
+	padding: 0 54px 0 14px;
+	display: block;
+	color: #FFF;
+	outline: none;
+	font-size: 14px;
+	font-family: inherit;
+}
+.ttr-search-input::placeholder {
+    color: #FFF;
+    opacity: .5;
+}
+.ttr-search-input:-ms-input-placeholder {
+    color: #FFF;
+}
+.ttr-search-input::-ms-input-placeholder {
+    color: #FFF;
+}
+.ttr-search-input:focus{
+	background-color: rgba(255,255,255,.3);
+}
+.ttr-search-submit{
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	padding: 8px;
+	background: none;
+	color: #FFF;
+	border:none;
+	cursor: pointer;
+	outline: none;
+}
+.ttr-search-submit:hover{
+	background-color: rgba(255,255,255,.1);
+}
+.ttr-search-close{
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	right: 20px;
+	top: 0;
+	background: none;
+	border:none;
+	padding: 8px;
+	outline: none;
+	cursor: pointer;
+	color: #FFF;
+}
 .ttr-sidebar{
 	position: fixed;
 	width: 300px;
@@ -241,9 +373,9 @@
 	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
 	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
 	box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
-	-webkit-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-moz-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-o-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
+	-webkit-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-moz-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-o-transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 	transition: all 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
 	color: var(--primary);
 }
@@ -271,7 +403,7 @@
 }
 .ttr-sidebar-logo{
 	width: 100%;
-	height: 70px;
+	height: 60px;
 	border-bottom: solid 1px #cfd8dc;
 }
 .ttr-sidebar-logo a{
@@ -299,9 +431,9 @@
 .ttr-sidebar-pin-button i{
 	position: absolute;
 	transform: scale(1);
-	-webkit-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-moz-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-o-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
+	-webkit-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-moz-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-o-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 	transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
 }
 .ttr-sidebar-pin-button .ttr-fixed-icon{
@@ -354,11 +486,14 @@
 
 .ttr-sidebar-navi a > span.ttr-icon{
     width: 40px;
+    height: 50px;
     line-height: 0;
-	font-size: 19px;
+    vertical-align: middle;
+	font-size: 18px;
 }
 .ttr-sidebar-navi a > span.ttr-arrow-icon{
 	width: 24px;
+    height: 50px;
     line-height: 0;
     vertical-align: middle;
     -webkit-transition: transform 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -483,9 +618,9 @@
 *------------------------------------------------------------------*/
 .ttr-wrapper{
 	padding-top: 95px;
-	-webkit-transition: margin 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-moz-transition: margin 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
-	-o-transition: margin 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); 
+	-webkit-transition: margin 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-moz-transition: margin 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	-o-transition: margin 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000);
 	transition: margin 200ms cubic-bezier(0.215, 0.610, 0.355, 1.000); /* easeOutCubic */
 }
 
@@ -549,6 +684,155 @@
 .db-breadcrumb-list li:last-child:after{
 	content:none;
 }
+/*-------------------------------------------------------------------
+	Widget Card
+*------------------------------------------------------------------*/
+.widget-card{
+	border-radius:4px;
+	background:#ec681d;
+	padding:20px 20px 15px 20px;
+	color:#fff;
+	position:relative;
+	margin-bottom:30px;
+}
+.widget-card .wc-title{
+	font-size:16px;
+	line-height:16px;
+	margin:0;
+	color:#fff;
+	font-weight:500;
+}
+.wc-stats{
+	font-size:24px;
+	line-height:28px;
+	font-weight:500;
+	position:absolute;
+	right:20px;
+	top:20px;
+}
+.wc-des{
+	font-size:12px;
+	line-height:18px;
+	font-weight:400;
+	opacity:0.7;
+}
+.wc-progress{
+	margin:15px 0 5px 0;
+	height: 5px;
+	background-color:rgba(255,255,255,0.3);
+	border-radius:3px;
+}
+.wc-progress .progress-bar{
+	background-color:#fff;
+	border-radius: 3px;
+}
+.wc-progress-bx {
+
+    display: flex;
+    width: 100%;
+    font-size: 12px;
+	opacity:0.7;
+}
+
+
+.widget-bg1{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fd8515+0,db4b24+100 */
+	background: #fd8515; /* Old browsers */
+	background: -moz-linear-gradient(left, #fd8515 0%, #db4b24 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #fd8515 0%,#db4b24 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #fd8515 0%,#db4b24 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd8515', endColorstr='#db4b24',GradientType=1 ); /* IE6-9 */
+}
+.widget-bg2{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#8699fb+0,8340f6+100 */
+	background: #8699fb; /* Old browsers */
+	background: -moz-linear-gradient(left, #8699fb 0%, #8340f6 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #8699fb 0%,#8340f6 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #8699fb 0%,#8340f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8699fb', endColorstr='#8340f6',GradientType=1 ); /* IE6-9 */
+}
+.widget-bg3{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fc7588+0,e71c54+100 */
+	background: #fc7588; /* Old browsers */
+	background: -moz-linear-gradient(left, #fc7588 0%, #e71c54 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #fc7588 0%,#e71c54 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #fc7588 0%,#e71c54 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc7588', endColorstr='#e71c54',GradientType=1 ); /* IE6-9 */
+}
+.widget-bg4{
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#668bff+0,104dfd+100 */
+	background: #668bff; /* Old browsers */
+	background: -moz-linear-gradient(left, #668bff 0%, #104dfd 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, #668bff 0%,#104dfd 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, #668bff 0%,#104dfd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#668bff', endColorstr='#104dfd',GradientType=1 ); /* IE6-9 */
+}
+
+.widget-box{
+	background-color: #fff;
+	box-shadow:0 3px 10px 0px rgba(0,0,0,.08);
+	border-radius: 4px;
+	height: 100%;
+}
+.widget-box .widget-inner{
+	padding:30px;
+}
+.widget-box .wc-title{
+	border-bottom:1px solid rgba(0,0,0,0.05);
+	padding:20px 30px;
+}
+.widget-box .wc-title h4{
+	font-size:18px;
+	line-height:18px;
+	margin:0;
+	color:#333;
+	font-weight:500;
+}
+/* Full Calendra */
+
+.fc-toolbar button.fc-state-active{
+	background: var(--primary);
+	color: #fff;
+
+}
+.fc-toolbar button {
+	margin: 0 !important;
+    position: relative;
+	border: 0;
+	background: rgba(0,0,0,0.05);
+	color: #707070;
+	text-transform: capitalize;
+	font-size: 14px;
+	padding: 8px 20px;
+	height: auto;
+	box-shadow: none;
+	border-right: 1px solid rgba(0,0,0,0.3);
+}
+.fc-toolbar button:last-child{
+	border-right:0;
+}
+.fc-toolbar button.fc-today-button {
+	margin-left: 10px !important;
+}
+.fc-toolbar h2 {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 24px;
+}
+.fc table,
+.fc-row table{
+	margin-bottom:0;
+	font-size: 14px;
+}
+.fc-unthemed th.fc-day-header {
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 400;
+	font-weight:400
+}
+.fc-event-container a:not([href]):not([tabindex]){
+	color:#fff;
+}
 
 /* Noti Box List */
 .orders-list ul,
@@ -582,7 +866,7 @@
 	display: block;
 	border-radius: 4px;
 	line-height: 40px;
-	text-align: centerz
+	text-align: center;
 	margin-right: 15px;
 }
 .dashbg-gray{
@@ -612,7 +896,7 @@
 	font-size: 14px;
 }
 .noti-box-list ul li .notification-time a:hover{
-	color:#000;	
+	color:#000;
 }
 .noti-box-list ul li .notification-time span{
 	font-size: 12px;
@@ -637,7 +921,7 @@
 	color:#fff;
 }
 .new-user-list{
-	
+
 }
 .new-user-list ul li .new-users-pic{
 	min-width: 50px;
@@ -816,13 +1100,6 @@
 	 color:#000;
 	 width: 40%;
 }
-/* Reply */
-.review-bx-reply .form-control{
-	height:150px;
-}
-.bookmarks-bx .card-courses-list-bx{
-	margin-bottom:10px;
-}
 /* User Profile */
 .widget-inner .edit-profile{
 	padding: 0;
@@ -849,79 +1126,24 @@
 	height:150px;
 }
 
-.next-prev-btn{
-	margin-left:auto;
-}
-.next-prev-btn a{
-	border: 1px solid #e1e1e1;
-	display: inline-block;
-	border-radius: 4px;
-	width: 40px;
-	height: 40px;
-	text-align: center;
-	line-height: 38px;
-	font-size: 24px;
-	color: #000;
-}
-.next-prev-btn a:hover{
-	background-color:#e1e1e1;
-}
-.checkbox-st1{
-	min-height: 16px;
-	padding-left: 16px;
-	height: 16px;
-	position: relative;
-	top: -1px;
-}
-.checkbox-st1 .custom-control-label:before {
-    width: 16px;
-    height: 16px;
-	border: 2px solid #cecfcf;
-}
-.checkbox-st1 .custom-control-label::after {
-    width: 16px;
-	height: 16px;
-}
-.checkbox-list{
-	padding-left:20px;
-}
-.mail-list-info:nth-child(2n+1){
-	background-color:#f6f6f6;
-}
-.btn-info-icon {
-	border: 0;
-	background-color: rgba(0, 0, 0, 0.05);
-	border-radius: 40px;
-	margin-left: 10px;
-}
-.read-content-body {
-    padding: 25px 0 0 0;
-}
-.read-content-title{
-	font-size: 16px;
-	color: #000;
-	margin-bottom: 5px;
-}
-.read-content-body p{
-	font-size: 14px;
-	line-height: 24px;
-	font-weight: 300;
-	color: #303030;
-	margin-bottom: 15px;
-}
-.dropzone {
-    background: #f3f6f9;
-    border: 2px solid rgba(120, 130, 140, .13)
-}
-[data-theme-version=dark] .dropzone{
-    background-color: #2b2e37
-}
-
-[data-theme-version=dark] .compose-content .dropzone{
-    background: #323640!important
+.card-header.note-toolbar {
+    padding: 10px 15px 15px 15px;
+    margin: 0;
+	background: #f7f8fa;
 }
 .card-header{
 	 border-bottom: 1px solid #ebedf2;
+}
+.courses-approve {
+    width: 150px;
+    height: 150px;
+    color: #30af93;
+    border: 5px solid;
+    border-radius: 100px;
+    line-height: 160px;
+    text-align: center;
+    font-size: 86px;
+	margin: 40px auto 40px;
 }
 @media only screen and (max-width: 1200px) {
 	.ttr-pinned-sidebar .ttr-wrapper {
@@ -938,6 +1160,20 @@
 	}
 	.ttr-sidebar-navi{
 		padding-bottom:60px;
+	}
+}
+@media only screen and (max-width: 991px) {
+	.admin-courses .card-courses-media {
+		width: 140px;
+		min-width: 140px;
+		height: 140px;
+		margin-right: 15px;
+	}
+	.admin-courses .card-courses-media img{
+		height: 140px;
+	}
+	.admin-courses .card-courses-view > li{
+		padding-right: 10px;
 	}
 }
 @media only screen and (max-width: 767px) {
@@ -964,15 +1200,34 @@
 		height: 140px;
 	}
 	.card-courses-title h4 {
-		font-size: 18px;		
+		font-size: 18px;
 	}
 	.card-courses-media img{
 		height: 140px;
 	}
-	.ttr-sidebar-toggle-button {
-		display: none;
+	.admin-courses .card-courses-view{
+		display: table;
 	}
-	
+	.admin-courses .card-courses-view > li {
+		padding-right: 10px;
+		width: 100%;
+		float: left;
+		margin-bottom: 10px;
+	}
+	.admin-courses .card-courses-view > li.card-courses-categories,
+	.admin-courses .card-courses-view > li.card-courses-review,
+	.admin-courses .card-courses-view > li.card-courses-stats,
+	.admin-courses .card-courses-view > li.card-courses-price {
+		width:25%;
+	}
+	.admin-courses .card-courses-list-bx {
+		margin-bottom: 0px;
+	}
+	.admin-courses .card-courses-view > li.card-courses-price {
+		text-align:right;
+		padding-right: 0;
+	}
+
 }
 @media only screen and (max-width: 576px) {
 	.fc-toolbar .fc-center,
@@ -987,94 +1242,16 @@
 		position: relative;
 		top: -13px;
 	}
-	.ttr-header-submenu.noti-menu {
-		width: 280px;
-	}
-	.breadcrumb-title {
-		font-size: 18px;
-	}
-	.db-breadcrumb-list li {
-		font-size: 12px;
-	}
-	.card-courses-dec p {
-		margin-bottom: 10px;
-	}
-	.card-courses-list {
-		padding-bottom: 15px;
-		margin-bottom: 15px;
-	}
-	.db-breadcrumb{
-		margin-bottom: 15px;
-	}
-	.ttr-sidebar-toggle-button {
-		display: none;
-	}
-}
-@media only screen and (max-width: 991px) {
-	.admin-courses .card-courses-media {
-		width: 140px;
-		min-width: 140px;
-		height: 140px;
-		margin-right: 15px;
-	}
-	.admin-courses .card-courses-media img{
-		height: 140px;
-	}
-	.admin-courses .card-courses-view > li{
-		padding-right: 10px;
-	}
-}
-@media only screen and (max-width: 767px) {
-	.admin-courses .card-courses-view {
-		display: table;
-	}
-
-	.admin-courses .card-courses-view > li {
-		padding-right: 10px;
-		width: 100%;
-		float: left;
-		margin-bottom: 10px;
-	}
-
-	.admin-courses .card-courses-view > li.card-courses-categories,
-	.admin-courses .card-courses-view > li.card-courses-review,
-	.admin-courses .card-courses-view > li.card-courses-stats,
-	.admin-courses .card-courses-view > li.card-courses-price {
-		width: 25%;
-	}
-
-	.admin-courses .card-courses-list-bx {
-		margin-bottom: 0px;
-	}
-
-	.admin-courses .card-courses-view > li.card-courses-price {
-		text-align: right;
-		padding-right: 0;
-	}
-}
-@media only screen and (max-width: 576px) {
-	.admin-courses .card-courses-media,
-	.bookmarks-bx .card-courses-media {
+	.admin-courses .card-courses-media{
 		width: 100%;
 		min-width: 100%;
 		height: auto;
 		margin-bottom:15px;
 	}
-	.admin-courses.card-courses-list,
-	.bookmarks-bx.card-courses-list {
+	.admin-courses.card-courses-list {
 		display: block;
 	}
-	.bookmarks-bx .card-courses-view > li {
-		position: relative;
-		padding-right: 10px;
-		float:left;
-	}
-	.bookmarks-bx  .card-courses-view {
-		display: table;
-		clear: both;
-	}
-	.admin-courses   .card-courses-categories,
-	.bookmarks-bx  .card-courses-categories{
+	.admin-courses   .card-courses-categories{
 		width:100%;
 		margin-bottom:10px;
 	}
@@ -1095,5 +1272,30 @@
 	.card-courses-list {
 		padding-bottom: 15px;
 		margin-bottom: 15px;
+	}
+	.admin-review .card-courses-view {
+		display: table;
+		clear: both;
+	}
+	.admin-review .card-courses-view > li {
+		padding-right: 0;
+		float: left;
+	}
+	.admin-review .card-courses-view > li.card-courses-review,
+	.admin-review .card-courses-view > li.card-courses-categories{
+		width:50%;
+	}
+	.admin-review .card-courses-view > li.card-courses-categories{
+		text-align:right;
+	}
+	.admin-review .card-courses-view > li.card-courses-user{
+		width:100%;
+		margin-bottom: 15px;
+	}
+	.admin-review .card-courses-list-bx {
+		margin-bottom: 10px;
+	}
+	.ttr-sidebar-toggle-button {
+		display: none;
 	}
 }
