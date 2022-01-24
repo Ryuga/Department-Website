@@ -50,7 +50,7 @@
                             <div class="card-header text-center bg-transparent">
                                <b> Active Registrations</b>
                             </div>
-                        <ul class="nav nav-tabs mb-3 justify-content-center mx-2" id="pills-tab" role="tablist">
+                        <ul class="nav nav-tabs mb-3 ml-1 p-0" id="pills-tab" role="tablist">
                         {% for registration in request.user.student.active_registrations %}
                               <li class="nav-item" role="presentation">
                                 <button class="nav-link {% if forloop.first %}active{% endif %}" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home{{ registration.id }}" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{{ registration.event.name }}</button>
