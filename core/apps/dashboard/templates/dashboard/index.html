@@ -41,9 +41,6 @@
                               </button>
                             </div>
 						</div>
-                        <div class="widget-inner d-lg-none d-md-none d-sm-block">
-                          <a class="btn btn-sm btn-warning w-100" href="{% url 'registration' event_link=registration.event.link %}"><i class="bi bi-calendar-plus"></i> Register Now</a>
-                        </div>
 					</div>
 				</div>
 
@@ -72,7 +69,7 @@
 
                                   <div class="card-footer bg-transparent mt-5">
                                       <a class="btn btn-sm text-white w-100" style="background-color: #6021ff" href="{% url 'programs' event_link=registration.event.link %}"><i class="bi bi-calendar2-check"></i> Event Details</a>
-                                      <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'schedule' event_link=registration.event.link %}"><i class="bi bi-alarm"></i> Your Schedule</a>
+                                      <a class="btn btn-sm btn-dark w-100 mt-2" href="{% url 'schedule' event_link=registration.event.link %}"><i class="bi bi-alarm"></i> Your Schedule</a>
                                       <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' event_link=registration.event.link %}"><i class="bi bi-calendar-plus"></i> Register Now</a>
                                   </div>
                                 </div>
@@ -81,26 +78,26 @@
                         </div>
                         </div>
                     {% else %}
-{#                    <div class="card d-md-none d-lg-none d-sm-block">#}
-{#                      <div class="card-footer bg-light">#}
-{#                        <ul class="nav nav-tabs mb-3 justify-content-center mx-2" id="pills-tab" role="tablist">#}
-{#                        {% for event in request.user.student.active_events %}#}
-{#                              <li class="nav-item" role="presentation">#}
-{#                                <button class="nav-link {% if forloop.first %}active{% endif %}" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-tabs-{{ event.link }}" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{{ event.name }}</button>#}
-{#                              </li>#}
-{#                        {% endfor %}#}
-{#                        </ul>#}
-{#                        <div class="tab-content" id="pills-tabs-tabContent">#}
-{#                        {% for event in request.user.student.active_events %}#}
-{#                            <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="pills-tabs-{{ event.link }}" role="tabpanel" aria-labelledby="pills-home-tab">#}
-{#                              <a class="btn btn-sm w-100 text-white" style="background-color: #6021ff" href="{% url 'programs' event_link=event.link %}"><i class="bi bi-calendar2-check"></i> Event Details</a>#}
-{#                              <a class="btn btn-sm btn-dark w-100 mt-2" href="{% url 'schedule' event_link=event.link %}"><i class="bi bi-alarm"></i> Event Schedule</a>#}
-{#                              <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' event_link=event.link %}"><i class="bi bi-calendar-plus"></i> Register Now</a>#}
-{#                            </div>#}
-{#                        {% endfor %}#}
-{#                        </div>#}
-{#                      </div>#}
-{#                    </div>#}
+                    <div class="card d-md-none d-lg-none d-sm-block">
+                      <div class="card-footer bg-light">
+                        <ul class="nav nav-tabs mb-3 justify-content-center mx-2" id="pills-tab" role="tablist">
+                        {% for event in request.user.student.active_events %}
+                              <li class="nav-item" role="presentation">
+                                <button class="nav-link {% if forloop.first %}active{% endif %}" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-tabs-{{ event.link }}" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{{ event.name }}</button>
+                              </li>
+                        {% endfor %}
+                        </ul>
+                        <div class="tab-content" id="pills-tabs-tabContent">
+                        {% for event in request.user.student.active_events %}
+                            <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="pills-tabs-{{ event.link }}" role="tabpanel" aria-labelledby="pills-home-tab">
+                              <a class="btn btn-sm w-100 text-white" style="background-color: #6021ff" href="{% url 'programs' event_link=event.link %}"><i class="bi bi-calendar2-check"></i> Event Details</a>
+                              <a class="btn btn-sm text-white w-100 mt-2" style="background-color: #0a0023" href="{% url 'schedule' event_link=event.link %}"><i class="bi bi-alarm"></i> Event Schedule</a>
+                              <a class="btn btn-sm w-100 mt-2" style="background-color: #ecc731" href="{% url 'registration' event_link=event.link %}"><i class="bi bi-calendar-plus"></i> Register Now</a>
+                            </div>
+                        {% endfor %}
+                        </div>
+                      </div>
+                    </div>
                     <div class="card bg-white">
                       <div class="card-header text-dark text-center bg-transparent">
                         <b>Zephyrus Registration Demo</b>
