@@ -80,7 +80,7 @@
                     {% else %}
                     <div class="card d-md-none d-lg-none d-sm-block">
                       <div class="card-footer bg-light">
-                        <ul class="nav nav-tabs mb-3 justify-content-center mx-2" id="pills-tab" role="tablist">
+                        <ul class="nav nav-tabs mb-3 ml-1 p-0" id="pills-tab" role="tablist">
                         {% for event in request.user.student.active_events %}
                               <li class="nav-item" role="presentation">
                                 <button class="nav-link {% if forloop.first %}active{% endif %}" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-tabs-{{ event.link }}" type="button" role="tab" aria-controls="pills-home" aria-selected="true">{{ event.name }}</button>
