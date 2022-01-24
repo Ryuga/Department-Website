@@ -41,7 +41,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-md-4 text-center">
                                     <img src="{% if registration.qr %}{{ registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif %}" alt=""  class="img-thumbnail" />
-                                    <h6 class="p-1 mt-2" style="background-color: lightsteelblue">{{ registration.id }}</h6>
+                                    <button class="btn btn-sm btn-outline-light mt-2 w-100 text-dark border-0" style="background-color: lightsteelblue"><b>{{ registration.id }}</b></button>
                                 </div>
                                 <div class="col-sm-6 col-md-8">
                                     <br/>
