@@ -14,7 +14,7 @@
 # Terminal instructions (You're supposed run the below commands during the initial setup)
 
 # Remove existing virtualenv module, We will let poetry install the required version
-$ apt-get remove virtualenv -y && python3 -m pip uninstall virtualenv -y
+$ sudo apt-get remove virtualenv -y && sudo python3 -m pip uninstall virtualenv -y
 
 # Install poetry
 $ pip install poetry
@@ -67,6 +67,9 @@ $ poetry run python3 manage.py runserver
 
 # Update and upgrade apt
 $ sudo apt update && sudo apt upgrade -y
+
+# If pip is not installed
+$ sudo apt-get install python3-pip -y
 
 # Remove virtualenv and let poetry install the required version
 $ sudo apt-get remove virtualenv -y && sudo python3 -m pip uninstall virtualenv -y
