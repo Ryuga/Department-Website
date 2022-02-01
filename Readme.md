@@ -162,7 +162,7 @@ $ sudo supervisorctl status
 
 #### NGINX Configurations
 
-add the below config inside `/etc/nginx/site-available/django.conf`
+add the below config inside `/etc/nginx/sites-available/django.conf`
 
 ```shell
 server {
@@ -199,7 +199,7 @@ $ sudo nginx -t
 # If configurations are not okay, Check the nginx configuration again to see if paths added are correct
 
 # If configurations shows okay, Symlink with sites-enabled
-$ sudo ln  /etc/nginx/site-available/django.conf /etc/nginx/sites-enabled
+$ sudo ln  /etc/nginx/sites-available/django.conf /etc/nginx/sites-enabled
 
 # Test nginx again
 $ sudo nginx -t

@@ -349,4 +349,3 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     pass
             return render(request, "dashboard/admin/registration-data.html", {"event": event})
         return render(request, "web/404.html")
-
