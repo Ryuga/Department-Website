@@ -166,7 +166,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 registration=registration,
             )
             for item in order_items_from_db:
-                transaction.events_selected.add(item)
+                transaction.programs_selected.add(item)
                 transaction.events_selected_json[item.name] = item.reg_fee
                 transaction.value += item.reg_fee
                 if request.user.is_superuser:
@@ -230,7 +230,7 @@ def payment_handler(request):
                 transaction.raw_response = response_dict
                 if response_dict['RESPCODE'] == '01':
                     transaction.registration.made_successful_transaction = True
-                    for program in transaction.events_selected.all():
+                    for program in transaction.programs_selected.all():
                         transaction.registration.student.registered_programs.add(program)
                     transaction.registration.save()
                 else:

@@ -191,7 +191,8 @@ class Transaction(models.Model):
     id = models.CharField(max_length=9, primary_key=True, default=generate_transaction_id)
     paytm_transaction_id = models.CharField(max_length=35, null=True, blank=True)
     registration = models.ForeignKey(Registration, on_delete=models.CASCADE)
-    events_selected = models.ManyToManyField(Program, blank=True, related_name="transactions")
+    programs_selected = models.ManyToManyField(Program, blank=True, related_name="transactions",
+                                               through="TransactionProgramRelation")
     events_selected_json = models.JSONField(null=True, default=default_json)
     bank_transaction_id = models.CharField(max_length=25, null=True, blank=True)
     creation_time = models.DateTimeField(default=time_now)
@@ -249,3 +250,9 @@ class EventSchedule(models.Model):
 
     def has_assigned_programs(self):
         return self.programs.exists()
+
+
+class TransactionProgramRelation(models.Model):
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, related_name="program_relation")
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="transaction_relation")
+    entry_given = models.BooleanField(default=False)
