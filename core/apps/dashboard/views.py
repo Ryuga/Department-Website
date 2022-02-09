@@ -317,11 +317,11 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                                     registration.online_transaction_value,
                                     registration.spot_transaction_value)
                         i += 1
-                    workbook.save(f"media/all-registrations.xls")
+                    workbook.save(f"media/{event_link}/{event_link}-registrations.xls")
                     response = HttpResponse()
                     del response['Content-Type']
-                    response['X-Accel-Redirect'] = "/protected/media/" + "all-registrations.xls"
-                    response['Content-Disposition'] = "attachment; filename=all-registrations.xls"
+                    response['X-Accel-Redirect'] = "/protected/media/" + f"{event_link}/{event_link}-registrations.xls"
+                    response['Content-Disposition'] = f"attachment; filename={event_link}-registrations.xls"
                     return response
                 elif request.GET.get("type") == "individual":
                     write_sheet(sheet, 0, "Reg ID",
@@ -339,10 +339,10 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                                     transaction.registration.online_transaction_value,
                                     transaction.registration.spot_transaction_value)
                         i += 1
-                    workbook.save(f"media/{program.name}-registrations.xls")
+                    workbook.save(f"media/{event_link}/{program.name}-registrations.xls")
                     response = HttpResponse()
                     del response['Content-Type']
-                    response['X-Accel-Redirect'] = "/protected/media/" + f"{program.name}-registrations.xls"
+                    response['X-Accel-Redirect'] = "/protected/media/" + f"{event_link}/{program.name}-registrations.xls"
                     response['Content-Disposition'] = f"attachment; filename={program.name}-registrations.xls"
                     return response
                 else:
