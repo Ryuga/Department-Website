@@ -50,9 +50,11 @@
 		</div>
 		<div class="account-form-inner">
             <div class="container">
+				{% if upcoming_events_with_registration_open %}
                 <div class="alert alert-primary mt-3" role="alert">
 					For <b><b><span id="spin"></span></b></b>, Sign in with your google account.
                 </div>
+				{% endif %}
             </div>
 			<div class="account-container">
 				<div class="heading-bx left">
