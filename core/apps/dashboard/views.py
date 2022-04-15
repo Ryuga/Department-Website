@@ -101,7 +101,7 @@ class UserProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"saved": saved})
 
 
-class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
+class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 
     def get(self, request, event_link):
@@ -201,7 +201,7 @@ class ZephyrusRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             return self.json_response_401()
 
 
-class ZephyrusProgramsView(LoginRequiredMixin, View):
+class EventProgramsView(LoginRequiredMixin, View):
     template_name = "dashboard/programs.html"
 
     def get(self, request, event_link):
@@ -209,7 +209,7 @@ class ZephyrusProgramsView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"programs": event.program_set.all()})
 
 
-class ZephyrusScheduleView(LoginRequiredMixin, View):
+class EventScheduleView(LoginRequiredMixin, View):
     template_name = "dashboard/schedule.html"
 
     def get(self, request, event_link):
