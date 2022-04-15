@@ -30,13 +30,16 @@
 	<!-- STYLESHEETS ============================================= -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'css/color/color-1.css' %}">
+	{% if upcoming_events_with_registration_open %}
 	<style>
-        #spin:after {
-          content:"New account Registration";
-          animation: spin 5s linear infinite;
-        }
-        {% if upcoming_events_with_registration_open %} {{generated_css | safe }} {% endif %}
+		#spin:after {
+		  content:"{{upcoming_events_with_registration_open.0}} Registration";
+		  animation: spin 5s linear infinite;
+		}
+		{{ generated_css | safe }}
+
 	</style>
+	 {% endif %}
 </head>
 <body id="bg">
 <div class="page-wraper">
