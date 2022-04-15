@@ -6,7 +6,8 @@ from django.shortcuts import render, redirect
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
 from core.apps.dashboard.models import Event, time_now
 from django.views.generic import ListView, View
-
+from core.apps.dashboard.models import Event
+from utils.functions import generate_css_text_animation
 from ipware import get_client_ip
 
 
@@ -19,6 +20,9 @@ class IndexView(View):
         context = {}
         context["upcoming_events"] = Event.objects.filter(start_date__gt=time_now())
         context["messages"] = Message.objects.all()[:3]
+        context['upcoming_events_with_registration_open'] = Event.upcoming_events_with_registration_open()
+        if context['upcoming_events_with_registration_open']:
+            context['generated_css'] = generate_css_text_animation(context['upcoming_events_with_registration_open'])
         ip, is_routable = get_client_ip(request)
         if is_routable:
             ip_hash = hashlib.md5(str.encode(ip)).hexdigest()[:10]

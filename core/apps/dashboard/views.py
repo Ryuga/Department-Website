@@ -9,6 +9,7 @@ from django.http import HttpResponseForbidden
 from utils.google_oauth2 import GoogleOauth
 from utils.mixins import ResponseMixin
 from utils.operations import create_user, write_sheet
+from utils.functions import generate_css_text_animation
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -39,7 +40,12 @@ class LoginView(View):
     template_name = "web/login.html"
 
     def get(self, request):
-        return render(request, self.template_name, {"google_oauth_url": google_oauth_url})
+        context = {}
+        context["google_oauth_url"] = google_oauth_url
+        context['upcoming_events_with_registration_open'] = Event.upcoming_events_with_registration_open()
+        if context['upcoming_events_with_registration_open']:
+            context['generated_css'] = generate_css_text_animation(context['upcoming_events_with_registration_open'])
+        return render(request, self.template_name, context)
 
 
 class RegisterView(View):

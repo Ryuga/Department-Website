@@ -43,6 +43,13 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'vendors/revolution/css/settings.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'vendors/revolution/css/navigation.css' %}">
 	<!-- REVOLUTION SLIDER END -->
+	<style>
+		#spin:after {
+		  content:"Dashboard";
+		  animation: spin 5s linear infinite;
+		}
+		{% if upcoming_events_with_registration_open %} {{generated_css | safe }} {% endif %}
+	</style>
 </head>
 <body id="bg">
 <div class="page-wraper">
@@ -61,7 +68,7 @@
 					<div class="topbar-right">
 						<ul>
 							<li><a href="https://christcollegeijk.edu.in" target="_blank">Christ College (Autonomous) <i class="fa fa-external-link"></i></a></li>
-							<li><a href="https://dashboard.christcs.in" class="btn-sm btn-warning text-dark" target="_blank">Dashboard</a></li>
+							<li><a href="https://dashboard.christcs.in" class="btn-sm btn-warning text-dark" target="_blank">{% if upcoming_events_with_registration_open %}<span id="spin"></span>{% else %}Dashboard{% endif %}</a></li>
 						</ul>
 					</div>
 				</div>

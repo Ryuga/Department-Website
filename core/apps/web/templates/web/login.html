@@ -30,6 +30,13 @@
 	<!-- STYLESHEETS ============================================= -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'css/color/color-1.css' %}">
+	<style>
+        #spin:after {
+          content:"New account Registration";
+          animation: spin 5s linear infinite;
+        }
+        {% if upcoming_events_with_registration_open %} {{generated_css | safe }} {% endif %}
+	</style>
 </head>
 <body id="bg">
 <div class="page-wraper">
@@ -41,7 +48,7 @@
 		<div class="account-form-inner">
             <div class="container">
                 <div class="alert alert-primary mt-3" role="alert">
-                    For <b><b>Zephyrus 3.0 registration</b></b>, Sign in with your google account.
+					For <b><b><span id="spin"></span></b></b>, Sign in with your google account.
                 </div>
             </div>
 			<div class="account-container">

@@ -100,6 +100,10 @@ class Event(models.Model):
     def spot_transaction_count(self):
         return self.spot_transactions.count()
 
+    @classmethod
+    def upcoming_events_with_registration_open(cls):
+        return cls.objects.filter(registration_open_date__gt=time_now())
+
 
 class Student(models.Model):
     name = models.CharField(max_length=100)
