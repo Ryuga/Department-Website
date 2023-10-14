@@ -130,3 +130,10 @@ GOOGLE_CLIENT_SECRET = {
         ]
      }
 }
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://dashboard.christcs.in",
+    "https://admin.christcs.in",
+    "https://zephyrus.christcs.in",
+]
