@@ -23,6 +23,7 @@ django-hosts = "^5.0"
 Pillow = "^9.0.0"
 dj-database-url = "^2.1.0"
 pycryptodome = "^3.19.0"
+whitenoise = "^6.6.0"
 
 [tool.poetry.dev-dependencies]
 
