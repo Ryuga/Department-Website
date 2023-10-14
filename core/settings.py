@@ -100,8 +100,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static', ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 DASHBOARD_URL = config('DASHBOARD_URL')
 ENCRYPTION_SALT = config("ENCRYPTION_SALT")
