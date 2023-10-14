@@ -60,16 +60,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
+DATABASE_URL = config("DATABASE_URL")
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'HOST': config('DB_HOST'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASS'),
-        'PORT': 5432,
-    }
+    'default': dj_database_url.config(default=DATABASE_URL)
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

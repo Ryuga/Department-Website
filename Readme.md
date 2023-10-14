@@ -25,10 +25,7 @@ $ poetry install
 $ sudo nano .env
 # add the following environment variables
 
-DB_NAME = "your_db_name"
-DB_HOST = "your_db_host"
-DB_PASS = "your_db_password"
-DB_USER = "your_db_user"
+DATABASE_URL = your_database_url
 
 DEBUG = True
 LOCAL_DEVELOPMENT = True
@@ -86,10 +83,7 @@ $ sudo poetry install
 $ sudo nano .env
 # add the following environment variables
 
-DB_NAME = "your_db_name"
-DB_HOST = "your_db_host"
-DB_PASS = "your_db_password"
-DB_USER = "your_db_user"
+DATABASE_URL = your_database_url
 
 DEBUG = False
 LOCAL_DEVELOPMENT = False
