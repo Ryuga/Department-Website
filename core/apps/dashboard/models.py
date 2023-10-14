@@ -102,7 +102,7 @@ class Event(models.Model):
 
     @classmethod
     def upcoming_events_with_registration_open(cls):
-        return cls.objects.filter(registration_open_date__gt=time_now())
+        return cls.objects.filter(registration_open_date__lt=time_now(), registration_close_date__gt=time_now())
 
 
 class Student(models.Model):
