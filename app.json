@@ -14,29 +14,6 @@
     "dokku": {
       "postdeploy": "python manage.py migrate"
     }
-  },
-  "env": {
-    "DISABLE_COLLECTSTATIC": {
-      "description": "Explictly disable collectstatic on deployment.",
-      "value": "1"
-    },
-    "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "1"
-    },
-    "DASHBOARD_URL": {
-      "description": "Homepage url for event management system",
-      "value": "https://zephyrus.christcs.in"
-    }
-  },
-  "image": "heroku/python",
-  "buildpacks": [
-    {
-      "url": "https://github.com/intellineers/python-poetry-buildpack.git"
-    },
-    {
-      "url": "https://github.com/heroku/heroku-buildpack-python.git"
-    }
-  ]
+  }
 }
 
