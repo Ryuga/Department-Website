@@ -90,3 +90,16 @@ class AlumniListView(ListView):
     model = Batch
     paginate_by = 3
     queryset = Batch.objects.order_by('-year')
+
+
+class TermsView(View):
+    template_name = "web/terms.html"
+    def get(self):
+        return render(request, self.template_name)
+
+
+class PrivacyView(View):
+    template_name = "web/privacy.html"
+
+    def get(self):
+        return render(request, self.template_name)
