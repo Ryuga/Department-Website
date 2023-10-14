@@ -109,7 +109,7 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     image_url = models.URLField(null=True)
     phone_number = models.CharField(max_length=10, null=True, blank=True)
-    access_token = models.CharField(max_length=200)
+    access_token = models.CharField(max_length=300)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="student", null=True)
     college_name = models.CharField(max_length=150, null=True, blank=True)
     department = models.CharField(max_length=100, null=True, blank=True)
