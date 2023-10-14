@@ -94,12 +94,12 @@ class AlumniListView(ListView):
 
 class TermsView(View):
     template_name = "web/terms.html"
-    def get(self):
+    def get(self, request):
         return render(request, self.template_name)
 
 
 class PrivacyView(View):
     template_name = "web/privacy.html"
 
-    def get(self):
+    def get(self, request):
         return render(request, self.template_name)
