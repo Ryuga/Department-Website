@@ -355,3 +355,13 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     pass
             return render(request, "dashboard/admin/registration-data.html", {"event": event})
         return render(request, "web/404.html")
+
+
+
+class AdminTabularView(LoginRequiredMixin, View):
+    model = Program
+    def get(self, request, program_id):
+        if request.user.is_superuser:
+            program = get_object_or_404(self.model, id=program_id)
+            return render(request, "dashboard/admin/tabular-view.html", {"program": program})
+        return render(request, "web/404.html")

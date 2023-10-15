@@ -1,0 +1,53 @@
+
+{% extends 'dashboard/layouts/base.html' %}
+
+{% load static %}
+{% block content %}
+<main class="ttr-wrapper">
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Admin | Registration Tabular View</h4>
+				<ul class="db-breadcrumb-list">
+					<li>Dashboard</li>
+					<li>Zephyrus</li>
+                    <li>Registration</li>
+                    <li>Data</li>
+                    <li>Tabular View</li>
+				</ul>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 m-b30">
+					<div class="widget-box">
+						<div class="wc-title">
+							<h4>{{ program.name }} Registration Data</h4>
+						</div>
+						<div class="widget-inner">
+                            <table class="table w-100">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-0">Name</th>
+                                            <th class="border-0">College</th>
+                                            <th class="border-0">Email</th>
+                                            <th class="border-0">Phone</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for student in program.registered_users %}
+                                             <tr>
+                                                <td>{{ student.name }}</td>
+                                                <td>{{ student.college_name }}</td>
+                                                <td>{{ student.user.email }}</td>
+                                                <td>{{ student.phone_number }}</td>
+                                             </tr>
+                                        {% endfor %}
+                                    </tbody>
+                            </table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+{% endblock content %}

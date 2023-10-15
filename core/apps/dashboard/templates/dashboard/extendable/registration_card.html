@@ -1,15 +1,15 @@
 {% load static %}
 
 {% if not does_not_exist %}
-<div class="card p-2">
+<div class="card p-2 bg-white border-0 shadow-lg">
     <div class="card-header bg-transparent">
         <h4>{% if request.user.is_superuser %}Spot {% else %}Event{% endif %} Registration</h4>
     </div>
     <div class="card-body">
         <div class="row">
             <div class="col-lg-5">
-                <div class="card mb-3">
-                    <div class="card-header bg-transparent">
+                <div class="widget-box mb-3 h-auto">
+                    <div class="wc-title">
                         <div class="form-check">
                         <b>Events</b>
                           <span style="float:right;">
@@ -38,16 +38,16 @@
             <div class="col-lg-5">
                 {% if created %}
                 <div class="alert alert-success alert-dismissible fade show hide" role="alert">
-                  <strong>Successful!</strong> Transaction created successfully.
+                  <strong>Successful!</strong> Registration created successfully.
                   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 {% endif %}
-                <div class="card">
-                    <div class="card-header bg-transparent">
-                        Cost Summary
+                <div class="widget-box h-auto">
+                    <div class="wc-title">
+                        <h4>Cost Summary</h4>
                     </div>
                     {% include 'dashboard/extendable/cost_summary.html' %}
-                    <div class="card-footer bg-transparent">
+                    <div class="widget-inner">
                         <button class="btn btn-dark" id="makePaymentBtn">{% if not request.user.is_superuser %}Make Payment{% else %}Create Registration{% endif %}</button>
                     </div>
                 </div>

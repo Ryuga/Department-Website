@@ -190,6 +190,10 @@ class Program(models.Model):
     def total_registrations(self):
         return self.transactions.filter(status="TXN_SUCCESS").count()
 
+    @property
+    def registered_users(self):
+        return self.student_set.all()
+
 
 class Transaction(models.Model):
     id = models.CharField(max_length=9, primary_key=True, default=generate_transaction_id)

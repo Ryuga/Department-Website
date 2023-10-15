@@ -34,7 +34,7 @@
                                             </div>
                                             {% if request.user.is_superuser %}
                                             <div class="card-footer bg-transparent text-center">
-                                                <a class="btn-sm btn-success text-white" href="{% url 'registration_data' event_link=event.link %}?type=all" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Excel Data</a>
+                                                <a class="btn btn-sm btn-success text-white" href="{% url 'registration_data' event_link=event.link %}?type=all" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Excel Data</a>
                                             </div>
                                             {% endif %}
                                             </div>
@@ -65,8 +65,9 @@
                                                 <h2>{{ program.total_registrations }}</h2>
                                             </div>
                                             {% if request.user.is_superuser %}
-                                            <div class="card-footer align-items-center bg-transparent text-center">
-                                                <a class="btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' event_link=event.link %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Excel Data</a>
+                                            <div class="card-footer bg-transparent">
+                                                <a class="btn btn-sm btn-info text-white mx-auto float-end" href="{% url 'program_data' program_id=program.id %}" style="text-decoration: none;"><i class="fa-solid fa-eye"></i> View</a>
+                                                <a class="btn btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' event_link=event.link %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Excel Data</a>
                                             </div>
                                             {% endif %}
                                         </div>
