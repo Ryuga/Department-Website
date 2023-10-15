@@ -14,11 +14,11 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-8 col-md-6 col-sm-12 order-1 m-b30">
-                    <div class="card">
-                        <div class="card-header bg-transparent">
-                            <b>Registered Events</b>
+                    <div class="widget-box h-auto">
+                        <div class="wc-title">
+                            <h4>Registered Events</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="widget-inner">
                             {% for item in registration.registered_programs %}
                                 {% for x in item %}
                                     {% for subitem, _ in x.items %}
@@ -32,16 +32,16 @@
                     </div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-sm 12 order-0 m-b30">
-                <div class="card">
-                    <div class="card-header bg-transparent">
+                <div class="widget-box h-auto">
+                    <div class="wc-title">
                        <b> Registration Profile</b>
                     </div>
-                    <div class="card-body">
+                    <div class="widget-inner">
 {#                        <div class="well well-sm">#}
                             <div class="row">
                                 <div class="col-sm-6 col-md-4 text-center">
                                     <img src="{% if registration.qr %}{{ registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif %}" alt=""  class="img-thumbnail" />
-                                    <button class="btn btn-sm btn-outline-light mt-2 w-100 text-dark border-0" style="background-color: lightsteelblue"><b>{{ registration.id }}</b></button>
+                                    <a class="btn btn-sm btn-outline-secondary mt-2 w-100 text-dark"><b>{{ registration.id }}</b></a>
                                 </div>
                                 <div class="col-sm-6 col-md-8">
                                     <br/>
@@ -52,7 +52,7 @@
                                         <br />
                                         <i class="fa-solid fa-envelope"></i> {{ registration.student.user.email }}
                                         <br />
-                                        <i class="fa-solid fa-mobile"></i>{{ registration.student.phone_number }}
+                                        <i class="fa-brands fa-square-whatsapp"></i> {{ registration.student.phone_number }}
                                     </p>
                                 </div>
                             </div>

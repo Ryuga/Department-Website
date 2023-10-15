@@ -1,8 +1,8 @@
-<div class="card p-2">
-    <div class="card-header bg-transparent">
+<div class="widget-box h-auto">
+    <div class="wc-title">
         <h4>User Profile</h4>
     </div>
-    <div class="card-body">
+    <div class="widget-inner">
         <form class="edit-profile m-b30" method="post" action="{% url 'profile' %}">
         {% csrf_token %}
             <div class="">
@@ -39,8 +39,13 @@
                 <div class="form-group row my-3">
                     <label class="col-sm-2 col-form-label">Phone No.</label>
                     <div class="col-sm-7">
-                        <input class="form-control" maxlength="10" name="phone_number" type="text" value="{% if request.user.student.phone_number %}{{ request.user.student.phone_number }}{% endif %}" {% if not request.user.student.completed_profile_setup %}required{% endif %}>
-                        <span class="help">Please specify your whatsapp registered number.</span>
+                    <div class="input-group mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">+91</span>
+                      </div>
+                      <input class="form-control" maxlength="10" name="phone_number" type="tel" pattern="[0-9]{10}"  value="{% if request.user.student.phone_number %}{{ request.user.student.phone_number }}{% endif %}" {% if not request.user.student.completed_profile_setup %}required{% endif %}>
+                    </div>
+                        <span class="help">Please specify your <i class="fa-brands fa-whatsapp"></i>whatsapp registered number.</span>
                     </div>
                 </div>
                 <div class="seperator"></div>
