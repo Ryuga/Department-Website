@@ -41,6 +41,8 @@ PAYTM_MERCHANT_KEY = "your_merchant_key"
 GOOGLE_CLIENT_ID = "your_client_id"
 GOOGLE_CLIENT_SECRET = "your_client_secret"
 
+PAYTM_PROCESS_TRANSACTION_URL = "https://securegw-stage.paytm.in/theia/processTransaction"
+
 # Run the development server locally
 $ poetry run python3 manage.py runserver 
 # this should run the Django development server on your localhost:8000.
@@ -50,6 +52,36 @@ $ poetry run python3 manage.py runserver
 ### Adding host file configuration for subdomain access in development
 
 ### Production Setup
+
+#### Dokku Setup
+```bash
+# Update and upgrade apt
+$ sudo apt-get update && sudo apt-get upgrade -y
+
+# Fetch dokku 0.31.4
+$ wget -NP . https://dokku.com/install/v0.31.4/bootstrap.sh
+
+# Install dokku
+$ sudo DOKKU_TAG=v0.31.4 bash bootstrap.sh
+
+# Create dokku application
+$ dokku apps:create department-website
+
+# Add required buildpacks
+$ dokku buildpacks:add https://github.com/moneymeets/python-poetry-buildpack.git
+$ dokku buildpacks:add https://github.com/heroku/heroku-buildpack-python.git
+
+# From the above .env file, add all the variables and their values in given format
+# (Multiple variables and their values can be added at a time with spaces between each pair)
+$ dokku config:add VARIABLE_NAME=VALUE
+
+# Explicitly disable static file collection
+$ dokku config:add DISABLE_COLLECTSTATIC=1
+```
+
+Add Github repository 
+
+#### Baremetal Setup
 
 #### Addition Requirements:
 
@@ -97,6 +129,8 @@ PAYTM_MERCHANT_KEY = "your_merchant_key"
 
 GOOGLE_CLIENT_ID = "your_client_id"
 GOOGLE_CLIENT_SECRET = "your_client_secret"
+
+PAYTM_PROCESS_TRANSACTION_URL = "https://securegw.paytm.in/theia/processTransaction"
 
 # Run collectstatic to collect static files to assets folder for production
 $ sudo poetry run python3 manage.py collectstatic
