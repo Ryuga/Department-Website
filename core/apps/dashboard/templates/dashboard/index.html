@@ -60,16 +60,22 @@
                         {% for registration in request.user.student.active_registrations %}
                             <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="pills-home{{ registration.id }}" role="tabpanel" aria-labelledby="pills-home-tab">
                                 <div class="card-body p-3 text-center bg-transparent">
-                                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <button class="btn-sm btn-outline-dark"> <img src="{% if request.user.student.registration.qr %}{{ request.user.student.registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif%}" height="100" width="100" /></button> <span class="name mt-3">{{ request.user.student.name }}</span> <span class="idd">{{ request.user.student.college_name }}</span>
+                                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <a class="m-1 border border-dark-subtle"> <img src="{% if request.user.student.registration.qr %}{{ request.user.student.registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif%}" height="100" width="100" /></a> <span class="name mt-3">{{ request.user.student.name }}</span> <span class="idd">{{ request.user.student.college_name }}</span>
                                         <div class="d-flex flex-row justify-content-center align-items-center gap-2 mt-2"><button class="btn-sm btn-outline-light mt-2 w-100 text-dark border-0" style="background-color: lightsteelblue"><b>{{ registration.id }}</b></button></div>
                                     </div>
 
-                                    <a href="{% url 'my_registration_details' event_link=registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="bi bi-exclamation-circle-fill"></i> Registration Details</a>
+                                    <a href="{% url 'my_registration_details' event_link=registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="fa-solid fa-circle-info"></i> Registration Details</a>
 
-                                  <div class="card-footer bg-transparent mt-5">
-                                      <a class="btn btn-sm text-white w-100" style="background-color: #6021ff" href="{% url 'programs' event_link=registration.event.link %}"><i class="bi bi-calendar2-check"></i> Event Details</a>
-                                      <a class="btn btn-sm btn-dark w-100 mt-2" href="{% url 'schedule' event_link=registration.event.link %}"><i class="bi bi-alarm"></i> Your Schedule</a>
-                                      <a class="btn btn-sm btn-warning w-100 mt-2" href="{% url 'registration' event_link=registration.event.link %}"><i class="bi bi-calendar-plus"></i> Register Now</a>
+                                  <div class="card-footer bg-transparent mt-5 row">
+                                      <div class="col-6 b-0 m-0">
+                                      <a class="btn btn-sm text-white w-100" style="background-color: #6021ff" href="{% url 'programs' event_link=registration.event.link %}"><i class="fa-solid fa-calendar-week"></i> Event Details</a>
+                                      </div>
+                                      <div class="col-6 b-0 m-0">
+                                      <a class="btn btn-sm btn-dark w-100" href="{% url 'schedule' event_link=registration.event.link %}"><i class="fa-solid fa-stopwatch"></i> Your Schedule</a>
+                                      </div>
+                                      <div class="col-12 b-0 m-0 mt-2 mx--2">
+                                      <a class="btn btn-sm btn-warning w-100" href="{% url 'registration' event_link=registration.event.link %}"><i class="fa-solid fa-calendar-plus"></i> Register Now</a>
+                                      </div>
                                   </div>
                                 </div>
                             </div>
