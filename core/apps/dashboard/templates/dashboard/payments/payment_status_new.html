@@ -206,7 +206,7 @@
       {% if response.RESPCODE == '01' %}
         <div class="order-details">
           <div class="order-number-label">Transaction Number</div>
-          <div class="order-number">{{ response.TXNID }}</div>
+          <div class="order-number">{{ response.ORDERID }}</div>
         </div>
         <div class="order-footer">Thank you!</div>
       {% else %}
