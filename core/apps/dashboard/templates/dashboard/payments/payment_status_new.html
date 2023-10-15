@@ -135,7 +135,7 @@
 .order-footer {
   text-align: center;
   line-height: 18px;
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 8px;
   font-weight: bold;
   color: #999;
@@ -190,7 +190,7 @@
           <div class="failure-icon">&#10007;</div>
         {% endif %}
         <div class="success-title">
-         {% if response.RESPCODE == '01' %} Payment Successful! {% else %} Payment Failed! {% endif %}]
+         {% if response.RESPCODE == '01' %} Payment Successful! {% else %} Payment Failed! {% endif %}
         </div>
         <div class="success-description">
             {% if response.RESPCODE == '00' %}
@@ -201,7 +201,7 @@
             <p>Please check your registered email for the registration id and payment confirmation.</p>
             {% endif %}
         <br>
-        <p class="mb-0">You will be automatically redirected to dashboard in <span id="timer">5</span> seconds... If redirection doesn't work, please click <a href="{% url 'dashboard' %}">here</a>.</p>
+        <p class="mb-0">Back to site in <span id="timer">7</span> seconds.</p>
         </div>
       {% if response.RESPCODE == '01' %}
         <div class="order-details">
@@ -219,7 +219,7 @@
 </div>
 
     <script type="text/javascript">
-    let count = 5;
+    let count = 7;
     setInterval(function (){
         if(count > 0){
             count--;
