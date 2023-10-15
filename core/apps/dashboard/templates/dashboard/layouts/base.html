@@ -17,7 +17,7 @@
 	<header class="ttr-header">
 		<div class="ttr-header-wrapper">
 			<div class="ttr-toggle-sidebar ttr-material-button">
-				<i class="bi bi-list"></i>
+				<i class="fa-solid fa-bars"></i>
 			</div>
 			<div class="ttr-header-menu">
 				<ul class="ttr-header-navigation">
@@ -94,7 +94,7 @@
                     {% if request.user.is_staff %}
 					<li>
 						<a href="{% url 'registration_details_admin' %}" class="ttr-material-button">
-							<span class="ttr-icon"><i class="bi bi-search"></i></span>
+							<span class="ttr-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
 		                	<span class="ttr-label">Registration Details</span>
 		                </a>
 		            </li>
