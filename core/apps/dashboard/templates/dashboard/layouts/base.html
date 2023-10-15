@@ -112,7 +112,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/Ryuga/Department-Website@master/static/dashboard/js/admin.js"></script>
 <script src="https://kit.fontawesome.com/7eae56138c.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 <script src="{% static 'js/app.js' %}"></script>
+<script>
+    new ClipboardJS('.regIdBtn');
+</script>
 {% block scripts %} {% endblock scripts %}
 
 {% if not request.user.student.completed_profile_setup %}
