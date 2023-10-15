@@ -267,7 +267,7 @@ def payment_handler(request):
         response_dict["RESPCODE"] = "00"
         response_dict["RESPMSG"] = "Transaction ID not set on callback"
 
-    return render(request, "dashboard/payments/payment_status.html", {"response": response_dict})
+    return render(request, "dashboard/payments/payment_status_new.html", {"response": response_dict})
 
 
 class MyRegistrationDetailView(LoginRequiredMixin, View):
