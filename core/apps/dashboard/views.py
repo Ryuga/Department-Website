@@ -1,3 +1,4 @@
+import os
 import pytz
 import xlwt
 from datetime import datetime
@@ -310,9 +311,9 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                 if request.GET.get("type") == "all":
                     registrations = event.successful_registrations
                     write_sheet(sheet, 0, "Reg ID",
-                                "Name", "Phone", "Email",
-                                "College", "Registered Programs",
-                                "Online", "Spot")
+                            "Name", "Phone", "Email",
+                            "College", "Registered Programs",
+                            "Online", "Spot")
                     for registration in registrations:
                         write_sheet(sheet, i, registration.id,
                                     registration.student.name,
@@ -323,6 +324,8 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                                     registration.online_transaction_value,
                                     registration.spot_transaction_value)
                         i += 1
+                    if not os.path.isdir(f"media/{event_link}/"):
+                        os.mkdir(f"media/{event_link}/")
                     workbook.save(f"media/{event_link}/{event_link}-registrations.xls")
                     response = HttpResponse()
                     del response['Content-Type']
