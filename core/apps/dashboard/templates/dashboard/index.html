@@ -67,13 +67,13 @@
                                     <a href="{% url 'my_registration_details' event_link=registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="fa-solid fa-circle-info"></i> Registration Details</a>
 
                                   <div class="card-footer bg-transparent mt-5 row">
-                                      <div class="col-6 b-0 m-0">
+                                      <div class="col-6 m-0 p-1">
                                       <a class="btn btn-sm text-white w-100" style="background-color: #6021ff" href="{% url 'programs' event_link=registration.event.link %}"><i class="fa-solid fa-calendar-week"></i> Event Details</a>
                                       </div>
-                                      <div class="col-6 b-0 m-0">
+                                      <div class="col-6 m-0 p-1">
                                       <a class="btn btn-sm btn-dark w-100" href="{% url 'schedule' event_link=registration.event.link %}"><i class="fa-solid fa-stopwatch"></i> Your Schedule</a>
                                       </div>
-                                      <div class="col-12 b-0 m-0 mt-2 mx--2">
+                                      <div class="col-12 b-0 m-0 p-1">
                                       <a class="btn btn-sm btn-warning w-100" href="{% url 'registration' event_link=registration.event.link %}"><i class="fa-solid fa-calendar-plus"></i> Register Now</a>
                                       </div>
                                   </div>
