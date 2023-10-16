@@ -267,4 +267,8 @@ class EventSchedule(models.Model):
 class TransactionProgramRelation(models.Model):
     transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, related_name="program_relation")
     program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="transaction_relation")
+
+class ProgramStudentRelation(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="program_relation")
+    program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="student_relation")
     entry_given = models.BooleanField(default=False)
