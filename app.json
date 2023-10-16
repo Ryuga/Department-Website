@@ -12,7 +12,7 @@
   "success_url": "/",
   "scripts": {
     "dokku": {
-      "postdeploy": "python manage.py migrate"
+      "postdeploy": "python manage.py migrate && mkdir media"
     }
   }
 }
