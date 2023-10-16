@@ -181,6 +181,7 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             if request.user.is_superuser:
                 transaction.status = "TXN_SUCCESS"
                 transaction.spot = True
+                transaction.registrar = request.user.student
                 transaction.registration.made_successful_transaction = True
                 transaction.raw_response = f"This transaction was created manually by registration admin: " \
                                            f"{request.user.email}\n The payment was collected and verified offline "
@@ -356,7 +357,8 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     return response
                 else:
                     pass
-            return render(request, "dashboard/admin/registration-data.html", {"event": event})
+            spot_registrars = User.objects.filter(is_superuser=True)
+            return render(request, "dashboard/admin/registration-data.html", {"event": event, "spot_registrars": spot_registrars})
         return render(request, "web/404.html")
 
 

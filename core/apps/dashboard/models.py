@@ -132,6 +132,9 @@ class Student(models.Model):
     def registered_programs_str(self):
         return "".join(f"{program.name}, " for program in self.registered_programs.all())
 
+    @property
+    def total_payment_collected(self):
+        return self.transaction_set.all().aggregate(models.Sum('value')).get('value__sum')
 
 class Registration(models.Model):
     id = models.CharField(max_length=9, default=generate_registration_id, primary_key=True)
@@ -204,6 +207,7 @@ class Transaction(models.Model):
     events_selected_json = models.JSONField(null=True, default=default_json)
     bank_transaction_id = models.CharField(max_length=25, null=True, blank=True)
     creation_time = models.DateTimeField(default=time_now)
+    registrar = models.ForeignKey(Student, null=True, on_delete=models.SET_NULL)
     date = models.DateTimeField(null=True, blank=True)
     status = models.CharField(max_length=15, default="INITIATED")
     mode = models.CharField(max_length=20, null=True, blank=True)

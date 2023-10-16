@@ -22,9 +22,9 @@
 						</div>
 						<div class="widget-inner">
                             <div class="row">
-                                <div class="col-lg-12">
+                                <div class="col-lg-8 col-sm-12">
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="col-md-6 col-sm-12">
                                             <div class="card mb-4">
                                             <div class="card-header bg-transparent">
                                                 <h5>Total Students Registered</h5>
@@ -39,7 +39,7 @@
                                             {% endif %}
                                             </div>
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="col-md-6 col-sm-12">
                                             <div class="card mb-4">
                                             <div class="card-header bg-transparent">
                                                 <h5>Total Transactions</h5>
@@ -53,26 +53,53 @@
                                             </div>
                                             </div>
                                         </div>
+                                    {% for program in event.program_set.all %}
+                                        <div class="col-md-4 col-sm-6">
+                                            <div class="card mb-4">
+                                                <div class="card-header bg-transparent">
+                                                    <b>{{ program.name }}</b>
+                                                </div>
+                                                <div class="card-body">
+                                                    <h2>{{ program.total_registrations }}</h2>
+                                                </div>
+                                                {% if request.user.is_superuser %}
+                                                <div class="card-footer bg-transparent">
+                                                    <a class="btn btn-sm btn-info text-white mx-auto float-end" href="{% url 'program_data' program_id=program.id %}" style="text-decoration: none;"><i class="fa-solid fa-eye"></i> View</a>
+                                                    <a class="btn btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' event_link=event.link %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Excel</a>
+                                                </div>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
                                     </div>
                                 </div>
-                                {% for program in event.program_set.all %}
-                                    <div class="col-lg-2 col-md-3 col-sm-4">
-                                        <div class="card mb-4">
-                                            <div class="card-header bg-transparent">
-                                                <b>{{ program.name }}</b>
-                                            </div>
-                                            <div class="card-body">
-                                                <h2>{{ program.total_registrations }}</h2>
-                                            </div>
-                                            {% if request.user.is_superuser %}
-                                            <div class="card-footer bg-transparent">
-                                                <a class="btn btn-sm btn-info text-white mx-auto float-end" href="{% url 'program_data' program_id=program.id %}" style="text-decoration: none;"><i class="fa-solid fa-eye"></i> View</a>
-                                                <a class="btn btn-sm btn-success text-white mx-auto" href="{% url 'registration_data' event_link=event.link %}?type=individual&program_id={{ program.id }}" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Excel Data</a>
-                                            </div>
-                                            {% endif %}
+                                <div class="col-lg-4 col-sm-12">
+                                    <div class="widget-box h-auto">
+                                        <div class="wc-title">
+                                            <h4>Spot Payments Collected</h4>
+                                        </div>
+                                        <div class="widget-inner">
+                                            <table class="table">
+                                              <thead>
+                                                <tr>
+                                                  <th scope="col" >Registrar</th>
+                                                  <th scope="col" >Amount</th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                {% for user in spot_registrars %}
+                                                   {% if user.student and user.student.total_payment_collected %}
+                                                   <tr>
+                                                      <td>{{ user.student.name }}</td>
+                                                      <td>{{ user.student.total_payment_collected }}</td>
+                                                    </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                              </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                {% endfor %}
+                                </div>
                             </div>
 						</div>
 					</div>
