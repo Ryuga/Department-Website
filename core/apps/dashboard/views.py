@@ -16,7 +16,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student
-
+from utils.operations import send_registration_email
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
@@ -368,5 +368,6 @@ class AdminTabularView(LoginRequiredMixin, View):
     def get(self, request, program_id):
         if request.user.is_superuser:
             program = get_object_or_404(self.model, id=program_id)
+            send_registration_email(transaction_id="tnx-872a5")
             return render(request, "dashboard/admin/tabular-view.html", {"program": program})
         return render(request, "web/404.html")

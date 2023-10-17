@@ -24,6 +24,10 @@ Pillow = "^9.0.0"
 dj-database-url = "^2.1.0"
 pycryptodome = "^3.19.0"
 whitenoise = "^6.6.0"
+httpx = "^0.25.0"
+celery = "^5.3.4"
+qrcode = "^7.4.2"
+redis = "^5.0.1"
 
 [tool.poetry.dev-dependencies]
 

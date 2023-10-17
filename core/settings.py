@@ -105,6 +105,7 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DASHBOARD_URL = config('DASHBOARD_URL')
 ENCRYPTION_SALT = config("ENCRYPTION_SALT")
 ENCRYPTION_ITERATION = config("ENCRYPTION_ITERATION")
+BOT_TOKEN = config("BOT_TOKEN")
 
 # PAYTM PAYMENTS CONFIG
 PAYTM_MERCHANT_ID = config("PAYTM_MERCHANT_ID")
@@ -131,6 +132,20 @@ GOOGLE_CLIENT_SECRET = {
      }
 }
 
+#Celery Config
+CELERY_BROKER_URL = config("CELERY_BROKER_URL")
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
+
+#Email Config
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.zoho.in"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 
 CSRF_TRUSTED_ORIGINS = [
     "https://dashboard.christcs.in",
