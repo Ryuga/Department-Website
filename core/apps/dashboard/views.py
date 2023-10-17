@@ -16,7 +16,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student
-from utils.operations import send_registration_email
+from core.apps.dashboard.tasks import send_registration_email
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
@@ -179,6 +179,7 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 if request.user.is_superuser:
                     registration_owner.registered_programs.add(item)
             if request.user.is_superuser:
+                send_registration_email.delay(transaction_id=transaction.id)
                 transaction.status = "TXN_SUCCESS"
                 transaction.spot = True
                 transaction.registrar = request.user.student
