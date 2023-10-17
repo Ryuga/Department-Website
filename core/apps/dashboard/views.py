@@ -242,6 +242,7 @@ def payment_handler(request):
                     for program in transaction.programs_selected.all():
                         transaction.registration.student.registered_programs.add(program)
                     transaction.registration.save()
+                    send_registration_email.delay(transaction_id=transaction.id)
                 else:
                     transaction.status = "FAILED"
                     transaction.failure_msg = response_dict.get("RESPMSG")
