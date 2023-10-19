@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 from django.template.defaultfilters import slugify
 from utils.functions import generate_transaction_id, generate_registration_id
 
@@ -177,7 +178,7 @@ class Registration(models.Model):
 class Program(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     event = models.ForeignKey(Event, on_delete=models.CASCADE, null=True)
-    reg_fee = models.IntegerField()
+    reg_fee = models.IntegerField(validators=[MinValueValidator(1)])
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
     image = models.URLField(null=True, blank=True)
