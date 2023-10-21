@@ -1,5 +1,5 @@
 ---
-name: "deploy"
+name: "microservice deploy"
 
 on:
   push:
@@ -18,5 +18,5 @@ jobs:
       - name: Push changes to dokku from master
         uses: dokku/github-action@master
         with:
-          git_remote_url: ${{secrets.DOKKU_ENDPOINT}}
-          ssh_private_key: ${{ secrets.SECRET_KEY }}
+          git_remote_url: ${{secrets.MICRO_DOKKU_ENDPOINT}}
+          ssh_private_key: ${{ secrets.MICRO_SECRET_KEY }}

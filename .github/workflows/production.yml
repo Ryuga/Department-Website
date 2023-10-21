@@ -1,0 +1,22 @@
+---
+name: "production deploy"
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Push changes to dokku from master
+        uses: dokku/github-action@master
+        with:
+          git_remote_url: ${{secrets.DOKKU_ENDPOINT}}
+          ssh_private_key: ${{ secrets.SECRET_KEY }}
