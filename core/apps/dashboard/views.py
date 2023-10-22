@@ -179,7 +179,10 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 if request.user.is_superuser:
                     registration_owner.registered_programs.add(item)
             if request.user.is_superuser:
-                send_registration_email.delay(transaction_id=transaction.id)
+                try:
+                    send_registration_email.delay(transaction_id=transaction.id)
+                except Exception as E:
+                    print(E)
                 transaction.status = "TXN_SUCCESS"
                 transaction.spot = True
                 transaction.registrar = request.user.student
@@ -242,7 +245,10 @@ def payment_handler(request):
                     for program in transaction.programs_selected.all():
                         transaction.registration.student.registered_programs.add(program)
                     transaction.registration.save()
-                    send_registration_email.delay(transaction_id=transaction.id)
+                    try:
+                        send_registration_email.delay(transaction_id=transaction.id)
+                    except Exception as E:
+                        print(E)
                 else:
                     transaction.status = "FAILED"
                     transaction.failure_msg = response_dict.get("RESPMSG")
@@ -370,6 +376,5 @@ class AdminTabularView(LoginRequiredMixin, View):
     def get(self, request, program_id):
         if request.user.is_superuser:
             program = get_object_or_404(self.model, id=program_id)
-            send_registration_email(transaction_id="tnx-872a5")
             return render(request, "dashboard/admin/tabular-view.html", {"program": program})
         return render(request, "web/404.html")
