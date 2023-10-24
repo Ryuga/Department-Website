@@ -6,7 +6,7 @@ authors = ["ryuga <vaishnav2353@gmail.com>"]
 license = "MIT LICENSE"
 
 [tool.poetry.dependencies]
-python = "3.11.4"
+python = "^3.11.4"
 Django = "^4.0.1"
 gunicorn = "^20.1.0"
 python-decouple = "^3.5"
@@ -28,6 +28,7 @@ httpx = "^0.25.0"
 celery = "^5.3.4"
 qrcode = "^7.4.2"
 redis = "^5.0.1"
+django-celery-results = "^2.5.1"
 
 [tool.poetry.dev-dependencies]
 

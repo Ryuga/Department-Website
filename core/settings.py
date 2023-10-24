@@ -23,7 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core.apps.web.apps.WebConfig',
     'core.apps.dashboard.apps.DashboardConfig',
-    'django_hosts'
+    'django_hosts',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,7 @@ GOOGLE_CLIENT_SECRET = {
 }
 
 #Celery Config
-CELERY_BROKER_URL = config("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
