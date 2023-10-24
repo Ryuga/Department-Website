@@ -140,7 +140,7 @@ class Student(models.Model):
 
     @property
     def address(self):
-        return f"{self.department}, {self.college_name}\n+91{self.phone_number}"
+        return f"{self.college_name}\n+91{self.phone_number}"
 
 
 class Registration(models.Model):

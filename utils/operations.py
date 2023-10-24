@@ -25,9 +25,13 @@ def write_sheet(sheet, row, *args):
 def get_html_formatted_message(transaction):
     pricing = ""
     for program in transaction.programs_selected.all():
-        pricing = pricing + pricing_row.format(img=program.image, program_name=program.name, fee=program.reg_fee)
+        pricing = pricing + pricing_row.format(img=program.image or "https://lairesit.sirv.com/Images/"
+                                                                    "Individual%20Event%201x1/Blitz.jpg",
+                                               program_name=program.name,
+                                               fee=program.reg_fee)
     first_half = template_1st_half.format(txn_id=transaction.id,
-                                          reg_link=f"https://zephyrus.christcs.in/{transaction.registration.event.link}/registration/me/",
+                                          reg_link=f"https://zephyrus.christcs.in/{transaction.registration.event.link}"
+                                                   f"/registration/me/",
                                           event_name=transaction.registration.event.name,
                                           qrcode_url=transaction.registration.qr,
                                           name=transaction.registration.student.name,
