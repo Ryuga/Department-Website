@@ -353,7 +353,7 @@ template_2nd_half = """
                               text-align: right;
                             "
                           >
-                            ₹{total}.00
+                            ₹{total}
                           </td>
                         </tr>
                         <tr>
@@ -374,7 +374,7 @@ template_2nd_half = """
                               text-align: right;
                             "
                           >
-                            ₹{tax}.00
+                            ₹{tax}
                           </td>
                         </tr>
                         <tr>
@@ -395,7 +395,7 @@ template_2nd_half = """
                               text-align: right;
                             "
                           >
-                            ₹-{tax}.00
+                            ₹-{tax}
                           </td>
                         </tr>
                         <tr>
@@ -416,7 +416,7 @@ template_2nd_half = """
                               text-align: right;
                             "
                           >
-                            ₹{total}.00
+                            ₹{total}
                           </td>
                         </tr>
                       </table>
