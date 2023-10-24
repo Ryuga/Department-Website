@@ -308,7 +308,7 @@ template_1st_half = """
                           margin-bottom: 10px;
                         "
                       >
-                        Transaction ID:: {txn_id}
+                        Transaction No:: {txn_id}
                       </p>
                       <div
                         style="

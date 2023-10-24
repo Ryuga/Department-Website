@@ -259,7 +259,7 @@ def payment_handler(request):
                     transaction.paytm_transaction_id = request.POST.get("TXNID")
                     transaction.bank_transaction_id = request.POST.get("BANKTXNID")
                 transaction.value = request.POST.get("TXNAMOUNT")
-                transaction.mode = request.POST.get("GATEWAYNAME") if request.POST.get("GATEWAYNAME") else "Paytm"
+                transaction.mode = request.POST.get("PAYMENTMODE", "Online")
                 if request.POST.get("STATUS"):
                     transaction.status = request.POST.get("STATUS")
                 if request.POST.get("TXNDATE"):
