@@ -25,7 +25,7 @@ def send_registration_email(transaction_id):
                 registration.qr = resp["attachments"][0]["url"]
                 registration.save()
             os.remove(f"{registration.id}.png")
-        msg = get_html_formatted_message(registration.id, programs, registration.qr, transaction.value)
+        msg = get_html_formatted_message(transaction)
         mail.send_mail(
         subject=f"{registration.event.name} Registration Successful!",
         from_email="zephyrus-no-reply@christcs.in",

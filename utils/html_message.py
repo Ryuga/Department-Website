@@ -1,413 +1,591 @@
 template_1st_half = """
-<html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
-   <head>
-      <title></title>
-      <meta charset="utf-8"/>
-      <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-      <!--[if mso]>
-      <xml>
-         <o:OfficeDocumentSettings>
-            <o:PixelsPerInch>96</o:PixelsPerInch>
-            <o:AllowPNG/>
-         </o:OfficeDocumentSettings>
-      </xml>
-      <![endif]-->
-      <!--[if !mso]><!-->
-      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"/>
-      <!--<![endif]-->
-      <style>
-         * {
-         box-sizing: border-box;
-         }
-         body {
-         margin: 0;
-         padding: 0;
-         }
-         a[x-apple-data-detectors] {
-         color: inherit !important;
-         text-decoration: inherit !important;
-         }
-         #MessageViewBody a {
-         color: inherit;
-         text-decoration: none;
-         }
-         p {
-         line-height: inherit
-         }
-         @media (max-width:700px) {
-         .icons-inner {
-         text-align: center;
-         }
-         .icons-inner td {
-         margin: 0 auto;
-         }
-         .fullMobileWidth,
-         .row-content {
-         width: 100% !important;
-         }
-         .image_block img.big {
-         width: auto !important;
-         }
-         .mobile_hide {
-         display: none;
-         }
-         .stack .column {
-         width: 100%;
-         display: block;
-         }
-         .mobile_hide {
-         min-height: 0;
-         max-height: 0;
-         max-width: 0;
-         overflow: hidden;
-         font-size: 0px;
-         }
-         }
-      </style>
-   </head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 maximum-scale=1.0; user-scalable=no;"
+    />
+    <style>
+      .backgroundTable {
+        margin: 0 auto;
+        padding: 0;
+        width: 100% !important;
+      }
+      .ReadMsgBody {
+        width: 100%;
+      }
+      .ExternalClass {
+        width: 100%;
+      }
+      .ExternalClass,
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td,
+      .ExternalClass div {
+        line-height: 100%;
+      }
+      body {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        width: 100% !important;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased !important;
+      }
+      table {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      table td {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+        padding: 0;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+        width: 100%;
+        display: block;
+      }
+      a img {
+        border: none;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        text-decoration: none !important;
+      }
+      .appleBody a {
+        color: #68440a;
+        text-decoration: none;
+      }
+      .appleFooter a {
+        color: #999999;
+        text-decoration: none;
+      }
+      a[x-apple-data-detectors] {
+        color: inherit !important;
+        text-decoration: none !important;
+        font-size: inherit !important;
+        font-family: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+      }
+      @media only screen and (max-width: 480px) {
+        .column {
+          display: table !important;
+          width: 100% !important;
+        }
+        .t-left {
+          text-align: left !important;
+        }
+        .pb-16 {
+          padding: 0 0 16px 0 !important;
+        }
+      }
+      .meter-bar {
+        width: 100%;
+        height: 10px;
+        border-radius: 4px;
+      }
+      .meter-bar-fill {
+        height: 8px;
+        border-radius: 4px;
+        height: 100%;
+      }
+      .clearbit-img:before {
+        content: " ";
+        display: block;
+        position: absolute;
+        height: 40px;
+        width: 40px;
+        background-color: white;
+        /*background-image: url("https://via.placeholder.com/40.png/000000/FFFFFF/?text=Prima Coffee");*/
+      }
+    </style>
+  </head>
+  <body
+    leftmargin="0"
+    marginwidth="0"
+    topmargin="0"
+    marginheight="0"
+    offset="0"
+  >
+    <table
+      width="100%"
+      cellspacing="0"
+      cellpadding="0"
+      border="0"
+      bgcolor="#F0F2F5"
+    >
+      <tr>
+        <td align="center" style="padding: 40px 0">
+          <a href="#" target="_blank"
+            ><img
+              src="https://lairesit.sirv.com/Images/Zephyrus%20logo.png"
+              width="48"
+              style="max-width: 48px"
+              alt="Fast"
+          /></a>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding: 0 12px" align="center">
+          <!--[if mso]><table width="420" cellspacing="0" cellpadding="0" border="0" align="center"><![endif]-->
+
+          <!--[if !mso]>
+
+<!-->
+          <table
+            cellspacing="0"
+            cellpadding="0"
+            border="0"
+            align="center"
+            style="width: 100%; max-width: 420px"
+          >
+            <!--<![endif]-->
+
+            <!--- Top Card -->
+            <tr>
+              <td class="pb-16" style="padding: 0 0 24px 0">
+                <table
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  bgcolor="#FFFFFF"
+                  style="border-radius: 6px 6px 0 0"
+                >
+                  <tr>
+                    <td style="padding: 28px 0px 0px 24px">
+                      <p
+                        style="
+                          font: 400 16px Inter, Helvetica, Arial, sans-serif;
+                          color: #000000;
+                          line-height: 160%;
+                        "
+                      >
+                        Registration #{reg_id}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+                <table
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  bgcolor="#FFFFFF"
+                  style="border-radius: 6px 6px 0 0"
+                >
+                  <tr>
+                    <td style="padding: 28px 24px">
+                      <p
+                        style="
+                          font: bold 18px Helvetica, Arial, sans-serif;
+                          color: #000000;
+                        "
+                      >
+                        Hi {name},
+                      </p>
+                    </td>
+                    <td style="padding: 28px 32px 24px 24px" align="right">
+                      <img
+                        class="clearbit-img"
+                        src="{qrcode_url}"
+                        style="
+                          width: 90px;
+                          height: 90px;
+                          object-fit: scale-down;
+                        "
+                      />
+                    </td>
+                  </tr>
+                </table>
+                <table
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  bgcolor="#FFFFFF"
+                  style="border-radius: 0 0 6px 6px"
+                >
+                  <tr>
+                    <td style="padding: 0px 24px 29px">
+                      <p
+                        style="
+                          font: 400 16px Inter, Helvetica, Arial, sans-serif;
+                          color: #000000;
+                          line-height: 160%;
+                        "
+                      >
+                        Great news! Your {event_name} registration is successful!
+                        Show this QR code at the college entrance when you
+                        arrive.
+                        <br />
+                        <br />
+                      </p>
+                      <br />
+
+                      <p style="line-height: 18px; font-size: 1px">&nbsp;</p>
+
+                      <!--[if mso]><table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#000000"><tr><td style="padding:11px 0;"><![endif]-->
+                      <a
+                        href="{reg_link}"
+                        target="_blank"
+                        style="
+                          display: inline-block;
+                          width: 100%;
+                          line-height: 40px;
+                          background-color: #000000;
+                          border-radius: 8px;
+                          font-size: 14px;
+                          font-family: Helvetica, Arial, sans-serif;
+                          color: #ffffff;
+                          text-align: center;
+                          font-weight: bold;
+                        "
+                      >
+                        View Registration Details
+                      </a>
+
+                      <!--[if mso]></td></tr></table><![endif]-->
+                      <p
+                        style="
+                          font: 400 12px Inter, Helvetica, Arial, sans-serif;
+                          text-align: center;
+                          line-height: 150%;
+                          margin-top: 24px;
+                          color: #474747;
+                        "
+                      >
+                        You can view all your registration details on your
+                        dashboard.
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- ::: ORDER ::: -->
+            <tr>
+              <td class="pb-16" style="padding: 0 0 24px 0">
+                <table
+                  width="100%"
+                  cellspacing="0"
+                  cellpadding="0"
+                  border="0"
+                  bgcolor="#FFFFFF"
+                  style="border-radius: 6px"
+                >
+                  <tr>
+                    <td style="padding: 27px 24px 24px 24px">
+                      <p
+                        style="
+                          font: 16px Helvetica, Arial, sans-serif;
+                          color: #000000;
+                        "
+                      >
+                        Your Order
+                      </p>
+                      <p
+                        style="
+                          font: 12px Helvetica, Arial, sans-serif;
+                          color: #474747;
+                          margin-top: 10px;
+                          margin-bottom: 10px;
+                        "
+                      >
+                        Transaction ID:: {txn_id}
+                      </p>
+                      <div
+                        style="
+                          margin: 16px 0;
+                          height: 2px;
+                          background-color: #f0f2f5;
+                        "
+                      ></div>
 
 """
 template_2nd_half = """
-   <body style="margin: 0; background-color: #ffffff; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
-      <table border="0" cellpadding="0" cellspacing="0" class="nl-container" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;" width="100%">
-         <tbody>
-            <tr>
-               <td>
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-1" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #9fd1ae;" width="100%">
-                     <tbody>
-                        <tr>
-                           <td>
-                              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px;" width="680">
-                                 <tbody>
-                                    <tr>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                             <tr>
-                                                <td style="width:100%;padding-right:0px;padding-left:0px;padding-top:45px;">
-                                                   <div align="center" style="line-height:10px"><a href="https://christcs.in/zephyrus/" style="outline:none" tabindex="-1" target="_blank"><img alt="MyQrCode" src="{qrcode_url}" style="display: block; height: auto; border: 0; width: 170px; max-width: 100%;" title="Zephyrus 3.0" width="170"/></a></div>
-                                                </td>
-                                             </tr>
-                                          </table>
-										  <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-											<tr>
-											   <td style="padding-bottom:5px;padding-left:5px;padding-right:5px;padding-top:25px;">
-												  <div style="font-family: sans-serif">
-													 <div style="font-size: 14px; mso-line-height-alt: 16.8px; color: #000000; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-														<p style="margin: 0; font-size: 14px; text-align: center;"><strong><span style="font-size:25px; background-color: #3b8f54; padding-bottom:5px;padding-left:10px;padding-right:10px;padding-top:5px;">{reg_id}</span></strong></p>
-													 </div>
-												  </div>
-											   </td>
-											</tr>
-										 </table>										  
-                                          <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:15px;padding-left:10px;padding-right:10px;padding-top:30px;">
-                                                   <div style="font-family: sans-serif">
-                                                      <div style="font-size: 14px; mso-line-height-alt: 16.8px; color: #33563c; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                                         <p style="margin: 0; font-size: 14px; text-align: center;"><strong><span style="font-size:38px;">Registration Successful!</span></strong></p>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                          <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:20px;padding-left:60px;padding-right:60px;padding-top:10px;">
-                                                   <div style="font-family: sans-serif">
-                                                      <div style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 21.6px; color: #33563c; line-height: 1.8;">
-                                                         <p style="margin: 0; font-size: 14px; text-align: center; mso-line-height-alt: 32.4px;"><span style="font-size:18px;">Show this QR code at the College entrance. </span></p>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                          <table border="0" cellpadding="0" cellspacing="0" class="button_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:55px;padding-left:10px;padding-right:10px;padding-top:10px;text-align:center;">
-                                                   <div align="center">
-                                                      <!--[if mso]>
-                                                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="http://dashboard.chirstci.in" style="height:42px;width:208px;v-text-anchor:middle;" arcsize="10%" stroke="false" fillcolor="#ffffff">
-                                                         <w:anchorlock/>
-                                                         <v:textbox inset="0px,0px,0px,0px">
-                                                            <center style="color:#33563c; font-family:Tahoma, sans-serif; font-size:16px">
-                                                               <![endif]--><a href="https://dashboard.christcs.in/registrations/{reg_id}/" style="text-decoration:none;display:inline-block;color:#33563c;background-color:#ffffff;border-radius:4px;width:auto;border-top:0px solid #8a3b8f;border-right:0px solid #8a3b8f;border-bottom:0px solid #8a3b8f;border-left:0px solid #8a3b8f;padding-top:5px;padding-bottom:5px;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;" target="_blank"><span style="padding-left:40px;padding-right:40px;font-size:16px;display:inline-block;letter-spacing:normal;"><span style="font-size: 16px; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>View Details</strong></span></span></a>
-                                                               <!--[if mso]>
-                                                            </center>
-                                                         </v:textbox>
-                                                      </v:roundrect>
-                                                      <![endif]-->
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-4" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                     <tbody>
-                        <tr>
-                           <td>
-                              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px;" width="680">
-                                 <tbody>
-                                    <tr>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="divider_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:30px;padding-left:10px;padding-right:10px;padding-top:30px;">
-                                                   <div align="center">
-                                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                                         <tr>
-                                                            <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span> </span></td>
-                                                         </tr>
-                                                      </table>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-5" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                     <tbody>
-                        <tr>
-                           <td>
-                              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px;" width="680">
-                                 <tbody>
-                                    <tr>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:5px;padding-left:30px;padding-right:30px;padding-top:10px;">
-                                                   <div style="font-family: sans-serif">
-                                                      <div style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 21.6px; color: #33563c; line-height: 1.8;">
-                                                         <p style="margin: 0; font-size: 14px; text-align: left;"><strong><span style="font-size:16px;">Registered Events</span></strong></p>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-                 {pricing}
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-9" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                     <tbody>
-                        <tr>
-                           <td>
-                              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px;" width="680">
-                                 <tbody>
-                                    <tr>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="divider_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:30px;padding-left:10px;padding-right:10px;padding-top:30px;">
-                                                   <div align="center">
-                                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                                         <tr>
-                                                            <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span> </span></td>
-                                                         </tr>
-                                                      </table>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-10" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                     <tbody>
-                        <tr>
-                           <td>
-                              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 680px;" width="680">
-                                 <tbody>
-                                    <tr>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 10px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="25%">
-                                          <div class="spacer_block" style="height:5px;line-height:5px;font-size:1px;"> </div>
-                                          <div class="spacer_block mobile_hide" style="height:25px;line-height:25px;font-size:1px;"> </div>
-                                          <div class="spacer_block" style="height:5px;line-height:5px;font-size:1px;"> </div>
-                                       </td>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="50%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                             <tr>
-                                                <td style="padding-left:35px;padding-right:10px;padding-top:15px;padding-bottom:5px;">
-                                                   <div style="font-family: sans-serif">
-                                                      <div style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #232323; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                                         <p style="margin: 0; font-size: 14px;"><span style="font-size:18px;">Total Paid</span></p>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="25%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                             <tr>
-                                                <td style="padding-left:30px;padding-right:10px;padding-top:15px;padding-bottom:5px;">
-                                                   <div style="font-family: sans-serif">
-                                                      <div style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #d19fc2; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                                         <p style="margin: 0; font-size: 14px;"><span style="font-size:18px;">Rs {total_value}</span></p>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-11" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                     <tbody>
-                        <tr>
-                           <td>
-                              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px;" width="680">
-                                 <tbody>
-                                    <tr>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="divider_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:10px;padding-left:10px;padding-right:10px;padding-top:30px;">
-                                                   <div align="center">
-                                                      <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                                         <tr>
-                                                            <td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 1px solid #BBBBBB;"><span> </span></td>
-                                                         </tr>
-                                                      </table>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-                  <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-12" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #9fd1ae;" width="100%">
-                     <tbody>
-                        <tr>
-                           <td>
-                              <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; color: #000000; width: 680px;" width="680">
-                                 <tbody>
-                                    <tr>
-                                       <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="50%">
-                                          <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:10px;padding-left:30px;padding-right:10px;padding-top:10px;">
-                                                   <div style="font-family: sans-serif">
-                                                      <div style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 14.399999999999999px; color: #33563c; line-height: 1.2;">
-                                                         <p style="margin: 0; font-size: 18px; text-align: left;"><strong><span style="">Reach US</span></strong></p>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                          <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:10px;padding-left:30px;padding-right:10px;padding-top:10px;">
-                                                   <div style="font-family: sans-serif">
-                                                      <div style="font-size: 12px; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 18px; color: #33563c; line-height: 1.5;">
-                                                         <p style="margin: 0; font-size: 14px; text-align: left; mso-line-height-alt: 18px;"><span style="font-size:12px;">Website: <a href="https://christcs.in">christcs.in</a><br>Follow our instagram for the latest updates.</span></p>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                          <table border="0" cellpadding="0" cellspacing="0" class="social_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-                                             <tr>
-                                                <td style="padding-bottom:10px;padding-left:30px;text-align:left;padding-right:0px;">
-                                                   <table align="left" border="0" cellpadding="0" cellspacing="0" class="social-table" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="47px">
-                                                      <tr>
-                                                         <td style="padding:0 15px 0 0;"><a href="https://instagram.com/" target="_blank"><img alt="Instagram" height="32" src="https://cdn.discordapp.com/attachments/835918464915996705/924724864374411324/instagram2x.png" style="display: block; height: auto; border: 0;" title="Instagram" width="32"/></a></td>
-                                                      </tr>
-                                                   </table>
-                                                </td>
-                                             </tr>
-                                          </table>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </td>
-            </tr>
-         </tbody>
-      </table>
-      <!-- End -->
-   </body>
-</html>
+<div
+                        style="
+                          margin: 16px 0;
+                          height: 2px;
+                          background-color: #f0f2f5;
+                        "
+                      ></div>
 
+                      <!-- ::: TOTALS ::: -->
+                      <table
+                        width="100%"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            style="
+                              padding: 16px 0 0 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                            "
+                          >
+                            Subtotal
+                          </td>
+                          <td
+                            style="
+                              padding: 16px 0 0 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                              text-align: right;
+                            "
+                          >
+                            ₹{total}.00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              padding: 16px 0 0 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                            "
+                          >
+                            Tax
+                          </td>
+                          <td
+                            style="
+                              padding: 16px 0 0 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                              text-align: right;
+                            "
+                          >
+                            ₹{tax}.00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              padding: 16px 0 0 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                            "
+                          >
+                            Discount
+                          </td>
+                          <td
+                            style="
+                              padding: 16px 0 0 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                              text-align: right;
+                            "
+                          >
+                            ₹-{tax}.00
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              padding: 16px 0;
+                              font: bold 16px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                            "
+                          >
+                            Total (INR)
+                          </td>
+                          <td
+                            style="
+                              padding: 16px 0;
+                              font: bold 16px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                              text-align: right;
+                            "
+                          >
+                            ₹{total}.00
+                          </td>
+                        </tr>
+                      </table>
+                      <div
+                        style="
+                          margin: 16px 0 32px;
+                          height: 2px;
+                          background-color: #f0f2f5;
+                        "
+                      ></div>
+
+                      <!-- ::: DETAILS ::: -->
+                      <table
+                        width="100%"
+                        cellspacing="0"
+                        cellpadding="0"
+                        border="0"
+                      >
+                        <tr>
+                          <td
+                            style="
+                              padding: 0 0 24px 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                            "
+                          >
+                            {payment_mode}
+                          </td>
+                          <td
+                            style="
+                              padding: 0 0 24px 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                              text-align: right;
+                            "
+                          >
+                            {txn_date}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            style="
+                              padding: 0 0 24px 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                              min-width: 180px;
+                              vertical-align: top;
+                            "
+                          >
+                            {name}
+                          </td>
+                          <td
+                            style="
+                              padding: 0 0 24px 0;
+                              font: 14px Helvetica, Arial, sans-serif;
+                              color: #000000;
+                              text-align: right;
+                              line-height: 200%;
+                            "
+                          >
+                            {address}
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- ::: Bottom Desc ::: -->
+                      <table>
+                        <tr>
+                          <td>
+                            <p
+                              style="
+                                font: 14px Helvetica, Arial, sans-serif;
+                                line-height: 20px;
+                                text-align: center;
+                                color: #474747;
+                                padding: 0 16px;
+                              "
+                            >
+                              Questions about your order? Please contact us
+                              <br />or visit our
+                              <a
+                                href="https://instagram.com/techzephyrus/"
+                                target="_blank"
+                                style="color: #0286ff"
+                                >Instagram page</a
+                              >
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 0 40px">
+                <p
+                  style="
+                    font: 12px Helvetica, Arial, sans-serif;
+                    color: #808080;
+                    text-align: center;
+                    line-height: 16px;
+                  "
+                >
+                  © 2023 Christ College (Autonomous)
+                  <br />
+                  <br />
+                  Christ Nagar, Irinjalakuda <br />
+                  Thrissur, Kerala 680121
+                  <br />
+                  <br />
+                  <a
+                    href="mailto:cssfdept@christcollegeijk.edu.in"
+                    target="_blank"
+                    style="color: #1889fb"
+                    >Contact Us</a
+                  >&nbsp;&nbsp;&nbsp;<a
+                    href="https://christcs.in/privacy/"
+                    target="_blank"
+                    style="color: #1889fb"
+                    >Privacy Policy</a
+                  >
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
 """
 
 pricing_row = """
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
- <tbody>
-    <tr>
-       <td>
-          <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 680px;" width="680">
-             <tbody>
-                <tr>
-                   <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="50%">
-                      <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                         <tr>
-                            <td style="padding-bottom:10px;padding-left:35px;padding-right:10px;padding-top:40px;">
-                               <div style="font-family: sans-serif">
-                                  <div style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #232323; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                     <p style="margin: 0; font-size: 14px;"><span style="font-size:17px;">{program_name}</span></p>
-                                  </div>
-                               </div>
+<div style="display: table; width: 100%">
+                        <table
+                          width="100%"
+                          cellspacing="0"
+                          cellpadding="0"
+                          border="0"
+                        >
+                          <tr>
+                            <td width="64">
+                              <img
+                                src="{img}"
+                                width="64"
+                                style="max-width: 64px; border-radius: 4px"
+                              />
                             </td>
-                         </tr>
-                      </table>
-                   </td>
-                   <td class="column" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="25%">
-                      <div class="spacer_block" style="height:5px;line-height:5px;font-size:1px;"> </div>
-                      <div class="spacer_block mobile_hide" style="height:30px;line-height:30px;font-size:1px;"> </div>
-                      <table border="0" cellpadding="0" cellspacing="0" class="text_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;" width="100%">
-                         <tr>
-                            <td style="padding-bottom:15px;padding-left:30px;padding-right:10px;padding-top:10px;">
-                               <div style="font-family: sans-serif">
-                                  <div style="font-size: 12px; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;">
-                                     <p style="margin: 0; font-size: 14px;">Rs {fee}</p>
-                                  </div>
-                               </div>
+                            <td style="padding: 0 17px">
+                              <p
+                                style="
+                                  font: 14px Helvetica, Arial, sans-serif;
+                                  color: #000000;
+                                "
+                              >
+                                {program_name}
+                              </p>
                             </td>
-                         </tr>
-                      </table>
-                   </td>
-                </tr>
-             </tbody>
-          </table>
-       </td>
-    </tr>
- </tbody>
-</table>
+                            <td>
+                              <p
+                                style="
+                                  font: 14px Helvetica, Arial, sans-serif;
+                                  color: #000000;
+                                  text-align: right;
+                                "
+                              >
+                                ₹{fee}
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                        <p style="line-height: 16px; font-size: 1px">&nbsp;</p>
+                      </div>
 """

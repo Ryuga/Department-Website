@@ -137,6 +137,12 @@ class Student(models.Model):
     def total_payment_collected(self):
         return self.transaction_set.all().aggregate(models.Sum('value')).get('value__sum')
 
+
+    @property
+    def address(self):
+        return f"{self.name}\n{self.department}, {self.college_name}\n{self.phone_number}"
+
+
 class Registration(models.Model):
     id = models.CharField(max_length=9, default=generate_registration_id, primary_key=True)
     event = models.ForeignKey("Event", on_delete=models.CASCADE, related_name="registrations", null=True)
