@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     'core.apps.web.apps.WebConfig',
     'core.apps.dashboard.apps.DashboardConfig',
     'django_hosts',
-    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -135,10 +134,8 @@ GOOGLE_CLIENT_SECRET = {
 
 #Celery Config
 CELERY_BROKER_URL = config("REDIS_URL")
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
+
 
 #Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -376,6 +376,7 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
 
 class AdminTabularView(LoginRequiredMixin, View):
     model = Program
+
     def get(self, request, program_id):
         if request.user.is_superuser:
             program = get_object_or_404(self.model, id=program_id)
