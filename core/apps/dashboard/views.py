@@ -1,7 +1,7 @@
 import os
 import pytz
 import xlwt
-from datetime import datetime
+from datetime import datetime, timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
@@ -46,6 +46,7 @@ class LoginView(View):
         context['upcoming_events_with_registration_open'] = Event.upcoming_events_with_registration_open()
         if context['upcoming_events_with_registration_open']:
             context['generated_css'] = generate_css_text_animation(context['upcoming_events_with_registration_open'])
+        send_registration_email(transaction_id="tnx-872a5")
         return render(request, self.template_name, context)
 
 
@@ -171,6 +172,7 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 )
             transaction = Transaction.objects.create(
                 registration=registration,
+                creation_time=datetime.now(pytz.timezone('Asia/Kolkata'))
             )
             for item in order_items_from_db:
                 transaction.programs_selected.add(item)
@@ -189,6 +191,8 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 transaction.registration.made_successful_transaction = True
                 transaction.raw_response = f"This transaction was created manually by registration admin: " \
                                            f"{request.user.email}\n The payment was collected and verified offline "
+                transaction.date = datetime.now(pytz.timezone('Asia/Kolkata'))
+                transaction.mode = "Spot Registration"
                 transaction.registration.save()
             transaction.save()
             if request.user.is_superuser:
@@ -256,13 +260,14 @@ def payment_handler(request):
                     transaction.paytm_transaction_id = request.POST.get("TXNID")
                     transaction.bank_transaction_id = request.POST.get("BANKTXNID")
                 transaction.value = request.POST.get("TXNAMOUNT")
+                transaction.mode = request.POST.get("GATEWAYNAME") if request.POST.get("GATEWAYNAME") else "Paytm"
                 if request.POST.get("STATUS"):
                     transaction.status = request.POST.get("STATUS")
                 if request.POST.get("TXNDATE"):
                     transaction.date = datetime.strptime(
                         request.POST.get("TXNDATE")[:19], "%Y-%m-%d %H:%M:%S") \
                         .replace(
-                        tzinfo=pytz.UTC
+                        tzinfo=pytz.timezone('Asia/Kolkata')
                     )
                 transaction.save()
             else:

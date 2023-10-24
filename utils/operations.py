@@ -2,12 +2,10 @@ from django.contrib.auth.models import User
 
 from utils.hashing import PasswordHasher
 from core.apps.dashboard.models import Student, Transaction
-from utils.html_message import template_1st_half, template_2nd_half, pricing_row
-
+from utils.html_message import template_1st_half, template_2nd_half, pricing_row, style
 
 
 hasher = PasswordHasher()
-
 
 
 def create_user(email, avatar_url, access_token, name):
@@ -29,17 +27,17 @@ def get_html_formatted_message(transaction):
     for program in transaction.programs_selected.all():
         pricing = pricing + pricing_row.format(img=program.image, program_name=program.name, fee=program.reg_fee)
     first_half = template_1st_half.format(txn_id=transaction.id,
-                                          reg_link=f"https://zephyrus.christcs.in/{transaction.registration.event.link}"
-                                                   f"/registration/me/",
+                                          reg_link=f"https://zephyrus.christcs.in/{transaction.registration.event.link}/registration/me/",
                                           event_name=transaction.registration.event.name,
                                           qrcode_url=transaction.registration.qr,
                                           name=transaction.registration.student.name,
-                                          reg_id=transaction.registration.id
+                                          reg_id=transaction.registration.id,
+                                          style=style
                                           )
     second_half = template_2nd_half.format(name=transaction.registration.student.name,
                                            address=transaction.registration.student.address,
-                                           txn_date=transaction.date,
-                                           payment_mode="Paytm",
+                                           txn_date=transaction.date.strftime("%d/%m/%Y"),
+                                           payment_mode=transaction.mode,
                                            total=transaction.value,
                                            tax=transaction.value*0.18,
                                            )

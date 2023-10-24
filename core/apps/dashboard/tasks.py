@@ -11,12 +11,12 @@ from celery import shared_task
 
 api = DiscordAPIClient(authorization=f"Bot {settings.BOT_TOKEN}")
 
+
 @shared_task
 def send_registration_email(transaction_id):
     try:
         transaction = Transaction.objects.get(id=transaction_id)
         registration = transaction.registration
-        programs = transaction.programs_selected.all()
         if not registration.qr:
             img = qrcode.make(f"https://zephyrus.christcs.in/event/registration/details/{registration.id}/")
             img.save(f"{registration.id}.png")
