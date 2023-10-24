@@ -1,7 +1,7 @@
 import os
 import pytz
 import xlwt
-from datetime import datetime, timezone
+from datetime import datetime
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
@@ -46,7 +46,6 @@ class LoginView(View):
         context['upcoming_events_with_registration_open'] = Event.upcoming_events_with_registration_open()
         if context['upcoming_events_with_registration_open']:
             context['generated_css'] = generate_css_text_animation(context['upcoming_events_with_registration_open'])
-        send_registration_email(transaction_id="tnx-872a5")
         return render(request, self.template_name, context)
 
 
@@ -373,7 +372,6 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
             spot_registrars = User.objects.filter(is_superuser=True)
             return render(request, "dashboard/admin/registration-data.html", {"event": event, "spot_registrars": spot_registrars})
         return render(request, "web/404.html")
-
 
 
 class AdminTabularView(LoginRequiredMixin, View):
