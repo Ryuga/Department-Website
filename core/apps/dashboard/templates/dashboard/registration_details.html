@@ -1,5 +1,5 @@
 {% extends 'dashboard/layouts/base.html' %}
-
+{% load markdown_extras %}
 {% load static %}
 {% block content %}
 	<main class="ttr-wrapper">
@@ -19,14 +19,40 @@
                             <h4>Registered Events</h4>
                         </div>
                         <div class="widget-inner">
-                            {% for item in registration.registered_programs %}
-                                {% for x in item %}
-                                    {% for subitem, _ in x.items %}
-                                        <div class="card my-2 px-4 py-2">
-                                            {{ subitem }}
-                                        </div>
-                                    {% endfor %}
-                                {% endfor %}
+                            {% for program in registration.my_registered_programs %}
+							<div class="card-courses-list admin-courses">
+								<div class="card-courses-media">
+									<img src="{{ program.image }}" alt=""/>
+								</div>
+								<div class="card-courses-full-dec">
+									<div class="card-courses-title">
+										<h4>{{ program.name }}</h4>
+									</div>
+									<div class="card-courses-list-bx">
+										<ul class="card-courses-view">
+											<li class="card-courses-user">
+												<div class="card-courses-user-pic">
+													<img src="{{ program.staff.image_url }}" width="50px" alt=""/>
+												</div>
+												<div class="card-courses-user-info">
+													<h5>Staff Coordinator</h5>
+													<h4>{{ program.staff.name }}</h4>
+												</div>
+											</li>
+											<li class="card-courses-categories">
+												<h5>Contact no</h5>
+												<h4>{{ program.staff.phone_number }}</h4>
+											</li>
+										</ul>
+									</div>
+									<div class="row card-courses-dec">
+										<div class="col-md-12">
+											<h6 class="m-b10">Program Description</h6>
+											<p>{{ program.description | markdown | safe }} </p>
+										</div>
+									</div>
+								</div>
+							</div>
                             {% endfor %}
                         </div>
                     </div>

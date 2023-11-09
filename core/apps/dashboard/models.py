@@ -154,6 +154,9 @@ class Registration(models.Model):
     def registered_programs(self):
         return self.transaction_set.filter(status="TXN_SUCCESS").values_list("events_selected_json")
 
+    def my_registered_programs(self):
+        return self.student.registered_programs.all()
+
     def __str__(self):
         return f"{self.student.name}: {self.id} " \
                f"| Status: {'CONFIRMED' if self.made_successful_transaction else 'NOT CONFIRMED'}"
