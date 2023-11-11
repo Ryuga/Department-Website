@@ -19,8 +19,8 @@
                     </div>
                 </div>
                 {% for program in programs %}
-                <div class="card mb-1">
-                    <div class="card-body">
+                <div class="card mb-1 programItemCard">
+                    <div class="card-body bg-transparent">
                         <div class="form-check">
                           <input class="form-check-input selectEvent" autocomplete="off" type="checkbox" value="{{ program.name }}" event_id="{{ program.id }}" price="{{ program.reg_fee }}">
                           <label class="form-check-label" for="flexCheckDefault">

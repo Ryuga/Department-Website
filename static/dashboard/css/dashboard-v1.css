@@ -1299,3 +1299,7 @@
 		display: none;
 	}
 }
+.form-check-input:checked {
+  background-color: rgba(47,179,128, 1) !important; /* Change to your desired color */
+  border-color: rgba(47,179,128, 1) !important; /* Change to your desired color */
+}
