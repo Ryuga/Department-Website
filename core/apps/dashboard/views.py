@@ -180,10 +180,6 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 if request.user.is_superuser:
                     registration_owner.registered_programs.add(item)
             if request.user.is_superuser:
-                try:
-                    send_registration_email.delay(transaction_id=transaction.id)
-                except Exception as E:
-                    print(E)
                 transaction.status = "TXN_SUCCESS"
                 transaction.spot = True
                 transaction.registrar = request.user.student
@@ -193,6 +189,10 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 transaction.date = datetime.now(pytz.timezone('Asia/Kolkata'))
                 transaction.mode = "Spot Registration"
                 transaction.registration.save()
+                try:
+                    send_registration_email.delay(transaction_id=transaction.id)
+                except Exception as E:
+                    print(E)
             transaction.save()
             if request.user.is_superuser:
                 return render(request, self.template_name, {"created": True, "event": order_items_from_db[0].event})
