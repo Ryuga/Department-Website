@@ -16,7 +16,7 @@
 	<!-- header start -->
 	<header class="ttr-header">
 		<div class="ttr-header-wrapper">
-			<div class="ttr-toggle-sidebar ttr-material-button">
+			<div class="ttr-toggle-sidebar ttr-material-button menuBar" data-toggle="tooltip" title="Click for menu!" data-placement="right">
 				<i class="fa-solid fa-bars"></i>
 			</div>
 			<div class="ttr-header-menu">
@@ -134,6 +134,15 @@
         $("#initialProfileSetupModal").modal("show");
     });
 </script>
+{% else %}
+        <script>
+     $(document).ready(function(){
+      $('.menuBar').tooltip('show');
+      setTimeout(function (){
+          $('.menuBar').tooltip('hide');
+      }, 2000);
+    });
+    </script>
 {% endif %}
 </body>
 </html>
