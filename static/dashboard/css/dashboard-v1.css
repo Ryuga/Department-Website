@@ -1170,7 +1170,7 @@
 		margin-right: 15px;
 	}
 	.admin-courses .card-courses-media img{
-		height: 140px;
+		height: auto;
 	}
 	.admin-courses .card-courses-view > li{
 		padding-right: 10px;
