@@ -1,7 +1,7 @@
 from core.apps.dashboard.views import (
     DashView, UserProfileView, LoginView, RegisterView, GoogleAuthLoginCallback, payment_handler, media_access,
     EventProgramsView, EventScheduleView, EventRegistrationView, logout_request, MyRegistrationDetailView,
-    AdminRegistrationDetailView, AdminRegistrationDataView, AdminTabularView
+    AdminRegistrationDetailView, AdminRegistrationDataView, AdminTabularView, SettingsView
 )
 from django.urls import re_path
 from django.conf import settings
@@ -22,6 +22,8 @@ urlpatterns = [
             MyRegistrationDetailView.as_view(), name="my_registration_details"),
     re_path(r'^register/', RegisterView.as_view(), name="register"),
     re_path(r'^profile/', UserProfileView.as_view(), name="profile"),
+    re_path(r'^settings/', SettingsView.as_view(), name="settings"),
+
     re_path(r'^event/registration/details/program/(?P<program_id>.*)/',
             AdminTabularView.as_view(), name="program_data"),
     re_path(r'^event/registration/details/(?P<reg_id>.*)/',

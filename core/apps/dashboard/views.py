@@ -108,6 +108,21 @@ class UserProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"saved": saved})
 
 
+class SettingsView(LoginRequiredMixin, View):
+    template_name = "dashboard/settings.html"
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def delete(self, request):
+        if request.user.student.active_registrations():
+            return HttpResponse(status=403)
+        else:
+            request.user.is_active = False
+            request.user.save()
+            return HttpResponse(status=200)
+
+
 class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/registration.html"
 

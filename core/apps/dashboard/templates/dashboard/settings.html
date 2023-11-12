@@ -1,0 +1,107 @@
+
+{% extends 'dashboard/layouts/base.html' %}
+
+{% load static %}
+{% load markdown_extras %}
+{% block content %}
+<main class="ttr-wrapper">
+		<div class="container-fluid">
+			<div class="db-breadcrumb">
+				<h4 class="breadcrumb-title">Programs</h4>
+				<ul class="db-breadcrumb-list">
+					<li>Dashboard</li>
+					<li>Zephyrus</li>
+                    <li>Programs</li>
+				</ul>
+			</div>
+			<div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="card user-card-full p-3">
+                            <div class="row m-l-0 m-r-0">
+                                <div class="col-sm-4 bg-c-lite-green user-profile">
+                                    <div class="card-block text-center text-white">
+                                        <div class="mb-2"> <img src="{{ request.user.student.image_url }}" class="rounded-circle" alt="User-Profile-Image"> </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8 mt-4">
+                                    <div class="card-block">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h6 class="mb-4 p-b-5 b-b-default fw-bolder"><u>User Details</u></h6>
+                                            </div>
+                                            <div class="col">
+                                                <a href="{% url 'profile' %}"><button class="btn btn-sm btn-dark"><i class="fa-solid fa-pen-to-square"></i> Edit</button></a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="mb-2 fw-bold">Name</p>
+                                                <h6 class="text-muted fw-400">{{ request.user.student.name }}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="mb-2 fw-bold">College</p>
+                                                <h6 class="text-muted f-w-400">{{ request.user.student.college_name }}</h6>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="mb-2 fw-bold">Department</p>
+                                                <h6 class="text-muted f-w-400">{{ request.user.student.department }}</h6>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="mb-2 fw-bold">Phone Number</p>
+                                                <h6 class="text-muted f-w-400">{{ request.user.student.phone_number }}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                       <div class="h-100 p-3 bg-transparent border rounded-3">
+                            <h5>User's Transactions</h5><br/>
+                            <div class="bg-transparent">
+                                <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"># Txnid</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for registration in request.user.student.my_registrations.all %}
+                                    {% for transaction in registration.transaction_set.all %}
+                                    <tr>
+                                      <th scope="row">{{ transaction.id }}</th>
+                                      <td>{{ transaction.value }}</td>
+                                        <td>{% if transaction.status == "TXN_SUCCESS" %}<span class="badge badge-pill bg-success">Success</span>{% elif transaction.status == "INITIATED" %}<span class="badge badge-pill bg-info">Not Completed</span>{% else %}<span class="badge badge-pill bg-danger">Failed</span>{% endif %}</td>
+                                    </tr>
+                                    {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                          </table>
+                            </div>
+                       </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card bg-white border-secondary shadow shadow-lg mt-5">
+                              <div class="card-header bg-transparent text-dark">
+                                Danger Zone
+                              </div>
+                              <div class="card-body">
+                                <div id="deleteAccAlert" class="alert alert-danger" style="display:none!important;" role="alert">
+                                  <strong>Failed!</strong> Cannot close account due to active registration.
+                                </div>
+                                <p class="card-text"><input class="form-check-input deleteAccCheckBox" type="checkbox">  I understand this action cannot be undone. After closing this account I will lose all the data associated with it, including all my stored files, activity logs, and any other information tied to the account. </p>
+                                <a href="#!" id="deleteAccBtn" class="btn btn-sm btn-danger disabled">Close Account</a>
+                              </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+	</main>
+
+{% endblock content %}

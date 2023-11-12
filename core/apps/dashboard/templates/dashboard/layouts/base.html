@@ -33,6 +33,7 @@
 						<div class="ttr-header-submenu">
 							<ul>
 								<li><a href="{% url 'profile' %}">My profile</a></li>
+								<li><a href="{% url 'settings' %}">Settings</a></li>
 								<li><a href="{% url 'logout' %}">Logout</a></li>
 							</ul>
 						</div>
@@ -61,6 +62,12 @@
 						<a href="{% url 'profile' %}" class="ttr-material-button">
 							<span class="ttr-icon"><i class="fa-solid fa-address-card"></i></span>
 		                	<span class="ttr-label">My Profile</span>
+		                </a>
+		            </li>
+					<li>
+						<a href="{% url 'settings' %}" class="ttr-material-button">
+							<span class="ttr-icon"><i class="fa-solid fa-gear"></i></span>
+		                	<span class="ttr-label">Settings</span>
 		                </a>
 		            </li>
                     <hr class="m--1"/>

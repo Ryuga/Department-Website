@@ -120,6 +120,34 @@ $(document).ready(function (){
 });
 })
 
+$(document).ready(function (){
+    $('.deleteAccCheckBox').change(function() {
+        if ($(this).prop("checked") === true) {
+            $("#deleteAccBtn").removeClass("disabled");
+        }
+        else {
+            $("#deleteAccBtn").addClass("disabled");
+        }
+    });
+    $('#deleteAccBtn').click(function (){
+        let csrftoken = getCookie("csrftoken")
+        $.ajax({
+        url: `/settings/`,
+        headers: {'X-CSRFToken': csrftoken},
+        type: 'DELETE',
+        success:function (data)
+        {
+            location.reload(true)
+        },
+        error: function (){
+            $("#deleteAccAlert").fadeTo(2000, 500).slideUp(500, function (){
+                $("#deleteAccAlert").alert("close")
+            });
+        }
+        });
+    });
+});
+
 function getPageLoadCount() {
   const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)pageLoads\s*\=\s*([^;]*).*$)|^.*$/, "$1");
   return parseInt(cookieValue) || 0;
