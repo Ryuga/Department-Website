@@ -138,9 +138,11 @@
 <script>
      $(document).ready(function(){
          if (!trackPageLoadForAccustom()) {
+             $('.menuBar').tooltip('enable');
              $('.menuBar').tooltip('show');
              setTimeout(function () {
                  $('.menuBar').tooltip('hide');
+                 $('.menuBar').tooltip('disable');
              }, 2000);
          }
     });

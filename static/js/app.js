@@ -19,8 +19,10 @@ $(document).ready(function (){
     $('.programItemCard').click(function() {
         let checkbox = $(this).find('.selectEvent');
         checkbox.prop('checked', !checkbox.prop('checked'))
+        checkbox.change();
     });
 });
+
 $(document).ready(function(){
         let event_ids = [];
         let event_names = [];
