@@ -189,12 +189,12 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 transaction.date = datetime.now(pytz.timezone('Asia/Kolkata'))
                 transaction.mode = "Spot Registration"
                 transaction.registration.save()
+            transaction.save()
+            if request.user.is_superuser:
                 try:
                     send_registration_email.delay(transaction_id=transaction.id)
                 except Exception as E:
                     print(E)
-            transaction.save()
-            if request.user.is_superuser:
                 return render(request, self.template_name, {"created": True, "event": order_items_from_db[0].event})
             param_dict = {
                 'MID': settings.PAYTM_MERCHANT_ID,
