@@ -139,10 +139,17 @@ $(document).ready(function (){
         {
             location.reload(true)
         },
-        error: function (){
-            $("#deleteAccAlert").fadeTo(2000, 500).slideUp(500, function (){
-                $("#deleteAccAlert").alert("close")
-            });
+        error: function (resp){
+            if(resp.status == 406) {
+                $("#banAccAlert").fadeTo(5000, 500).slideUp(500, function () {
+                    $("#banAccAlert").alert("close")
+                });
+            }
+            else {
+                $("#deleteAccAlert").fadeTo(2000, 500).slideUp(500, function () {
+                    $("#deleteAccAlert").alert("close")
+                });
+            }
         }
         });
     });

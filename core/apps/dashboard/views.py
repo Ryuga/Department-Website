@@ -17,6 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student
 from core.apps.dashboard.tasks import send_registration_email
+
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
 
@@ -66,7 +67,7 @@ class GoogleAuthLoginCallback(View, ResponseMixin):
             avatar = user_json.get("picture")
             name = user_json.get("given_name")
             try:
-                user = User.objects.get(email=email)
+                user = User.objects.get(username=email)
                 login(request, user)
                 return redirect(to="/")
             except User.DoesNotExist:
@@ -116,11 +117,15 @@ class SettingsView(LoginRequiredMixin, View, ResponseMixin):
 
     def delete(self, request):
         if request.user.student.active_registrations():
-            return self.http_response_403(request)
+            return HttpResponse(status=403)
         else:
+            accounts_created = User.objects.filter(email=request.user.email)
+            if len(accounts_created) > 2:
+                return HttpResponse(status=406)
+            request.user.username = request.user.username + "--" + str(len(accounts_created) - 1) + "--deleted"
             request.user.is_active = False
             request.user.save()
-            return self.http_responce_200(request)
+            return HttpResponse(status=200)
 
 
 class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
@@ -339,9 +344,9 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                 if request.GET.get("type") == "all":
                     registrations = event.successful_registrations
                     write_sheet(sheet, 0, "Reg ID",
-                            "Name", "Phone", "Email",
-                            "College", "Registered Programs",
-                            "Online", "Spot")
+                                "Name", "Phone", "Email",
+                                "College", "Registered Programs",
+                                "Online", "Spot")
                     for registration in registrations:
                         write_sheet(sheet, i, registration.id,
                                     registration.student.name,
@@ -379,13 +384,15 @@ class AdminRegistrationDataView(LoginRequiredMixin, View):
                     workbook.save(f"media/{event_link}/{program.name}-registrations.xls")
                     response = HttpResponse()
                     del response['Content-Type']
-                    response['X-Accel-Redirect'] = "/protected/media/" + f"{event_link}/{program.name}-registrations.xls"
+                    response[
+                        'X-Accel-Redirect'] = "/protected/media/" + f"{event_link}/{program.name}-registrations.xls"
                     response['Content-Disposition'] = f"attachment; filename={program.name}-registrations.xls"
                     return response
                 else:
                     pass
             spot_registrars = User.objects.filter(is_superuser=True)
-            return render(request, "dashboard/admin/registration-data.html", {"event": event, "spot_registrars": spot_registrars})
+            return render(request, "dashboard/admin/registration-data.html",
+                          {"event": event, "spot_registrars": spot_registrars})
         return render(request, "web/404.html")
 
 

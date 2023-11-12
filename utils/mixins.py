@@ -11,6 +11,7 @@ class Response:
     code_403 = {"response": "403", "message": "Forbidden"}
     code_404 = {"response": "404", "message": "Not Found"}
     code_405 = {"response": "405", "message": "Method Not Allowed"}
+    code_406 = {"response": "406", "message": "Not Acceptable"}
     code_500 = {"response": "500", "message": "Internal Server Error"}
     code_501 = {"response": "501", "message": "Not Implemented"}
     code_502 = {"response": "502", "message": "Bad Gateway"}
@@ -91,3 +92,7 @@ class ResponseMixin(object):
     @staticmethod
     def http_response_405(request):
         return render(request, Response.code_405, status=405)
+
+    @staticmethod
+    def http_response_406(request):
+        return render(request, Response.code_406, status=406)
