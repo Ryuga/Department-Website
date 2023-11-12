@@ -19,8 +19,6 @@ $(document).ready(function (){
     $('.programItemCard').click(function() {
         let checkbox = $(this).find('.selectEvent');
         checkbox.prop('checked', !checkbox.prop('checked'))
-            checkbox.change();
-
     });
 });
 $(document).ready(function(){
@@ -119,3 +117,24 @@ $(document).ready(function (){
     $(".alert-dismissible").alert('close');
 });
 })
+
+function getPageLoadCount() {
+  const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)pageLoads\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+  return parseInt(cookieValue) || 0;
+}
+
+function setPageLoadCount(count) {
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + 1); // Cookie will expire in 1 day
+  const cookieString = `pageLoads=${count}; expires=${expirationDate.toUTCString()}; path=/`;
+  document.cookie = cookieString;
+}
+
+function trackPageLoadForAccustom() {
+  const currentLoadCount = getPageLoadCount();
+  if (currentLoadCount < 3) {
+      setPageLoadCount(currentLoadCount + 1);
+      return false
+  }
+  return true
+}
