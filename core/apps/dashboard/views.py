@@ -74,7 +74,7 @@ class GoogleAuthLoginCallback(View, ResponseMixin):
                 login(request, user)
                 return redirect(to="/")
         else:
-            return self.http_responce_404(request)
+            return self.http_response_404(request)
 
 
 class DashView(LoginRequiredMixin, View):
@@ -108,7 +108,7 @@ class UserProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name, {"saved": saved})
 
 
-class SettingsView(LoginRequiredMixin, View):
+class SettingsView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/settings.html"
 
     def get(self, request):
@@ -116,11 +116,11 @@ class SettingsView(LoginRequiredMixin, View):
 
     def delete(self, request):
         if request.user.student.active_registrations():
-            return HttpResponse(status=403)
+            return self.http_response_403(request)
         else:
             request.user.is_active = False
             request.user.save()
-            return HttpResponse(status=200)
+            return self.http_responce_200(request)
 
 
 class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):

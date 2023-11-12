@@ -69,21 +69,25 @@ class ResponseMixin(object):
         return JsonResponse(Response.code_504, status=504)
 
     @staticmethod
-    def http_responce_400(request):
+    def http_response_200(request):
+        return render(request, Response.code_200, status=200)
+
+    @staticmethod
+    def http_response_400(request):
         return render(request, Response.code_400, status=400)
 
     @staticmethod
-    def http_responce_401(request):
+    def http_response_401(request):
         return render(request, Response.code_401, status=401)
 
     @staticmethod
-    def http_responce_403(request):
+    def http_response_403(request):
         return render(request, Response.code_403, status=403)
 
     @staticmethod
-    def http_responce_404(request):
+    def http_response_404(request):
         return render(request, "response/page-404.html", Response.code_404, status=404)
 
     @staticmethod
-    def http_responce_405(request):
+    def http_response_405(request):
         return render(request, Response.code_405, status=405)
