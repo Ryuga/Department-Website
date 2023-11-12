@@ -11,25 +11,27 @@
 				</ul>
 			</div>
 			<div class="row">
-				<div class="col-lg-8 m-b30">
+				<div class="col-lg-8 col-md-12 m-b30 mb-2">
                     {% include 'dashboard/extendable/profile_data.html' %}
 				</div>
-                <div class="col-lg-4">
+             {% if request.user.student.active_registrations %}
+                <div class="col-lg-4 col-md-12">
                      <div class="card bg-white border-secondary shadow shadow-lg">
-                      <h5 class="card-header bg-transparent">Registered Events</h5>
-                      <div class="card-body bg-transparent row">
-                            <div class="card mb-3 col-12">
-                                <img class="card-img-top mt-2" src="https://thoufeeq.sirv.com/Brochure/techfest-1.png" alt="Card image cap">
-                              <div class="card-body text-dark bg-transparent text-center">
-                                  <h5 class="card-title">Zephyrus</h5>
-
-{#                                   <p class="card-text">Starts at: 25/01/2001</p>#}
-                                  <a href="{% url 'my_registration_details' event_link=registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="fa-solid fa-circle-info"></i> View Details</a>
-                              </div>
-                            </div>
-                      </div>
-				</div>
-			</div>
+                          <h5 class="card-header bg-transparent">Registered Events</h5>
+                          <div class="card-body bg-transparent row">
+                              {% for registration in request.user.student.active_registrations %}
+                                <div class="card mb-3 col-lg-12 col-md-6 col-sm-4">
+                                    <img class="card-img-top mt-2" src="https://thoufeeq.sirv.com/Brochure/techfest-1.png" alt="Card image cap">
+                                  <div class="card-body text-dark bg-transparent text-center">
+                                      <h5 class="card-title">{{ registration.event.name }}</h5>
+                                      <a href="{% url 'my_registration_details' event_link=registration.event.link %}" class="btn btn-sm btn-dark mt-3"><i class="fa-solid fa-circle-info"></i> View Details</a>
+                                  </div>
+                                </div>
+                              {% endfor %}
+                          </div>
+				     </div>
+			    </div>
+            {% endif %}
 		</div>
 	</main>
 
