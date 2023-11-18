@@ -123,7 +123,7 @@
                 input.click();
             }
         }
-        else if (/iPad|iPhone|iPod/.test(userAgent) && (instagram !== -1 || facebook !== -1)) {
+        else if (/iPad|iPhone|iPod/i.test(userAgent) && (instagram !== -1 || facebook !== -1)) {
             document.write("<a target=\"_blank\" href=\"https://zephyrus.christcs.in\" download id=\"open-browser-url\">Please wait. Proceeding to Browser</a>");
             window.stop();
             let input = document.getElementById('open-browser-url');
