@@ -30,16 +30,6 @@
 	<!-- STYLESHEETS ============================================= -->
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link class="skin" rel="stylesheet" type="text/css" href="{% static 'css/color/color-1.css' %}">
-	{% if upcoming_events_with_registration_open %}
-	<style>
-		#spin:after {
-		  content:"{{upcoming_events_with_registration_open.0}} Registration";
-		  animation: spin 5s linear infinite;
-		}
-		{{ generated_css | safe }}
-
-	</style>
-	 {% endif %}
 </head>
 <body id="bg">
 <div class="page-wraper">
@@ -49,17 +39,9 @@
 			<a href="https://christcs.in"><img src="https://lairesit.sirv.com/Images/logo-white.png" alt=""></a>
 		</div>
 		<div class="account-form-inner">
-            <div class="container">
-				{% if upcoming_events_with_registration_open %}
-                <div class="alert alert-primary mt-3" role="alert">
-					For <b><b><span id="spin"></span></b></b>, Sign in with your google account.
-                </div>
-				{% endif %}
-            </div>
 			<div class="account-container">
 				<div class="heading-bx left">
-					<h2 class="title-head">Login to your <span>Account</span></h2>
-{#					<p>Don't have an account? <a href="{% url 'register' %}">Create one here</a></p>#}
+					<h2 class="title-head">Well.. <span>Hello there!</span></h2>
 				</div>
 				<form class="contact-bx">
 					<div class="row placeani">
@@ -94,10 +76,17 @@
 						<div class="col-lg-12">
 {#							<h6>or login with google</h6>#}
 							<div class="d-flex">
-                                <a type="button" href="{{ google_oauth_url }}" class="login-with-google-btn" >
-                                  Sign in with Google
-                                </a>
+                                <div class="alert alert-warning mt-3" role="alert">
+                                    <p>You are seeing this page since you have opened this site on instagram.</p>
+                                    <p>We don't want instagram spying on all our data now do we?</p>
+                                    <p>Please click the button below to copy the link and open the site in a secure browser</p>
+                                    <i class="fa-brands fa-safari"></i>
+                                    <i class="fa-brands fa-chrome"></i>
+                                    <i class="fa-brands fa-firefox-browser"></i>
+                                </div>
 							</div>
+                            <a class="btn btn-outline-warning text-dark-emphasis copyLinkBtn" href="#!" data-clipboard-target="#instagram-copy"><i class="fa-regular fa-clone"></i> Copy Link</a>
+                            <input type="hidden" id="instagram-copy" value="https://zephyrus.christcs.in">
 						</div>
 					</div>
 				</form>
@@ -106,27 +95,12 @@
 	</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/6dafe43970.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/7eae56138c.js" crossorigin="anonymous"></script>
 <script src="{% static 'js/functions.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 <script>
-        let userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        let str = navigator.userAgent;
-        let instagram = str.indexOf("Instagram");
-        let facebook = str.indexOf("FB");
-        console.log(/iPad|iPhone|iPod/i.test(userAgent))
-
-        if (/android/i.test(userAgent) && (instagram !== -1 || facebook !== -1) ) {
-            document.write("<a target=\"_blank\" href=\"https://zephyrus.christcs.in\" download id=\"open-browser-url\">Please wait. Proceeding to Chrome</a>");
-            window.stop();
-            let input = document.getElementById('open-browser-url');
-            if (input) {
-                input.click();
-            }
-        }
-        else if (/iPad|iPhone|iPod/i.test(userAgent) && (instagram !== -1 || facebook !== -1)) {
-            window.location.href="https://zephyrus.christcs.in/instagram-redirect/";
-        }
+    new ClipboardJS('.copyLinkBtn');
 </script>
 </body>
 </html>

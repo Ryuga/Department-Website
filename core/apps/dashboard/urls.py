@@ -1,7 +1,7 @@
 from core.apps.dashboard.views import (
     DashView, UserProfileView, LoginView, RegisterView, GoogleAuthLoginCallback, payment_handler, media_access,
     EventProgramsView, EventScheduleView, EventRegistrationView, logout_request, MyRegistrationDetailView,
-    AdminRegistrationDetailView, AdminRegistrationDataView, AdminTabularView, SettingsView
+    AdminRegistrationDetailView, AdminRegistrationDataView, AdminTabularView, SettingsView, InstagramRedirectionView
 )
 from django.urls import re_path
 from django.conf import settings
@@ -12,6 +12,7 @@ app_name="dashboard"
 urlpatterns = [
     path('', DashView.as_view(), name="dashboard"),
     path('', DashView.as_view(), name="home"),
+    path('instagram-redirect/', InstagramRedirectionView.as_view(), name="instagram-redirect"),
     path('login/oauth2/google/', GoogleAuthLoginCallback.as_view(), name="oauth_login"),
     path('accounts/login/', LoginView.as_view(), name="login_redirect"),
     path('payments/handlers/', payment_handler, name="payment_handler"),

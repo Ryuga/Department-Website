@@ -404,3 +404,8 @@ class AdminTabularView(LoginRequiredMixin, View):
             program = get_object_or_404(self.model, id=program_id)
             return render(request, "dashboard/admin/tabular-view.html", {"program": program})
         return render(request, "web/404.html")
+
+
+class InstagramRedirectionView(View):
+    def get(self, request):
+        return render(request, "web/instagram-redirect.html")
