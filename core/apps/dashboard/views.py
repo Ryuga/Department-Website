@@ -204,6 +204,8 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 if request.user.is_superuser:
                     registration_owner.registered_programs.add(item)
             if request.user.is_superuser:
+                registration_owner.restricted = False
+                registration_owner.save()
                 transaction.status = "TXN_SUCCESS"
                 transaction.spot = True
                 transaction.registrar = request.user.student
@@ -271,6 +273,8 @@ def payment_handler(request):
                     transaction.registration.made_successful_transaction = True
                     for program in transaction.programs_selected.all():
                         transaction.registration.student.registered_programs.add(program)
+                    transaction.registration.student.restricted = False
+                    transaction.registration.student.save()
                     transaction.registration.save()
                     try:
                         send_registration_email.delay(transaction_id=transaction.id)
