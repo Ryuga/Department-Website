@@ -116,6 +116,7 @@ class Student(models.Model):
     department = models.CharField(max_length=100, null=True, blank=True)
     completed_profile_setup = models.BooleanField(default=False)
     registered_programs = models.ManyToManyField("Program", blank=True)
+    restricted = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -136,7 +137,6 @@ class Student(models.Model):
     @property
     def total_payment_collected(self):
         return self.transaction_set.all().aggregate(models.Sum('value')).get('value__sum')
-
 
     @property
     def address(self):
@@ -277,6 +277,7 @@ class EventSchedule(models.Model):
 class TransactionProgramRelation(models.Model):
     transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, related_name="program_relation")
     program = models.ForeignKey(Program, on_delete=models.CASCADE, related_name="transaction_relation")
+
 
 class ProgramStudentRelation(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="program_relation")

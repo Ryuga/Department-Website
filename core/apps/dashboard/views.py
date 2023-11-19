@@ -96,6 +96,8 @@ class UserProfileView(LoginRequiredMixin, View):
         return render(request, self.template_name)
 
     def post(self, request):
+        if request.user.student.restricted:
+            return render(request, self.template_name, {"restricted": True})
         saved = False
         for field in self.fields:
             if request.POST.get(field):
@@ -121,6 +123,8 @@ class SettingsView(LoginRequiredMixin, View, ResponseMixin):
         else:
             accounts_created = User.objects.filter(email=request.user.email)
             if len(accounts_created) > 2:
+                request.user.student.restricted = True
+                request.user.student.save()
                 return HttpResponse(status=406)
             request.user.username = request.user.username + "--" + str(len(accounts_created) - 1) + "--deleted"
             request.user.is_active = False
