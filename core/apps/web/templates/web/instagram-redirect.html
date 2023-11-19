@@ -41,7 +41,7 @@
 		<div class="account-form-inner">
 			<div class="account-container">
 				<div class="heading-bx left">
-					<h2 class="title-head">Well.. <span>Hello there!</span></h2>
+					<h2 class="title-head">Well... <span>Hello there!</span></h2>
 				</div>
 				<form class="contact-bx">
 					<div class="row placeani">
@@ -101,6 +101,15 @@
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script>
 <script>
     new ClipboardJS('.copyLinkBtn');
+</script>
+<script>
+        let userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        let str = navigator.userAgent;
+        let instagram = str.indexOf("Instagram");
+        let facebook = str.indexOf("FB");
+        if( (instagram === -1 || facebook === -1) ) {
+            window.location.href = "https://zephyrus.christcs.in";
+        }
 </script>
 </body>
 </html>

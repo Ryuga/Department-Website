@@ -114,7 +114,6 @@
         let str = navigator.userAgent;
         let instagram = str.indexOf("Instagram");
         let facebook = str.indexOf("FB");
-        console.log(/iPad|iPhone|iPod/i.test(userAgent))
 
         if (/android/i.test(userAgent) && (instagram !== -1 || facebook !== -1) ) {
             document.write("<a target=\"_blank\" href=\"https://zephyrus.christcs.in\" download id=\"open-browser-url\">Please wait. Proceeding to Chrome</a>");
