@@ -97,7 +97,7 @@ class UserProfileView(LoginRequiredMixin, View):
 
     def post(self, request):
         if request.user.student.restricted:
-            return render(request, self.template_name, {"restricted": True})
+            return render(request, self.template_name, {"restricted": True, "saved": False})
         saved = False
         for field in self.fields:
             if request.POST.get(field):
@@ -115,7 +115,7 @@ class SettingsView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/settings.html"
 
     def get(self, request):
-        return render(request, self.template_name)
+        return render(request, self.template_name, {"restricted": request.user.student.restricted})
 
     def delete(self, request):
         if request.user.student.active_registrations():

@@ -21,6 +21,7 @@
                                 <div class="col-sm-4 bg-c-lite-green user-profile">
                                     <div class="card-block text-center text-white">
                                         <div class="mb-2"> <img src="{{ request.user.student.image_url }}" class="rounded-circle" alt="User-Profile-Image"> </div>
+                                            <div class="badge badge-pill bg-danger" data-toggle="tooltip" data-placement="bottom" title="To lift restriction register for an event."><i class="fa-solid fa-ban"></i> Restricted</div>
                                     </div>
                                 </div>
                                 <div class="col-sm-8 mt-4">
@@ -30,7 +31,9 @@
                                                 <h6 class="mb-4 p-b-5 b-b-default fw-bolder"><u>User Details</u></h6>
                                             </div>
                                             <div class="col">
-                                                <a href="{% url 'profile' %}"><button class="btn btn-sm btn-dark"><i class="fa-solid fa-pen-to-square"></i> Edit</button></a>
+                                                {% if not restricted %}
+                                                    <a href="{% url 'profile' %}"><button class="btn btn-sm btn-dark"><i class="fa-solid fa-pen-to-square"></i> Edit</button></a>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <div class="row">
