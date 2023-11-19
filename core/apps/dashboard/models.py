@@ -33,6 +33,7 @@ class Event(models.Model):
     markdown_content = models.TextField(null=True, blank=True, help_text="Markdown content if any")
     staff_in_charge = models.ForeignKey("web.Faculty", on_delete=models.SET_NULL, null=True, blank=True)
     registration_link = models.URLField(null=True, blank=True, help_text="Optional")
+    special_message = models.TextField(null=True, blank=True, help_text="Special message to send in email if any")
 
     @classmethod
     def event_link_setter(cls, instance, **kwargs):

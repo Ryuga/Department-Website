@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 
 from utils.hashing import PasswordHasher
 from core.apps.dashboard.models import Student, Transaction
-from utils.html_message import template_1st_half, template_2nd_half, pricing_row, style
+from utils.html_message import template_1st_half, template_2nd_half, pricing_row, style, special_message
 
 
 hasher = PasswordHasher()
@@ -22,8 +22,17 @@ def write_sheet(sheet, row, *args):
         sheet.write(row, args.index(item), item)
 
 
+def get_special_message(transaction):
+    if transaction.registration.event.special_message:
+        return special_message.format(
+            message=transaction.registration.event.special_message
+        )
+    return "<br/>"
+
+
 def get_html_formatted_message(transaction):
     pricing = ""
+    spl_message = get_special_message(transaction)
     for program in transaction.programs_selected.all():
         pricing = pricing + pricing_row.format(img=program.image or "https://lairesit.sirv.com/Images/"
                                                                     "Individual%20Event%201x1/Blitz.jpg",
@@ -36,7 +45,8 @@ def get_html_formatted_message(transaction):
                                           qrcode_url=transaction.registration.qr,
                                           name=transaction.registration.student.name,
                                           reg_id=transaction.registration.id,
-                                          style=style
+                                          style=style,
+                                          spl_message=spl_message
                                           )
     second_half = template_2nd_half.format(name=transaction.registration.student.name,
                                            address=transaction.registration.student.address,

@@ -13,7 +13,7 @@ api = DiscordAPIClient(authorization=f"Bot {settings.BOT_TOKEN}")
 
 
 @shared_task
-def send_registration_email(transaction_id):
+def send_registration_email(transaction_id, fail=False):
     try:
         transaction = Transaction.objects.get(id=transaction_id)
         registration = transaction.registration
@@ -26,13 +26,15 @@ def send_registration_email(transaction_id):
                 registration.save()
             os.remove(f"{registration.id}.png")
         msg = get_html_formatted_message(transaction)
-        mail.send_mail(
-        subject=f"{registration.event.name} Registration Successful!",
-        from_email="zephyrus-no-reply@christcs.in",
-        message="",
-        recipient_list=[registration.student.user.email],
-        html_message=msg
-    )
+        if not fail:
+            mail.send_mail(
+            subject=f"{registration.event.name} Registration Successful!",
+            from_email="zephyrus-no-reply@christcs.in",
+            message="",
+            recipient_list=[registration.student.user.email],
+            html_message=msg
+        )
+        return msg
     except Transaction.DoesNotExist:
         print("Does not exist")
     except Exception as E:

@@ -97,6 +97,22 @@ style = """
         background-color: white;
         /*background-image: url("https://via.placeholder.com/40.png/000000/FFFFFF/?text=Prima Coffee");*/
       }
+      .alert {
+        font-family: montserrat;
+        border-radius: 4px;
+        padding: 15px 20px;
+      }
+      .alert.alert-sm {
+        padding: 5px 15px;
+        font-size: 12px;
+      }
+      .alert-warning {
+        background-color: #fff3cd;
+        border-color: #ffeeba;
+        border-width: thin;
+        border-style: solid;
+        color: #856404;
+      }
 """
 
 template_1st_half = """
@@ -236,8 +252,7 @@ template_1st_half = """
                         <br />
                         <br />
                       </p>
-                      <br />
-
+                      {spl_message}
                       <p style="line-height: 18px; font-size: 1px">&nbsp;</p>
 
                       <!--[if mso]><table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#000000"><tr><td style="padding:11px 0;"><![endif]-->
@@ -592,4 +607,19 @@ pricing_row = """
                         </table>
                         <p style="line-height: 16px; font-size: 1px">&nbsp;</p>
                       </div>
+"""
+
+special_message = """
+                      <div class="alert alert-warning">
+                        <p
+                          style="
+                            font: 400 16px Inter, Helvetica, Arial, sans-serif;
+                            color: #000000;
+                            line-height: 160%;
+                          "
+                        >
+                        {message}
+                        </p>
+                      </div>
+                      <br />
 """
