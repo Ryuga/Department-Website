@@ -147,7 +147,7 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 does_not_exist = False
                 email = request.GET.get("email")
                 try:
-                    student = Student.objects.get(user__email=email)
+                    student = Student.objects.get(user__username=email)
                     registered_programs = student.registered_programs.all()
                     programs = [
                         program for program in all_programs if program not in registered_programs
@@ -176,7 +176,7 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             cost_total += item.reg_fee
             order_items_from_db.append(item)
         if request.user.is_superuser:
-            registration_owner = User.objects.get(email=request.POST.get("recipientEmail")).student
+            registration_owner = User.objects.get(username=request.POST.get("recipientEmail")).student
         else:
             registration_owner = request.user.student
         if cost_total == order_amt:
