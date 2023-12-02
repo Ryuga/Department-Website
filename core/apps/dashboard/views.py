@@ -103,15 +103,15 @@ class UserProfileView(LoginRequiredMixin, View):
         for field in self.fields:
             if request.POST.get(field):
                 setattr(student, field, request.POST.get(field))
-            if (datetime.now(timezone.utc) - request.user.student.last_updated).total_seconds() < 5:
-                student.anomalous_update_count += 1
-                if student.anomalous_update_count > 5:
-                    student.restricted = True
-                    remove_account_restriction.apply_async((student.user.username,),
-                                                           eta=datetime.now(timezone.utc) + timedelta(hours=1))
-            student.last_updated = datetime.now(timezone.utc)
-            student.save()
-            saved = True
+        if (datetime.now(timezone.utc) - request.user.student.last_updated).total_seconds() < 5:
+            student.anomalous_update_count += 1
+            if student.anomalous_update_count > 5:
+                student.restricted = True
+                remove_account_restriction.apply_async((student.user.username,),
+                                                       eta=datetime.now(timezone.utc) + timedelta(hours=1))
+        student.last_updated = datetime.now(timezone.utc)
+        student.save()
+        saved = True
         if request.POST.get("initial"):
             student.completed_profile_setup = True
             student.save()
