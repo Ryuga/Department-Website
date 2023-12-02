@@ -145,8 +145,7 @@
             }
         }
         else if (/iPad|iPhone|iPod/i.test(userAgent) && isWebView()) {
-            let browser = userAgent.match(/(Chrome|Firefox|Brave)/i);
-            if (!browser) {
+            if (!navigator.userAgent.indexOf('CriOS') >= 0) {
                 window.location.href="https://zephyrus.christcs.in/instagram-redirect/";
             }
         }
