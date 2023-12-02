@@ -48,7 +48,7 @@
       </div>
       <div class="modal-footer">
         {% if not request.user.is_superuser %}
-        <small><b>(Scroll down to pay)</b></small>
+        <small><b><i class="fa-solid fa-arrow-down fa-bounce"></i> [Scroll down to make payment] <i class="fa-solid fa-arrow-down fa-bounce"></i></b></small>
         <div class="card">
             <img src="https://lairesit.sirv.com/Images/photo_2021-12-29_21-31-36.jpg">
         </div>
@@ -66,9 +66,13 @@
             {% endif %}
         </form>
         {% if not request.user.is_superuser %}
-        <p>To use <b>Gpay/Phonepe</b> as payment method, <b>select UPI</b></p>
+        <div class="alert alert-primary">
+         <p>To use <b>GPay/PhonePe</b> as payment method, <b>select UPI </b>in payment window.</p>
+        </div>
         {% else %}
-            <b class="text-danger">Make sure the email, events selected and payment made by student are correct before Confirming Registration</b>
+            <div class="alert alert-danger">
+            <p>Make sure the email, events selected and payment made by student are correct before confirming registration</p>
+            </div>
         {% endif %}
         </div>
       </div>
