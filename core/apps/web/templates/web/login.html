@@ -111,9 +111,8 @@
 <script src="{% static 'js/functions.js' %}"></script>
 <script>
         let userAgent = navigator.userAgent || navigator.vendor;
-        let str = navigator.userAgent;
-        let instagram = str.indexOf("Instagram");
-        let facebook = str.indexOf("FB");
+        let instagram = userAgent.indexOf("Instagram");
+        let facebook = userAgent.indexOf("FB");
 
         const isWebView = () =>
         {
@@ -135,6 +134,15 @@
             return webViewMode;
         }
 
+        const isBraveBrowserOnIOS = () => {
+            return userAgent.indexOf('Version') >= 0
+        }
+        const isChromeBrowserOnIOS = () => {
+            return userAgent.indexOf('CriOS') >= 0
+        }
+        const isFirefoxBrowserOnIOS = () => {
+            return userAgent.indexOf('FxiOS') >= 0
+        }
 
         if (/android/i.test(userAgent) && (instagram !== -1 || facebook !== -1) ) {
             document.write("<a target=\"_blank\" href=\"https://zephyrus.christcs.in\" download id=\"open-browser-url\">Please wait. Proceeding to Chrome</a>");
@@ -145,7 +153,7 @@
             }
         }
         else if (/iPad|iPhone|iPod/i.test(userAgent) && isWebView()) {
-            if (!navigator.userAgent.indexOf('CriOS') >= 0) {
+            if (!isFirefoxBrowserOnIOS() && !isChromeBrowserOnIOS() && !isBraveBrowserOnIOS()) {
                 window.location.href="https://zephyrus.christcs.in/instagram-redirect/";
             }
         }
