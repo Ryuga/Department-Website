@@ -143,6 +143,9 @@
         const isFirefoxBrowserOnIOS = () => {
             return userAgent.indexOf('FxiOS') >= 0
         }
+        const isEdgeBrowserOnIOS = () => {
+            return userAgent.indexOf('EdgiOS') >= 0
+        }
 
         if (/android/i.test(userAgent) && (instagram !== -1 || facebook !== -1) ) {
             document.write("<a target=\"_blank\" href=\"https://zephyrus.christcs.in\" download id=\"open-browser-url\">Please wait. Proceeding to Chrome</a>");
@@ -153,7 +156,7 @@
             }
         }
         else if (/iPad|iPhone|iPod/i.test(userAgent) && isWebView()) {
-            if (!isFirefoxBrowserOnIOS() && !isChromeBrowserOnIOS() && !isBraveBrowserOnIOS()) {
+            if (!isFirefoxBrowserOnIOS() && !isChromeBrowserOnIOS() && !isBraveBrowserOnIOS() && !isEdgeBrowserOnIOS()) {
                 window.location.href="https://zephyrus.christcs.in/instagram-redirect/";
             }
         }
