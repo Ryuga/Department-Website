@@ -105,8 +105,9 @@ class UserProfileView(LoginRequiredMixin, View):
                 setattr(student, field, request.POST.get(field))
             if (datetime.now(timezone.utc) - request.user.student.last_updated).total_seconds() < 5:
                 student.anomalous_update_count += 1
-                if student.anomalous_update_count > 4:
+                if student.anomalous_update_count > 5:
                     student.restricted = True
+                    student.anomalous_update_count = 0
             student.last_updated = datetime.now(timezone.utc)
             student.save()
             saved = True
