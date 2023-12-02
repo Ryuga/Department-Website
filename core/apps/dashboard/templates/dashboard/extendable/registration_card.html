@@ -3,7 +3,7 @@
 {% if not does_not_exist %}
 <div class="card p-2 bg-white border-0 shadow-lg">
     <div class="card-header bg-transparent">
-        <h4>{% if request.user.is_superuser %}Spot {% else %}Event{% endif %} Registration</h4>
+        <h4>{% if request.user.is_superuser %}Spot {% else %}{{ programs.0.event.name }}{% endif %} Registration</h4>
     </div>
     <div class="card-body">
         <div class="row">

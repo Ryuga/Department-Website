@@ -34,6 +34,7 @@ class Event(models.Model):
     staff_in_charge = models.ForeignKey("web.Faculty", on_delete=models.SET_NULL, null=True, blank=True)
     registration_link = models.URLField(null=True, blank=True, help_text="Optional")
     special_message = models.TextField(null=True, blank=True, help_text="Special message to send in email if any")
+    listing_order = models.IntegerField(default=0)
 
     @classmethod
     def event_link_setter(cls, instance, **kwargs):
@@ -131,7 +132,7 @@ class Student(models.Model):
 
     @staticmethod
     def active_events():
-        return Event.objects.filter(end_date__gt=time_now()).order_by("start_date")
+        return Event.objects.filter(end_date__gt=time_now()).order_by("listing_order")
 
     @property
     def registered_programs_str(self):
