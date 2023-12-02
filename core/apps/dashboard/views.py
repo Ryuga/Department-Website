@@ -1,7 +1,7 @@
 import os
 import pytz
 import xlwt
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
@@ -16,7 +16,7 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
 from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student
-from core.apps.dashboard.tasks import send_registration_email
+from core.apps.dashboard.tasks import send_registration_email, remove_account_restriction
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
@@ -107,7 +107,8 @@ class UserProfileView(LoginRequiredMixin, View):
                 student.anomalous_update_count += 1
                 if student.anomalous_update_count > 5:
                     student.restricted = True
-                    student.anomalous_update_count = 0
+                    remove_account_restriction.apply_async((student.user.username,),
+                                                           eta=datetime.now(timezone.utc) + timedelta(hours=1))
             student.last_updated = datetime.now(timezone.utc)
             student.save()
             saved = True

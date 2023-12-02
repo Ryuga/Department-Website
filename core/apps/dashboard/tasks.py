@@ -4,13 +4,23 @@ import qrcode
 from django.core import mail
 from django.conf import settings
 
-from core.apps.dashboard.models import Transaction
+from core.apps.dashboard.models import Transaction, Student
 from utils.discord_handler import DiscordAPIClient
 from utils.operations import get_html_formatted_message
 from celery import shared_task
 
 api = DiscordAPIClient(authorization=f"Bot {settings.BOT_TOKEN}")
 
+
+@shared_task
+def remove_account_restriction(username):
+    try:
+        student = Student.objects.get(user__username=username)
+        student.restricted = False
+        student.anomalous_update_count = 0
+        student.save()
+    except Student.DoesNotExist:
+        print("Student Does not exist")
 
 @shared_task
 def send_registration_email(transaction_id, fail=False):
