@@ -1,7 +1,7 @@
 import os
 import pytz
 import xlwt
-from datetime import datetime
+from datetime import datetime, timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
@@ -99,14 +99,20 @@ class UserProfileView(LoginRequiredMixin, View):
         if request.user.student.restricted:
             return render(request, self.template_name, {"restricted": True, "saved": False})
         saved = False
+        student = request.user.student
         for field in self.fields:
             if request.POST.get(field):
-                setattr(request.user.student, field, request.POST.get(field))
-            request.user.student.save()
+                setattr(student, field, request.POST.get(field))
+            if (datetime.now(timezone.utc) - request.user.student.last_updated).total_seconds() < 5:
+                student.anomalous_update_count += 1
+                if student.anomalous_update_count > 4:
+                    student.restricted = True
+            student.last_updated = datetime.now(timezone.utc)
+            student.save()
             saved = True
         if request.POST.get("initial"):
-            request.user.student.completed_profile_setup = True
-            request.user.student.save()
+            student.completed_profile_setup = True
+            student.save()
             return redirect("/")
         return render(request, self.template_name, {"saved": saved})
 

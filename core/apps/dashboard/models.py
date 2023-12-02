@@ -118,6 +118,8 @@ class Student(models.Model):
     completed_profile_setup = models.BooleanField(default=False)
     registered_programs = models.ManyToManyField("Program", blank=True)
     restricted = models.BooleanField(default=False)
+    last_updated = models.DateTimeField(auto_now_add=True)
+    anomalous_update_count = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
