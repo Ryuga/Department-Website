@@ -70,7 +70,7 @@
 		                	<span class="ttr-label">Settings</span>
 		                </a>
 		            </li>
-                    {% if settings %}
+                    {% if settings and settings.support_enabled %}
 					<li>
 						<a href="#!" class="ttr-material-button" type="button" data-bs-toggle="modal" data-bs-target="#supportModalCenter" >
 							<span class="ttr-icon"><i class="fa-solid fa-headset"></i></span>

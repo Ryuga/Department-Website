@@ -125,6 +125,16 @@
                         </iframe>
                       </div>
                     </div>
+                    {% if settings and settings.support_enabled %}
+                    <div class="widget-box h-auto mt-2 d-sm-block d-lg-none">
+                    <div class="wc-title">
+					  <h4>Need help with registration?</h4>
+                    </div>
+                      <div class="widget-inner">
+                        <a href="#!" data-bs-toggle="modal" data-bs-target="#supportModalCenter" class="btn btn-sm btn-outline-primary w-100"><i class="fa-solid fa-headset"></i> Student Support</a>
+                      </div>
+                    </div>
+                    {% endif %}
                     {% endif %}
                     {% endif %}
 				</div>

@@ -25,6 +25,7 @@ class SiteSetting(SingletonModel):
     site_external_link = models.URLField(max_length=100, null=True, blank=True,
                                          help_text="Please enter valid website url"
                                          )
+    support_enabled = models.BooleanField(default=False, help_text="Select if support option needs to be enabled")
     event_support_email = models.CharField(max_length=100, null=True, blank=True)
     event_support_whatsapp = models.CharField(max_length=10, null=True, blank=True,
                                               help_text="Please enter valid whatsapp number"
