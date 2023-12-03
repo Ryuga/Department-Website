@@ -113,16 +113,19 @@
                         </div>
                       </div>
                     </div>
+                    {% if settings.youtube_video_embed_code %}
                     <div class="widget-box h-auto">
                     <div class="wc-title">
-					  <h4>Zephyrus Registration Demo</h4>
+					  <h4>{{ settings.youtube_video_box_title }}</h4>
                     </div>
                       <div class="widget-inner">
                         <iframe width="100%" height="315"
-                        src="https://www.youtube.com/embed/aFGU7X0KvHs">
+                                allowfullscreen="allowfullscreen"
+                                src="https://www.youtube.com/embed/{{ settings.youtube_video_embed_code }}">
                         </iframe>
                       </div>
                     </div>
+                    {% endif %}
                     {% endif %}
 				</div>
 			</div>

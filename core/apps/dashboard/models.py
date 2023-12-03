@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from django.template.defaultfilters import slugify
 from utils.functions import generate_transaction_id, generate_registration_id
+from utils.abstract_models import SingletonModel
 
 
 def time_now():
@@ -14,6 +15,30 @@ def time_now():
 
 def default_json():
     return {}
+
+
+class SiteSetting(SingletonModel):
+    site_email = models.EmailField(max_length=100, null=True, blank=True)
+    site_instagram = models.URLField(max_length=100, null=True, blank=True,
+                                     help_text="Please enter valid instagram profile url"
+                                     )
+    site_external_link = models.URLField(max_length=100, null=True, blank=True,
+                                         help_text="Please enter valid website url"
+                                         )
+    event_support_email = models.CharField(max_length=100, null=True, blank=True)
+    event_support_whatsapp = models.CharField(max_length=10, null=True, blank=True,
+                                              help_text="Please enter valid whatsapp number"
+                                              )
+    event_support_instagram = models.CharField(max_length=20, null=True, blank=True,
+                                               help_text="Please enter valid instagram id (exclude '@')"
+                                               )
+    youtube_video_box_title = models.CharField(max_length=30, null=True, blank=True)
+    youtube_video_embed_code = models.CharField(
+        max_length=30, null=True, blank=True,
+        help_text="Make sure video embedding is allowed in youtube console"
+    )
+
+
 
 
 class Event(models.Model):

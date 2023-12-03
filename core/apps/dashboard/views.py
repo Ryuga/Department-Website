@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from utils.paytm_checksum import generate_checksum, verify_checksum
-from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student
+from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student, SiteSetting
 from core.apps.dashboard.tasks import send_registration_email, remove_account_restriction
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
@@ -83,7 +83,7 @@ class DashView(LoginRequiredMixin, View):
 
     def get(self, request):
         slideshow = Slideshow.objects.all().order_by('order')
-        return render(request, self.template_name, {"slideshow": slideshow})
+        return render(request, self.template_name, {"slideshow": slideshow, "settings": SiteSetting.load()})
 
 
 class UserProfileView(LoginRequiredMixin, View):
@@ -93,11 +93,11 @@ class UserProfileView(LoginRequiredMixin, View):
     )
 
     def get(self, request):
-        return render(request, self.template_name)
+        return render(request, self.template_name, {"settings": SiteSetting.load()})
 
     def post(self, request):
         if request.user.student.restricted:
-            return render(request, self.template_name, {"restricted": True, "saved": False})
+            return render(request, self.template_name, {"restricted": True, "saved": False, "settings": SiteSetting.load()})
         saved = False
         student = request.user.student
         for field in self.fields:
@@ -116,14 +116,15 @@ class UserProfileView(LoginRequiredMixin, View):
             student.completed_profile_setup = True
             student.save()
             return redirect("/")
-        return render(request, self.template_name, {"saved": saved})
+        return render(request, self.template_name, {"saved": saved, "settings": SiteSetting.load()})
 
 
 class SettingsView(LoginRequiredMixin, View, ResponseMixin):
     template_name = "dashboard/settings.html"
 
     def get(self, request):
-        return render(request, self.template_name, {"restricted": request.user.student.restricted})
+        return render(request, self.template_name, {"restricted": request.user.student.restricted,
+                                                    "settings": SiteSetting.load()})
 
     def delete(self, request):
         if request.user.student.active_registrations():
@@ -163,7 +164,8 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 except Student.DoesNotExist:
                     does_not_exist = True
                 return render(request, "dashboard/extendable/registration_card.html", {"programs": programs,
-                                                                                       "does_not_exist": does_not_exist
+                                                                                       "does_not_exist": does_not_exist,
+                                                                                       "settings": SiteSetting.load()
                                                                                        })
         else:
             registered_programs = request.user.student.registered_programs.all()
@@ -171,7 +173,8 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 program for program in all_programs if program not in registered_programs
             ]
         return render(request, self.template_name, {"programs": programs,
-                                                    "event": event
+                                                    "event": event,
+                                                    "settings": SiteSetting.load()
                                                     })
 
     def post(self, request, event_link):
@@ -229,7 +232,8 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                     send_registration_email.delay(transaction_id=transaction.id)
                 except Exception as E:
                     print(E)
-                return render(request, self.template_name, {"created": True, "event": order_items_from_db[0].event})
+                return render(request, self.template_name, {"created": True, "event": order_items_from_db[0].event,
+                                                            "settings": SiteSetting.load()})
             param_dict = {
                 'MID': settings.PAYTM_MERCHANT_ID,
                 'ORDER_ID': str(transaction.id),
@@ -255,7 +259,7 @@ class EventProgramsView(LoginRequiredMixin, View):
 
     def get(self, request, event_link):
         event = get_object_or_404(Event, link=event_link)
-        return render(request, self.template_name, {"programs": event.program_set.all()})
+        return render(request, self.template_name, {"programs": event.program_set.all(), "settings": SiteSetting.load()})
 
 
 class EventScheduleView(LoginRequiredMixin, View):
@@ -263,7 +267,7 @@ class EventScheduleView(LoginRequiredMixin, View):
 
     def get(self, request, event_link):
         event_days = EventDay.objects.filter(event__link=event_link).order_by('date')
-        return render(request, self.template_name, {"event_days": event_days})
+        return render(request, self.template_name, {"event_days": event_days, "settings": SiteSetting.load()})
 
 
 @csrf_exempt
@@ -325,7 +329,8 @@ class MyRegistrationDetailView(LoginRequiredMixin, View):
 
     def get(self, request, event_link):
         registration = get_object_or_404(self.model, event__link=event_link, student=request.user.student)
-        return render(request, "dashboard/registration_details.html", {"registration": registration})
+        return render(request, "dashboard/registration_details.html", {"registration": registration,
+                                                                       "settings": SiteSetting.load()})
 
 
 class AdminRegistrationDetailView(LoginRequiredMixin, View):

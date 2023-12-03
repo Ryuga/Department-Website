@@ -21,6 +21,9 @@ def remove_account_restriction(username):
         student.save()
     except Student.DoesNotExist:
         print("Student Does not exist")
+    except Exception as E:
+        print(E)
+
 
 @shared_task
 def send_registration_email(transaction_id, fail=False):
@@ -38,15 +41,14 @@ def send_registration_email(transaction_id, fail=False):
         msg = get_html_formatted_message(transaction)
         if not fail:
             mail.send_mail(
-            subject=f"{registration.event.name} Registration Successful!",
-            from_email="zephyrus-no-reply@christcs.in",
-            message="",
-            recipient_list=[registration.student.user.email],
-            html_message=msg
-        )
+                subject=f"{registration.event.name} Registration Successful!",
+                from_email="zephyrus-no-reply@christcs.in",
+                message="",
+                recipient_list=[registration.student.user.email],
+                html_message=msg
+            )
         return msg
     except Transaction.DoesNotExist:
         print("Does not exist")
     except Exception as E:
         print(E)
-
