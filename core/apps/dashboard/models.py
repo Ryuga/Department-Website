@@ -40,8 +40,6 @@ class SiteSetting(SingletonModel):
     )
 
 
-
-
 class Event(models.Model):
     name = models.CharField(max_length=100)
     link = models.SlugField(max_length=30, null=True,
@@ -221,6 +219,7 @@ class Program(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField(null=True, blank=True)
     image = models.URLField(null=True, blank=True)
+    registration_limit = models.IntegerField(default=-1)
     staff = models.ForeignKey("web.Faculty", null=True, on_delete=models.CASCADE)
     spot_registration_open = models.BooleanField(default=True)
     online_registration_open = models.BooleanField(default=True)
