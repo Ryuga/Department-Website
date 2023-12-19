@@ -228,6 +228,17 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 transaction.registration.save()
             transaction.save()
             if request.user.is_superuser:
+                for program in transaction.programs_selected.all():
+                    if not program.registration_limit == -1:
+                        registration_count = Transaction.objects.filter(
+                            registration__event=order_items_from_db[0].event,
+                            status="TXN_SUCCESS",
+                            programs_selected__in=[program]
+                        ).count()
+                        if registration_count >= program.registration_limit:
+                            program.online_registration_open = False
+                            program.spot_registration_open = False
+                            program.save()
                 try:
                     send_registration_email.delay(transaction_id=transaction.id)
                 except Exception as E:
@@ -288,6 +299,17 @@ def payment_handler(request):
                     transaction.registration.student.restricted = False
                     transaction.registration.student.save()
                     transaction.registration.save()
+                    for program in transaction.programs_selected.all():
+                        if not program.registration_limit == -1:
+                            registration_count = Transaction.objects.filter(
+                                registration__event=program.event,
+                                status="TXN_SUCCESS",
+                                programs_selected__in=[program]
+                            ).count()
+                            if registration_count >= program.registration_limit:
+                                program.online_registration_open = False
+                                program.spot_registration_open = False
+                                program.save()
                     try:
                         send_registration_email.delay(transaction_id=transaction.id)
                     except Exception as E:
