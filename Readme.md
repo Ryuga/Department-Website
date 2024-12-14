@@ -68,15 +68,15 @@ $ sudo DOKKU_TAG=v0.31.4 bash bootstrap.sh
 $ dokku apps:create department-website
 
 # Add required buildpacks
-$ dokku buildpacks:add https://github.com/moneymeets/python-poetry-buildpack.git
-$ dokku buildpacks:add https://github.com/heroku/heroku-buildpack-python.git
+$ dokku buildpacks:add department-website https://github.com/moneymeets/python-poetry-buildpack.git
+$ dokku buildpacks:add department-website https://github.com/heroku/heroku-buildpack-python.git
 
 # From the above .env file, add all the variables and their values in given format
 # (Multiple variables and their values can be added at a time with spaces between each pair)
-$ dokku config:add VARIABLE_NAME=VALUE
+$ dokku config:set department-website VARIABLE_NAME=VALUE
 
 # Explicitly disable static file collection
-$ dokku config:add DISABLE_COLLECTSTATIC=1
+$ dokku config:set department-website DISABLE_COLLECTSTATIC=1
 ```
 
 Add Github repository 
