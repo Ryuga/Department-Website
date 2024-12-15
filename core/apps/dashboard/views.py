@@ -97,7 +97,8 @@ class UserProfileView(LoginRequiredMixin, View):
 
     def post(self, request):
         if request.user.student.restricted:
-            return render(request, self.template_name, {"restricted": True, "saved": False, "settings": SiteSetting.load()})
+            return render(request, self.template_name,
+                          {"restricted": True, "saved": False, "settings": SiteSetting.load()})
         saved = False
         student = request.user.student
         for field in self.fields:
@@ -245,20 +246,18 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                     print(E)
                 return render(request, self.template_name, {"created": True, "event": order_items_from_db[0].event,
                                                             "settings": SiteSetting.load()})
-            param_dict = {
-                'MID': settings.PAYTM_MERCHANT_ID,
-                'ORDER_ID': str(transaction.id),
-                'TXN_AMOUNT': str(order_amt),
-                'CUST_ID': request.user.email,
-                'INDUSTRY_TYPE_ID': 'Retail',
-                'WEBSITE': 'DEFAULT',
-                'CHANNEL_ID': 'WEB',
-                'CALLBACK_URL': settings.PAYTM_CALLBACK_URL,
-            }
-            param_dict["CHECKSUMHASH"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
+            param_dict = {'mid': settings.PAYTM_MERCHANT_ID, "requestType": "Payment",
+                          "websiteName": "Zephyrus | Christ College Irinjalakuda", 'orderId': str(transaction.id),
+                          "txnAmount": {
+                              "value": "1.00",
+                              "currency": "INR",
+                          }, "userInfo": {
+                    "custId": "CUST_001",
+                }, 'callbackUrl': settings.PAYTM_CALLBACK_URL, "head": {}}
+            param_dict["head"]["signature"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
             return render(request, "dashboard/payments/paytm_payments.html",
                           {"data": param_dict,
-                           "paytm_process_transaction_url": settings.PAYTM_PROCESS_TRANSACTION_URL
+                           "paytm_process_transaction_url": f"https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid={settings.PAYTM_MERCHANT_ID}&orderId={str(transaction.id)}"
                            }
                           )
         else:
@@ -270,7 +269,8 @@ class EventProgramsView(LoginRequiredMixin, View):
 
     def get(self, request, event_link):
         event = get_object_or_404(Event, link=event_link)
-        return render(request, self.template_name, {"programs": event.program_set.all(), "settings": SiteSetting.load()})
+        return render(request, self.template_name,
+                      {"programs": event.program_set.all(), "settings": SiteSetting.load()})
 
 
 class EventScheduleView(LoginRequiredMixin, View):
