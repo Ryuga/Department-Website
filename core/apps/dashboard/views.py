@@ -1,4 +1,5 @@
 import os
+import json
 import pytz
 import xlwt
 from datetime import datetime, timezone, timedelta
@@ -14,12 +15,14 @@ from utils.functions import generate_css_text_animation
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from utils.paytm_checksum import generate_checksum, verify_checksum
+from utils.paytm_checksum import generateSignature, verifySignature
+from utils.payment_handler import PaytmPaymentHandler
 from .models import Program, Slideshow, Registration, Transaction, Event, EventDay, Student, SiteSetting
 from core.apps.dashboard.tasks import send_registration_email, remove_account_restriction
 
 google_oauth = GoogleOauth(redirect_uri=settings.OAUTH_REDIRECTION_URL)
 google_oauth_url, _ = google_oauth.flow.authorization_url()
+paytm = PaytmPaymentHandler()
 
 
 def media_access(request, path):
@@ -97,8 +100,7 @@ class UserProfileView(LoginRequiredMixin, View):
 
     def post(self, request):
         if request.user.student.restricted:
-            return render(request, self.template_name,
-                          {"restricted": True, "saved": False, "settings": SiteSetting.load()})
+            return render(request, self.template_name, {"restricted": True, "saved": False, "settings": SiteSetting.load()})
         saved = False
         student = request.user.student
         for field in self.fields:
@@ -246,18 +248,19 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                     print(E)
                 return render(request, self.template_name, {"created": True, "event": order_items_from_db[0].event,
                                                             "settings": SiteSetting.load()})
-            param_dict = {'mid': settings.PAYTM_MERCHANT_ID, "requestType": "Payment",
-                          "websiteName": "Zephyrus | Christ College Irinjalakuda", 'orderId': str(transaction.id),
-                          "txnAmount": {
-                              "value": "1.00",
-                              "currency": "INR",
-                          }, "userInfo": {
-                    "custId": "CUST_001",
-                }, 'callbackUrl': settings.PAYTM_CALLBACK_URL, "head": {}}
-            param_dict["head"]["signature"] = generate_checksum(param_dict, settings.PAYTM_MERCHANT_KEY)
+
+            initiation_response = paytm.initiate_transaction(transaction)
+            print(initiation_response)
+
+            param_dict = {
+                "orderId": str(transaction.id),
+                "txnToken": initiation_response.get("txnToken"),
+                "mid": settings.PAYTM_MERCHANT_ID
+            }
+
             return render(request, "dashboard/payments/paytm_payments.html",
                           {"data": param_dict,
-                           "paytm_process_transaction_url": f"https://securegw.paytm.in/theia/api/v1/initiateTransaction?mid={settings.PAYTM_MERCHANT_ID}&orderId={str(transaction.id)}"
+                           "paytm_process_transaction_url": paytm.generate_payments_page_url(transaction)
                            }
                           )
         else:
@@ -269,8 +272,7 @@ class EventProgramsView(LoginRequiredMixin, View):
 
     def get(self, request, event_link):
         event = get_object_or_404(Event, link=event_link)
-        return render(request, self.template_name,
-                      {"programs": event.program_set.all(), "settings": SiteSetting.load()})
+        return render(request, self.template_name, {"programs": event.program_set.all(), "settings": SiteSetting.load()})
 
 
 class EventScheduleView(LoginRequiredMixin, View):
@@ -289,7 +291,7 @@ def payment_handler(request):
     if transaction_id:
         try:
             transaction = Transaction.objects.get(id=request.POST.get("ORDERID"))
-            verify = verify_checksum(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
+            verify = verifySignature(response_dict, settings.PAYTM_MERCHANT_KEY, checksum_hash)
             if verify:
                 transaction.raw_response = response_dict
                 if response_dict['RESPCODE'] == '01':
