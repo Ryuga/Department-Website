@@ -105,7 +105,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DASHBOARD_URL = config('DASHBOARD_URL')
 ENCRYPTION_SALT = config("ENCRYPTION_SALT")
 ENCRYPTION_ITERATION = config("ENCRYPTION_ITERATION")
-BOT_TOKEN = config("BOT_TOKEN")
 
 # PAYTM PAYMENTS CONFIG
 PAYTM_MERCHANT_ID = config("PAYTM_MERCHANT_ID")
@@ -140,7 +139,6 @@ GOOGLE_CLIENT_SECRET = {
 CELERY_BROKER_URL = config("REDIS_URL")
 CELERY_RESULT_BACKEND = config("REDIS_URL")
 CELERY_TIMEZONE = 'Asia/Kolkata'
-
 
 #Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
