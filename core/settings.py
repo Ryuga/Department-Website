@@ -135,10 +135,12 @@ GOOGLE_CLIENT_SECRET = {
      }
 }
 
+
 #Celery Config
 CELERY_BROKER_URL = config("REDIS_URL")
 CELERY_RESULT_BACKEND = config("REDIS_URL")
 CELERY_TIMEZONE = 'Asia/Kolkata'
+
 
 #Email Config
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
