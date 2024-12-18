@@ -1303,3 +1303,12 @@
   background-color: rgba(47,179,128, 1) !important; /* Change to your desired color */
   border-color: rgba(47,179,128, 1) !important; /* Change to your desired color */
 }
+#qrcode {
+	border: 1px solid black;
+	padding: 2px;
+	border-radius: 3px;
+}
+#qrcode img {
+	height: 200px;
+	width: 200px;
+}
