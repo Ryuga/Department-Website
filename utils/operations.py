@@ -42,7 +42,6 @@ def get_html_formatted_message(transaction):
                                           reg_link=f"https://zephyrus.christcs.in/{transaction.registration.event.link}"
                                                    f"/registration/me/",
                                           event_name=transaction.registration.event.name,
-                                          qrcode_url=transaction.registration.qr,
                                           name=transaction.registration.student.name,
                                           reg_id=transaction.registration.id,
                                           style=style,

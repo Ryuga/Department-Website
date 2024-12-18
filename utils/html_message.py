@@ -219,7 +219,7 @@ template_1st_half = """
                     <td style="padding: 28px 32px 24px 24px" align="right">
                       <img
                         class="clearbit-img"
-                        src="{qrcode_url}"
+                        src="cid:qrcode_image"
                         style="
                           width: 90px;
                           height: 90px;

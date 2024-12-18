@@ -1,15 +1,11 @@
-import os
 import qrcode
-
-from django.core import mail
-from django.conf import settings
+from io import BytesIO
 
 from core.apps.dashboard.models import Transaction, Student
-from utils.discord_handler import DiscordAPIClient
 from utils.operations import get_html_formatted_message
 from celery import shared_task
-
-api = DiscordAPIClient(authorization=f"Bot {settings.BOT_TOKEN}")
+from django.core.mail import EmailMultiAlternatives
+from email.mime.image import MIMEImage
 
 
 @shared_task
@@ -25,28 +21,34 @@ def remove_account_restriction(username):
         print(E)
 
 
+def pil_image_to_mime_image(pil_image, filename="image.png"):
+    image_buffer = BytesIO()
+    pil_image.save(image_buffer, format='PNG')
+    image_buffer.seek(0)
+    mime_image = MIMEImage(image_buffer.read(), _subtype="png")
+    mime_image.add_header("Content-ID", "<qrcode_image>")
+    mime_image.add_header('Content-Disposition', 'inline', filename=filename)
+
+    return mime_image
+
+
 @shared_task
 def send_registration_email(transaction_id, fail=False):
     try:
         transaction = Transaction.objects.get(id=transaction_id)
         registration = transaction.registration
-        if not registration.qr:
-            img = qrcode.make(f"https://zephyrus.christcs.in/event/registration/details/{registration.id}/")
-            img.save(f"{registration.id}.png")
-            resp = api.upload_file(open(f"{registration.id}.png", "rb"))
-            if resp:
-                registration.qr = resp["attachments"][0]["url"]
-                registration.save()
-            os.remove(f"{registration.id}.png")
+        img = qrcode.make(f"https://zephyrus.christcs.in/event/registration/details/{registration.id}/")
         msg = get_html_formatted_message(transaction)
         if not fail:
-            mail.send_mail(
+            email = EmailMultiAlternatives(
                 subject=f"{registration.event.name} Registration Successful!",
                 from_email="zephyrus-no-reply@christcs.in",
-                message="",
-                recipient_list=[registration.student.user.email],
-                html_message=msg
+                body="",
+                to=[registration.student.user.email],
             )
+            email.attach_alternative(msg, "text/html")
+            email.attach(pil_image_to_mime_image(img))
+            email.send()
         return msg
     except Transaction.DoesNotExist:
         print("Does not exist")

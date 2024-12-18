@@ -105,7 +105,6 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 DASHBOARD_URL = config('DASHBOARD_URL')
 ENCRYPTION_SALT = config("ENCRYPTION_SALT")
 ENCRYPTION_ITERATION = config("ENCRYPTION_ITERATION")
-BOT_TOKEN = config("BOT_TOKEN")
 
 # PAYTM PAYMENTS CONFIG
 PAYTM_MERCHANT_ID = config("PAYTM_MERCHANT_ID")
@@ -135,6 +134,7 @@ GOOGLE_CLIENT_SECRET = {
         ]
      }
 }
+
 
 #Celery Config
 CELERY_BROKER_URL = config("REDIS_URL")

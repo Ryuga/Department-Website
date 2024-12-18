@@ -60,7 +60,11 @@
                         {% for registration in request.user.student.active_registrations %}
                             <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="pills-home{{ registration.id }}" role="tabpanel" aria-labelledby="pills-home-tab">
                                 <div class="card-body p-3 text-center bg-transparent">
-                                    <div class=" image d-flex flex-column justify-content-center align-items-center"> <a class="m-1 border-0 shadow-lg bg-white rounded"> <img src="{% if registration.qr %}{{ registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif %}" height="200" width="200" /></a>
+                                    <div class=" image d-flex flex-column justify-content-center align-items-center">
+                                        <a class="m-1 border-0 shadow-lg bg-white rounded">
+                                            <div id="qrcode"></div>
+                                            <input type="hidden" id="zephRegistrationLink" value="https://zephyrus.christcs.in/event/registration/details/{{ registration.id }}"/>
+                                        </a>
                                         <div class="d-flex flex-row justify-content-center align-items-center gap-2 mt-2"><a class="btn btn-outline-secondary mt-2 px-5 w-100 text-dark regIdBtn" data-clipboard-target="#{{ registration.id }}"><b>{{ registration.id }}</b></a> <input type="hidden" id="{{ registration.id }}" value="{{ registration.id }}"></div>
                                         <div class="card p-1 b-1 border-0 shadow-none">
                                             <h5 class="name mt-3 text-dark"> {{ request.user.student.name }}</h5>
@@ -142,3 +146,16 @@
 		</div>
 	</main>
 {% endblock content %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+    let qrcode = new QRCode("qrcode");
+
+    function makeCode () {
+        let elText = document.getElementById("zephRegistrationLink");
+        qrcode.makeCode(elText.value);
+    }
+    makeCode();
+    </script>
+{% endblock scripts %}
