@@ -215,7 +215,7 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 transaction.programs_selected.add(item)
                 transaction.events_selected_json[item.name] = item.reg_fee
                 transaction.value += item.reg_fee
-                if request.user.is_superuser:
+                if request.user.is_superuser or cost_total == 0:
                     registration_owner.registered_programs.add(item)
             if request.user.is_superuser:
                 registration_owner.restricted = False
@@ -229,8 +229,14 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                 transaction.date = datetime.now(pytz.timezone('Asia/Kolkata'))
                 transaction.mode = "Spot Registration"
                 transaction.registration.save()
+            if transaction.value == 0:
+                registration_owner.save()
+                transaction.status = "TXN_SUCCESS"
+                transaction.date = datetime.now(pytz.timezone('Asia/Kolkata'))
+                transaction.registration.made_successful_transaction = True
+                transaction.registration.save()
             transaction.save()
-            if request.user.is_superuser:
+            if request.user.is_superuser or transaction.value == 0:
                 for program in transaction.programs_selected.all():
                     if not program.registration_limit == -1:
                         registration_count = Transaction.objects.filter(
