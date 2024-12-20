@@ -6,7 +6,7 @@ def generate_registration_id():
 
 
 def generate_transaction_id():
-    return f"tnx-{str(uuid.uuid4())[:5]}"
+    return f"txn-{str(uuid.uuid4())[:5]}"
 
 
 def generate_css_text_animation(events):

@@ -27,7 +27,7 @@
                             <b>{{ program.name }}</b>
                           </label>
                           <span style="float:right;">
-                              Rs.{{ program.reg_fee }}
+                              {% if program.reg_fee == 0 %}Free {% else %}₹{{ program.reg_fee }}{% endif %}
                           </span>
                         </div>
                     </div>

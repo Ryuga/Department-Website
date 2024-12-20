@@ -66,7 +66,7 @@
 {#                        <div class="well well-sm">#}
                             <div class="row">
                                 <div class="col-sm-6 col-md-4 text-center">
-                                    <img src="{% if registration.qr %}{{ registration.qr }}{% else %}https://cdn.discordapp.com/attachments/835918464915996705/924684871442518136/qrcode.png{% endif %}" alt=""  class="img-thumbnail" />
+                                    <img src="{{ request.user.student.image_url }}" alt=""  class="img-thumbnail" />
                                     <a class="btn btn-sm btn-outline-secondary mt-2 w-100 text-dark"><b>{{ registration.id }}</b></a>
                                 </div>
                                 <div class="col-sm-6 col-md-8">

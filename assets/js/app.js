@@ -61,8 +61,16 @@ $(document).ready(function(){
     })
 
     $('#makePaymentBtn').click(function (){
-        if ((event_ids !== undefined || event_ids.length !== 0) && (total_price !== 0)) {
+        if ((event_ids !== undefined || event_ids.length !== 0) && (total_price >= 0)) {
             $("#modalTxnAmt").val(total_price);
+            if(total_price === 0){
+                $("#paymentInfoSection").hide();
+                $("#paymentInfoAlert").hide();
+            }
+            else {
+                 $("#paymentInfoSection").show();
+                $("#paymentInfoAlert").show();
+            }
             $("#modalEventsList").val(event_ids);
             $("#paymentConfirmationModal").modal('show');
         }
