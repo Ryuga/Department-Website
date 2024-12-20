@@ -157,4 +157,15 @@
     }
     makeCode();
     </script>
+    <script>
+        createFloatingIconLink({
+            text: "Open Source",
+            link: "https://www.github.com/ryuga/department-website",
+            bottom: window.innerWidth <= 768 ? "10px": "20px",
+            right: window.innerWidth <= 768 ? "10px": "20px",
+            fontSize: 15,
+            initialDelay: 2000,
+            disappearAfter: 12000
+        });
+    </script>
 {% endblock scripts %}
