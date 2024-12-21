@@ -63,7 +63,7 @@
                                     <div class=" image d-flex flex-column justify-content-center align-items-center">
                                         <a class="m-1 border-0 shadow-lg bg-white rounded">
                                             <div id="qrcode"></div>
-                                            <input type="hidden" id="zephRegistrationLink" value="https://zephyrus.christcs.in/event/registration/details/{{ registration.id }}"/>
+                                            <input type="hidden" id="zephRegistrationLink" value="https://zephyrus.christcs.in/event/registration/details/{{ registration.id }}/"/>
                                         </a>
                                         <div class="d-flex flex-row justify-content-center align-items-center gap-2 mt-2"><a class="btn btn-outline-secondary mt-2 px-5 w-100 text-dark regIdBtn" data-clipboard-target="#{{ registration.id }}"><b>{{ registration.id }}</b></a> <input type="hidden" id="{{ registration.id }}" value="{{ registration.id }}"></div>
                                         <div class="card p-1 b-1 border-0 shadow-none">

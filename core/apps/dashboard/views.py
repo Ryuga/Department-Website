@@ -175,9 +175,11 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
             programs = [
                 program for program in all_programs if program not in registered_programs
             ]
+        created = self.request.session.pop('createdRegistration', False)
         return render(request, self.template_name, {"programs": programs,
                                                     "event": event,
-                                                    "settings": SiteSetting.load()
+                                                    "settings": SiteSetting.load(),
+                                                    "created": created
                                                     })
 
     def post(self, request, event_link):
@@ -252,8 +254,9 @@ class EventRegistrationView(LoginRequiredMixin, View, ResponseMixin):
                     send_registration_email.delay(transaction_id=transaction.id)
                 except Exception as E:
                     print(E)
-                return render(request, self.template_name, {"created": True, "event": order_items_from_db[0].event,
-                                                            "settings": SiteSetting.load()})
+                if request.user.is_authenticated:
+                    request.session["createdRegistration"] = True
+                return redirect("registration", event_link=order_items_from_db[0].event.link)
 
             initiation_response = paytm.initiate_transaction(transaction)
             print(initiation_response)
