@@ -26,7 +26,8 @@
                                     <thead>
                                         <tr>
                                             <th class="border-0">Name</th>
-                                            <th class="border-0">College</th>
+                                            <th class="border-0">Institution</th>
+                                            <th class="border-0">Is Student</th>
                                             <th class="border-0">Email</th>
                                             <th class="border-0">Phone</th>
                                         </tr>
@@ -36,6 +37,7 @@
                                              <tr>
                                                 <td>{{ student.name }}</td>
                                                 <td>{{ student.college_name }}</td>
+                                                <td>{% if student.is_student %}Yes{% else %}No{% endif %}</td>
                                                 <td>{{ student.user.email }}</td>
                                                 <td>{{ student.phone_number }}</td>
                                              </tr>
