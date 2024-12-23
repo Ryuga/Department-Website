@@ -116,6 +116,7 @@ class UserProfileView(LoginRequiredMixin, View):
         student.save()
         saved = True
         if request.POST.get("initial"):
+            student.is_student = request.POST.get("is_student", True)
             student.completed_profile_setup = True
             student.save()
             return redirect("/")
