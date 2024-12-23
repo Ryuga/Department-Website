@@ -145,6 +145,7 @@ class Student(models.Model):
     restricted = models.BooleanField(default=False)
     last_updated = models.DateTimeField(auto_now_add=True)
     anomalous_update_count = models.IntegerField(default=0)
+    is_student = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
