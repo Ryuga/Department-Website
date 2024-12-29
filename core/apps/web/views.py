@@ -4,9 +4,9 @@ from django.conf import settings
 from django.shortcuts import render, redirect
 
 from .models import Course, Faculty, Message, Gallery, Batch, Tag, IpHash, PopUp
-from core.apps.dashboard.models import Event, time_now
+from core.apps.dashboard.models import time_now
 from django.views.generic import ListView, View
-from core.apps.dashboard.models import Event
+from core.apps.dashboard.models import Event, SiteSetting
 from utils.functions import generate_css_text_animation
 from ipware import get_client_ip
 
@@ -20,6 +20,7 @@ class IndexView(View):
         context = {}
         context["upcoming_events"] = Event.objects.filter(start_date__gt=time_now())
         context["messages"] = Message.objects.all()[:3]
+        context["settings"] = SiteSetting.objects.first()
         context['upcoming_events_with_registration_open'] = Event.upcoming_events_with_registration_open()
         if context['upcoming_events_with_registration_open']:
             context['generated_css'] = generate_css_text_animation(context['upcoming_events_with_registration_open'])
@@ -35,13 +36,17 @@ class IndexView(View):
         return render(request, "web/index.html", context)
 
 
-def about_view(request):
-    return render(request, "web/about.html")
+class AboutView(View):
+    template_name = "web/about.html"
+
+    def get(self, request):
+        return render(request, self.template_name, {"settings": SiteSetting.objects.first()})
 
 
 def lazy_load_faculty(request):
     faculties = Faculty.objects.filter(is_student_coordinator=False)
-    return render(request, "web/faculty-lazyload.html", {"faculties": faculties})
+    return render(request, "web/faculty-lazyload.html", {"faculties": faculties,
+                                                         "settings": SiteSetting.objects.first()})
 
 
 class EventView(View):
@@ -52,12 +57,12 @@ class EventView(View):
         if slug:
             try:
                 event = self.model.objects.get(link=slug)
-                return render(request, self.template_name, {"event": event})
+                return render(request, self.template_name, {"event": event, "settings": SiteSetting.objects.first()})
             except self.model.DoesNotExist:
                 return render(request, "web/404.html")
         else:
             events = Event.objects.all()
-            return render(request, "web/events.html", {"events": events})
+            return render(request, "web/events.html", {"events": events, "settings": SiteSetting.objects.first()})
 
 
 class CourseView(View):
@@ -67,7 +72,7 @@ class CourseView(View):
     def get(self, request, slug):
         try:
             course = self.model.objects.get(link=slug)
-            return render(request, self.template_name, {"course": course})
+            return render(request, self.template_name, {"course": course, "settings": SiteSetting.objects.first()})
         except self.model.DoesNotExist:
             return render(request, "web/404.html")
 
@@ -77,7 +82,7 @@ class GalleryListView(ListView):
     model = Gallery
     paginate_by = 12
     queryset = model.objects.order_by('-date')
-    extra_context = {"tags": Tag.objects.all()}
+    extra_context = {"tags": Tag.objects.all(), "settings": SiteSetting.objects.first()}
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -94,6 +99,7 @@ class AlumniListView(ListView):
 
 class TermsView(View):
     template_name = "web/terms.html"
+
     def get(self, request):
         return render(request, self.template_name)
 

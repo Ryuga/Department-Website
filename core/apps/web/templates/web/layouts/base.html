@@ -115,7 +115,7 @@
 									</li>
 								</ul>
 							</li>
-							<li><a href="{% url 'events' %}">Events</a></li>
+							<li><a href="{% url 'events' %}">{% if settings.custom_event_page_name %}{{ settings.custom_event_page_name }}{% else %}Events{% endif %}</a></li>
                             <li><a href="{% url 'alumni' %}">Alumni</a></li>
                             <li><a href="{% url 'gallery' %}">Gallery</a></li>
 						</ul>
@@ -155,7 +155,7 @@
 									<h5 class="footer-title">Pages</h5>
 									<ul>
 										<li><a href="{% url 'home' %}">Home</a></li>
-										<li><a href="{% url 'events' %}">Events</a></li>
+										<li><a href="{% url 'events' %}">{% if settings.custom_event_page_name %}{{ settings.custom_event_page_name }}{% else %}Events{% endif %}</a></li>
 										<li><a href="{% url 'about' %}">About Us</a></li>
 										<li><a href="{% url 'alumni' %}">Alumni</a></li>
 
