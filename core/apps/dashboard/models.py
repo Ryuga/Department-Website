@@ -38,6 +38,8 @@ class SiteSetting(SingletonModel):
         max_length=30, null=True, blank=True,
         help_text="Make sure video embedding is allowed in youtube console"
     )
+    custom_event_page_name = models.CharField(max_length=10, null=True, blank=True,
+                                              help_text="[Optional]: This will change the default Event page links")
 
 
 class Event(models.Model):
