@@ -11,7 +11,11 @@ def time_now():
 
 class Faculty(models.Model):
     name = models.CharField(max_length=100)
-    image_url = models.URLField(null=True)
+    is_student_coordinator = models.BooleanField(default=False,
+                                                 help_text="If checked will not show up in the Faculty section")
+    image_url = models.URLField(null=True, default="https://lairesit.sirv.com/rb_859.png",
+                                help_text="[!IMPORTANT!]: Update incase of non student coordinators as it will show up"
+                                          "in faculty section")
     link = models.CharField(max_length=100, null=True,
                             blank=True, help_text="Leave empty to auto create or add custom")
     designation = models.CharField(max_length=30)

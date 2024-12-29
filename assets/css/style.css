@@ -3756,7 +3756,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#391800', end
 		margin-bottom: 24px;
 	}
 	.footer-top{
-		padding: 0 0 10px;
+		/*padding: 0 0 10px;*/
 	}
 	.pt-exebar{
 		margin-bottom: 30px;

@@ -32,7 +32,7 @@
                 <div class="container">
 					 <div class="row">
 						<div class="col-lg-8 col-md-7 col-sm-12">
-							<div class="courses-post">
+							<div class="courses-post mb-2">
 								<div class="ttr-post-media media-effect">
 									<a href="#"><img src="{{ event.image_url }}" alt=""></a>
 								</div>
@@ -40,22 +40,26 @@
 									<div class="ttr-post-title ">
 										<h2 class="post-title">{{ event.name }}</h2>
 									</div>
-									<div class="ttr-post-text">
-										<p>{{ event.description }}</p>
-									</div>
 								</div>
 							</div>
 							<div class="courese-overview" id="overview">
 								<div class="row">
 									<div class="col-md-12 col-lg-5">
 										<ul class="course-features">
-											<li><i class="fa fa-book"></i> <span class="label">Topics</span> <span class="value">{{ event.topic }}</span></li>
-											<li><i class="fa fa-user-circle"></i> <span class="label">Host</span> <span class="value">{{ event.host }}</span></li>
-											<li><i class="fa fa-location-arrow"></i> <span class="label">Location</span> <span class="value">{{ event.venue }}</span></li>
+											{% if event.topic %}<li><i class="fa fa-book"></i> <span class="label">Topics</span> <span class="value">{{ event.topic }}</span></li>{% endif %}
+											{% if event.host %}<li><i class="fa fa-user-circle"></i> <span class="label">Host</span> <span class="value">{{ event.host }}</span></li>{% endif %}
+											{% if event.venue %}<li><i class="fa fa-location-arrow"></i> <span class="label">Location</span> <span class="value">{{ event.venue }}</span></li>{% endif %}
 										</ul>
 									</div>
 									<div class="col-md-12 col-lg-7">
                                         {{ event.markdown_content | markdown | safe }}
+									</div>
+								</div>
+							</div>
+                            <div class="courses-post">
+								<div class="ttr-post-info">
+									<div class="ttr-post-text">
+										<p>{{ event.description  | markdown | safe }}</p>
 									</div>
 								</div>
 							</div>
