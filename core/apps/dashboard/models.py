@@ -59,6 +59,7 @@ class Event(models.Model):
     registration_link = models.URLField(null=True, blank=True, help_text="Optional")
     special_message = models.TextField(null=True, blank=True, help_text="Special message to send in email if any")
     listing_order = models.IntegerField(default=0)
+    custom_registration_button_link = models.URLField(null=True, blank=True, help_text="Optional")
 
     @classmethod
     def event_link_setter(cls, instance, **kwargs):

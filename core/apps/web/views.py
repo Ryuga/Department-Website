@@ -40,7 +40,7 @@ def about_view(request):
 
 
 def lazy_load_faculty(request):
-    faculties = Faculty.objects.all()
+    faculties = Faculty.objects.filter(is_student_coordinator=False)
     return render(request, "web/faculty-lazyload.html", {"faculties": faculties})
 
 
