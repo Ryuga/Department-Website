@@ -49,6 +49,7 @@ class Event(models.Model):
                             unique=True)
     registration_open_date = models.DateTimeField(null=True)
     registration_end_date = models.DateTimeField(null=True)
+    hidden = models.BooleanField(default=False)
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)
     image_url = models.URLField()
@@ -160,7 +161,7 @@ class Student(models.Model):
 
     @staticmethod
     def active_events():
-        return Event.objects.filter(end_date__gt=time_now()).order_by("listing_order")
+        return Event.objects.filter(end_date__gt=time_now(), hidden=False).order_by("listing_order")
 
     @property
     def registered_programs_str(self):

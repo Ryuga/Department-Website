@@ -18,7 +18,7 @@ def dashboard_redirect(request):
 class IndexView(View):
     def get(self, request):
         context = {}
-        context["upcoming_events"] = Event.objects.filter(start_date__gt=time_now())
+        context["upcoming_events"] = Event.objects.filter(start_date__gt=time_now(), hidden=False)
         context["messages"] = Message.objects.all()[:3]
         context["settings"] = SiteSetting.objects.first()
         context['upcoming_events_with_registration_open'] = Event.upcoming_events_with_registration_open()
@@ -61,7 +61,7 @@ class EventView(View):
             except self.model.DoesNotExist:
                 return render(request, "web/404.html")
         else:
-            events = Event.objects.all()
+            events = Event.objects.filter(hidden=False)
             return render(request, "web/events.html", {"events": events, "settings": SiteSetting.objects.first()})
 
 
