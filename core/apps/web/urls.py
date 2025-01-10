@@ -1,4 +1,4 @@
-from django.urls import re_path
+f.rom django.urls import re_path
 from .views import (
     IndexView, AboutView, lazy_load_faculty, GalleryListView,
     EventView, CourseView, AlumniListView, dashboard_redirect,
