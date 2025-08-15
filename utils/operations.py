@@ -20,7 +20,7 @@ def create_user(email, avatar_url, access_token, name):
                                     email=email,
                                     first_name=name,
                                     password=hasher.get_hashed_pass(email))
-    if(len(avatar_url) > 200):
+    if len(avatar_url) > 200:
         avatar_url = get_random_default_avatar_url()
 
     Student.objects.create(user=user, image_url=avatar_url, name=name, access_token=access_token)

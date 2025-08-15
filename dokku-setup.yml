@@ -23,6 +23,10 @@
       prompt: "Enter DATABASE_URL"
       private: yes
 
+    - name: DEFAULT_CDN_URL
+      prompt: "Enter DEFAULT_CDN_URL"
+      private: no
+
     - name: DASHBOARD_URL
       prompt: "Enter DASHBOARD_URL"
       private: no
@@ -132,6 +136,7 @@
         GOOGLE_CLIENT_SECRET="{{ GOOGLE_CLIENT_SECRET }}"
         EMAIL_HOST_USER="{{ EMAIL_HOST_USER }}"
         EMAIL_HOST_PASSWORD="{{ EMAIL_HOST_PASSWORD }}"
+        DEFAULT_CDN_URL="{{ DEFAULT_CDN_URL }}"
 
     - name: Generate SSH key on the EC2 server
       command: ssh-keygen -t rsa -b 4096 -C "{{ ssh_email }}" -f /home/ubuntu/id_rsa -N ""
