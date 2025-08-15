@@ -13,7 +13,7 @@ avatars = ["cat", "bear", "panda", "cute", "deer", "dog", "elephant"]
 
 
 def get_random_default_avatar_url():
-    return  base_url + random.choices(avatars) + ".png"
+    return  base_url + random.choice(avatars) + ".png"
 
 def create_user(email, avatar_url, access_token, name):
     user = User.objects.create_user(username=email,
