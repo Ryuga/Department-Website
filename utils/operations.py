@@ -1,18 +1,28 @@
+import random
+
 from django.contrib.auth.models import User
 
 from utils.hashing import PasswordHasher
 from core.apps.dashboard.models import Student, Transaction
 from utils.html_message import template_1st_half, template_2nd_half, pricing_row, style, special_message
-
+from django.conf import settings
 
 hasher = PasswordHasher()
+base_url = settings.DEFAULT_CDN_URL + "/avatars/"
+avatars = ["cat", "bear", "panda", "cute", "deer", "dog", "elephant"]
 
+
+def get_random_default_avatar_url():
+    return  base_url + random.choices(avatars) + ".png"
 
 def create_user(email, avatar_url, access_token, name):
     user = User.objects.create_user(username=email,
                                     email=email,
                                     first_name=name,
                                     password=hasher.get_hashed_pass(email))
+    if(len(avatar_url) > 200):
+        avatar_url = get_random_default_avatar_url()
+
     Student.objects.create(user=user, image_url=avatar_url, name=name, access_token=access_token)
     return user
 
