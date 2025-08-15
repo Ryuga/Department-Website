@@ -1,0 +1,162 @@
+---
+- name: Install, configure Dokku and setup department-website application
+  hosts: ec2
+  become: yes
+  vars_prompt:
+    - name: ssh_email
+      prompt: "Enter email address for SSH key"
+      private: no
+
+    - name: SECRET_KEY
+      prompt: "Enter SECRET_KEY"
+      private: yes
+
+    - name: DEBUG
+      prompt: "Enter DEBUG (True/False)"
+      private: no
+
+    - name: LOCAL_DEVELOPMENT
+      prompt: "Enter LOCAL_DEVELOPMENT (True/False)"
+      private: no
+
+    - name: DATABASE_URL
+      prompt: "Enter DATABASE_URL"
+      private: yes
+
+    - name: DASHBOARD_URL
+      prompt: "Enter DASHBOARD_URL"
+      private: no
+
+    - name: ENCRYPTION_SALT
+      prompt: "Enter ENCRYPTION_SALT"
+      private: yes
+
+    - name: ENCRYPTION_ITERATION
+      prompt: "Enter ENCRYPTION_ITERATION"
+      private: no
+
+    - name: PAYTM_MERCHANT_ID
+      prompt: "Enter PAYTM_MERCHANT_ID"
+      private: no
+
+    - name: PAYTM_MERCHANT_KEY
+      prompt: "Enter PAYTM_MERCHANT_KEY"
+      private: yes
+
+    - name: GOOGLE_CLIENT_ID
+      prompt: "Enter GOOGLE_CLIENT_ID"
+      private: no
+
+    - name: GOOGLE_CLIENT_SECRET
+      prompt: "Enter GOOGLE_CLIENT_SECRET"
+      private: yes
+
+    - name: EMAIL_HOST_USER
+      prompt: "Enter EMAIL_HOST_USER"
+      private: no
+
+    - name: EMAIL_HOST_PASSWORD
+      prompt: "Enter EMAIL_HOST_PASSWORD"
+      private: yes
+
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Install required dependencies
+      apt:
+        name:
+          - wget
+          - curl
+          - apt-transport-https
+          - ca-certificates
+          - gnupg
+        state: present
+
+    - name: Download Dokku bootstrap script
+      get_url:
+        url: https://dokku.com/install/v0.36.0/bootstrap.sh
+        dest: /tmp/bootstrap.sh
+        mode: "0755"
+
+    - name: Install Dokku
+      command: bash /tmp/bootstrap.sh
+      environment:
+        DOKKU_TAG: v0.36.0
+      args:
+        creates: /usr/bin/dokku
+
+    - name: Create Dokku app department-website
+      command: dokku apps:create department-website
+      args:
+        creates: /home/dokku/department-website
+
+    - name: Add python-poetry buildpack
+      command: dokku buildpacks:add department-website https://github.com/moneymeets/python-poetry-buildpack.git
+
+    - name: Add heroku-python buildpack
+      command: dokku buildpacks:add department-website https://github.com/heroku/heroku-buildpack-python.git
+
+    - name: Check if redis plugin exists
+      command: dokku plugin:list
+      register: plugin_list
+      changed_when: false
+
+    - name: Install Dokku redis plugin if missing
+      command: dokku plugin:install https://github.com/dokku/dokku-redis.git redis
+      when: "'redis' not in plugin_list.stdout"
+
+    - name: Create redis service
+      command: dokku redis:create dept-redis
+
+    - name: Link redis with department-website
+      command: dokku redis:link dept-redis department-website
+
+    - name: Disable static file collection
+      command: dokku config:set department-website DISABLE_COLLECTSTATIC=1
+
+    - name: Set environment variables in Dokku
+      command: dokku config:set department-website
+        SECRET_KEY="{{ SECRET_KEY }}"
+        DEBUG="{{ DEBUG }}"
+        LOCAL_DEVELOPMENT="{{ LOCAL_DEVELOPMENT }}"
+        DATABASE_URL="{{ DATABASE_URL }}"
+        DASHBOARD_URL="{{ DASHBOARD_URL }}"
+        ENCRYPTION_SALT="{{ ENCRYPTION_SALT }}"
+        ENCRYPTION_ITERATION="{{ ENCRYPTION_ITERATION }}"
+        PAYTM_MERCHANT_ID="{{ PAYTM_MERCHANT_ID }}"
+        PAYTM_MERCHANT_KEY="{{ PAYTM_MERCHANT_KEY }}"
+        GOOGLE_CLIENT_ID="{{ GOOGLE_CLIENT_ID }}"
+        GOOGLE_CLIENT_SECRET="{{ GOOGLE_CLIENT_SECRET }}"
+        EMAIL_HOST_USER="{{ EMAIL_HOST_USER }}"
+        EMAIL_HOST_PASSWORD="{{ EMAIL_HOST_PASSWORD }}"
+
+    - name: Generate SSH key on the EC2 server
+      command: ssh-keygen -t rsa -b 4096 -C "{{ ssh_email }}" -f /home/ubuntu/id_rsa -N ""
+      args:
+        creates: /home/ubuntu/id_rsa
+
+    - name: Read private key from server
+      slurp:
+        src: /home/ubuntu/id_rsa
+      register: server_private_key
+
+    - name: Get app config
+      command: dokku config:show department-website
+      register: app_config
+      changed_when: false
+
+    - name: Print app config
+      debug:
+        msg: "{{ app_config.stdout_lines }}"
+
+    - name: Show private key in output
+      debug:
+        msg: "{{ server_private_key.content | b64decode | split('\n') }}"
+
+    - name: Clear configs
+      set_fact:
+        app_config: ""
+        server_private_key: ""
