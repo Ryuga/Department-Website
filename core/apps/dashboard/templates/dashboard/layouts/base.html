@@ -89,7 +89,11 @@
 		                <ul>
                             {% if event.has_registration_open %}
 		                	<li>
+								{% if event.registration_link %}
+		                		<a href="{{ event.registration_link }}" class="ttr-material-button" target="_blank"><span class="ttr-label">Registration</span></a>
+								{% else %}
 		                		<a href="{% url 'registration' event_link=event.link %}" class="ttr-material-button"><span class="ttr-label"> {% if request.user.is_superuser %}Spot {% endif %}Registration</span></a>
+								{% endif %}
 		                	</li>
                             {% endif %}
 							<li>
