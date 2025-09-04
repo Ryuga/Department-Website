@@ -112,7 +112,7 @@
                               <a class="btn btn-sm w-100 text-white" style="background-color: #6021ff" href="{% url 'programs' event_link=event.link %}"><i class="fa-solid fa-calendar-week"></i>  Event Details</a>
                               <a class="btn btn-sm text-white w-100 mt-2" style="background-color: #0a0023" href="{% url 'schedule' event_link=event.link %}"><i class="fa-solid fa-stopwatch"></i> Event Schedule</a>
                             {% if event.registration_link %}
-                              <a class="btn btn-sm w-100 mt-2" style="background-color: #ecc731" href="{{event.registration_link}" target="_blank"><i class="fa-solid fa-calendar-plus"></i> Register Now</a>
+                              <a class="btn btn-sm w-100 mt-2" style="background-color: #ecc731" href="{{ event.registration_link }}" target="_blank"><i class="fa-solid fa-calendar-plus"></i> Register Now</a>
                             {% else %}
                               <a class="btn btn-sm w-100 mt-2" style="background-color: #ecc731" href="{% url 'registration' event_link=event.link %}"><i class="fa-solid fa-calendar-plus"></i> Register Now</a>
                             {% endif %}
