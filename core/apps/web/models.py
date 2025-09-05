@@ -102,7 +102,7 @@ class IpHash(models.Model):
 class PopUp(models.Model):
     title = models.CharField(max_length=30, null=True, blank=True, help_text="Optional")
     description = models.TextField(null=True, blank=True, help_text="Optional")
-    image = models.ImageField(upload_to="img/popups")
+    image_url = models.URLField(help_text="Required")
 
 
 class Batch(models.Model):
